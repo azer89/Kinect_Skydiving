@@ -164,6 +164,13 @@
     <ClCompile Include="src\Utility.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="media\materials\programs\Atmosphere.cg" />
+    <None Include="media\materials\programs\Defs.program" />
+    <None Include="media\materials\programs\Planet.cg" />
+    <None Include="media\materials\programs\Planet_highResNormals.cg" />
+    <None Include="media\materials\programs\SimplePlanet.cg" />
+    <None Include="media\materials\programs\SpritePlanet.cg" />
+    <None Include="media\materials\programs\Star.cg" />
     <None Include="res\GalaxyEngine.ico" />
   </ItemGroup>
   <ItemGroup>

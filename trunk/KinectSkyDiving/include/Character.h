@@ -4,6 +4,7 @@
 
 #include "Stdafx.h"
 
+/**  Main Character Class*/
 class Character
 {
 public:
@@ -11,8 +12,9 @@ public:
 	virtual ~Character(void);
 
 	virtual void setup(Ogre::SceneManager* mSceneManager, Ogre::Vector3 position, Ogre::Vector3 scale, Ogre::Quaternion orientation);
+	virtual void update(Ogre::Real elapsedTime);
 
-	inline Ogre::Entity* getBodyEntity(){ return bodyEntity; }
+	inline Ogre::Entity* getBodyEntity() { return bodyEntity; }
 	inline Ogre::SceneNode* getBodyNode() { return bodyNode; }
 
 public:
@@ -20,10 +22,10 @@ public:
 
 protected:
 	
-	Ogre::SceneManager *mSceneManager;	
-	Ogre::Entity* bodyEntity;
-	Ogre::SceneNode* bodyNode;
-	Ogre::Skeleton* skeleton;
+	Ogre::SceneManager*  mSceneManager;	
+	Ogre::Entity*        bodyEntity;
+	Ogre::SceneNode*     bodyNode;
+	Ogre::Skeleton*      skeleton;
 };
 
 #endif // #ifndef __Character_h_

@@ -29,6 +29,7 @@ namespace GalaxyEngine
 		pass->setDepthCheckEnabled(true);
 		pass->setDepthWriteEnabled(false);
 		pass->setCullingMode(CULL_NONE);		// Make nice blue sky
+		//pass->isTransparent(true);
 
 		Atmosphere::maxPixelError = maxPixelError;
 		lowMesh = new AtmosphereRenderable(this, lowRes);

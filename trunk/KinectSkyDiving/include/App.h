@@ -1,5 +1,4 @@
 
-
 #ifndef __App_h_
 #define __App_h_
 
@@ -11,7 +10,6 @@
 #include "Core.h"
 #include "Universe.h"
 #include "Planet.h"
-//#include "RayCastCollision.h"
 #include "GameSystem.h"
 
 class App : public BaseApplication
@@ -25,13 +23,9 @@ public:
 
 protected:
 	GalaxyEngine::Core *planetEngine;				// planet rendering engine
-	//RayCastCollision* collisionDetector;			// simple planet collision engine
-	//Ogre::Real colissionDelay;					// collision engine isn't optimized so make it run every 1/60 second
-	GameSystem* gameSystem;							// game play system
+	GameSystem* gameSystem;							// game play system, put your code inside this class
 
 protected:
-	/** Check planet collision, similar to RaySceneQuery */
-	//void checkPlanetColission(Ogre::Real timeElapsed);
     virtual void createScene(void);
 	virtual bool frameRenderingQueued(const Ogre::FrameEvent& evt);
 

@@ -15,7 +15,8 @@ namespace GalaxyEngine
 		Ogre::SceneManager *sceneMgr, 
 		Ogre::RenderWindow *window, 
 		Ogre::Viewport *viewPort, 
-		Ogre::Camera *camera)
+		Ogre::Camera *camera,
+		Ogre::Root *mRoot)
 	{
 		if (singletonPtr) EXCEPTION("Cannot create more than one instance of a singleton class", "Core::Core()");
 		singletonPtr = this;
@@ -25,6 +26,7 @@ namespace GalaxyEngine
 		Core::mWindow = window;
 		Core::mViewPort = viewPort;
 		Core::mCamera = camera;
+		Core::mRoot = mRoot;
 
 		//Create the default main camera and viewport
 		viewPort->setBackgroundColour(ColourValue(0, 0, 0));
@@ -67,7 +69,7 @@ namespace GalaxyEngine
 	void Core::runSimulation()
 	{
 		universe = new Universe(Core::getSingleton().getCamera(), "TestUniverse");
-		while(Ogre::Root::getSingleton().renderOneFrame()) { universe->update(); }
+		while(mRoot->renderOneFrame()) { universe->update(); }
 	}
 
 	//void Core::renderWorld()

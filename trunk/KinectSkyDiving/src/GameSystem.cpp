@@ -17,6 +17,22 @@ GameSystem::~GameSystem(void)
 }
 
 //-------------------------------------------------------------------------------------
+/**  Create your scene here */
+void GameSystem::createScene(void)
+{
+	mCamera->setPosition(0, 250.0f, 0);
+	mCamera->lookAt(0, 0, 0);
+	Ogre::Quaternion q;
+	q.FromAngleAxis(Ogre::Degree(-90), Ogre::Vector3::UNIT_X);
+	mCamera->setOrientation(q);
+	mCamera->setNearClipDistance(0.001f);
+	mCamera->setFarClipDistance(1000.0f);
+
+	this->character = new Character();
+	this->character->setup(mSceneMgr, Ogre::Vector3(0, 260, 0), Ogre::Vector3(0.5f, 0.5f, 0.5f), Ogre::Quaternion::IDENTITY);
+}
+
+//-------------------------------------------------------------------------------------
 /** set some variables needed later */
 void GameSystem::initSystem(Ogre::Root *mRoot, Ogre::Camera* mCamera, Ogre::SceneManager* mSceneMgr, OIS::Mouse* mMouse, OIS::Keyboard* mKeyboard, GalaxyEngine::Core *planetEngine)
 {
@@ -29,17 +45,6 @@ void GameSystem::initSystem(Ogre::Root *mRoot, Ogre::Camera* mCamera, Ogre::Scen
 
 	collisionDetector = new RayCastCollision();
 	collisionDetector->init(this->mSceneMgr);
-
-	//this->character = new Character();
-	//this->character->setup(mSceneMgr, Ogre::Vector3(0, 200, 0), Ogre::Vector3(0.1f, 0.1f, 0.1f), Ogre::Quaternion::ZERO);
-
-	mCamera->setPosition(0, 250.0f, 0);
-	mCamera->lookAt(0, 0, 0);
-	Ogre::Quaternion q;
-	q.FromAngleAxis(Ogre::Degree(-90), Ogre::Vector3::UNIT_X);
-	mCamera->setOrientation(q);
-	mCamera->setNearClipDistance(0.001f);
-	mCamera->setFarClipDistance(1000.0f);
 }
 
 //------------------------------------------------------------------------------------
@@ -47,6 +52,7 @@ void GameSystem::initSystem(Ogre::Root *mRoot, Ogre::Camera* mCamera, Ogre::Scen
 void GameSystem::update(Ogre::Real elapsedTime)
 {
 	checkPlanetColission(elapsedTime);
+	//character->update(elapsedTime);
 }
 
 //------------------------------------------------------------------------------------
@@ -59,6 +65,9 @@ void GameSystem::checkPlanetColission(Ogre::Real timeElapsed)
 	Ogre::Vector3 camPos = mCamera->getDerivedPosition();
 	Ogre::Real distance1 = Ogre::Math::Abs(Ogre::Vector3::ZERO.distance(camPos));	// distance of the position to center of planet
 	GalaxyEngine::Planet* planet = planetEngine->getFirstPlanet();					// we only have one planet
+
+	if(planet == 0) return;
+
 	Ogre::Real radius = planet->getBoundingRadius();								// radius of bounding of the planet
 
 	if(distance1 < radius)
