@@ -1,0 +1,17 @@
+planet Planet2
+{
+	mediaPath /Planet2
+
+	terrain
+	{
+		radius 1
+		heightRange .03
+		virtualRes 8192
+		//virtualRes 10000000
+	}
+
+	atmosphere
+	{
+		radius 1.1
+	}
+}

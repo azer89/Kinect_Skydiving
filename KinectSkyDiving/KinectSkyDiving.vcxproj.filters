@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\App.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BaseApplication.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Atmosphere.cpp">
+      <Filter>Source Files\GalaxyEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ConfigScript.cpp">
+      <Filter>Source Files\GalaxyEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core.cpp">
+      <Filter>Source Files\GalaxyEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Exception.cpp">
+      <Filter>Source Files\GalaxyEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Planet.cpp">
+      <Filter>Source Files\GalaxyEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PlanetLoader_Hybrid.cpp">
+      <Filter>Source Files\GalaxyEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PlanetMath.cpp">
+      <Filter>Source Files\GalaxyEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SimplePlanet.cpp">
+      <Filter>Source Files\GalaxyEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SpaceBackdrop.cpp">
+      <Filter>Source Files\GalaxyEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SpritePlanet.cpp">
+      <Filter>Source Files\GalaxyEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Star.cpp">
+      <Filter>Source Files\GalaxyEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Universe.cpp">
+      <Filter>Source Files\GalaxyEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utility.cpp">
+      <Filter>Source Files\GalaxyEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RayCastCollision.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Character.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\App.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\BaseApplication.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Atmosphere.h">
+      <Filter>Header Files\GalaxyEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ConfigScript.h">
+      <Filter>Header Files\GalaxyEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core.h">
+      <Filter>Header Files\GalaxyEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DVector3.h">
+      <Filter>Header Files\GalaxyEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Exception.h">
+      <Filter>Header Files\GalaxyEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\FreeImage.h">
+      <Filter>Header Files\GalaxyEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Planet.h">
+      <Filter>Header Files\GalaxyEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PlanetLoader_Hybrid.h">
+      <Filter>Header Files\GalaxyEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PlanetMath.h">
+      <Filter>Header Files\GalaxyEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="res\Resource.h">
+      <Filter>Header Files\GalaxyEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SpaceBackdrop.h">
+      <Filter>Header Files\GalaxyEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SpritePlanet.h">
+      <Filter>Header Files\GalaxyEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Star.h">
+      <Filter>Header Files\GalaxyEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Universe.h">
+      <Filter>Header Files\GalaxyEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Utility.h">
+      <Filter>Header Files\GalaxyEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\RayCastCollision.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\QueryFlags.h">
+      <Filter>Header Files\GalaxyEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SimplePlanet.h">
+      <Filter>Header Files\GalaxyEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Character.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\GalaxyEngine.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{0c7f5da6-2ea4-487c-9657-b4d21e716ce6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4e31117d-452d-4b2e-9891-16a661014071}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{869a2928-d2e4-44d2-83c1-0cea126776c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GalaxyEngine">
+      <UniqueIdentifier>{ed84dbf9-8b26-4964-bb79-b432937334e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GalaxyEngine">
+      <UniqueIdentifier>{aade81fd-6c09-47e0-85f2-d08fdf89cb15}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="res\GalaxyEngine.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

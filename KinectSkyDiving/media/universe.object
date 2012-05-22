@@ -1,0 +1,27 @@
+universe TestUniverse
+{
+	mediaPath /universe
+
+	backdrop Starfield.dds
+
+	gravityFactor 1.0
+	timeStep 0.1 .2
+
+	star
+	{
+		colorMap Star1.png
+		radius 2
+		position 100 100 0
+		velocity 0 0 0
+		mass 2000
+	}
+
+	planet Planet2
+	{
+		position 0 0 0
+		velocity 0 0 0
+		axialRotation 0 1 0 90 0.6
+		mass 10
+	}
+
+}

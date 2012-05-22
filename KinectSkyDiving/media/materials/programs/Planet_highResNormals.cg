@@ -1,0 +1,39 @@
+void mainVS(
+	float4 position		: POSITION,
+	float3 normal		: NORMAL,
+	float2 uv			: TEXCOORD0,
+
+	uniform float3 lightDirection,
+	uniform float4x4 worldViewProj,
+			  
+	out float4 oPosition	: POSITION,
+	out float2 oUv			: TEXCOORD0,
+	out float oDotNormal	: COLOR
+	)
+{
+	oPosition = mul(worldViewProj, position);
+	oDotNormal = dot(normal, lightDirection);
+	oUv = uv;
+}
+
+void mainPS(
+	float2 uv					: TEXCOORD0,
+	float dotNormal				: COLOR,
+
+	uniform	sampler2D normalMap : TEXUNIT0,
+	uniform	sampler2D colorMap  : TEXUNIT1,
+	uniform float3 lightDirection,
+
+	out float4 oColor : COLOR
+	)
+{
+	float3 normal = (tex2D(normalMap, uv).rgb - 0.5) * 2.0;
+	float3 color = tex2D(colorMap, uv*10).rgb;
+
+	float d = saturate(dot(normal, lightDirection));
+	float d2 = d * d;
+	float shade = d2 * (dotNormal + (0.5 - d2 * 0.5));
+
+	oColor.rgb = color * shade;
+	oColor.a = 1.0;
+}
