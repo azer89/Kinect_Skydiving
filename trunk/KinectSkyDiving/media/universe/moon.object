@@ -1,0 +1,12 @@
+planet Moon1
+{
+	mediaPath \moon
+
+	terrain
+	{
+		radius .5
+		heightRange .03
+		virtualRes 2048
+	}
+
+}

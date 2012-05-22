@@ -1,0 +1,376 @@
+//-------------------------------------------------------------------------------------------------
+
+
+vertex_program Planet_vs_hlsl hlsl
+{
+	source Planet.cg
+	entry_point mainVS
+	target vs_2_0
+
+	default_params
+	{
+		param_named_auto worldViewProj worldviewproj_matrix
+	}
+}
+vertex_program Planet_vs_cg cg
+{
+	source Planet.cg
+	entry_point mainVS
+	profiles vs_2_0 arbvp1
+
+	default_params
+	{
+		param_named_auto worldViewProj worldviewproj_matrix
+	}
+}
+vertex_program Planet_vs unified
+{
+	delegate Planet_vs_hlsl
+	delegate Planet_vs_cg
+}
+
+vertex_program Planet_highResNormals_vs_hlsl hlsl
+{
+	source Planet_highResNormals.cg
+	entry_point mainVS
+	target vs_2_0
+
+	default_params
+	{
+		param_named_auto lightDirection CUSTOM 0
+		param_named_auto worldViewProj worldviewproj_matrix
+	}
+}
+vertex_program Planet_highResNormals_vs_cg cg
+{
+	source Planet_highResNormals.cg
+	entry_point mainVS
+	profiles vs_2_0 arbvp1
+
+	default_params
+	{
+		param_named_auto lightDirection CUSTOM 0
+		param_named_auto worldViewProj worldviewproj_matrix
+	}
+}
+vertex_program Planet_highResNormals_vs unified
+{
+	delegate Planet_highResNormals_vs_hlsl
+	delegate Planet_highResNormals_vs_cg
+}
+
+
+fragment_program Planet_hlsl hlsl
+{
+	source Planet.cg
+	entry_point mainPS
+	target ps_2_0
+
+	default_params
+	{
+		param_named_auto lightDirection CUSTOM 0
+	}
+}
+fragment_program Planet_ps_cg cg
+{
+	source Planet.cg
+	entry_point mainPS
+	profiles ps_2_0 arbfp1
+
+	default_params
+	{
+		param_named_auto lightDirection CUSTOM 0
+	}
+}
+fragment_program Planet_ps unified
+{
+	delegate Planet_ps_hlsl
+	delegate Planet_ps_cg
+}
+
+fragment_program Planet_highResNormals_hlsl hlsl
+{
+	source Planet_highResNormals.cg
+	entry_point mainPS
+	target ps_2_0
+
+	default_params
+	{
+		param_named_auto lightDirection CUSTOM 0
+	}
+}
+fragment_program Planet_highResNormals_ps_cg cg
+{
+	source Planet_highResNormals.cg
+	entry_point mainPS
+	profiles ps_2_0 arbfp1
+
+	default_params
+	{
+		param_named_auto lightDirection CUSTOM 0
+	}
+}
+fragment_program Planet_highResNormals_ps unified
+{
+	delegate Planet_highResNormals_ps_hlsl
+	delegate Planet_highResNormals_ps_cg
+}
+
+
+//-------------------------------------------------------------------------------------------------
+
+
+vertex_program SimplePlanet_vs_hlsl hlsl
+{
+	source SimplePlanet.cg
+	entry_point mainVS
+	target vs_2_0
+
+	default_params
+	{
+		param_named_auto worldViewProj worldviewproj_matrix
+	}
+}
+vertex_program SimplePlanet_vs_cg cg
+{
+	source SimplePlanet.cg
+	entry_point mainVS
+	profiles vs_2_0 arbvp1
+
+	default_params
+	{
+		param_named_auto worldViewProj worldviewproj_matrix
+	}
+}
+vertex_program SimplePlanet_vs unified
+{
+	delegate SimplePlanet_vs_hlsl
+	delegate SimplePlanet_vs_cg
+}
+
+
+fragment_program SimplePlanet_ps_hlsl hlsl
+{
+	source SimplePlanet.cg
+	entry_point mainPS
+	target ps_2_0
+
+	default_params
+	{
+		param_named_auto lightDirection CUSTOM 0
+	}
+}
+fragment_program SimplePlanet_ps_cg cg
+{
+	source SimplePlanet.cg
+	entry_point mainPS
+	profiles ps_2_0 arbfp1
+
+	default_params
+	{
+		param_named_auto lightDirection CUSTOM 0
+	}
+}
+fragment_program SimplePlanet_ps unified
+{
+	delegate SimplePlanet_ps_hlsl
+	delegate SimplePlanet_ps_cg
+}
+
+
+//-------------------------------------------------------------------------------------------------
+
+
+vertex_program SpritePlanet_vs_hlsl hlsl
+{
+	source SpritePlanet.cg
+	entry_point mainVS
+	target vs_2_0
+
+	default_params
+	{
+		param_named_auto worldViewProj worldviewproj_matrix
+	}
+}
+vertex_program SpritePlanet_vs_cg cg
+{
+	source SpritePlanet.cg
+	entry_point mainVS
+	profiles vs_2_0 arbvp1
+
+	default_params
+	{
+		param_named_auto worldViewProj worldviewproj_matrix
+	}
+}
+vertex_program SpritePlanet_vs unified
+{
+	delegate SpritePlanet_vs_hlsl
+	delegate SpritePlanet_vs_cg
+}
+
+
+fragment_program SpritePlanet_ps_hlsl hlsl
+{
+	source SpritePlanet.cg
+	entry_point mainPS
+	target ps_2_0
+
+	default_params
+	{
+		param_named_auto lightDirection CUSTOM 0
+	}
+}
+fragment_program SpritePlanet_ps_cg cg
+{
+	source SpritePlanet.cg
+	entry_point mainPS
+	profiles ps_2_0 arbfp1
+
+	default_params
+	{
+		param_named_auto lightDirection CUSTOM 0
+	}
+}
+fragment_program SpritePlanet_ps unified
+{
+	delegate SpritePlanet_ps_hlsl
+	delegate SpritePlanet_ps_cg
+}
+
+
+//-------------------------------------------------------------------------------------------------
+
+
+vertex_program Star_vs_hlsl hlsl
+{
+	source Star.cg
+	entry_point mainVS
+	target vs_2_0
+
+	default_params
+	{
+		param_named_auto worldViewProj worldviewproj_matrix
+	}
+}
+vertex_program Star_vs_cg cg
+{
+	source Star.cg
+	entry_point mainVS
+	profiles vs_2_0 arbvp1
+
+	default_params
+	{
+		param_named_auto worldViewProj worldviewproj_matrix
+	}
+}
+vertex_program Star_vs unified
+{
+	delegate Star_vs_hlsl
+	delegate Star_vs_cg
+}
+
+
+fragment_program Star_ps_hlsl hlsl
+{
+	source Star.cg
+	entry_point mainPS
+	target ps_2_0
+	
+	default_params
+	{
+		param_named_auto camDirection CUSTOM 0
+		param_named_auto cosTime1 CUSTOM 0
+		param_named_auto sinTime1 CUSTOM 0
+		param_named_auto cosTime2 CUSTOM 0
+		param_named_auto sinTime2 CUSTOM 0
+	}
+}
+fragment_program Star_ps_cg cg
+{
+	source Star.cg
+	entry_point mainPS
+	profiles ps_2_0 arbfp1
+	
+	default_params
+	{
+		param_named_auto camDirection CUSTOM 0
+		param_named_auto cosTime1 CUSTOM 0
+		param_named_auto sinTime1 CUSTOM 0
+		param_named_auto cosTime2 CUSTOM 0
+		param_named_auto sinTime2 CUSTOM 0
+	}
+}
+fragment_program Star_ps unified
+{
+	delegate Star_ps_hlsl
+	delegate Star_ps_cg
+}
+
+
+//-------------------------------------------------------------------------------------------------
+
+
+vertex_program Atmosphere_vs_hlsl hlsl
+{
+	source Atmosphere.cg
+	entry_point mainVS
+	target vs_2_0
+
+	default_params
+	{
+		param_named_auto lightDirection CUSTOM 0
+		param_named_auto worldViewProj worldviewproj_matrix
+	}
+}
+vertex_program Atmosphere_vs_cg cg
+{
+	source Atmosphere.cg
+	entry_point mainVS
+	profiles vs_2_0 arbvp1
+
+	default_params
+	{
+		param_named_auto lightDirection CUSTOM 0
+		param_named_auto worldViewProj worldviewproj_matrix
+	}
+}
+vertex_program Atmosphere_vs unified
+{
+	delegate Atmosphere_vs_hlsl
+	delegate Atmosphere_vs_cg
+}
+
+
+fragment_program Atmosphere_ps_hlsl hlsl
+{
+	source Atmosphere.cg
+	entry_point mainPS
+	target ps_2_0
+
+	default_params
+	{
+		param_named_auto relativeCameraPos CUSTOM 0
+	}
+}
+fragment_program Atmosphere_ps_cg cg
+{
+	source Atmosphere.cg
+	entry_point mainPS
+	profiles ps_2_0 arbfp1
+
+	default_params
+	{
+		param_named_auto relativeCameraPos CUSTOM 0
+	}
+}
+fragment_program Atmosphere_ps unified
+{
+	delegate Atmosphere_ps_hlsl
+	delegate Atmosphere_ps_cg
+}
+
+
+//-------------------------------------------------------------------------------------------------
+
+

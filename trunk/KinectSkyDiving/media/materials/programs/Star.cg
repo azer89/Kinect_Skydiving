@@ -1,0 +1,54 @@
+void mainVS(
+	float4 position		: POSITION,
+			  
+	out float4 oPosition	: POSITION,
+	out float3 oUv0			: TEXCOORD0,
+
+	uniform float4x4 worldViewProj
+	)
+{
+	oPosition = mul(worldViewProj, position);
+	oUv0 = position.xyz;
+}
+
+void mainPS(
+	float3 iUv0 : TEXCOORD0,
+	uniform	sampler3D noiseMap : TEXUNIT0,
+	uniform float3 camDirection,
+
+	uniform float cosTime1,
+	uniform float sinTime1,
+	uniform float cosTime2,
+	uniform float sinTime2,
+
+	out float4 oColor : COLOR	
+	)
+{
+	//Calculate boiling sun animation
+	float3 uv, uv2;
+	uv.x = iUv0.x + sinTime1;
+	uv.y = iUv0.y + cosTime1;
+	uv.z = iUv0.z + sinTime1;
+	uv2.x = iUv0.x + sinTime2;
+	uv2.y = iUv0.y + cosTime2;
+	uv2.z = iUv0.z + sinTime2;
+
+	float l0 = tex3D(noiseMap, uv * 0.1);
+	float l1 = tex3D(noiseMap, uv * 0.5);
+	float l2 = tex3D(noiseMap, uv * 2);
+	float l3 = tex3D(noiseMap, uv2 * 6);
+	
+	float bump = l1 * 0.2 + ((1.5 * l0 + 0.0) * (l2 * 0.4 + l3 * 0.4));
+
+	float lb = tex3D(noiseMap, -uv * 0.03);
+	float hole = saturate(lb * (l0 - 0.7));
+	
+	//Calculate color
+	oColor.rgb = float3(1,1,0) * bump + float3(0.7,0.4,0) * (1-bump);
+	oColor.rgb *= (1 + hole * 2);
+
+	//Modify alpha based on normal / camera
+	float d = dot(iUv0, camDirection);	//iUV0 also doubles as a normal
+	float edge = saturate(2 * d - 0.5);
+	oColor.a = edge;
+}

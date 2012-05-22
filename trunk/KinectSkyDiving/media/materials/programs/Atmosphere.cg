@@ -1,0 +1,40 @@
+void mainVS(
+	uniform float3 lightDirection,
+	uniform float4x4 worldViewProj,
+	
+	float4 position		: POSITION,
+			  
+	out float4 oPosition	: POSITION,
+	out float3 oNormal		: TEXCOORD0,
+	out float oIllum		: COLOR
+	)
+{
+	float3 normal = position;	//normalized sphere
+	
+	oNormal = normal;
+	oIllum = saturate(dot(normal, lightDirection) + 0.5);
+	oPosition = mul(worldViewProj, position);
+}
+
+void mainPS(
+	uniform float3 relativeCameraPos,
+	
+	float3 normal		: TEXCOORD0,
+	float illum			: COLOR,
+	
+	out float4 oColor	: COLOR	
+	)
+{
+	float3 camDirection = normalize(relativeCameraPos - normal);
+	float d = dot(normal, camDirection);
+	float dm = saturate(d*d * 6);
+	float edge = dm * (1-d);
+
+	oColor.rgb = float3(.3, .5, 1);
+	//oColor.rgb = float3(.4, .6, 1);
+	//oColor.rgb = float3(1, 0, 0);
+	
+	oColor.a = edge * illum;
+	//oColor.a = edge;
+	//oColor.a = illum + edge * 0.001;
+}
