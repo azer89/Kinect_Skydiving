@@ -134,6 +134,27 @@
     <None Include="res\GalaxyEngine.ico">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="media\materials\programs\Atmosphere.cg">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="media\materials\programs\Defs.program">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="media\materials\programs\Planet.cg">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="media\materials\programs\Planet_highResNormals.cg">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="media\materials\programs\SimplePlanet.cg">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="media\materials\programs\SpritePlanet.cg">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="media\materials\programs\Star.cg">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -150,6 +171,9 @@
     </Filter>
     <Filter Include="Source Files\GalaxyEngine">
       <UniqueIdentifier>{aade81fd-6c09-47e0-85f2-d08fdf89cb15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{7c2cb9c0-35cf-4f32-a83b-92bed1a5cb0d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -24,10 +24,10 @@ void RayCastCollision::init(Ogre::SceneManager* mSceneManager)
 }
 
 //-------------------------------------------------------------------------------------
-// Look only on chunks on leaf
+/** traverse the quad tree */
 void traverseChunkNodes(GalaxyEngine::Planet::ChunkNode* chunkNode, std::vector<GalaxyEngine::Planet::ChunkNode*> &leafChunks, Ogre::uint32 level)
 {
-	if(chunkNode->hasSubNodes())
+	if(chunkNode->hasSubNodes()) // Look only on chunks on leaf
 	{
 		for(int a = 0; a < GalaxyEngine::PlanetMath::Quadrant::QUADRANT_Size; a++)
 		{
@@ -42,6 +42,7 @@ void traverseChunkNodes(GalaxyEngine::Planet::ChunkNode* chunkNode, std::vector<
 }
 
 //-------------------------------------------------------------------------------------
+/**  Implement simple intersection algorithm using Ogre::Ray and Planet's Mesh*/
 void RayCastCollision::getPlanetIntersection(GalaxyEngine::Planet* planet, Ogre::Ray ray, Ogre::Vector3 &result)
 {
 	std::vector<GalaxyEngine::Planet::ChunkNode*> leafChunks;
@@ -68,7 +69,7 @@ void RayCastCollision::getPlanetIntersection(GalaxyEngine::Planet* planet, Ogre:
 		}
 	}
 
-	if(chunk == 0) 
+	if(chunk == 0)
 	{
 		std::cout << "chunk not found\n";
 		return;

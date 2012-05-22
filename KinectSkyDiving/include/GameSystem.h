@@ -15,13 +15,14 @@ public:
 	GameSystem(void);
 	virtual ~GameSystem(void);
 
-	void initSystem(Ogre::Root *mRoot, 
+	void initSystem(Ogre::Root* mRoot, 
 		Ogre::Camera* mCamera, 
 		Ogre::SceneManager* mSceneMgr, 
 		OIS::Mouse* mMouse, 
 		OIS::Keyboard* mKeyboard,
-		GalaxyEngine::Core *planetEngine);
+		GalaxyEngine::Core* planetEngine);
 
+	void createScene(void);
 	void update(Ogre::Real elapsedTime);
 
 private:
@@ -29,16 +30,16 @@ private:
 	void checkPlanetColission(Ogre::Real timeElapsed);
 
 private:
-	RayCastCollision* collisionDetector;			// simple planet collision engine
-	Ogre::Real colissionDelay;						// collision engine isn't optimized so make it run every 1/60 second
-	GalaxyEngine::Core *planetEngine;				// planet rendering engine
-	Character* character;							// character
+	RayCastCollision*   collisionDetector;			// simple planet collision engine
+	Ogre::Real          colissionDelay;				// collision engine isn't optimized so make it run every 1/60 second
+	GalaxyEngine::Core* planetEngine;				// planet rendering engine
+	Character*          character;					// character
 
-	Ogre::Root *mRoot;
-	Ogre::Camera* mCamera;
+	Ogre::Root*         mRoot;
+	Ogre::Camera*       mCamera;
 	Ogre::SceneManager* mSceneMgr;
-	OIS::Mouse*    mMouse;
-	OIS::Keyboard* mKeyboard;
+	OIS::Mouse*         mMouse;
+	OIS::Keyboard*      mKeyboard;
 };
 
 #endif // #ifndef __GameSystem_h_

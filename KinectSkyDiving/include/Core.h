@@ -15,7 +15,8 @@ namespace GalaxyEngine
 		Core(Ogre::String mediaPath, Ogre::SceneManager *sceneMgr, 
 			Ogre::RenderWindow *window, 
 			Ogre::Viewport *viewPort, 
-			Ogre::Camera *camera);
+			Ogre::Camera *camera,
+			Ogre::Root* mRoot);
 		~Core();
 
 		inline static Core &getSingleton(){ return *singletonPtr; }
@@ -42,6 +43,7 @@ namespace GalaxyEngine
 		static Core *singletonPtr;
 		Ogre::String mediaPath;
 
+		Ogre::Root *mRoot;
 		Ogre::SceneManager *mSceneMgr;
 		Ogre::RenderWindow *mWindow;
 		Ogre::Viewport *mViewPort;
