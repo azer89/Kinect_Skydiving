@@ -4,7 +4,7 @@ planet Planet2
 
 	terrain
 	{
-		radius 200
+		radius 500
 		heightRange 25.0
 		virtualRes 1024
 		//virtualRes 8192
@@ -13,6 +13,6 @@ planet Planet2
 
 	atmosphere
 	{
-		radius 230.0
+		radius 600.0
 	}
 }
