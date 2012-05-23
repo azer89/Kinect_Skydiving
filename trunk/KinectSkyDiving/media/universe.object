@@ -16,7 +16,7 @@ universe TestUniverse
 		mass 2000
 	}
 
-	planet Planet2
+	planet Planet
 	{
 		position 0 0 0
 		velocity 0 0 0
