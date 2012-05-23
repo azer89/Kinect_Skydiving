@@ -20,16 +20,16 @@ GameSystem::~GameSystem(void)
 /**  Create your scene here */
 void GameSystem::createScene(void)
 {
-	mCamera->setPosition(0, 250.0f, 0);
-	mCamera->lookAt(0, 0, 0);
+	mCamera->setPosition(0, 550.0f, 550);
+	mCamera->lookAt(0, 350, 0);
 	Ogre::Quaternion q;
-	q.FromAngleAxis(Ogre::Degree(-90), Ogre::Vector3::UNIT_X);
-	mCamera->setOrientation(q);
+	//q.FromAngleAxis(Ogre::Degree(-90), Ogre::Vector3::UNIT_X);
+	//mCamera->setOrientation(q);
 	mCamera->setNearClipDistance(0.001f);
 	mCamera->setFarClipDistance(1000.0f);
 
 	this->character = new Character();
-	this->character->setup(mSceneMgr, Ogre::Vector3(0, 260, 0), Ogre::Vector3(0.5f, 0.5f, 0.5f), Ogre::Quaternion::IDENTITY);
+	this->character->setup(mSceneMgr, Ogre::Vector3(0, 525, 525), Ogre::Vector3(0.5f, 0.5f, 0.5f), Ogre::Quaternion::IDENTITY);
 }
 
 //-------------------------------------------------------------------------------------
@@ -52,7 +52,7 @@ void GameSystem::initSystem(Ogre::Root *mRoot, Ogre::Camera* mCamera, Ogre::Scen
 void GameSystem::update(Ogre::Real elapsedTime)
 {
 	checkPlanetColission(elapsedTime);
-	//character->update(elapsedTime);
+	character->update(elapsedTime);
 }
 
 //------------------------------------------------------------------------------------
