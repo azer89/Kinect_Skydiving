@@ -1,6 +1,6 @@
-planet Planet2
+planet Planet
 {
-	mediaPath /Planet2
+	mediaPath /Planet
 
 	terrain
 	{

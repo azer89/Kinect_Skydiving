@@ -31,30 +31,6 @@ namespace GalaxyEngine
 		//Create the default main camera and viewport
 		viewPort->setBackgroundColour(ColourValue(0, 0, 0));
 		camera->setAspectRatio(Real(viewPort->getActualWidth()) / Real(viewPort->getActualHeight()));
-
-		//Don't clear the screen color every frame, since the skybox will serve that purpose
-		//viewPort->setClearEveryFrame(true, FBT_DEPTH);	
-		/*
-		camera->setPosition(0, 250.0f, 0);
-		camera->lookAt(0, 0, 0);
-		//camera->setDirection(0, -1, 0);
-		Quaternion q;
-		q.FromAngleAxis(Ogre::Degree(-90), Ogre::Vector3::UNIT_X);
-		camera->setOrientation(q);
-		camera->setNearClipDistance(0.001f);
-		camera->setFarClipDistance(1000.0f);
-		//camera->setFOVy(Degree(60));
-		*/
-		/*
-		sceneMgr->setAmbientLight(Ogre::ColourValue(0.3, 0.3, 0.3));
-		Ogre::Light* light = sceneMgr->createLight();
-		light->setType(Ogre::Light::LT_DIRECTIONAL);
-		light->setPosition(40, 0, 200);
-		light->setDirection(Ogre::Vector3(40, 0, 0));
-		light->setSpecularColour(Ogre::ColourValue::White);
-		*/
-
-		//running = false;
 	}
 
 	Core::~Core()
@@ -68,7 +44,7 @@ namespace GalaxyEngine
 
 	void Core::runSimulation()
 	{
-		universe = new Universe(Core::getSingleton().getCamera(), "TestUniverse");
+		universe = new Universe("TestUniverse");
 		while(mRoot->renderOneFrame()) { universe->update(); }
 	}
 

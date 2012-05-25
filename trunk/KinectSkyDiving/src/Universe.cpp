@@ -25,10 +25,11 @@ namespace GalaxyEngine
 {
 	Utility::Timer Universe::timer;
 	
-	Universe::Universe(Camera *cam, const Ogre::String &universeName)
+	Universe::Universe(const Ogre::String &universeName)
 	{
 		//LOD vars
-		camera = cam;
+		//camera = cam;
+		Ogre::Camera* cam = Core::getSingleton().getCamera();
 		fullyLoadedPlanet = NULL;
 
 		//Load universe script
@@ -183,7 +184,7 @@ namespace GalaxyEngine
 		const uint32 numStars = (uint32)stars.size();
 
 		//Convert the origin-relative camera position to an absolute one
-		DVector3 camPos = origin.translateLocalToGlobal(camera->getDerivedPosition());
+		DVector3 camPos = origin.translateLocalToGlobal(Core::getSingleton().getCamera()->getDerivedPosition());
 
 		//Check if it's time to perform another step of the gravity simulation
 		stepTimer += deltaTime_ms;

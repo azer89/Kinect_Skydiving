@@ -4,6 +4,18 @@
 
 #include "Stdafx.h"
 
+/** Character's Movement*/
+enum Movement
+{
+	NOTHING = 0,
+	MOVE_FRONT = 1,
+	MOVE_BACK = 2,
+	MOVE_LEFT = 3,
+	MOVE_RIGHT = 4,
+	ROTATE_LEFT = 5,
+	ROTATE_RIGHT = 6,
+};
+
 /**  Main Character Class*/
 class Character
 {
@@ -11,20 +23,43 @@ public:
 	Character(void);
 	virtual ~Character(void);
 
-	virtual void setup(Ogre::SceneManager* mSceneManager, Ogre::Vector3 position, Ogre::Vector3 scale, Ogre::Quaternion orientation);
-	virtual void update(Ogre::Real elapsedTime);
+	virtual void setup(Ogre::SceneManager* mSceneManager, 
+		Ogre::Vector3 position, 
+		Ogre::Vector3 scale, 
+		Ogre::Quaternion orientation);
 
-	inline Ogre::Entity* getBodyEntity() { return bodyEntity; }
-	inline Ogre::SceneNode* getBodyNode() { return bodyNode; }
+	virtual void update(Ogre::Real elapsedTime);
+	
+	void setState(Movement m);
+	void setGravity(Ogre::Real gravity) { this->gravity = gravity; }
+	void setLanding() { isLanding = true; }
+
+	inline Ogre::Entity*    getBodyEntity() { return bodyEntity; }
+	inline Ogre::SceneNode* getBodyNode() { return mMainNode; }
+	inline Ogre::SceneNode* getSightNode() { return mSightNode; }
+	inline Ogre::SceneNode* getCameraNode() { return mCameraNode; }
+	inline Ogre::Vector3    getWorldPosition() { return mMainNode->_getDerivedPosition (); }
 
 public:
 	Ogre::String entityName;
 
 protected:
+	void moveCharacter(Ogre::Real elapsedTime);
+	void fallDown(Ogre::Real elapsedTime);
+
+protected:
+
+	bool isLanding;
+	Ogre::Real gravity;
+	Ogre::Real degreeRotation;
+	Movement state;
+
+	Ogre::SceneNode*     mMainNode;			// Main character node
+	Ogre::SceneNode*	 mSightNode;		// "Sight" node - The character is supposed to be looking here
+	Ogre::SceneNode*	 mCameraNode;		// Node for the chase camera
 	
 	Ogre::SceneManager*  mSceneManager;	
-	Ogre::Entity*        bodyEntity;
-	Ogre::SceneNode*     bodyNode;
+	Ogre::Entity*        bodyEntity;	
 	Ogre::Skeleton*      skeleton;
 };
 

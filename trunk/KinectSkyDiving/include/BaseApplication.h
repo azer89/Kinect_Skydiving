@@ -55,15 +55,14 @@ protected:
     virtual void chooseSceneManager(void);
     virtual void createCamera(void);
     virtual void createFrameListener(void);
-    virtual void createScene(void) = 0; // Override me!
+    virtual void createScene(void) = 0;		// Override me!
     virtual void destroyScene(void);
     virtual void createViewports(void);
     virtual void setupResources(void);
     virtual void createResourceListener(void);
     virtual void loadResources(void);
-
-    // Ogre::FrameListener
-    virtual bool frameRenderingQueued(const Ogre::FrameEvent& evt);
+    
+    virtual bool frameRenderingQueued(const Ogre::FrameEvent& evt);	// Ogre::FrameListener
 
     // OIS::KeyListener
     virtual bool keyPressed( const OIS::KeyEvent &arg );
@@ -73,11 +72,9 @@ protected:
     virtual bool mousePressed( const OIS::MouseEvent &arg, OIS::MouseButtonID id );
     virtual bool mouseReleased( const OIS::MouseEvent &arg, OIS::MouseButtonID id );
 
-    // Ogre::WindowEventListener
-    //Adjust mouse clipping area
-    virtual void windowResized(Ogre::RenderWindow* rw);
-    //Unattach OIS before window shutdown (very important under Linux)
-    virtual void windowClosed(Ogre::RenderWindow* rw);
+    // Ogre::WindowEventListener    
+    virtual void windowResized(Ogre::RenderWindow* rw);	//Adjust mouse clipping area    
+    virtual void windowClosed(Ogre::RenderWindow* rw);	//Unattach OIS before window shutdown (very important under Linux)
 
     Ogre::Root *mRoot;
     Ogre::Camera* mCamera;

@@ -21,13 +21,8 @@ void App::createScene(void)
 {	
 	planetEngine = new GalaxyEngine::Core("../../media", this->mSceneMgr, this->mWindow, this->mCamera->getViewport(), this->mCamera, this->mRoot);
 	gameSystem = new GameSystem();
-	gameSystem->initSystem(mRoot, mCamera, mSceneMgr, mMouse, mKeyboard, planetEngine);
+	gameSystem->initSystem(mRoot, mCamera, mSceneMgr, mMouse, mKeyboard, mWindow, planetEngine);
 	gameSystem->createScene();
-
-	/*
-	Ogre::Entity* ent = mSceneMgr->createEntity("sdawd", "bomberman.mesh");
-	Ogre::SceneNode* nodee = mSceneMgr->getRootSceneNode()->createChildSceneNode();
-	nodee->attachObject(ent);*/
 }
 
 //--------------------------------------------------------------------------------------
@@ -50,14 +45,26 @@ void App::go(void)
 //--------------------------------------------------------------------------------------
  bool App::keyPressed( const OIS::KeyEvent &arg )
 {
-	bool result = BaseApplication::keyPressed( arg );
-	return result;
+	//bool result = BaseApplication::keyPressed( arg );
+	//return result;
+	
+	if(arg.key == OIS::KC_UP || 
+		arg.key == OIS::KC_DOWN || 
+		arg.key == OIS::KC_LEFT || 
+		arg.key == OIS::KC_RIGHT || 
+		arg.key == OIS::KC_ESCAPE ||
+		arg.key == OIS::KC_G)
+		BaseApplication::keyPressed( arg );
+
+	gameSystem->keyPressed(arg);
+	return true;
 }
 
 //--------------------------------------------------------------------------------------
 bool App::keyReleased( const OIS::KeyEvent &arg )
 {
 	bool result = BaseApplication::keyReleased( arg );
+	gameSystem->keyReleased(arg);
 	return result;
 }
 

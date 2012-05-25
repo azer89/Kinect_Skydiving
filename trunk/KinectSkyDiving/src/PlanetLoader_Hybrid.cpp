@@ -183,6 +183,8 @@ namespace GalaxyEngine
 		for (uint32 i = 0; i < 6; ++i) {
 			setColorMap((PlanetMath::CubeFace)i, prefix + "color_" + faceName[i] + ".dds");
 		}
+
+		//generateNormalMaps();
 	}
 
 	void PlanetLoader_Hybrid::setHeightMap(const PlanetMath::CubeFace cubeFace, const String &fileName)
@@ -194,7 +196,7 @@ namespace GalaxyEngine
 		Image img;
 		img.load(fileName, "Planet");
 		if (img.getFormat() != PF_L8) {
-			EXCEPTION("Wrong pixel format for heightmap image (must be 8-bit greyscale)", "PlanetLoader_Hybrid::setHeightMap()");
+			EXCEPTION("Wrong pixel format for heightmap image (must be 8-bit grayscale)", "PlanetLoader_Hybrid::setHeightMap()");
 		}
 		uint32 width = (uint32)img.getWidth();
 		uint32 height = (uint32)img.getHeight();
@@ -1010,7 +1012,7 @@ namespace GalaxyEngine
 			pmapBounds.bottom = propertyMap->height * thisBounds.bottom;
 
 			//Calculate map scaling factor. This should always be 2 since this chunk node's resolution should always be
-			//exactly twice as high (or 4x the area) as the parent's (due to the quadtree based planet chunk system).
+			//exactly twice as high (or 4x the area) as the parent's (due to the quad tree based planet chunk system).
 			uint32 mapScale = loader->chunkRes / hmapBounds.width();
 			assert(mapScale == 2);
 
@@ -1020,7 +1022,7 @@ namespace GalaxyEngine
 			//-------------------------- Procedural Terrain Generation --------------------------
 			//This code fills the chunk's height array with heights based on a subset of the parent's
 			//heights, with resolution enhanced using a midpoint displacement fractal. It's an inherently
-			//recursive algorithm, and fits well into the planet renderer because the quadtree LOD system will
+			//recursive algorithm, and fits well into the planet renderer because the quad tree LOD system will
 			//automatically cause this function to generate exactly the level of procedural detail needed (if any).
 			//The code below performs a single iteration of midpoint displacement, since each sub chunk is exactly
 			//twice the resolution of it's parent.
