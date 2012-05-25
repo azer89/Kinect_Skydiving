@@ -69,7 +69,7 @@ namespace GalaxyEngine
 	class Universe
 	{
 	public:
-		Universe(Ogre::Camera *cam, const Ogre::String &universeName);
+		Universe(const Ogre::String &universeName);
 		~Universe();
 
 		inline double getSimGravityFactor() { return gravityFactor; }
@@ -110,7 +110,7 @@ namespace GalaxyEngine
 
 		//SpaceBackdrop *backdrop;
 
-		Ogre::Camera *camera;
+		//Ogre::Camera *camera;
 		float perspectiveScalingFactor;
 		PlanetProxy *fullyLoadedPlanet, *maxPlanet;
 		StarProxy *maxStar;

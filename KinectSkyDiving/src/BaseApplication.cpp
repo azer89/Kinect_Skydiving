@@ -83,7 +83,7 @@ void BaseApplication::createCamera(void)
     //mCamera->setNearClipDistance(5);
 
     mCameraMan = new OgreBites::SdkCameraMan(mCamera);   // create a default camera controller
-	mCameraMan->setTopSpeed(20);
+	mCameraMan->setTopSpeed(40);
 }
 //-------------------------------------------------------------------------------------
 void BaseApplication::createFrameListener(void)

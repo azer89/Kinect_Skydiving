@@ -43,11 +43,15 @@ void traverseChunkNodes(GalaxyEngine::Planet::ChunkNode* chunkNode, std::vector<
 
 //-------------------------------------------------------------------------------------
 /**  Implement simple intersection algorithm using Ogre::Ray and Planet's Mesh*/
-void RayCastCollision::getPlanetIntersection(GalaxyEngine::Planet* planet, Ogre::Ray ray, Ogre::Vector3 &result)
+void RayCastCollision::getPlanetIntersection(GalaxyEngine::Planet* planet, 
+											Ogre::Ray ray, 
+											Ogre::Vector3 &result)
 {
 	std::vector<GalaxyEngine::Planet::ChunkNode*> leafChunks;
 	Ogre::uint32 level = planet->getDeepestChunkLevel();
 	Ogre::SceneNode* parentNode = planet->getParentSceneNode();
+
+	if(parentNode == NULL) return;
 
 	for(int a = 0; a < GalaxyEngine::PlanetMath::CubeFace::CUBEFACE_Size; a++)
 	{

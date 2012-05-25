@@ -120,6 +120,7 @@
   <ItemGroup>
     <ClInclude Include="include\Atmosphere.h" />
     <ClInclude Include="include\BaseApplication.h" />
+    <ClInclude Include="include\CameraListener.h" />
     <ClInclude Include="include\Character.h" />
     <ClInclude Include="include\ConfigScript.h" />
     <ClInclude Include="include\Core.h" />
@@ -138,6 +139,7 @@
     <ClInclude Include="include\SpritePlanet.h" />
     <ClInclude Include="include\Star.h" />
     <ClInclude Include="include\Stdafx.h" />
+    <ClInclude Include="include\ThirdPersonCamera.h" />
     <ClInclude Include="include\Universe.h" />
     <ClInclude Include="include\Utility.h" />
     <ClInclude Include="res\Resource.h" />
@@ -145,6 +147,7 @@
   <ItemGroup>
     <ClCompile Include="src\Atmosphere.cpp" />
     <ClCompile Include="src\BaseApplication.cpp" />
+    <ClCompile Include="src\CameraListener.cpp" />
     <ClCompile Include="src\Character.cpp" />
     <ClCompile Include="src\ConfigScript.cpp" />
     <ClCompile Include="src\Core.cpp" />
@@ -160,6 +163,7 @@
     <ClCompile Include="src\SpaceBackdrop.cpp" />
     <ClCompile Include="src\SpritePlanet.cpp" />
     <ClCompile Include="src\Star.cpp" />
+    <ClCompile Include="src\ThirdPersonCamera.cpp" />
     <ClCompile Include="src\Universe.cpp" />
     <ClCompile Include="src\Utility.cpp" />
   </ItemGroup>

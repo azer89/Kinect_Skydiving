@@ -8,6 +8,9 @@
 #include "Universe.h"
 #include "Planet.h"
 #include "Character.h"
+#include "CameraListener.h"
+#include "ThirdPersonCamera.h"
+
 
 class GameSystem
 {
@@ -20,10 +23,14 @@ public:
 		Ogre::SceneManager* mSceneMgr, 
 		OIS::Mouse* mMouse, 
 		OIS::Keyboard* mKeyboard,
+		Ogre::RenderWindow* mWindow,
 		GalaxyEngine::Core* planetEngine);
 
 	void createScene(void);
 	void update(Ogre::Real elapsedTime);
+
+	void keyPressed( const OIS::KeyEvent &arg );
+	void keyReleased( const OIS::KeyEvent &arg );
 
 private:
 	/** Check planet collision, similar to RaySceneQuery */
@@ -34,12 +41,15 @@ private:
 	Ogre::Real          colissionDelay;				// collision engine isn't optimized so make it run every 1/60 second
 	GalaxyEngine::Core* planetEngine;				// planet rendering engine
 	Character*          character;					// character
+	CameraListener*     mCameraListener;
+	ThirdPersonCamera*  exCamera;
 
 	Ogre::Root*         mRoot;
 	Ogre::Camera*       mCamera;
 	Ogre::SceneManager* mSceneMgr;
 	OIS::Mouse*         mMouse;
 	OIS::Keyboard*      mKeyboard;
+	Ogre::RenderWindow* mWindow;
 };
 
 #endif // #ifndef __GameSystem_h_
