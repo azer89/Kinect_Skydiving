@@ -35,7 +35,7 @@ ThirdPersonCamera::ThirdPersonCamera (String name, SceneManager *sceneMgr, Camer
 	mCameraNode->attachObject(mCamera);
 
 	// Default tightness
-	mTightness = Ogre::Vector3(0.05f, 0.05f, 0.05f);
+	mTightness = Ogre::Vector3(0.5f, 0.5f, 0.5f);
 }
 
 ThirdPersonCamera::~ThirdPersonCamera () 
@@ -65,14 +65,14 @@ void ThirdPersonCamera::instantUpdate (Vector3 cameraPosition, Vector3 targetPos
 void ThirdPersonCamera::update (Real elapsedTime, Vector3 cameraPosition, Vector3 targetPosition, Quaternion camOrientation) 
 {
 	Vector3 displacement01 = (targetPosition - mTargetNode->getPosition());
-	displacement01.x *= mTightness.x;
-	displacement01.y *= mTightness.y;
-	displacement01.z *= mTightness.z;
+	displacement01.x *= mTightness.x * 10.0f * elapsedTime;
+	displacement01.y *= mTightness.y * 10.0f * elapsedTime;
+	displacement01.z *= mTightness.z * 10.0f * elapsedTime;
 
 	Vector3 displacement02 = (cameraPosition - mCameraNode->getPosition());
-	displacement02.x *= mTightness.x;
-	displacement02.y *= mTightness.y;	
-	displacement02.z *= mTightness.z;
+	displacement02.x *= mTightness.x * 10.0f * elapsedTime;
+	displacement02.y *= mTightness.y * 10.0f * elapsedTime;	
+	displacement02.z *= mTightness.z * 10.0f * elapsedTime;
 	
 	mTargetNode->translate(displacement01);
 	mCameraNode->translate(displacement02);

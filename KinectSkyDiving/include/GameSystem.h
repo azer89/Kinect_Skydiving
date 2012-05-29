@@ -10,7 +10,7 @@
 #include "Character.h"
 #include "CameraListener.h"
 #include "ThirdPersonCamera.h"
-
+#include "SimpleCloud.h"
 
 class GameSystem
 {
@@ -41,6 +41,7 @@ private:
 	Ogre::Real          colissionDelay;				// collision engine isn't optimized so make it run every 1/60 second
 	GalaxyEngine::Core* planetEngine;				// planet rendering engine
 	Character*          character;					// character
+	SimpleCloud*		cloud;
 	CameraListener*     mCameraListener;
 	ThirdPersonCamera*  exCamera;
 
