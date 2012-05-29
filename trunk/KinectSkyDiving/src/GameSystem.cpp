@@ -23,7 +23,9 @@ void GameSystem::createScene(void)
 	mCamera->setPosition(0, 550.0f, 550);
 	mCamera->lookAt(0, 350, 0);
 	mCamera->setNearClipDistance(0.001f);
-	mCamera->setFarClipDistance(2000.0f);
+	mCamera->setFarClipDistance(30000.0f);
+
+	mSceneMgr->setSkyBox(true, "Sky/Clouds", 10000, true);
 
 	exCamera = new ThirdPersonCamera("ThirdPersonCamera", mSceneMgr, mCamera);
 	mCameraListener = new CameraListener(mWindow, mCamera);
@@ -34,6 +36,9 @@ void GameSystem::createScene(void)
 	this->character->setup(mSceneMgr, Ogre::Vector3(0, 525, 525), Ogre::Vector3(0.5f, 0.5f, 0.5f), Ogre::Quaternion::IDENTITY);
 	//this->character->setup(mSceneMgr, Ogre::Vector3(0, 540, 0), Ogre::Vector3(0.5f, 0.5f, 0.5f), Ogre::Quaternion::IDENTITY);
 	this->character->setGravity(9.8f);
+
+	cloud = new SimpleCloud();
+	cloud->initCloud(mSceneMgr, 30);
 }
 
 //-------------------------------------------------------------------------------------
@@ -65,6 +70,7 @@ void GameSystem::update(Ogre::Real elapsedTime)
 	checkPlanetColission(elapsedTime);
 	character->update(elapsedTime);
 	mCameraListener->update(elapsedTime);
+	cloud->updateClouds(elapsedTime);
 }
 
 //------------------------------------------------------------------------------------

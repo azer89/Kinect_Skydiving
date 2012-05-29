@@ -4,6 +4,8 @@ material lambert14
 	{
 		pass
 		{
+			lighting off
+		
 			ambient 0 0 0 1
 			diffuse 1 1 1 1
 			specular 0 0 0 1
@@ -27,6 +29,8 @@ material lambert15
 	{
 		pass
 		{
+			lighting off
+		
 			ambient 0 0 0 1
 			diffuse 1 1 1 1
 			specular 0 0 0 1

@@ -29,7 +29,7 @@ void Character::setup(Ogre::SceneManager* mSceneManager,
 
 	this->entityName = "MainBodyCharacter";
 
-	this->bodyEntity = mSceneManager->createEntity(entityName, "bomberman.mesh");
+	this->bodyEntity = mSceneManager->createEntity(entityName, "girl.mesh");
 	this->mMainNode = mSceneManager->getRootSceneNode()->createChildSceneNode();
 
 	Ogre::SceneNode* innerNode = new Ogre::SceneNode(mSceneManager);
@@ -37,7 +37,7 @@ void Character::setup(Ogre::SceneManager* mSceneManager,
 	Ogre::Quaternion q1 = Ogre::Quaternion::IDENTITY;
 	Ogre::Quaternion q2 = Ogre::Quaternion::IDENTITY;
 	q1.FromAngleAxis(Ogre::Degree(180), Ogre::Vector3::UNIT_Y);
-	q2.FromAngleAxis(Ogre::Degree(90), Ogre::Vector3::UNIT_X);
+	//q2.FromAngleAxis(Ogre::Degree(90), Ogre::Vector3::UNIT_X);
 	innerNode->setOrientation(q1 * q2);
 	this->mMainNode->addChild(innerNode);
 
@@ -47,8 +47,8 @@ void Character::setup(Ogre::SceneManager* mSceneManager,
 
 	Ogre::Vector3 orient01 = this->mMainNode->getOrientation() * Ogre::Vector3::UNIT_Y;
 	Ogre::Vector3 orient02 = this->mMainNode->getOrientation() * Ogre::Vector3::UNIT_Z;
-	Ogre::Vector3 sight =  orient01 * 30.0f;
-	Ogre::Vector3 cam = orient01 * 50.0f + orient02 * 50.0f;
+	Ogre::Vector3 sight =  orient01 * 15.0f;
+	Ogre::Vector3 cam = orient01 * 20.0f + orient02 * 10.0f;
 
 	mSightNode = this->mMainNode->createChildSceneNode("sightNode", sight);
 	mCameraNode = this->mMainNode->createChildSceneNode("cameraNode", cam);	
@@ -121,7 +121,7 @@ void Character::moveCharacter(Ogre::Real elapsedTime)
 	{
 		Ogre::Vector3 trans = direction;
 		Ogre::Quaternion q = mMainNode->getOrientation();
-		trans = trans * 100 * elapsedTime;
+		trans = trans * 10 * elapsedTime;
 		trans = q * trans;
 			
 		this->mMainNode->translate(trans);

@@ -134,6 +134,7 @@
     <ClInclude Include="include\PlanetMath.h" />
     <ClInclude Include="include\QueryFlags.h" />
     <ClInclude Include="include\RayCastCollision.h" />
+    <ClInclude Include="include\SimpleCloud.h" />
     <ClInclude Include="include\SimplePlanet.h" />
     <ClInclude Include="include\SpaceBackdrop.h" />
     <ClInclude Include="include\SpritePlanet.h" />
@@ -159,6 +160,7 @@
     <ClCompile Include="src\PlanetLoader_Hybrid.cpp" />
     <ClCompile Include="src\PlanetMath.cpp" />
     <ClCompile Include="src\RayCastCollision.cpp" />
+    <ClCompile Include="src\SimpleCloud.cpp" />
     <ClCompile Include="src\SimplePlanet.cpp" />
     <ClCompile Include="src\SpaceBackdrop.cpp" />
     <ClCompile Include="src\SpritePlanet.cpp" />

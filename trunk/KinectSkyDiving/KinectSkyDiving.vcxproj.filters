@@ -58,10 +58,13 @@
     <ClCompile Include="src\GameSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\CameraListener.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\ThirdPersonCamera.cpp">
+      <Filter>Source Files\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CameraListener.cpp">
+      <Filter>Source Files\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SimpleCloud.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -135,10 +138,13 @@
     <ClInclude Include="include\GameSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\CameraListener.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\ThirdPersonCamera.h">
+      <Filter>Header Files\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CameraListener.h">
+      <Filter>Header Files\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SimpleCloud.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -186,6 +192,12 @@
     </Filter>
     <Filter Include="Shaders">
       <UniqueIdentifier>{7c2cb9c0-35cf-4f32-a83b-92bed1a5cb0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Camera">
+      <UniqueIdentifier>{9e8005ab-7bdb-47a4-af82-285911877f4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Camera">
+      <UniqueIdentifier>{6d3b1395-d66c-4c15-81f6-86b78ac4207c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
