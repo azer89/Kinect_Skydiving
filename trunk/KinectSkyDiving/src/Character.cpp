@@ -34,8 +34,8 @@ void Character::setup(Ogre::SceneManager* mSceneManager,
 
 	Ogre::SceneNode* innerNode = new Ogre::SceneNode(mSceneManager);
 	innerNode->attachObject(bodyEntity);
-	Ogre::Quaternion q1;
-	Ogre::Quaternion q2;
+	Ogre::Quaternion q1 = Ogre::Quaternion::IDENTITY;
+	Ogre::Quaternion q2 = Ogre::Quaternion::IDENTITY;
 	q1.FromAngleAxis(Ogre::Degree(180), Ogre::Vector3::UNIT_Y);
 	q2.FromAngleAxis(Ogre::Degree(90), Ogre::Vector3::UNIT_X);
 	innerNode->setOrientation(q1 * q2);
