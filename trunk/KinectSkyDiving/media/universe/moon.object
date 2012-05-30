@@ -4,7 +4,7 @@ planet Moon1
 
 	terrain
 	{
-		radius .5
+		radius 10
 		heightRange .03
 		virtualRes 2048
 	}

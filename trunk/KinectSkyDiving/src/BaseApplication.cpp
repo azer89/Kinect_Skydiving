@@ -6,7 +6,6 @@
 #include "../res/resource.h"
 #endif
 
-
 //-------------------------------------------------------------------------------------
 BaseApplication::BaseApplication(void)
     : mRoot(0),

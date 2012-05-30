@@ -37,9 +37,6 @@ namespace GalaxyEngine
 	{
 		singletonPtr = NULL;
 		delete ConfigScriptLoader::getSingletonPtr();
-
-		//Destroy Ogre Graphics
-		//delete Root::getSingletonPtr();
 	}
 
 	void Core::runSimulation()
@@ -47,16 +44,6 @@ namespace GalaxyEngine
 		universe = new Universe("TestUniverse");
 		while(mRoot->renderOneFrame()) { universe->update(); }
 	}
-
-	//void Core::renderWorld()
-	//{
-	//	Ogre::Root::getSingleton().renderOneFrame();
-	//}
-
-	//void Core::updateWorld()
-	//{
-	//	universe->update();
-	//}
 
 	Planet* Core::getFirstPlanet()
 	{

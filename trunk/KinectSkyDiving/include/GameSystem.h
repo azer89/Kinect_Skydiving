@@ -37,13 +37,13 @@ private:
 	void checkPlanetColission(Ogre::Real timeElapsed);
 
 private:
-	RayCastCollision*   collisionDetector;			// simple planet collision engine
-	Ogre::Real          colissionDelay;				// collision engine isn't optimized so make it run every 1/60 second
+	RayCastCollision*   collisionDetector;			// simple planet collision engine	
 	GalaxyEngine::Core* planetEngine;				// planet rendering engine
 	Character*          character;					// character
 	SimpleCloud*		cloud;
 	CameraListener*     mCameraListener;
 	ThirdPersonCamera*  exCamera;
+	Ogre::Real          colissionDelay;				// collision engine isn't optimized so make it run every 1/60 second
 
 	Ogre::Root*         mRoot;
 	Ogre::Camera*       mCamera;

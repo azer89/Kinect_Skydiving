@@ -11,9 +11,9 @@ App::App(void)
 }
 //-------------------------------------------------------------------------------------
 App::~App(void)
-{
-	if(planetEngine != 0) delete planetEngine;
+{	
 	if(gameSystem != 0) delete gameSystem;
+	if(planetEngine != 0) delete planetEngine;
 }
 
 //-------------------------------------------------------------------------------------
@@ -38,16 +38,13 @@ bool App::frameRenderingQueued(const Ogre::FrameEvent& evt)
 void App::go(void)
 {		
 	BaseApplication::go();		
-	planetEngine->runSimulation();		//	Run the planet simulation	
+	if(gameSystem != 0) planetEngine->runSimulation();		//	Run the planet simulation	
 	BaseApplication::destroyScene();		
 }
 
 //--------------------------------------------------------------------------------------
  bool App::keyPressed( const OIS::KeyEvent &arg )
-{
-	//bool result = BaseApplication::keyPressed( arg );
-	//return result;
-	
+{	
 	if(arg.key == OIS::KC_UP || 
 		arg.key == OIS::KC_DOWN || 
 		arg.key == OIS::KC_LEFT || 

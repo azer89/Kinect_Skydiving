@@ -6,25 +6,29 @@
 //-------------------------------------------------------------------------------------
 GameSystem::GameSystem(void)
 	: collisionDetector(0),
-	  colissionDelay(0.0f)
+	  colissionDelay(0.0f),
+	  character(0),
+	  cloud(0),
+	  mCameraListener(0),
+	  exCamera(0)
 {
 }
 
 //-------------------------------------------------------------------------------------
 GameSystem::~GameSystem(void)
 {
-	if(collisionDetector != 0) delete collisionDetector;
+	if(collisionDetector != 0)	delete collisionDetector;
+	if(character != 0)			delete character;
+	if(cloud != 0)				delete cloud;
+	if(mCameraListener != 0)	delete mCameraListener;
+	if(exCamera != 0)			delete exCamera;
+
 }
 
 //-------------------------------------------------------------------------------------
 /**  Create your scene here */
 void GameSystem::createScene(void)
 {
-	mCamera->setPosition(0, 550.0f, 550);
-	mCamera->lookAt(0, 350, 0);
-	mCamera->setNearClipDistance(0.001f);
-	mCamera->setFarClipDistance(30000.0f);
-
 	mSceneMgr->setSkyBox(true, "Sky/Clouds", 10000, true);
 
 	exCamera = new ThirdPersonCamera("ThirdPersonCamera", mSceneMgr, mCamera);
@@ -33,12 +37,11 @@ void GameSystem::createScene(void)
 	this->character = new Character();
 	mCameraListener->setCharacter(character);
 
-	this->character->setup(mSceneMgr, Ogre::Vector3(0, 525, 525), Ogre::Vector3(0.5f, 0.5f, 0.5f), Ogre::Quaternion::IDENTITY);
-	//this->character->setup(mSceneMgr, Ogre::Vector3(0, 540, 0), Ogre::Vector3(0.5f, 0.5f, 0.5f), Ogre::Quaternion::IDENTITY);
+	this->character->setup(mSceneMgr, Ogre::Vector3(0, 3000, 3000), Ogre::Vector3(0.5f, 0.5f, 0.5f), Ogre::Quaternion::IDENTITY);
 	this->character->setGravity(9.8f);
 
 	cloud = new SimpleCloud();
-	cloud->initCloud(mSceneMgr, 30);
+	cloud->initCloud(mSceneMgr, 60);
 }
 
 //-------------------------------------------------------------------------------------
@@ -115,32 +118,26 @@ void GameSystem::keyPressed( const OIS::KeyEvent &arg )
 {
 	if(arg.key == OIS::KC_W)
 	{
-		//this->character->moveCharacter(Movement::MOVE_FRONT);
 		character->setState(Movement::MOVE_FRONT);
 	}	
 	else if(arg.key == OIS::KC_S)
 	{
-		//this->character->moveCharacter(Movement::MOVE_BACK);
 		character->setState(Movement::MOVE_BACK);
 	}
 	else if(arg.key == OIS::KC_A)
 	{
-		//this->character->moveCharacter(Movement::MOVE_LEFT);
 		character->setState(Movement::MOVE_LEFT);
 	}
 	else if(arg.key == OIS::KC_D)
 	{
-		//this->character->moveCharacter(Movement::MOVE_RIGHT);
 		character->setState(Movement::MOVE_RIGHT);
 	}
 	else if(arg.key == OIS::KC_Q)
 	{
-		//this->character->moveCharacter(Movement::ROTATE_LEFT);
 		character->setState(Movement::ROTATE_LEFT);
 	}
 	else if(arg.key == OIS::KC_E)
 	{
-		//this->character->moveCharacter(Movement::ROTATE_RIGHT);
 		character->setState(Movement::ROTATE_RIGHT);
 	}
 }

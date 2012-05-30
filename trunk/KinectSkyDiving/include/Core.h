@@ -11,8 +11,8 @@ namespace GalaxyEngine
 	class Core
 	{
 	public:
-		Core(const Ogre::String &windowTitle, const Ogre::String &mediaPath);
-		Core(Ogre::String mediaPath, Ogre::SceneManager *sceneMgr, 
+		Core(Ogre::String mediaPath, 
+			Ogre::SceneManager *sceneMgr, 
 			Ogre::RenderWindow *window, 
 			Ogre::Viewport *viewPort, 
 			Ogre::Camera *camera,
@@ -29,17 +29,12 @@ namespace GalaxyEngine
 		inline Ogre::Camera *getCamera() { return mCamera; }
 
 		void execute();
-
 		void runSimulation();
-		//void endSimulation() { running = false; }
 
 		Planet* getFirstPlanet();
 
 	private:
-		//bool running;
-
 		Universe *universe;
-
 		static Core *singletonPtr;
 		Ogre::String mediaPath;
 
@@ -48,11 +43,6 @@ namespace GalaxyEngine
 		Ogre::RenderWindow *mWindow;
 		Ogre::Viewport *mViewPort;
 		Ogre::Camera *mCamera;
-
-	//private:
-
-		//void updateWorld();
-		//void renderWorld();
 	};
 }
 
