@@ -64,6 +64,8 @@ void Character::update(Ogre::Real elapsedTime)
 	Ogre::Quaternion qB = Ogre::Vector3::UNIT_Y.getRotationTo(upVector);
 	this->mMainNode->setOrientation(qA * qB);
 
+	//std::cout << this->mMainNode->_getDerivedPosition() << "\n";
+
 	if(!isLanding)
 	{
 		moveCharacter(elapsedTime);

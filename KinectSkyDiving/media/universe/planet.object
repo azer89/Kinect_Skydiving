@@ -4,8 +4,8 @@ planet Planet
 
 	terrain
 	{
-		radius 500
-		heightRange 25.0
+		radius 2000
+		heightRange 50.0
 		virtualRes 1024
 		//virtualRes 8192
 		//virtualRes 10000000
@@ -13,6 +13,6 @@ planet Planet
 
 	atmosphere
 	{
-		radius 600.0
+		radius 3000.0
 	}
 }

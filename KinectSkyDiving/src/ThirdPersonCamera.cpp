@@ -6,6 +6,11 @@ using namespace Ogre;
 
 ThirdPersonCamera::ThirdPersonCamera (String name, SceneManager *sceneMgr, Camera *camera) 
 {
+	camera->setPosition(0, 3000.0f, 3000.0f);
+	camera->lookAt(0, 1000, 0);
+	camera->setNearClipDistance(0.001f);
+	camera->setFarClipDistance(30000.0f);
+
 	// Basic member references setup
 	mName = name;
 	mSceneMgr = sceneMgr;
