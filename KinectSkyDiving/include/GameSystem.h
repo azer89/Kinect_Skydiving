@@ -11,6 +11,7 @@
 #include "CameraListener.h"
 #include "ThirdPersonCamera.h"
 #include "SimpleCloud.h"
+#include "PlanetObjects.h"
 
 class GameSystem
 {
@@ -35,15 +36,22 @@ public:
 private:
 	/** Check planet collision, similar to RaySceneQuery */
 	void checkPlanetColission(Ogre::Real timeElapsed);
+	/** Called once when planet is initialized, since it takes a while for creating planet after the program starts */
+	void postPlanetInitialization(); 
+	/** Check if planet is fully created */
+	void isPlanetReady();
 
 private:
 	RayCastCollision*   collisionDetector;			// simple planet collision engine	
 	GalaxyEngine::Core* planetEngine;				// planet rendering engine
 	Character*          character;					// character
+	PlanetObjects*		pObjects;
 	SimpleCloud*		cloud;
 	CameraListener*     mCameraListener;
 	ThirdPersonCamera*  exCamera;
-	Ogre::Real          colissionDelay;				// collision engine isn't optimized so make it run every 1/60 second
+
+	Ogre::Real          collisionDelay;				// collision engine isn't optimized so make it run every 1/60 second
+	bool				isPlanetInitialized;		// is planet is fully initialized?
 
 	Ogre::Root*         mRoot;
 	Ogre::Camera*       mCamera;
