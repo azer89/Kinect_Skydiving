@@ -50,7 +50,8 @@ void App::go(void)
 		arg.key == OIS::KC_LEFT || 
 		arg.key == OIS::KC_RIGHT || 
 		arg.key == OIS::KC_ESCAPE ||
-		arg.key == OIS::KC_G)
+		arg.key == OIS::KC_G ||
+		arg.key == OIS::KC_R)
 		BaseApplication::keyPressed( arg );
 
 	gameSystem->keyPressed(arg);

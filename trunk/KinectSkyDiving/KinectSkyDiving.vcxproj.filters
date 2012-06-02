@@ -67,6 +67,12 @@
     <ClCompile Include="src\SimpleCloud.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\PlanetObjects.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DotSceneLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\App.h">
@@ -145,6 +151,12 @@
       <Filter>Header Files\Camera</Filter>
     </ClInclude>
     <ClInclude Include="include\SimpleCloud.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PlanetObjects.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DotSceneLoader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

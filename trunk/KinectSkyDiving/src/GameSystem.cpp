@@ -6,11 +6,13 @@
 //-------------------------------------------------------------------------------------
 GameSystem::GameSystem(void)
 	: collisionDetector(0),
-	  colissionDelay(0.0f),
+	  collisionDelay(0.0f),
 	  character(0),
 	  cloud(0),
 	  mCameraListener(0),
-	  exCamera(0)
+	  exCamera(0),
+	  pObjects(0),
+	  isPlanetInitialized(false)
 {
 }
 
@@ -22,7 +24,7 @@ GameSystem::~GameSystem(void)
 	if(cloud != 0)				delete cloud;
 	if(mCameraListener != 0)	delete mCameraListener;
 	if(exCamera != 0)			delete exCamera;
-
+	if(pObjects != 0)			delete pObjects;
 }
 
 //-------------------------------------------------------------------------------------
@@ -38,6 +40,7 @@ void GameSystem::createScene(void)
 	mCameraListener->setCharacter(character);
 
 	this->character->setup(mSceneMgr, Ogre::Vector3(0, 3000, 3000), Ogre::Vector3(0.5f, 0.5f, 0.5f), Ogre::Quaternion::IDENTITY);
+	//this->character->setup(mSceneMgr, Ogre::Vector3(0, 0, 0), Ogre::Vector3(0.5f, 0.5f, 0.5f), Ogre::Quaternion::IDENTITY);
 	this->character->setGravity(9.8f);
 
 	cloud = new SimpleCloud();
@@ -61,15 +64,13 @@ void GameSystem::initSystem(Ogre::Root *mRoot,
 	this->mKeyboard = mKeyboard;
 	this->planetEngine = planetEngine;
 	this->mWindow = mWindow;
-
-	collisionDetector = new RayCastCollision();
-	collisionDetector->init(this->mSceneMgr);
 }
 
 //------------------------------------------------------------------------------------
 /** Updating every frameRenderingQueued */
 void GameSystem::update(Ogre::Real elapsedTime)
 {
+	if(!isPlanetInitialized) isPlanetReady();
 	checkPlanetColission(elapsedTime);
 	character->update(elapsedTime);
 	mCameraListener->update(elapsedTime);
@@ -79,9 +80,11 @@ void GameSystem::update(Ogre::Real elapsedTime)
 //------------------------------------------------------------------------------------
 void GameSystem::checkPlanetColission(Ogre::Real timeElapsed)
 {
-	colissionDelay += timeElapsed;
-	if(colissionDelay < 0.0166f) return;		// 60 fps
-	colissionDelay = 0;							// reset
+	collisionDelay += timeElapsed;
+	if(collisionDelay < 0.0166f) return;		// 60 fps
+	collisionDelay = 0;							// reset
+
+	if(collisionDetector == 0) return;			// collision detector isn't ready yet
 		
 	Ogre::Vector3 charPos = character->getBodyNode()->_getDerivedPosition();
 	Ogre::Real distance1 = Ogre::Math::Abs(Ogre::Vector3::ZERO.distance(charPos));	// distance of the position to center of planet
@@ -96,7 +99,7 @@ void GameSystem::checkPlanetColission(Ogre::Real timeElapsed)
 		Ogre::Vector3 result = Ogre::Vector3::ZERO;		// resulted intersection
 		Ogre::Vector3 camToCenter = -charPos;			// direction to the center
 		camToCenter.normalise();						
-		collisionDetector->getPlanetIntersection(planet, charPos, camToCenter, result);
+		collisionDetector->getPlanetIntersection(charPos, camToCenter, result);
 		Ogre::Real distance2 = Ogre::Math::Abs(Ogre::Vector3::ZERO.distance(result));
 		Ogre::Real halfRadius = radius * 0.5f;
 
@@ -153,6 +156,40 @@ void GameSystem::keyReleased( const OIS::KeyEvent &arg )
 		arg.key == OIS::KC_E)
 	{
 		character->setState(Movement::NOTHING);
+	}
+}
+
+//-------------------------------------------------------------------------------------
+void GameSystem::postPlanetInitialization()
+{
+	GalaxyEngine::Planet* planet = planetEngine->getFirstPlanet();	
+
+	collisionDetector = new RayCastCollision();
+	collisionDetector->init(this->mSceneMgr, planet);
+	collisionDetector->crawlBaseChunks();
+
+	pObjects = new PlanetObjects();
+	pObjects->setup(mSceneMgr, collisionDetector);
+}
+
+//-------------------------------------------------------------------------------------
+void GameSystem::isPlanetReady()
+{
+	GalaxyEngine::Planet* planet = planetEngine->getFirstPlanet();	
+	//std::cout << "~isPlanetReady~";
+	if(planet != 0)
+	{
+		Ogre::SceneNode* parentNode = planet->getParentSceneNode();
+		if(parentNode == NULL) 
+		{
+			//std::cout << "~parent not found~\n";
+		}
+		else
+		{
+			/** Now the planet is fully initialized */
+			isPlanetInitialized = true;
+			postPlanetInitialization();
+		}
 	}
 }
 

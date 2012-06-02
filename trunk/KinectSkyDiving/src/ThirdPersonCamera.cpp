@@ -8,8 +8,8 @@ ThirdPersonCamera::ThirdPersonCamera (String name, SceneManager *sceneMgr, Camer
 {
 	camera->setPosition(0, 3000.0f, 3000.0f);
 	camera->lookAt(0, 1000, 0);
-	camera->setNearClipDistance(0.001f);
-	camera->setFarClipDistance(30000.0f);
+	camera->setNearClipDistance(0.5f);
+	camera->setFarClipDistance(17500.0f);
 
 	// Basic member references setup
 	mName = name;

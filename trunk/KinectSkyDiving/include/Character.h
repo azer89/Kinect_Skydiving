@@ -8,12 +8,13 @@
 enum Movement
 {
 	NOTHING = 0,
-	MOVE_FRONT = 1,
-	MOVE_BACK = 2,
-	MOVE_LEFT = 3,
-	MOVE_RIGHT = 4,
-	ROTATE_LEFT = 5,
-	ROTATE_RIGHT = 6,
+	GO_DOWN = 1,
+	MOVE_FRONT = 2,
+	MOVE_BACK = 3,
+	MOVE_LEFT = 4,
+	MOVE_RIGHT = 5,
+	ROTATE_LEFT = 6,
+	ROTATE_RIGHT = 7,
 };
 
 /**  Main Character Class*/
@@ -23,12 +24,12 @@ public:
 	Character(void);
 	virtual ~Character(void);
 
-	virtual void setup(Ogre::SceneManager* mSceneManager, 
+	void setup(Ogre::SceneManager* mSceneManager, 
 		Ogre::Vector3 position, 
 		Ogre::Vector3 scale, 
 		Ogre::Quaternion orientation);
 
-	virtual void update(Ogre::Real elapsedTime);
+	void update(Ogre::Real elapsedTime);
 	
 	void setState(Movement m);
 	void setGravity(Ogre::Real gravity) { this->gravity = gravity; }

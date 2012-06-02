@@ -6,26 +6,118 @@
 
 //-------------------------------------------------------------------------------------
 RayCastCollision::RayCastCollision(void)
-	: mRaySceneQuery(0)
+	: mRayScnQuery(0),
+	  bChucksVertices(0),
+      bChunksIndices(0),
+	  bChunksVCount(0),
+	  bChunksICount(0)
 {
 }
 
 //-------------------------------------------------------------------------------------
 RayCastCollision::~RayCastCollision(void)
 {
-	if(mRaySceneQuery != 0) delete mRaySceneQuery;
+	if(mRayScnQuery != 0)     delete mRayScnQuery;
+	if(bChucksVertices != 0)  delete[] bChucksVertices;
+	if(bChunksIndices != 0)   delete[] bChunksIndices;
 }
 
 //-------------------------------------------------------------------------------------
-void RayCastCollision::init(Ogre::SceneManager* mSceneManager)
+void RayCastCollision::init(Ogre::SceneManager* mSceneManager, GalaxyEngine::Planet* planet)
 {
-	mRaySceneQuery = mSceneManager->createRayQuery(Ogre::Ray());
-	mRaySceneQuery->setSortByDistance(true);
+	mRayScnQuery = mSceneManager->createRayQuery(Ogre::Ray());
+	mRayScnQuery->setSortByDistance(true);
+	this->planet = planet;
+}
+
+//-------------------------------------------------------------------------------------
+void RayCastCollision::crawlBaseChunks()
+{
+	bChunksVCount = 0;
+	bChunksICount = 0;
+
+	Ogre::uint32 level = planet->getDeepestChunkLevel();
+	std::vector<GalaxyEngine::Planet::ChunkNode*> chunks;
+
+	for(int a = 0; a < GalaxyEngine::PlanetMath::CubeFace::CUBEFACE_Size; a++)
+	{
+		GalaxyEngine::Planet::ChunkNode* cubeFace = planet->getCubeFace(a);
+		getAllChunkNodes(cubeFace, chunks);
+	}
+
+	for(int a = 0; a < chunks.size(); a++)
+	{
+		GalaxyEngine::Planet::ChunkNode* cubeFace = chunks[a];
+		bChunksVCount += cubeFace->vertex_size;
+		bChunksICount += cubeFace->index_size;
+	}
+
+	// create arrays
+	bChucksVertices = new Ogre::Vector3[bChunksVCount];
+	bChunksIndices = new unsigned long[bChunksICount];
+
+	Ogre::SceneNode* parentNode = planet->getParentSceneNode();
+	Ogre::Vector3 position = parentNode->_getDerivedPosition();
+	Ogre::Quaternion orient = parentNode->_getDerivedOrientation();
+	Ogre::Vector3 scale = parentNode->_getDerivedScale();
+
+	int vOffset = 0;
+	int iOffset1 = 0;
+	int iOffset2 = 0;
+
+	for(int a = 0; a < chunks.size(); a++)
+	{
+		GalaxyEngine::Planet::ChunkNode* cubeFace = chunks[a];
+
+		for(int b = 0;  b < cubeFace->vertex_size; b++)
+		{
+			bChucksVertices[vOffset] = (orient * (cubeFace->vertices[b] * scale)) + position;
+			vOffset++;
+		}
+
+		for(int c = 0;  c < cubeFace->index_size; c++)
+		{
+			bChunksIndices[iOffset2] = cubeFace->indices[c] + static_cast<unsigned long>(iOffset1);
+			iOffset2++;
+		}
+
+		iOffset1 += cubeFace->vertex_size;
+	}
+}
+
+//-------------------------------------------------------------------------------------
+void RayCastCollision::getChunksIntersection(const Ogre::Vector3 &point, const Ogre::Vector3 &normal, Ogre::Vector3 &result)
+{
+	Ogre::Ray ray(Ogre::Vector3(point.x, point.y, point.z), Ogre::Vector3(normal.x, normal.y, normal.z));
+
+	Ogre::Real closest_distance = Ogre::Math::POS_INFINITY;
+
+	// test for hitting individual triangles on the mesh
+	for (int i = 0; i < static_cast<int>(bChunksICount); i += 3)
+	{
+		// check for a hit against this triangle
+		std::pair<bool, Ogre::Real> hit = Ogre::Math::intersects(ray, 
+			bChucksVertices[bChunksIndices[i]],
+			bChucksVertices[bChunksIndices[i+1]], 
+			bChucksVertices[bChunksIndices[i+2]], true, false);
+
+		// if it was a hit check if its the closest
+		if (hit.first)
+		{
+			if (hit.second < closest_distance)
+			{
+				// this is the closest so far, save it off
+				closest_distance = hit.second;
+			}
+		}
+	}
+
+	result = ray.getPoint(closest_distance);
 }
 
 //-------------------------------------------------------------------------------------
 /** traverse the quad tree */
-void traverseChunkNodes(GalaxyEngine::Planet::ChunkNode* chunkNode, std::vector<GalaxyEngine::Planet::ChunkNode*> &leafChunks, Ogre::uint32 level)
+void RayCastCollision::traverseChunkNodes(GalaxyEngine::Planet::ChunkNode* chunkNode, std::vector<GalaxyEngine::Planet::ChunkNode*> &leafChunks, Ogre::uint32 level)
 {
 	if(chunkNode->hasSubNodes()) // Look only on chunks on leaf
 	{
@@ -42,16 +134,33 @@ void traverseChunkNodes(GalaxyEngine::Planet::ChunkNode* chunkNode, std::vector<
 }
 
 //-------------------------------------------------------------------------------------
-/**  Implement simple intersection algorithm using Ogre::Ray and Planet's Mesh*/
-void RayCastCollision::getPlanetIntersection(GalaxyEngine::Planet* planet, 
-											Ogre::Ray ray, 
-											Ogre::Vector3 &result)
+/** get all chunks recursively */
+void RayCastCollision::getAllChunkNodes(GalaxyEngine::Planet::ChunkNode* chunkNode, std::vector<GalaxyEngine::Planet::ChunkNode*> &leafChunks)
+{
+	leafChunks.push_back(chunkNode); // insert the current chunk to array
+
+	if(chunkNode->hasSubNodes())	// crawl the children
+	{
+		for(int a = 0; a < GalaxyEngine::PlanetMath::Quadrant::QUADRANT_Size; a++)
+		{
+			GalaxyEngine::Planet::ChunkNode* subChunkNode = chunkNode->getSubNode(a);
+			getAllChunkNodes(subChunkNode, leafChunks);
+		}
+	}
+}
+
+//-------------------------------------------------------------------------------------
+/**  Implement simple intersection algorithm using Ogre::Ray and Planet's Mesh */
+void RayCastCollision::getPlanetIntersection(Ogre::Ray ray, 
+											 Ogre::Vector3 &result)
 {
 	std::vector<GalaxyEngine::Planet::ChunkNode*> leafChunks;
 	Ogre::uint32 level = planet->getDeepestChunkLevel();
+
+	//std::cout << level << "\n";
 	Ogre::SceneNode* parentNode = planet->getParentSceneNode();
 
-	if(parentNode == NULL) return;
+	if(parentNode == NULL) { return; }
 
 	for(int a = 0; a < GalaxyEngine::PlanetMath::CubeFace::CUBEFACE_Size; a++)
 	{
@@ -73,18 +182,13 @@ void RayCastCollision::getPlanetIntersection(GalaxyEngine::Planet* planet,
 		}
 	}
 
-	if(chunk == 0)
-	{
-		std::cout << "chunk not found\n";
-		return;
-	}
+	if(chunk == 0) { return; }
 
 	// mesh data to retrieve         
 	size_t vertex_count = 0;
 	size_t index_count = 0;
 	Ogre::Vector3 *vertices;
 	unsigned long *indices;
-	//size_t offset = 0;
 	vertex_count += chunk->vertex_size;
 	index_count += chunk->index_size;
 
@@ -127,11 +231,10 @@ void RayCastCollision::getPlanetIntersection(GalaxyEngine::Planet* planet,
 }
 
 //-------------------------------------------------------------------------------------
-void RayCastCollision::getPlanetIntersection(GalaxyEngine::Planet* planet, 
-	const Ogre::Vector3 &point, 
-	const Ogre::Vector3 &normal, 
-	Ogre::Vector3 &result)
+void RayCastCollision::getPlanetIntersection(const Ogre::Vector3 &point, 
+											const Ogre::Vector3 &normal, 
+											Ogre::Vector3 &result)
 {
 	Ogre::Ray ray(Ogre::Vector3(point.x, point.y, point.z), Ogre::Vector3(normal.x, normal.y, normal.z));
-	getPlanetIntersection(planet, ray, result);
+	getPlanetIntersection(ray, result);
 }
