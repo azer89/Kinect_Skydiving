@@ -68,9 +68,12 @@ void Character::update(Ogre::Real elapsedTime)
 
 	if(!isLanding)
 	{
-		moveCharacter(elapsedTime);
+		
 		fallDown(elapsedTime);
+		moveCharacter(elapsedTime);
 	}
+
+	
 }
 
 //--------------------------------------------------------------------------------------

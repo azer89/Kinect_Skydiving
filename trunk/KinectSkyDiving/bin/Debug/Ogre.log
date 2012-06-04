@@ -1,357 +1,362 @@
-10:14:56: Creating resource group General
-10:14:56: Creating resource group Internal
-10:14:56: Creating resource group Autodetect
-10:14:56: SceneManagerFactory for type 'DefaultSceneManager' registered.
-10:14:56: Registering ResourceManager for type Material
-10:14:56: Registering ResourceManager for type Mesh
-10:14:56: Registering ResourceManager for type Skeleton
-10:14:56: MovableObjectFactory for type 'ParticleSystem' registered.
-10:14:56: OverlayElementFactory for type Panel registered.
-10:14:56: OverlayElementFactory for type BorderPanel registered.
-10:14:56: OverlayElementFactory for type TextArea registered.
-10:14:56: Registering ResourceManager for type Font
-10:14:56: ArchiveFactory for archive type FileSystem registered.
-10:14:56: ArchiveFactory for archive type Zip registered.
-10:14:56: DDS codec registering
-10:14:56: FreeImage version: 3.15.1
-10:14:56: This program uses FreeImage, a free, open source image library supporting all common bitmap formats. See http://freeimage.sourceforge.net for details
-10:14:56: Supported formats: bmp,ico,jpg,jif,jpeg,jpe,jng,koa,iff,lbm,mng,pbm,pbm,pcd,pcx,pgm,pgm,png,ppm,ppm,ras,tga,targa,tif,tiff,wap,wbmp,wbm,psd,cut,xbm,xpm,gif,hdr,g3,sgi,exr,j2k,j2c,jp2,pfm,pct,pict,pic,3fr,arw,bay,bmq,cap,cine,cr2,crw,cs1,dc2,dcr,drf,dsc,dng,erf,fff,ia,iiq,k25,kc2,kdc,mdc,mef,mos,mrw,nef,nrw,orf,pef,ptx,pxn,qtk,raf,raw,rdc,rw2,rwl,rwz,sr2,srf,sti
-10:14:56: Registering ResourceManager for type HighLevelGpuProgram
-10:14:56: Registering ResourceManager for type Compositor
-10:14:56: MovableObjectFactory for type 'Entity' registered.
-10:14:56: MovableObjectFactory for type 'Light' registered.
-10:14:56: MovableObjectFactory for type 'BillboardSet' registered.
-10:14:56: MovableObjectFactory for type 'ManualObject' registered.
-10:14:56: MovableObjectFactory for type 'BillboardChain' registered.
-10:14:56: MovableObjectFactory for type 'RibbonTrail' registered.
-10:14:56: Loading library .\RenderSystem_Direct3D9_d
-10:14:56: Installing plugin: D3D9 RenderSystem
-10:14:56: D3D9 : Direct3D9 Rendering Subsystem created.
-10:14:56: D3D9: Driver Detection Starts
-10:14:56: D3D9: Driver Detection Ends
-10:14:56: Plugin successfully installed
-10:14:56: Loading library .\Plugin_ParticleFX_d
-10:14:56: Installing plugin: ParticleFX
-10:14:56: Particle Emitter Type 'Point' registered
-10:14:56: Particle Emitter Type 'Box' registered
-10:14:56: Particle Emitter Type 'Ellipsoid' registered
-10:14:56: Particle Emitter Type 'Cylinder' registered
-10:14:56: Particle Emitter Type 'Ring' registered
-10:14:56: Particle Emitter Type 'HollowEllipsoid' registered
-10:14:56: Particle Affector Type 'LinearForce' registered
-10:14:56: Particle Affector Type 'ColourFader' registered
-10:14:56: Particle Affector Type 'ColourFader2' registered
-10:14:57: Particle Affector Type 'ColourImage' registered
-10:14:57: Particle Affector Type 'ColourInterpolator' registered
-10:14:57: Particle Affector Type 'Scaler' registered
-10:14:57: Particle Affector Type 'Rotator' registered
-10:14:57: Particle Affector Type 'DirectionRandomiser' registered
-10:14:57: Particle Affector Type 'DeflectorPlane' registered
-10:14:57: Plugin successfully installed
-10:14:57: Loading library .\Plugin_CgProgramManager_d
-10:14:57: Installing plugin: Cg Program Manager
-10:14:57: Plugin successfully installed
-10:14:57: *-*-* OGRE Initialising
-10:14:57: *-*-* Version 1.7.4 (Cthugha)
-10:14:57: Added resource location '../../media' of type 'FileSystem' to resource group 'General'
-10:14:57: Creating resource group Essential
-10:14:57: Added resource location '../../media/thumbnails' of type 'FileSystem' to resource group 'Essential'
-10:14:57: Added resource location '../../media/packs/SdkTrays.zip' of type 'Zip' to resource group 'Essential'
-10:14:57: Added resource location '../../media/packs/SkyBoxes.zip' of type 'Zip' to resource group 'General'
-10:14:57: Creating resource group Popular
-10:14:57: Added resource location '../../media/materials/programs' of type 'FileSystem' to resource group 'Popular'
-10:14:57: Added resource location '../../media/materials/scripts' of type 'FileSystem' to resource group 'Popular'
-10:14:57: Added resource location '../../media/materials/textures' of type 'FileSystem' to resource group 'Popular'
-10:14:57: Added resource location '../../media/models' of type 'FileSystem' to resource group 'Popular'
-10:14:57: Added resource location '../../media/scene' of type 'FileSystem' to resource group 'Popular'
-10:14:57: D3D9 : RenderSystem Option: Allow NVPerfHUD = No
-10:14:57: D3D9 : RenderSystem Option: FSAA = 0
-10:14:57: D3D9 : RenderSystem Option: Floating-point mode = Fastest
-10:14:57: D3D9 : RenderSystem Option: Full Screen = No
-10:14:57: D3D9 : RenderSystem Option: Rendering Device = Monitor-1-NVIDIA GeForce GTS 450
-10:14:57: D3D9 : RenderSystem Option: Resource Creation Policy = Create on all devices
-10:14:57: D3D9 : RenderSystem Option: VSync = No
-10:14:57: D3D9 : RenderSystem Option: VSync Interval = 1
-10:14:57: D3D9 : RenderSystem Option: Video Mode = 1024 x 768 @ 32-bit colour
-10:14:57: D3D9 : RenderSystem Option: sRGB Gamma Conversion = No
-10:15:01: CPU Identifier & Features
-10:15:01: -------------------------
-10:15:01:  *   CPU ID: AuthenticAMD: AMD Athlon(tm) II X4 630 Processor
-10:15:01:  *      SSE: yes
-10:15:01:  *     SSE2: yes
-10:15:01:  *     SSE3: yes
-10:15:01:  *      MMX: yes
-10:15:01:  *   MMXEXT: yes
-10:15:01:  *    3DNOW: yes
-10:15:01:  * 3DNOWEXT: yes
-10:15:01:  *     CMOV: yes
-10:15:01:  *      TSC: yes
-10:15:01:  *      FPU: yes
-10:15:01:  *      PRO: yes
-10:15:01:  *       HT: no
-10:15:01: -------------------------
-10:15:01: D3D9 : Subsystem Initialising
-10:15:01: Registering ResourceManager for type Texture
-10:15:01: Registering ResourceManager for type GpuProgram
-10:15:01: D3D9RenderSystem::_createRenderWindow "GalaxyEngine Render Window", 1024x768 windowed  miscParams: FSAA=0 FSAAHint= colourDepth=32 gamma=false monitorIndex=0 useNVPerfHUD=false vsync=false vsyncInterval=1 
-10:15:01: D3D9 : Created D3D9 Rendering Window 'GalaxyEngine Render Window' : 1024x768, 32bpp
-10:15:01: D3D9 : WARNING - disabling VSync in windowed mode can cause timing issues at lower frame rates, turn VSync on if you observe this problem.
-10:15:01: D3D9: Vertex texture format supported - PF_A8R8G8B8
-10:15:01: D3D9: Vertex texture format supported - PF_B8G8R8A8
-10:15:01: D3D9: Vertex texture format supported - PF_FLOAT16_RGB
-10:15:01: D3D9: Vertex texture format supported - PF_FLOAT16_RGBA
-10:15:01: D3D9: Vertex texture format supported - PF_FLOAT32_RGB
-10:15:01: D3D9: Vertex texture format supported - PF_FLOAT32_RGBA
-10:15:01: D3D9: Vertex texture format supported - PF_R8G8B8A8
-10:15:01: D3D9: Vertex texture format supported - PF_DEPTH
-10:15:01: D3D9: Vertex texture format supported - PF_FLOAT16_R
-10:15:01: D3D9: Vertex texture format supported - PF_FLOAT32_R
-10:15:01: D3D9: Vertex texture format supported - PF_FLOAT16_GR
-10:15:01: D3D9: Vertex texture format supported - PF_FLOAT32_GR
-10:15:01: D3D9: Vertex texture format supported - PF_PVRTC_RGB2
-10:15:01: D3D9: Vertex texture format supported - PF_PVRTC_RGBA2
-10:15:01: D3D9: Vertex texture format supported - PF_PVRTC_RGB4
-10:15:01: D3D9: Vertex texture format supported - PF_PVRTC_RGBA4
-10:15:01: RenderSystem capabilities
-10:15:01: -------------------------
-10:15:01: RenderSystem Name: Direct3D9 Rendering Subsystem
-10:15:01: GPU Vendor: nvidia
-10:15:01: Device Name: Monitor-1-NVIDIA GeForce GTS 450
-10:15:01: Driver Version: 8.17.12.9610
-10:15:01:  * Fixed function pipeline: yes
-10:15:01:  * Hardware generation of mipmaps: yes
-10:15:01:  * Texture blending: yes
-10:15:01:  * Anisotropic texture filtering: yes
-10:15:01:  * Dot product texture operation: yes
-10:15:01:  * Cube mapping: yes
-10:15:01:  * Hardware stencil buffer: yes
-10:15:01:    - Stencil depth: 8
-10:15:01:    - Two sided stencil support: yes
-10:15:01:    - Wrap stencil values: yes
-10:15:01:  * Hardware vertex / index buffers: yes
-10:15:01:  * Vertex programs: yes
-10:15:01:  * Number of floating-point constants for vertex programs: 256
-10:15:01:  * Number of integer constants for vertex programs: 16
-10:15:01:  * Number of boolean constants for vertex programs: 16
-10:15:01:  * Fragment programs: yes
-10:15:01:  * Number of floating-point constants for fragment programs: 224
-10:15:01:  * Number of integer constants for fragment programs: 16
-10:15:01:  * Number of boolean constants for fragment programs: 16
-10:15:01:  * Geometry programs: no
-10:15:01:  * Number of floating-point constants for geometry programs: 0
-10:15:01:  * Number of integer constants for geometry programs: 0
-10:15:01:  * Number of boolean constants for geometry programs: 0
-10:15:01:  * Supported Shader Profiles: hlsl ps_1_1 ps_1_2 ps_1_3 ps_1_4 ps_2_0 ps_2_a ps_2_b ps_2_x ps_3_0 vs_1_1 vs_2_0 vs_2_a vs_2_x vs_3_0
-10:15:01:  * Texture Compression: yes
-10:15:01:    - DXT: yes
-10:15:01:    - VTC: no
-10:15:01:    - PVRTC: no
-10:15:01:  * Scissor Rectangle: yes
-10:15:01:  * Hardware Occlusion Query: yes
-10:15:01:  * User clip planes: yes
-10:15:01:  * VET_UBYTE4 vertex element type: yes
-10:15:01:  * Infinite far plane projection: yes
-10:15:01:  * Hardware render-to-texture: yes
-10:15:01:  * Floating point textures: yes
-10:15:01:  * Non-power-of-two textures: yes
-10:15:01:  * Volume textures: yes
-10:15:01:  * Multiple Render Targets: 4
-10:15:01:    - With different bit depths: yes
-10:15:01:  * Point Sprites: yes
-10:15:01:  * Extended point parameters: yes
-10:15:01:  * Max Point Size: 10
-10:15:01:  * Vertex texture fetch: yes
-10:15:01:  * Number of world matrices: 0
-10:15:01:  * Number of texture units: 8
-10:15:01:  * Stencil buffer depth: 8
-10:15:01:  * Number of vertex blend matrices: 0
-10:15:01:    - Max vertex textures: 4
-10:15:01:    - Vertex textures shared: no
-10:15:01:  * Render to Vertex Buffer : no
-10:15:01:  * DirectX per stage constants: yes
-10:15:01: ***************************************
-10:15:01: *** D3D9 : Subsystem Initialised OK ***
-10:15:01: ***************************************
-10:15:01: DefaultWorkQueue('Root') initialising on thread 0056F730.
-10:15:01: DefaultWorkQueue('Root')::WorkerFunc - thread 005818E8 starting.
-10:15:01: DefaultWorkQueue('Root')::WorkerFunc - thread 005820D8 starting.
-10:15:01: DefaultWorkQueue('Root')::WorkerFunc - thread 00581958 starting.
-10:15:01: DefaultWorkQueue('Root')::WorkerFunc - thread 00582858 starting.
-10:15:01: Particle Renderer Type 'billboard' registered
-10:15:01: Initialising resource group Essential
-10:15:01: Parsing scripts for resource group Essential
-10:15:01: Parsing script SdkTrays.material
-10:15:02: Parsing script SdkTrays.fontdef
-10:15:02: Parsing script SdkTrays.overlay
-10:15:02: Bad element attribute line: '# you can offset the image to change the cursor "hotspot"' for element SdkTrays/Cursor in overlay 
-10:15:02: Texture: sdk_cursor.png: Loading 1 faces(PF_A8R8G8B8,32x32x1) with  hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,32x32x1.
-10:15:02: Texture: sdk_tray.png: Loading 1 faces(PF_A8R8G8B8,64x64x1) with  hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,64x64x1.
-10:15:02: Texture: sdk_button_up.png: Loading 1 faces(PF_A8R8G8B8,128x32x1) with  hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,128x32x1.
-10:15:02: Texture: sdk_text_box.png: Loading 1 faces(PF_A8R8G8B8,32x32x1) with  hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,32x32x1.
-10:15:02: Texture: sdk_mini_tray.png: Loading 1 faces(PF_A8R8G8B8,32x32x1) with  hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,32x32x1.
-10:15:02: Texture: sdk_track.png: Loading 1 faces(PF_A8R8G8B8,16x32x1) with  hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,16x32x1.
-10:15:02: Texture: sdk_handle.png: Loading 1 faces(PF_A8R8G8B8,16x16x1) with  hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,16x16x1.
-10:15:02: Texture: sdk_mini_text_box.png: Loading 1 faces(PF_A8R8G8B8,32x32x1) with  hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,32x32x1.
-10:15:02: Texture: sdk_label.png: Loading 1 faces(PF_A8R8G8B8,32x32x1) with  hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,32x32x1.
-10:15:02: Texture: sdk_separator.png: Loading 1 faces(PF_A8R8G8B8,64x16x1) with  hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,64x16x1.
-10:15:02: Texture: sdk_logo.png: Loading 1 faces(PF_A8R8G8B8,128x64x1) with  hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,128x64x1.
-10:15:02: Texture: sdk_shade.png: Loading 1 faces(PF_A8R8G8B8,64x48x1) with 5 generated mipmaps from Image. Internal format is PF_A8R8G8B8,64x48x1.
-10:15:02: Texture: sdk_frame.png: Loading 1 faces(PF_A8R8G8B8,32x32x1) with  hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,32x32x1.
-10:15:02: Texture: sdk_mini_text_box_over.png: Loading 1 faces(PF_A8R8G8B8,32x32x1) with  hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,32x32x1.
-10:15:02: Texture: sdk_pulse.png: Loading 1 faces(PF_R8G8B8,8x1x1) with  hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,8x1x1.
-10:15:02: Finished parsing scripts for resource group Essential
-10:15:02: *** Initializing OIS ***
-10:15:02: Parsing scripts for resource group Autodetect
-10:15:02: Font SdkTrays/Captionusing texture size 512x256
-10:15:02: Info: Freetype returned null for character 160 in font SdkTrays/Caption
-10:15:02: Texture: SdkTrays/CaptionTexture: Loading 1 faces(PF_BYTE_LA,512x256x1) with 0 generated mipmaps from Image. Internal format is PF_BYTE_LA,512x256x1.
-10:15:02: Font SdkTrays/Valueusing texture size 512x256
-10:15:02: Info: Freetype returned null for character 127 in font SdkTrays/Value
-10:15:02: Info: Freetype returned null for character 128 in font SdkTrays/Value
-10:15:02: Info: Freetype returned null for character 129 in font SdkTrays/Value
-10:15:02: Info: Freetype returned null for character 130 in font SdkTrays/Value
-10:15:02: Info: Freetype returned null for character 131 in font SdkTrays/Value
-10:15:02: Info: Freetype returned null for character 132 in font SdkTrays/Value
-10:15:02: Info: Freetype returned null for character 133 in font SdkTrays/Value
-10:15:02: Info: Freetype returned null for character 134 in font SdkTrays/Value
-10:15:02: Info: Freetype returned null for character 135 in font SdkTrays/Value
-10:15:02: Info: Freetype returned null for character 136 in font SdkTrays/Value
-10:15:02: Info: Freetype returned null for character 137 in font SdkTrays/Value
-10:15:02: Info: Freetype returned null for character 138 in font SdkTrays/Value
-10:15:02: Info: Freetype returned null for character 139 in font SdkTrays/Value
-10:15:02: Info: Freetype returned null for character 140 in font SdkTrays/Value
-10:15:02: Info: Freetype returned null for character 141 in font SdkTrays/Value
-10:15:02: Info: Freetype returned null for character 142 in font SdkTrays/Value
-10:15:02: Info: Freetype returned null for character 143 in font SdkTrays/Value
-10:15:02: Info: Freetype returned null for character 144 in font SdkTrays/Value
-10:15:02: Info: Freetype returned null for character 145 in font SdkTrays/Value
-10:15:02: Info: Freetype returned null for character 146 in font SdkTrays/Value
-10:15:02: Info: Freetype returned null for character 147 in font SdkTrays/Value
-10:15:02: Info: Freetype returned null for character 148 in font SdkTrays/Value
-10:15:02: Info: Freetype returned null for character 149 in font SdkTrays/Value
-10:15:02: Info: Freetype returned null for character 150 in font SdkTrays/Value
-10:15:02: Info: Freetype returned null for character 151 in font SdkTrays/Value
-10:15:02: Info: Freetype returned null for character 152 in font SdkTrays/Value
-10:15:02: Info: Freetype returned null for character 153 in font SdkTrays/Value
-10:15:02: Info: Freetype returned null for character 154 in font SdkTrays/Value
-10:15:02: Info: Freetype returned null for character 155 in font SdkTrays/Value
-10:15:02: Info: Freetype returned null for character 156 in font SdkTrays/Value
-10:15:02: Info: Freetype returned null for character 157 in font SdkTrays/Value
-10:15:02: Info: Freetype returned null for character 158 in font SdkTrays/Value
-10:15:02: Info: Freetype returned null for character 159 in font SdkTrays/Value
-10:15:02: Info: Freetype returned null for character 160 in font SdkTrays/Value
-10:15:02: Texture: SdkTrays/ValueTexture: Loading 1 faces(PF_BYTE_LA,512x256x1) with 0 generated mipmaps from Image. Internal format is PF_BYTE_LA,512x256x1.
-10:15:02: Finished parsing scripts for resource group Autodetect
-10:15:02: Parsing scripts for resource group General
-10:15:02: Parsing script universe.object
-10:15:02: Parsing script universe_old.object
-10:15:02: Finished parsing scripts for resource group General
-10:15:02: Parsing scripts for resource group Internal
-10:15:02: Finished parsing scripts for resource group Internal
-10:15:02: Parsing scripts for resource group Popular
-10:15:02: Parsing script Defs.program
-10:15:03: Parsing script bomberman.material
-10:15:03: Parsing script clouds.material
-10:15:03: Parsing script girl.material
-10:15:03: Parsing script skybox.material
-10:15:03: Parsing script skydiving_scene.material
-10:15:04: Parsing script village.material
-10:15:05: Finished parsing scripts for resource group Popular
-10:15:05: Texture: clouds_fr.png: Loading 1 faces(PF_A8R8G8B8,512x512x1) with  hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,512x512x1.
-10:15:05: Texture: clouds_bk.png: Loading 1 faces(PF_A8R8G8B8,512x512x1) with  hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,512x512x1.
-10:15:05: Texture: clouds_lf.png: Loading 1 faces(PF_A8R8G8B8,512x512x1) with  hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,512x512x1.
-10:15:05: Texture: clouds_rt.png: Loading 1 faces(PF_A8R8G8B8,512x512x1) with  hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,512x512x1.
-10:15:06: Texture: clouds_up.png: Loading 1 faces(PF_A8R8G8B8,512x512x1) with  hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,512x512x1.
-10:15:06: Texture: clouds_dn.png: Loading 1 faces(PF_A8R8G8B8,512x512x1) with  hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,512x512x1.
-10:15:06: Mesh: Loading girl.mesh.
-10:15:06: Skeleton: Loading girl.skeleton
-10:15:06: OGRE EXCEPTION(6:FileNotFoundException): Cannot locate resource girl.skeleton in resource group Popular or any other group. in ResourceGroupManager::openResource at ..\..\..\..\OgreMain\src\OgreResourceGroupManager.cpp (line 753)
-10:15:06: Unable to load skeleton girl.skeleton for Mesh girl.mesh. This Mesh will not be animated. You can ignore this message if you are using an offline tool.
-10:15:08: Texture: uv2.jpg: Loading 1 faces(PF_R8G8B8,4000x4000x1) with 5 generated mipmaps from Image. Internal format is PF_X8R8G8B8,4000x4000x1.
-10:15:11: Texture: u.jpg: Loading 1 faces(PF_R8G8B8,800x800x1) with 5 generated mipmaps from Image. Internal format is PF_X8R8G8B8,800x800x1.
-10:15:11: Texture: cloud01.png: Loading 1 faces(PF_A8R8G8B8,128x128x1) with  hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,128x128x1.
-10:15:12: Creating resource group Universe
-10:15:12: Added resource location '../../media/universe' of type 'FileSystem' to resource group 'Universe'
-10:15:12: Initialising resource group Universe
-10:15:12: Parsing scripts for resource group Universe
-10:15:12: Parsing script moon.object
-10:15:12: Parsing script planet.object
-10:15:12: Parsing script planet2_old.object
-10:15:12: Finished parsing scripts for resource group Universe
-10:15:12: Creating resource group Planet
-10:15:12: Added resource location '../../media/universe/Planet' of type 'FileSystem' to resource group 'Planet'
-10:15:12: Initialising resource group Planet
-10:15:12: Parsing scripts for resource group Planet
-10:15:12: Finished parsing scripts for resource group Planet
-10:15:12: OGRE EXCEPTION(6:FileNotFoundException): Cannot locate resource Planet_norm_atlas.dds in resource group General or any other group. in ResourceGroupManager::openResource at ..\..\..\..\OgreMain\src\OgreResourceGroupManager.cpp (line 753)
-10:15:12: Error loading texture Planet_norm_atlas.dds. Texture layer will be blank. Loading the texture failed with the following exception: OGRE EXCEPTION(6:FileNotFoundException): Cannot locate resource Planet_norm_atlas.dds in resource group General or any other group. in ResourceGroupManager::openResource at ..\..\..\..\OgreMain\src\OgreResourceGroupManager.cpp (line 753)
-10:15:12: OGRE EXCEPTION(6:FileNotFoundException): Cannot locate resource Planet_color_atlas.dds in resource group General or any other group. in ResourceGroupManager::openResource at ..\..\..\..\OgreMain\src\OgreResourceGroupManager.cpp (line 753)
-10:15:12: Error loading texture Planet_color_atlas.dds. Texture layer will be blank. Loading the texture failed with the following exception: OGRE EXCEPTION(6:FileNotFoundException): Cannot locate resource Planet_color_atlas.dds in resource group General or any other group. in ResourceGroupManager::openResource at ..\..\..\..\OgreMain\src\OgreResourceGroupManager.cpp (line 753)
-10:15:12: Texture: norm_front.png: Loading 1 faces(PF_R8G8B8,1024x1024x1) with  hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,1024x1024x1.
-10:15:13: Texture: norm_back.png: Loading 1 faces(PF_R8G8B8,1024x1024x1) with  hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,1024x1024x1.
-10:15:13: Texture: norm_right.png: Loading 1 faces(PF_R8G8B8,1024x1024x1) with  hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,1024x1024x1.
-10:15:13: Texture: norm_left.png: Loading 1 faces(PF_R8G8B8,1024x1024x1) with  hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,1024x1024x1.
-10:15:13: Texture: norm_top.png: Loading 1 faces(PF_R8G8B8,1024x1024x1) with  hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,1024x1024x1.
-10:15:13: Texture: norm_bottom.png: Loading 1 faces(PF_R8G8B8,1024x1024x1) with  hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,1024x1024x1.
-10:15:13: D3D9 : Loading 2D Texture, image name : 'color_front.dds' with 5 mip map levels
-10:15:13: D3D9 : Loading 2D Texture, image name : 'color_back.dds' with 5 mip map levels
-10:15:13: D3D9 : Loading 2D Texture, image name : 'color_left.dds' with 5 mip map levels
-10:15:13: D3D9 : Loading 2D Texture, image name : 'color_right.dds' with 5 mip map levels
-10:15:13: D3D9 : Loading 2D Texture, image name : 'color_top.dds' with 5 mip map levels
-10:15:13: D3D9 : Loading 2D Texture, image name : 'color_bottom.dds' with 5 mip map levels
-10:15:13: [DotSceneLoader] Parsing dotScene file with version 1.0, min. Ogre version 1.7, author OgreMax Scene Exporter (www.ogremax.com)
-10:15:13: Mesh: Loading polySurface44.mesh.
-10:15:13: OGRE EXCEPTION(6:FileNotFoundException): Cannot locate resource house.jpg in resource group Popular or any other group. in ResourceGroupManager::openResource at ..\..\..\..\OgreMain\src\OgreResourceGroupManager.cpp (line 753)
-10:15:13: Error loading texture house.jpg. Texture layer will be blank. Loading the texture failed with the following exception: OGRE EXCEPTION(6:FileNotFoundException): Cannot locate resource house.jpg in resource group Popular or any other group. in ResourceGroupManager::openResource at ..\..\..\..\OgreMain\src\OgreResourceGroupManager.cpp (line 753)
-10:15:13: Mesh: Loading polySurface45.mesh.
-10:15:13: Mesh: Loading polySurface46.mesh.
-10:15:13: Mesh: Loading polySurface47.mesh.
-10:15:13: Mesh: Loading polySurface55.mesh.
-10:15:13: Mesh: Loading polySurface56.mesh.
-10:15:13: Mesh: Loading polySurface57.mesh.
-10:15:13: Mesh: Loading polySurface58.mesh.
-10:15:13: Mesh: Loading polySurface80.mesh.
-10:15:13: Mesh: Loading polySurface135.mesh.
-10:15:14: OGRE EXCEPTION(6:FileNotFoundException): Cannot locate resource ad.jpg in resource group Popular or any other group. in ResourceGroupManager::openResource at ..\..\..\..\OgreMain\src\OgreResourceGroupManager.cpp (line 753)
-10:15:14: Error loading texture ad.jpg. Texture layer will be blank. Loading the texture failed with the following exception: OGRE EXCEPTION(6:FileNotFoundException): Cannot locate resource ad.jpg in resource group Popular or any other group. in ResourceGroupManager::openResource at ..\..\..\..\OgreMain\src\OgreResourceGroupManager.cpp (line 753)
-10:15:53: DefaultWorkQueue('Root') shutting down on thread 0056F730.
-10:15:53: DefaultWorkQueue('Root')::WorkerFunc - thread 005820D8 stopped.
-10:15:53: DefaultWorkQueue('Root')::WorkerFunc - thread 00581958 stopped.
-10:15:53: DefaultWorkQueue('Root')::WorkerFunc - thread 005818E8 stopped.
-10:15:53: DefaultWorkQueue('Root')::WorkerFunc - thread 00582858 stopped.
-10:15:53: *-*-* OGRE Shutdown
-10:15:53: Unregistering ResourceManager for type Compositor
-10:15:53: Unregistering ResourceManager for type Font
-10:15:53: Unregistering ResourceManager for type Skeleton
-10:15:54: Unregistering ResourceManager for type Mesh
-10:15:54: Unregistering ResourceManager for type HighLevelGpuProgram
-10:15:54: Uninstalling plugin: Cg Program Manager
-10:15:54: Plugin successfully uninstalled
-10:15:54: Unloading library .\Plugin_CgProgramManager_d
-10:15:54: Uninstalling plugin: ParticleFX
-10:15:54: Plugin successfully uninstalled
-10:15:54: Unloading library .\Plugin_ParticleFX_d
-10:15:54: Uninstalling plugin: D3D9 RenderSystem
-10:15:54: D3D9 device: 0x[032808A0] destroy. Releasing D3D9 texture: norm_front.png
-10:15:54: Released D3D9 texture: norm_front.png
-10:15:54: D3D9 device: 0x[032808A0] destroy. Releasing D3D9 texture: norm_right.png
-10:15:54: Released D3D9 texture: norm_right.png
-10:15:54: D3D9 device: 0x[032808A0] destroy. Releasing D3D9 texture: norm_left.png
-10:15:54: Released D3D9 texture: norm_left.png
-10:15:54: D3D9 device: 0x[032808A0] destroy. Releasing D3D9 texture: norm_top.png
-10:15:54: Released D3D9 texture: norm_top.png
-10:15:54: D3D9 device: 0x[032808A0] destroy. Releasing D3D9 texture: color_front.dds
-10:15:54: Released D3D9 texture: color_front.dds
-10:15:54: D3D9 device: 0x[032808A0] destroy. Releasing D3D9 texture: color_right.dds
-10:15:54: Released D3D9 texture: color_right.dds
-10:15:54: D3D9 device: 0x[032808A0] destroy. Releasing D3D9 texture: color_left.dds
-10:15:54: Released D3D9 texture: color_left.dds
-10:15:54: D3D9 device: 0x[032808A0] destroy. Releasing D3D9 texture: color_top.dds
-10:15:54: Released D3D9 texture: color_top.dds
-10:15:54: D3D9 : Shutting down cleanly.
-10:15:54: Unregistering ResourceManager for type Texture
-10:15:54: Unregistering ResourceManager for type GpuProgram
-10:15:54: D3D9 : Direct3D9 Rendering Subsystem destroyed.
-10:15:54: Plugin successfully uninstalled
-10:15:54: Unloading library .\RenderSystem_Direct3D9_d
-10:15:54: Unregistering ResourceManager for type Material
+19:48:00: Creating resource group General
+19:48:00: Creating resource group Internal
+19:48:00: Creating resource group Autodetect
+19:48:00: SceneManagerFactory for type 'DefaultSceneManager' registered.
+19:48:00: Registering ResourceManager for type Material
+19:48:00: Registering ResourceManager for type Mesh
+19:48:00: Registering ResourceManager for type Skeleton
+19:48:00: MovableObjectFactory for type 'ParticleSystem' registered.
+19:48:00: OverlayElementFactory for type Panel registered.
+19:48:00: OverlayElementFactory for type BorderPanel registered.
+19:48:01: OverlayElementFactory for type TextArea registered.
+19:48:01: Registering ResourceManager for type Font
+19:48:01: ArchiveFactory for archive type FileSystem registered.
+19:48:01: ArchiveFactory for archive type Zip registered.
+19:48:01: DDS codec registering
+19:48:01: FreeImage version: 3.15.1
+19:48:01: This program uses FreeImage, a free, open source image library supporting all common bitmap formats. See http://freeimage.sourceforge.net for details
+19:48:01: Supported formats: bmp,ico,jpg,jif,jpeg,jpe,jng,koa,iff,lbm,mng,pbm,pbm,pcd,pcx,pgm,pgm,png,ppm,ppm,ras,tga,targa,tif,tiff,wap,wbmp,wbm,psd,cut,xbm,xpm,gif,hdr,g3,sgi,exr,j2k,j2c,jp2,pfm,pct,pict,pic,3fr,arw,bay,bmq,cap,cine,cr2,crw,cs1,dc2,dcr,drf,dsc,dng,erf,fff,ia,iiq,k25,kc2,kdc,mdc,mef,mos,mrw,nef,nrw,orf,pef,ptx,pxn,qtk,raf,raw,rdc,rw2,rwl,rwz,sr2,srf,sti
+19:48:01: Registering ResourceManager for type HighLevelGpuProgram
+19:48:01: Registering ResourceManager for type Compositor
+19:48:01: MovableObjectFactory for type 'Entity' registered.
+19:48:01: MovableObjectFactory for type 'Light' registered.
+19:48:01: MovableObjectFactory for type 'BillboardSet' registered.
+19:48:01: MovableObjectFactory for type 'ManualObject' registered.
+19:48:01: MovableObjectFactory for type 'BillboardChain' registered.
+19:48:01: MovableObjectFactory for type 'RibbonTrail' registered.
+19:48:01: Loading library .\RenderSystem_Direct3D9_d
+19:48:01: Installing plugin: D3D9 RenderSystem
+19:48:01: D3D9 : Direct3D9 Rendering Subsystem created.
+19:48:01: D3D9: Driver Detection Starts
+19:48:01: D3D9: Driver Detection Ends
+19:48:01: Plugin successfully installed
+19:48:01: Loading library .\Plugin_ParticleFX_d
+19:48:01: Installing plugin: ParticleFX
+19:48:01: Particle Emitter Type 'Point' registered
+19:48:01: Particle Emitter Type 'Box' registered
+19:48:01: Particle Emitter Type 'Ellipsoid' registered
+19:48:01: Particle Emitter Type 'Cylinder' registered
+19:48:01: Particle Emitter Type 'Ring' registered
+19:48:01: Particle Emitter Type 'HollowEllipsoid' registered
+19:48:01: Particle Affector Type 'LinearForce' registered
+19:48:01: Particle Affector Type 'ColourFader' registered
+19:48:01: Particle Affector Type 'ColourFader2' registered
+19:48:01: Particle Affector Type 'ColourImage' registered
+19:48:01: Particle Affector Type 'ColourInterpolator' registered
+19:48:01: Particle Affector Type 'Scaler' registered
+19:48:01: Particle Affector Type 'Rotator' registered
+19:48:01: Particle Affector Type 'DirectionRandomiser' registered
+19:48:01: Particle Affector Type 'DeflectorPlane' registered
+19:48:01: Plugin successfully installed
+19:48:01: Loading library .\Plugin_CgProgramManager_d
+19:48:01: Installing plugin: Cg Program Manager
+19:48:01: Plugin successfully installed
+19:48:01: *-*-* OGRE Initialising
+19:48:01: *-*-* Version 1.7.4 (Cthugha)
+19:48:01: Added resource location '../../media' of type 'FileSystem' to resource group 'General'
+19:48:01: Creating resource group Essential
+19:48:01: Added resource location '../../media/thumbnails' of type 'FileSystem' to resource group 'Essential'
+19:48:01: Added resource location '../../media/packs/SdkTrays.zip' of type 'Zip' to resource group 'Essential'
+19:48:01: Added resource location '../../media/packs/SkyBoxes.zip' of type 'Zip' to resource group 'General'
+19:48:01: Creating resource group Popular
+19:48:01: Added resource location '../../media/materials/programs' of type 'FileSystem' to resource group 'Popular'
+19:48:01: Added resource location '../../media/materials/scripts' of type 'FileSystem' to resource group 'Popular'
+19:48:01: Added resource location '../../media/materials/textures' of type 'FileSystem' to resource group 'Popular'
+19:48:01: Added resource location '../../media/models' of type 'FileSystem' to resource group 'Popular'
+19:48:01: Added resource location '../../media/scene' of type 'FileSystem' to resource group 'Popular'
+19:48:01: Added resource location '../../media/circles' of type 'FileSystem' to resource group 'Popular'
+19:48:01: D3D9 : RenderSystem Option: Allow NVPerfHUD = No
+19:48:01: D3D9 : RenderSystem Option: FSAA = 0
+19:48:01: D3D9 : RenderSystem Option: Floating-point mode = Fastest
+19:48:01: D3D9 : RenderSystem Option: Full Screen = No
+19:48:01: D3D9 : RenderSystem Option: Rendering Device = Monitor-1-NVIDIA GeForce GTS 450
+19:48:01: D3D9 : RenderSystem Option: Resource Creation Policy = Create on all devices
+19:48:01: D3D9 : RenderSystem Option: VSync = No
+19:48:01: D3D9 : RenderSystem Option: VSync Interval = 1
+19:48:01: D3D9 : RenderSystem Option: Video Mode = 1024 x 768 @ 32-bit colour
+19:48:01: D3D9 : RenderSystem Option: sRGB Gamma Conversion = No
+19:48:02: CPU Identifier & Features
+19:48:02: -------------------------
+19:48:02:  *   CPU ID: AuthenticAMD: AMD Athlon(tm) II X4 630 Processor
+19:48:02:  *      SSE: yes
+19:48:02:  *     SSE2: yes
+19:48:02:  *     SSE3: yes
+19:48:02:  *      MMX: yes
+19:48:02:  *   MMXEXT: yes
+19:48:02:  *    3DNOW: yes
+19:48:02:  * 3DNOWEXT: yes
+19:48:02:  *     CMOV: yes
+19:48:02:  *      TSC: yes
+19:48:02:  *      FPU: yes
+19:48:02:  *      PRO: yes
+19:48:02:  *       HT: no
+19:48:02: -------------------------
+19:48:02: D3D9 : Subsystem Initialising
+19:48:02: Registering ResourceManager for type Texture
+19:48:02: Registering ResourceManager for type GpuProgram
+19:48:02: D3D9RenderSystem::_createRenderWindow "GalaxyEngine Render Window", 1024x768 windowed  miscParams: FSAA=0 FSAAHint= colourDepth=32 gamma=false monitorIndex=0 useNVPerfHUD=false vsync=false vsyncInterval=1 
+19:48:02: D3D9 : Created D3D9 Rendering Window 'GalaxyEngine Render Window' : 1024x768, 32bpp
+19:48:02: D3D9 : WARNING - disabling VSync in windowed mode can cause timing issues at lower frame rates, turn VSync on if you observe this problem.
+19:48:02: D3D9: Vertex texture format supported - PF_A8R8G8B8
+19:48:02: D3D9: Vertex texture format supported - PF_B8G8R8A8
+19:48:02: D3D9: Vertex texture format supported - PF_FLOAT16_RGB
+19:48:02: D3D9: Vertex texture format supported - PF_FLOAT16_RGBA
+19:48:02: D3D9: Vertex texture format supported - PF_FLOAT32_RGB
+19:48:02: D3D9: Vertex texture format supported - PF_FLOAT32_RGBA
+19:48:02: D3D9: Vertex texture format supported - PF_R8G8B8A8
+19:48:02: D3D9: Vertex texture format supported - PF_DEPTH
+19:48:02: D3D9: Vertex texture format supported - PF_FLOAT16_R
+19:48:02: D3D9: Vertex texture format supported - PF_FLOAT32_R
+19:48:02: D3D9: Vertex texture format supported - PF_FLOAT16_GR
+19:48:02: D3D9: Vertex texture format supported - PF_FLOAT32_GR
+19:48:02: D3D9: Vertex texture format supported - PF_PVRTC_RGB2
+19:48:02: D3D9: Vertex texture format supported - PF_PVRTC_RGBA2
+19:48:02: D3D9: Vertex texture format supported - PF_PVRTC_RGB4
+19:48:02: D3D9: Vertex texture format supported - PF_PVRTC_RGBA4
+19:48:02: RenderSystem capabilities
+19:48:02: -------------------------
+19:48:02: RenderSystem Name: Direct3D9 Rendering Subsystem
+19:48:02: GPU Vendor: nvidia
+19:48:02: Device Name: Monitor-1-NVIDIA GeForce GTS 450
+19:48:02: Driver Version: 8.17.12.9610
+19:48:02:  * Fixed function pipeline: yes
+19:48:02:  * Hardware generation of mipmaps: yes
+19:48:02:  * Texture blending: yes
+19:48:02:  * Anisotropic texture filtering: yes
+19:48:02:  * Dot product texture operation: yes
+19:48:02:  * Cube mapping: yes
+19:48:02:  * Hardware stencil buffer: yes
+19:48:02:    - Stencil depth: 8
+19:48:02:    - Two sided stencil support: yes
+19:48:02:    - Wrap stencil values: yes
+19:48:02:  * Hardware vertex / index buffers: yes
+19:48:02:  * Vertex programs: yes
+19:48:02:  * Number of floating-point constants for vertex programs: 256
+19:48:02:  * Number of integer constants for vertex programs: 16
+19:48:02:  * Number of boolean constants for vertex programs: 16
+19:48:02:  * Fragment programs: yes
+19:48:02:  * Number of floating-point constants for fragment programs: 224
+19:48:02:  * Number of integer constants for fragment programs: 16
+19:48:02:  * Number of boolean constants for fragment programs: 16
+19:48:02:  * Geometry programs: no
+19:48:02:  * Number of floating-point constants for geometry programs: 0
+19:48:02:  * Number of integer constants for geometry programs: 0
+19:48:02:  * Number of boolean constants for geometry programs: 0
+19:48:02:  * Supported Shader Profiles: hlsl ps_1_1 ps_1_2 ps_1_3 ps_1_4 ps_2_0 ps_2_a ps_2_b ps_2_x ps_3_0 vs_1_1 vs_2_0 vs_2_a vs_2_x vs_3_0
+19:48:02:  * Texture Compression: yes
+19:48:02:    - DXT: yes
+19:48:02:    - VTC: no
+19:48:02:    - PVRTC: no
+19:48:02:  * Scissor Rectangle: yes
+19:48:02:  * Hardware Occlusion Query: yes
+19:48:02:  * User clip planes: yes
+19:48:02:  * VET_UBYTE4 vertex element type: yes
+19:48:02:  * Infinite far plane projection: yes
+19:48:02:  * Hardware render-to-texture: yes
+19:48:02:  * Floating point textures: yes
+19:48:02:  * Non-power-of-two textures: yes
+19:48:02:  * Volume textures: yes
+19:48:02:  * Multiple Render Targets: 4
+19:48:02:    - With different bit depths: yes
+19:48:02:  * Point Sprites: yes
+19:48:02:  * Extended point parameters: yes
+19:48:02:  * Max Point Size: 10
+19:48:02:  * Vertex texture fetch: yes
+19:48:02:  * Number of world matrices: 0
+19:48:02:  * Number of texture units: 8
+19:48:02:  * Stencil buffer depth: 8
+19:48:02:  * Number of vertex blend matrices: 0
+19:48:02:    - Max vertex textures: 4
+19:48:02:    - Vertex textures shared: no
+19:48:02:  * Render to Vertex Buffer : no
+19:48:02:  * DirectX per stage constants: yes
+19:48:02: ***************************************
+19:48:02: *** D3D9 : Subsystem Initialised OK ***
+19:48:02: ***************************************
+19:48:02: DefaultWorkQueue('Root') initialising on thread 002AF930.
+19:48:02: DefaultWorkQueue('Root')::WorkerFunc - thread 002C1B10 starting.
+19:48:02: DefaultWorkQueue('Root')::WorkerFunc - thread 002C1B80 starting.
+19:48:02: DefaultWorkQueue('Root')::WorkerFunc - thread 002C2300 starting.
+19:48:02: DefaultWorkQueue('Root')::WorkerFunc - thread 002C2F70 starting.
+19:48:02: Particle Renderer Type 'billboard' registered
+19:48:02: Initialising resource group Essential
+19:48:02: Parsing scripts for resource group Essential
+19:48:02: Parsing script SdkTrays.material
+19:48:02: Parsing script SdkTrays.fontdef
+19:48:02: Parsing script SdkTrays.overlay
+19:48:02: Bad element attribute line: '# you can offset the image to change the cursor "hotspot"' for element SdkTrays/Cursor in overlay 
+19:48:02: Texture: sdk_cursor.png: Loading 1 faces(PF_A8R8G8B8,32x32x1) with  hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,32x32x1.
+19:48:02: Texture: sdk_tray.png: Loading 1 faces(PF_A8R8G8B8,64x64x1) with  hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,64x64x1.
+19:48:02: Texture: sdk_button_up.png: Loading 1 faces(PF_A8R8G8B8,128x32x1) with  hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,128x32x1.
+19:48:02: Texture: sdk_text_box.png: Loading 1 faces(PF_A8R8G8B8,32x32x1) with  hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,32x32x1.
+19:48:02: Texture: sdk_mini_tray.png: Loading 1 faces(PF_A8R8G8B8,32x32x1) with  hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,32x32x1.
+19:48:02: Texture: sdk_track.png: Loading 1 faces(PF_A8R8G8B8,16x32x1) with  hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,16x32x1.
+19:48:02: Texture: sdk_handle.png: Loading 1 faces(PF_A8R8G8B8,16x16x1) with  hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,16x16x1.
+19:48:02: Texture: sdk_mini_text_box.png: Loading 1 faces(PF_A8R8G8B8,32x32x1) with  hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,32x32x1.
+19:48:02: Texture: sdk_label.png: Loading 1 faces(PF_A8R8G8B8,32x32x1) with  hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,32x32x1.
+19:48:02: Texture: sdk_separator.png: Loading 1 faces(PF_A8R8G8B8,64x16x1) with  hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,64x16x1.
+19:48:02: Texture: sdk_logo.png: Loading 1 faces(PF_A8R8G8B8,128x64x1) with  hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,128x64x1.
+19:48:02: Texture: sdk_shade.png: Loading 1 faces(PF_A8R8G8B8,64x48x1) with 5 generated mipmaps from Image. Internal format is PF_A8R8G8B8,64x48x1.
+19:48:02: Texture: sdk_frame.png: Loading 1 faces(PF_A8R8G8B8,32x32x1) with  hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,32x32x1.
+19:48:02: Texture: sdk_mini_text_box_over.png: Loading 1 faces(PF_A8R8G8B8,32x32x1) with  hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,32x32x1.
+19:48:02: Texture: sdk_pulse.png: Loading 1 faces(PF_R8G8B8,8x1x1) with  hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,8x1x1.
+19:48:02: Finished parsing scripts for resource group Essential
+19:48:02: *** Initializing OIS ***
+19:48:03: Parsing scripts for resource group Autodetect
+19:48:03: Font SdkTrays/Captionusing texture size 512x256
+19:48:03: Info: Freetype returned null for character 160 in font SdkTrays/Caption
+19:48:03: Texture: SdkTrays/CaptionTexture: Loading 1 faces(PF_BYTE_LA,512x256x1) with 0 generated mipmaps from Image. Internal format is PF_BYTE_LA,512x256x1.
+19:48:03: Font SdkTrays/Valueusing texture size 512x256
+19:48:03: Info: Freetype returned null for character 127 in font SdkTrays/Value
+19:48:03: Info: Freetype returned null for character 128 in font SdkTrays/Value
+19:48:03: Info: Freetype returned null for character 129 in font SdkTrays/Value
+19:48:03: Info: Freetype returned null for character 130 in font SdkTrays/Value
+19:48:03: Info: Freetype returned null for character 131 in font SdkTrays/Value
+19:48:03: Info: Freetype returned null for character 132 in font SdkTrays/Value
+19:48:03: Info: Freetype returned null for character 133 in font SdkTrays/Value
+19:48:03: Info: Freetype returned null for character 134 in font SdkTrays/Value
+19:48:03: Info: Freetype returned null for character 135 in font SdkTrays/Value
+19:48:03: Info: Freetype returned null for character 136 in font SdkTrays/Value
+19:48:03: Info: Freetype returned null for character 137 in font SdkTrays/Value
+19:48:03: Info: Freetype returned null for character 138 in font SdkTrays/Value
+19:48:03: Info: Freetype returned null for character 139 in font SdkTrays/Value
+19:48:03: Info: Freetype returned null for character 140 in font SdkTrays/Value
+19:48:03: Info: Freetype returned null for character 141 in font SdkTrays/Value
+19:48:03: Info: Freetype returned null for character 142 in font SdkTrays/Value
+19:48:03: Info: Freetype returned null for character 143 in font SdkTrays/Value
+19:48:03: Info: Freetype returned null for character 144 in font SdkTrays/Value
+19:48:03: Info: Freetype returned null for character 145 in font SdkTrays/Value
+19:48:03: Info: Freetype returned null for character 146 in font SdkTrays/Value
+19:48:03: Info: Freetype returned null for character 147 in font SdkTrays/Value
+19:48:03: Info: Freetype returned null for character 148 in font SdkTrays/Value
+19:48:03: Info: Freetype returned null for character 149 in font SdkTrays/Value
+19:48:03: Info: Freetype returned null for character 150 in font SdkTrays/Value
+19:48:03: Info: Freetype returned null for character 151 in font SdkTrays/Value
+19:48:03: Info: Freetype returned null for character 152 in font SdkTrays/Value
+19:48:03: Info: Freetype returned null for character 153 in font SdkTrays/Value
+19:48:03: Info: Freetype returned null for character 154 in font SdkTrays/Value
+19:48:03: Info: Freetype returned null for character 155 in font SdkTrays/Value
+19:48:03: Info: Freetype returned null for character 156 in font SdkTrays/Value
+19:48:03: Info: Freetype returned null for character 157 in font SdkTrays/Value
+19:48:03: Info: Freetype returned null for character 158 in font SdkTrays/Value
+19:48:03: Info: Freetype returned null for character 159 in font SdkTrays/Value
+19:48:03: Info: Freetype returned null for character 160 in font SdkTrays/Value
+19:48:03: Texture: SdkTrays/ValueTexture: Loading 1 faces(PF_BYTE_LA,512x256x1) with 0 generated mipmaps from Image. Internal format is PF_BYTE_LA,512x256x1.
+19:48:03: Finished parsing scripts for resource group Autodetect
+19:48:03: Parsing scripts for resource group General
+19:48:03: Parsing script universe.object
+19:48:03: Parsing script universe_old.object
+19:48:03: Finished parsing scripts for resource group General
+19:48:03: Parsing scripts for resource group Internal
+19:48:03: Finished parsing scripts for resource group Internal
+19:48:03: Parsing scripts for resource group Popular
+19:48:03: Parsing script Defs.program
+19:48:03: Parsing script bomberman.material
+19:48:03: Parsing script clouds.material
+19:48:03: Parsing script girl.material
+19:48:03: Parsing script skybox.material
+19:48:03: Parsing script skydiving_scene.material
+19:48:05: Parsing script village.material
+19:48:06: Parsing script circles.material
+19:48:06: Finished parsing scripts for resource group Popular
+19:48:06: Texture: clouds_fr.png: Loading 1 faces(PF_A8R8G8B8,512x512x1) with  hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,512x512x1.
+19:48:06: Texture: clouds_bk.png: Loading 1 faces(PF_A8R8G8B8,512x512x1) with  hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,512x512x1.
+19:48:06: Texture: clouds_lf.png: Loading 1 faces(PF_A8R8G8B8,512x512x1) with  hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,512x512x1.
+19:48:06: Texture: clouds_rt.png: Loading 1 faces(PF_A8R8G8B8,512x512x1) with  hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,512x512x1.
+19:48:06: Texture: clouds_up.png: Loading 1 faces(PF_A8R8G8B8,512x512x1) with  hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,512x512x1.
+19:48:06: Texture: clouds_dn.png: Loading 1 faces(PF_A8R8G8B8,512x512x1) with  hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,512x512x1.
+19:48:06: Mesh: Loading girl.mesh.
+19:48:06: Skeleton: Loading girl.skeleton
+19:48:06: OGRE EXCEPTION(6:FileNotFoundException): Cannot locate resource girl.skeleton in resource group Popular or any other group. in ResourceGroupManager::openResource at ..\..\..\..\OgreMain\src\OgreResourceGroupManager.cpp (line 753)
+19:48:06: Unable to load skeleton girl.skeleton for Mesh girl.mesh. This Mesh will not be animated. You can ignore this message if you are using an offline tool.
+19:48:08: Texture: uv2.jpg: Loading 1 faces(PF_R8G8B8,4000x4000x1) with 5 generated mipmaps from Image. Internal format is PF_X8R8G8B8,4000x4000x1.
+19:48:12: Texture: u.jpg: Loading 1 faces(PF_R8G8B8,800x800x1) with 5 generated mipmaps from Image. Internal format is PF_X8R8G8B8,800x800x1.
+19:48:12: Texture: cloud01.png: Loading 1 faces(PF_A8R8G8B8,128x128x1) with  hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,128x128x1.
+19:48:12: Creating resource group Universe
+19:48:12: Added resource location '../../media/universe' of type 'FileSystem' to resource group 'Universe'
+19:48:12: Initialising resource group Universe
+19:48:12: Parsing scripts for resource group Universe
+19:48:12: Parsing script moon.object
+19:48:12: Parsing script planet.object
+19:48:12: Parsing script planet2_old.object
+19:48:12: Finished parsing scripts for resource group Universe
+19:48:12: Creating resource group Planet
+19:48:12: Added resource location '../../media/universe/Planet' of type 'FileSystem' to resource group 'Planet'
+19:48:12: Initialising resource group Planet
+19:48:12: Parsing scripts for resource group Planet
+19:48:12: Finished parsing scripts for resource group Planet
+19:48:13: OGRE EXCEPTION(6:FileNotFoundException): Cannot locate resource Planet_norm_atlas.dds in resource group General or any other group. in ResourceGroupManager::openResource at ..\..\..\..\OgreMain\src\OgreResourceGroupManager.cpp (line 753)
+19:48:13: Error loading texture Planet_norm_atlas.dds. Texture layer will be blank. Loading the texture failed with the following exception: OGRE EXCEPTION(6:FileNotFoundException): Cannot locate resource Planet_norm_atlas.dds in resource group General or any other group. in ResourceGroupManager::openResource at ..\..\..\..\OgreMain\src\OgreResourceGroupManager.cpp (line 753)
+19:48:13: OGRE EXCEPTION(6:FileNotFoundException): Cannot locate resource Planet_color_atlas.dds in resource group General or any other group. in ResourceGroupManager::openResource at ..\..\..\..\OgreMain\src\OgreResourceGroupManager.cpp (line 753)
+19:48:13: Error loading texture Planet_color_atlas.dds. Texture layer will be blank. Loading the texture failed with the following exception: OGRE EXCEPTION(6:FileNotFoundException): Cannot locate resource Planet_color_atlas.dds in resource group General or any other group. in ResourceGroupManager::openResource at ..\..\..\..\OgreMain\src\OgreResourceGroupManager.cpp (line 753)
+19:48:13: Texture: norm_front.png: Loading 1 faces(PF_R8G8B8,1024x1024x1) with  hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,1024x1024x1.
+19:48:13: Texture: norm_back.png: Loading 1 faces(PF_R8G8B8,1024x1024x1) with  hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,1024x1024x1.
+19:48:13: Texture: norm_right.png: Loading 1 faces(PF_R8G8B8,1024x1024x1) with  hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,1024x1024x1.
+19:48:14: Texture: norm_left.png: Loading 1 faces(PF_R8G8B8,1024x1024x1) with  hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,1024x1024x1.
+19:48:14: Texture: norm_top.png: Loading 1 faces(PF_R8G8B8,1024x1024x1) with  hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,1024x1024x1.
+19:48:14: Texture: norm_bottom.png: Loading 1 faces(PF_R8G8B8,1024x1024x1) with  hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,1024x1024x1.
+19:48:14: D3D9 : Loading 2D Texture, image name : 'color_front.dds' with 5 mip map levels
+19:48:14: D3D9 : Loading 2D Texture, image name : 'color_right.dds' with 5 mip map levels
+19:48:14: D3D9 : Loading 2D Texture, image name : 'color_left.dds' with 5 mip map levels
+19:48:14: D3D9 : Loading 2D Texture, image name : 'color_top.dds' with 5 mip map levels
+19:48:14: D3D9 : Loading 2D Texture, image name : 'color_back.dds' with 5 mip map levels
+19:48:14: D3D9 : Loading 2D Texture, image name : 'color_bottom.dds' with 5 mip map levels
+19:48:14: [DotSceneLoader] Parsing dotScene file with version 1.0, min. Ogre version 1.7, author OgreMax Scene Exporter (www.ogremax.com)
+19:48:14: Mesh: Loading polySurface44.mesh.
+19:48:14: OGRE EXCEPTION(6:FileNotFoundException): Cannot locate resource house.jpg in resource group Popular or any other group. in ResourceGroupManager::openResource at ..\..\..\..\OgreMain\src\OgreResourceGroupManager.cpp (line 753)
+19:48:14: Error loading texture house.jpg. Texture layer will be blank. Loading the texture failed with the following exception: OGRE EXCEPTION(6:FileNotFoundException): Cannot locate resource house.jpg in resource group Popular or any other group. in ResourceGroupManager::openResource at ..\..\..\..\OgreMain\src\OgreResourceGroupManager.cpp (line 753)
+19:48:14: Mesh: Loading polySurface45.mesh.
+19:48:14: Mesh: Loading polySurface46.mesh.
+19:48:14: Mesh: Loading polySurface47.mesh.
+19:48:14: Mesh: Loading polySurface55.mesh.
+19:48:14: Mesh: Loading polySurface56.mesh.
+19:48:14: Mesh: Loading polySurface57.mesh.
+19:48:14: Mesh: Loading polySurface58.mesh.
+19:48:14: Mesh: Loading polySurface80.mesh.
+19:48:14: Mesh: Loading polySurface135.mesh.
+19:48:14: OGRE EXCEPTION(6:FileNotFoundException): Cannot locate resource ad.jpg in resource group Popular or any other group. in ResourceGroupManager::openResource at ..\..\..\..\OgreMain\src\OgreResourceGroupManager.cpp (line 753)
+19:48:14: Error loading texture ad.jpg. Texture layer will be blank. Loading the texture failed with the following exception: OGRE EXCEPTION(6:FileNotFoundException): Cannot locate resource ad.jpg in resource group Popular or any other group. in ResourceGroupManager::openResource at ..\..\..\..\OgreMain\src\OgreResourceGroupManager.cpp (line 753)
+19:48:15: [DotSceneLoader] Parsing dotScene file with version 1.0, min. Ogre version 1.7, author OgreMax Scene Exporter (www.ogremax.com)
+19:48:15: Mesh: Loading red01.mesh.
+19:48:15: Texture: water_red.jpg: Loading 1 faces(PF_R8G8B8,512x512x1) with  hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,512x512x1.
+19:48:15: Mesh: Loading blue04.mesh.
+19:48:15: Texture: water_blue.jpg: Loading 1 faces(PF_R8G8B8,512x512x1) with  hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,512x512x1.
+19:48:15: Mesh: Loading red02.mesh.
+19:48:15: Mesh: Loading blue05.mesh.
+19:48:15: Mesh: Loading blue06.mesh.
+19:48:15: Mesh: Loading blue07.mesh.
+19:48:15: Mesh: Loading red03.mesh.
+19:48:15: Mesh: Loading red04.mesh.
+19:48:15: Mesh: Loading red05.mesh.
+19:48:15: Mesh: Loading blue08.mesh.
+19:48:15: Mesh: Loading red06.mesh.
+19:48:15: Mesh: Loading blue09.mesh.
+19:48:15: Mesh: Loading blue010.mesh.
+19:48:15: Mesh: Loading blue011.mesh.
+19:48:15: Mesh: Loading red07.mesh.
+19:48:15: Mesh: Loading red08.mesh.
+19:48:15: Mesh: Loading red09.mesh.
+19:48:15: Mesh: Loading blue012.mesh.
+19:48:15: Mesh: Loading blue013.mesh.
+19:48:15: Mesh: Loading blue014.mesh.
+19:48:15: Mesh: Loading red012.mesh.
+19:48:15: Mesh: Loading blue015.mesh.
+19:48:15: Mesh: Loading blue016.mesh.
+19:48:15: Mesh: Loading red014.mesh.
+19:48:15: Mesh: Loading red015.mesh.
+19:48:15: Mesh: Loading red016.mesh.
+19:48:15: Mesh: Loading blue017.mesh.
+19:48:15: Mesh: Loading red017.mesh.
+19:48:15: Mesh: Loading blue018.mesh.
+19:48:15: Mesh: Loading pasted__blue014.mesh.
+19:48:15: OGRE EXCEPTION(6:FileNotFoundException): Cannot locate resource pasted__blue014.mesh in resource group Popular or any other group. in ResourceGroupManager::openResource at ..\..\..\..\OgreMain\src\OgreResourceGroupManager.cpp (line 753)
+19:48:15: [DotSceneLoader] Error loading an entity!
+19:48:15: Mesh: Loading pasted__blue013.mesh.
+19:48:15: OGRE EXCEPTION(6:FileNotFoundException): Cannot locate resource pasted__blue013.mesh in resource group Popular or any other group. in ResourceGroupManager::openResource at ..\..\..\..\OgreMain\src\OgreResourceGroupManager.cpp (line 753)
+19:48:15: [DotSceneLoader] Error loading an entity!
+19:48:15: Mesh: Loading pasted__blue014_1.mesh.
+19:48:15: OGRE EXCEPTION(6:FileNotFoundException): Cannot locate resource pasted__blue014_1.mesh in resource group Popular or any other group. in ResourceGroupManager::openResource at ..\..\..\..\OgreMain\src\OgreResourceGroupManager.cpp (line 753)
+19:48:15: [DotSceneLoader] Error loading an entity!
+19:48:15: Mesh: Loading pasted__blue013_1.mesh.
+19:48:15: OGRE EXCEPTION(6:FileNotFoundException): Cannot locate resource pasted__blue013_1.mesh in resource group Popular or any other group. in ResourceGroupManager::openResource at ..\..\..\..\OgreMain\src\OgreResourceGroupManager.cpp (line 753)
+19:48:15: [DotSceneLoader] Error loading an entity!

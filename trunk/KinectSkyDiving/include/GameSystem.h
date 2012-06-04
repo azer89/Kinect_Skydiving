@@ -12,6 +12,7 @@
 #include "ThirdPersonCamera.h"
 #include "SimpleCloud.h"
 #include "PlanetObjects.h"
+#include "TargetCircles.h"
 
 class GameSystem
 {
@@ -46,6 +47,7 @@ private:
 	GalaxyEngine::Core* planetEngine;				// planet rendering engine
 	Character*          character;					// character
 	PlanetObjects*		pObjects;
+	TargetCircles*		tCircles;
 	SimpleCloud*		cloud;
 	CameraListener*     mCameraListener;
 	ThirdPersonCamera*  exCamera;
