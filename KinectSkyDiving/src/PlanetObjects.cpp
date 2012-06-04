@@ -4,14 +4,14 @@
 
 //------------------------------------------------------------------------------------
 PlanetObjects::PlanetObjects(void)
-	: sceneLoader(0)
+	//: sceneLoader(0)
 {
 }
 
 //------------------------------------------------------------------------------------
 PlanetObjects::~PlanetObjects(void)
 {
-	if(sceneLoader != 0) delete sceneLoader;
+	//if(sceneLoader != 0) delete sceneLoader;
 }
 
 //------------------------------------------------------------------------------------
@@ -20,7 +20,7 @@ void PlanetObjects::setup(Ogre::SceneManager* mSceneManager, RayCastCollision* c
 	this->mSceneManager = mSceneManager;	
 	this->mMainNode = mSceneManager->getRootSceneNode()->createChildSceneNode();
 
-	sceneLoader = new Ogre::DotSceneLoader();
+	Ogre::DotSceneLoader* sceneLoader = new Ogre::DotSceneLoader();
 	sceneLoader->parseDotScene("village.scene", "Popular", mSceneManager, mMainNode);
 	
 	std::vector<Ogre::SceneNode*> nodeList = sceneLoader->nodeList;
@@ -28,8 +28,6 @@ void PlanetObjects::setup(Ogre::SceneManager* mSceneManager, RayCastCollision* c
 	for(int a = 0; a < nodeList.size(); a++)
 	{
 		Ogre::SceneNode* childNode = nodeList[a];
-		//int numChild = childNode->numChildren();
-		//if(numChild > 0)  { continue; }
 
 		childNode->setScale(5, 5, 5);
 		childNode->translate(0, 2500, 0);
@@ -41,7 +39,6 @@ void PlanetObjects::setup(Ogre::SceneManager* mSceneManager, RayCastCollision* c
 
 		Ogre::Vector3 intersection = Ogre::Vector3::ZERO;
 		collisionDetector->getChunksIntersection(devPos, -upVector, intersection);
-		//std::cout << a << "-" << intersection.distance(Ogre::Vector3::ZERO) << "-" << intersection << "\n";
 				
 		childNode->setOrientation(q);
 		
@@ -55,5 +52,7 @@ void PlanetObjects::setup(Ogre::SceneManager* mSceneManager, RayCastCollision* c
 		}
 		
 	}
+
+	delete sceneLoader;
 
 }

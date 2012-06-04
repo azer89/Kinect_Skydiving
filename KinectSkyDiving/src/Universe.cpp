@@ -114,7 +114,8 @@ namespace GalaxyEngine
 		sunLightNode = Core::getSingleton().getSceneManager()->getRootSceneNode()->createChildSceneNode();
 		sunLight = Core::getSingleton().getSceneManager()->createLight("UniverseSunLight");
 		sunLightNode->attachObject(sunLight);
-		sunLightNode->setPosition(0, 250, 0);
+		sunLightNode->setPosition(0, 3000, 1000);
+		sunLight->setDirection(0, 0, 0);
 
 		/*
 		Ogre::SceneNode* sunLightNode01 = Core::getSingleton().getSceneManager()->getRootSceneNode()->createChildSceneNode();

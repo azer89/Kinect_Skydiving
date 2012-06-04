@@ -1,0 +1,77 @@
+material blue_opaque
+{
+	technique
+	{
+		pass
+		{
+			//lighting off
+		
+			ambient 0 0.54902 1 1
+			diffuse 0 0.249486 1 1
+			specular 0 0.249486 1 1
+		}
+
+	}
+
+}
+
+
+
+material blue_transparent
+{
+	technique
+	{
+		pass
+		{
+			scene_blend colour_blend
+			depth_write off
+
+			texture_unit
+			{
+				texture water_blue.jpg
+				scroll_anim 0.01 0.01
+			}
+		}
+	}
+
+}
+
+
+
+material red_opaque
+{
+	technique
+	{
+		pass
+		{
+			//lighting off
+		
+			ambient 0.292683 0.0470283 0 1
+			diffuse 0.192683 0.0270283 0 1
+			specular 0.192683 0.0270283 0 1
+		}
+
+	}
+
+}
+
+
+
+material red_transparent
+{
+	technique
+	{
+		pass
+		{
+			scene_blend colour_blend
+			depth_write off
+
+			texture_unit
+			{
+				texture water_red.jpg
+				scroll_anim 0.01 0.01
+			}
+		}
+	}
+
+}

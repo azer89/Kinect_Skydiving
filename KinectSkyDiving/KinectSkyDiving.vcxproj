@@ -142,6 +142,7 @@
     <ClInclude Include="include\SpritePlanet.h" />
     <ClInclude Include="include\Star.h" />
     <ClInclude Include="include\Stdafx.h" />
+    <ClInclude Include="include\TargetCircles.h" />
     <ClInclude Include="include\ThirdPersonCamera.h" />
     <ClInclude Include="include\Universe.h" />
     <ClInclude Include="include\Utility.h" />
@@ -169,6 +170,7 @@
     <ClCompile Include="src\SpaceBackdrop.cpp" />
     <ClCompile Include="src\SpritePlanet.cpp" />
     <ClCompile Include="src\Star.cpp" />
+    <ClCompile Include="src\TargetCircles.cpp" />
     <ClCompile Include="src\ThirdPersonCamera.cpp" />
     <ClCompile Include="src\Universe.cpp" />
     <ClCompile Include="src\Utility.cpp" />

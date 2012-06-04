@@ -12,6 +12,7 @@ GameSystem::GameSystem(void)
 	  mCameraListener(0),
 	  exCamera(0),
 	  pObjects(0),
+	  tCircles(0),
 	  isPlanetInitialized(false)
 {
 }
@@ -25,6 +26,7 @@ GameSystem::~GameSystem(void)
 	if(mCameraListener != 0)	delete mCameraListener;
 	if(exCamera != 0)			delete exCamera;
 	if(pObjects != 0)			delete pObjects;
+	if(tCircles != 0)			delete tCircles;
 }
 
 //-------------------------------------------------------------------------------------
@@ -40,7 +42,7 @@ void GameSystem::createScene(void)
 	mCameraListener->setCharacter(character);
 
 	this->character->setup(mSceneMgr, Ogre::Vector3(0, 3000, 3000), Ogre::Vector3(0.5f, 0.5f, 0.5f), Ogre::Quaternion::IDENTITY);
-	//this->character->setup(mSceneMgr, Ogre::Vector3(0, 0, 0), Ogre::Vector3(0.5f, 0.5f, 0.5f), Ogre::Quaternion::IDENTITY);
+	//this->character->setup(mSceneMgr, Ogre::Vector3(0, 2400, 0), Ogre::Vector3(1.0f), Ogre::Quaternion::IDENTITY);
 	this->character->setGravity(9.8f);
 
 	cloud = new SimpleCloud();
@@ -170,6 +172,9 @@ void GameSystem::postPlanetInitialization()
 
 	pObjects = new PlanetObjects();
 	pObjects->setup(mSceneMgr, collisionDetector);
+
+	tCircles = new TargetCircles();
+	tCircles->setup(mSceneMgr);
 }
 
 //-------------------------------------------------------------------------------------

@@ -1,28 +1,28 @@
 
-#ifndef __PlanetObjects_h_
-#define __PlanetObjects_h_
+#ifndef __TargetCircles_h_
+#define __TargetCircles_h_
 
 #include "Stdafx.h"
 #include "DotSceneLoader.h"
 #include "RayCastCollision.h"
 #include "Planet.h"
 
-class PlanetObjects
+class TargetCircles
 {
 public:
-	PlanetObjects(void);
-	virtual ~PlanetObjects(void);
+	TargetCircles(void);
+	virtual ~TargetCircles(void);
 
-	void setup(Ogre::SceneManager* mSceneManager, RayCastCollision* collisionDetector);
+	void setup(Ogre::SceneManager* mSceneManager);
 
 private:
 	Ogre::SceneManager*  mSceneManager;	
 	Ogre::SceneNode*     mMainNode;
 	Ogre::Entity*        mMainEntity;
-	
+
 	//Ogre::DotSceneLoader*		 sceneLoader;
 };
 
-#endif // #ifndef __PlanetObjects_h_
+#endif // #ifndef __TargetCircles_h_
 
 
