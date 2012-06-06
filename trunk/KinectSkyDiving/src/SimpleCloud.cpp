@@ -8,7 +8,7 @@
 
 //-------------------------------------------------------------------------------------
 SimpleCloud::SimpleCloud(void)
-	: highestElevation(2500.0f)
+	: highestElevation(5500.0f)
 	  //updateDelay(0.0f)
 {
 }

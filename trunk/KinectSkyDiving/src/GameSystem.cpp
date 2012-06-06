@@ -13,6 +13,7 @@ GameSystem::GameSystem(void)
 	  exCamera(0),
 	  pObjects(0),
 	  tCircles(0),
+	  pManager(0),
 	  isPlanetInitialized(false)
 {
 }
@@ -27,13 +28,14 @@ GameSystem::~GameSystem(void)
 	if(exCamera != 0)			delete exCamera;
 	if(pObjects != 0)			delete pObjects;
 	if(tCircles != 0)			delete tCircles;
+	if(pManager != 0)			delete pManager;
 }
 
 //-------------------------------------------------------------------------------------
 /**  Create your scene here */
 void GameSystem::createScene(void)
 {
-	mSceneMgr->setSkyBox(true, "Sky/Clouds", 10000, true);
+	mSceneMgr->setSkyBox(true, "Sky/Bright", 10000, true);
 
 	exCamera = new ThirdPersonCamera("ThirdPersonCamera", mSceneMgr, mCamera);
 	mCameraListener = new CameraListener(mWindow, mCamera);
@@ -41,7 +43,7 @@ void GameSystem::createScene(void)
 	this->character = new Character();
 	mCameraListener->setCharacter(character);
 
-	this->character->setup(mSceneMgr, Ogre::Vector3(0, 3000, 3000), Ogre::Vector3(0.5f, 0.5f, 0.5f), Ogre::Quaternion::IDENTITY);
+	this->character->setup(mSceneMgr, Ogre::Vector3(0, 6000, 6000), Ogre::Vector3(0.5f, 0.5f, 0.5f), Ogre::Quaternion::IDENTITY);
 	//this->character->setup(mSceneMgr, Ogre::Vector3(0, 2400, 0), Ogre::Vector3(1.0f), Ogre::Quaternion::IDENTITY);
 	this->character->setGravity(9.8f);
 
@@ -77,6 +79,8 @@ void GameSystem::update(Ogre::Real elapsedTime)
 	character->update(elapsedTime);
 	mCameraListener->update(elapsedTime);
 	cloud->updateClouds(elapsedTime);
+
+	if(pManager != 0) pManager->update(character->getBodyNode()->_getDerivedPosition());
 }
 
 //------------------------------------------------------------------------------------
@@ -175,6 +179,9 @@ void GameSystem::postPlanetInitialization()
 
 	tCircles = new TargetCircles();
 	tCircles->setup(mSceneMgr);
+
+	pManager = new ParticleManager();
+	pManager->initParticle(mSceneMgr);
 }
 
 //-------------------------------------------------------------------------------------

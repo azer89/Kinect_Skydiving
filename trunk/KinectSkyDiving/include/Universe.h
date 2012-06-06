@@ -97,7 +97,7 @@ namespace GalaxyEngine
 			originChangeHandlers.push_back(handlerFunction);
 		}
 
-		Ogre::Light *getLightSource() { return sunLight; }
+		Ogre::Light *getLightSource() { return sunLight01; }
 
 		//PlanetProxy getPlanetProxy(int index)
 		//{
@@ -121,8 +121,11 @@ namespace GalaxyEngine
 		FloatingOrigin origin;
 		std::vector<void(*)(FloatingOrigin&, FloatingOrigin&)> originChangeHandlers;
 
-		Ogre::Light *sunLight;
-		Ogre::SceneNode *sunLightNode;
+		Ogre::Light *sunLight01;
+		Ogre::SceneNode *sunLightNode01;
+
+		Ogre::Light *sunLight02;
+		Ogre::SceneNode *sunLightNode02;
 
 		double gravityFactor;
 

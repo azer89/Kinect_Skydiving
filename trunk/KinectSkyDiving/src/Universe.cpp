@@ -110,18 +110,21 @@ namespace GalaxyEngine
 			}
 		}
 
-		//Setup sun light
-		sunLightNode = Core::getSingleton().getSceneManager()->getRootSceneNode()->createChildSceneNode();
-		sunLight = Core::getSingleton().getSceneManager()->createLight("UniverseSunLight");
-		sunLightNode->attachObject(sunLight);
-		sunLightNode->setPosition(0, 3000, 1000);
-		sunLight->setDirection(0, 0, 0);
-
-		/*
-		Ogre::SceneNode* sunLightNode01 = Core::getSingleton().getSceneManager()->getRootSceneNode()->createChildSceneNode();
-		Light* sunLight01 = Core::getSingleton().getSceneManager()->createLight("UniverseSunLight01");
+		// Setup sun light #1
+		sunLightNode01 = Core::getSingleton().getSceneManager()->getRootSceneNode()->createChildSceneNode();
+		sunLight01 = Core::getSingleton().getSceneManager()->createLight("UniverseSunLight01");
+		//sunLight01->setType(Ogre::Light::LT_DIRECTIONAL);
+		sunLight01->setDirection(0, 0, 0);
 		sunLightNode01->attachObject(sunLight01);
-		sunLightNode01->setPosition(4, 0, 100);*/
+		sunLightNode01->setPosition(0, 6500, 0);
+		
+		// Setup sun light #2
+		sunLightNode02 = Core::getSingleton().getSceneManager()->getRootSceneNode()->createChildSceneNode();
+		sunLight02 = Core::getSingleton().getSceneManager()->createLight("UniverseSunLight02");
+		//sunLight02->setType(Ogre::Light::LT_DIRECTIONAL);
+		sunLight02->setDirection(0, 0, 0);
+		sunLightNode02->attachObject(sunLight02);
+		sunLightNode02->setPosition(0, 6500, 6500);
 	}
 
 	Universe::~Universe()
@@ -147,8 +150,8 @@ namespace GalaxyEngine
 		//delete backdrop;
 
 		//Delete sun light
-		Core::getSingleton().getSceneManager()->destroyLight(sunLight);
-		Core::getSingleton().getSceneManager()->destroySceneNode(sunLightNode->getName());
+		Core::getSingleton().getSceneManager()->destroyLight(sunLight01);
+		Core::getSingleton().getSceneManager()->destroySceneNode(sunLightNode01->getName());
 	}
 
 	PlanetProxy *Universe::addPlanet(const String &planetName)

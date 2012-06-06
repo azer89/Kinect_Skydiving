@@ -1,0 +1,40 @@
+// A downpour
+particle_system Examples/WindCloud
+{
+    //material        Examples/Droplet
+    material 		  Examples/Cloud01
+    particle_width    20
+    particle_height   20
+    cull_each         true
+    quota             3
+    // Make common direction straight down (faster than self oriented)
+    //billboard_type  oriented_self
+	billboard_type    point
+    common_direction 0 1 0
+    
+    // Area emitter
+    emitter Box
+    {
+        angle           0
+        emission_rate   100
+        time_to_live    5
+        direction       0 1 0
+        velocity    	50
+        width           300
+        height          300
+        depth           0
+    }
+
+    // Gravity
+    affector LinearForce
+    {
+        force_vector      0 50 0
+        force_application add
+    }
+	
+	affector Scaler
+   	{
+       	rate 	15
+   	}
+
+}
