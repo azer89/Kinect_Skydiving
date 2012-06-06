@@ -5,319 +5,264 @@
         <clipping near="0" far="100000" />
     </environment>
     <nodes>
-        <node name="red01">
+        <node name="r12">
             <position x="-10.4972" y="4.99539" z="10.2444" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="red01" castShadows="true" receiveShadows="true" meshFile="red01.mesh">
+            <entity name="r12" castShadows="true" receiveShadows="true" meshFile="r12.mesh">
                 <subentities>
                     <subentity index="0" materialName="red_opaque" />
                     <subentity index="1" materialName="red_transparent" />
                 </subentities>
             </entity>
         </node>
-        <node name="blue04">
+        <node name="b0">
             <position x="0" y="0" z="0.169135" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="blue04" castShadows="true" receiveShadows="true" meshFile="blue04.mesh">
+            <entity name="b0" castShadows="true" receiveShadows="true" meshFile="b0.mesh">
                 <subentities>
                     <subentity index="0" materialName="blue_opaque" />
                     <subentity index="1" materialName="blue_transparent" />
                 </subentities>
             </entity>
         </node>
-        <node name="red02">
+        <node name="r10">
             <position x="-28.0444" y="14.9585" z="30.1681" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="red02" castShadows="true" receiveShadows="true" meshFile="red02.mesh">
+            <entity name="r10" castShadows="true" receiveShadows="true" meshFile="r10.mesh">
                 <subentities>
                     <subentity index="0" materialName="red_opaque" />
                     <subentity index="1" materialName="red_transparent" />
                 </subentities>
             </entity>
         </node>
-        <node name="blue05">
+        <node name="b1">
             <position x="-20.1483" y="9.96311" z="20.1836" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="blue05" castShadows="true" receiveShadows="true" meshFile="blue05.mesh">
+            <entity name="b1" castShadows="true" receiveShadows="true" meshFile="b1.mesh">
                 <subentities>
                     <subentity index="0" materialName="blue_opaque" />
                     <subentity index="1" materialName="blue_transparent" />
                 </subentities>
             </entity>
         </node>
-        <node name="blue06">
+        <node name="b3">
             <position x="-35.1401" y="19.0243" z="40.2888" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="blue06" castShadows="true" receiveShadows="true" meshFile="blue06.mesh">
+            <entity name="b3" castShadows="true" receiveShadows="true" meshFile="b3.mesh">
                 <subentities>
                     <subentity index="0" materialName="blue_opaque" />
                     <subentity index="1" materialName="blue_transparent" />
                 </subentities>
             </entity>
         </node>
-        <node name="blue07">
+        <node name="b4">
             <position x="-35.1401" y="24.0413" z="40.2888" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="blue07" castShadows="true" receiveShadows="true" meshFile="blue07.mesh">
+            <entity name="b4" castShadows="true" receiveShadows="true" meshFile="b4.mesh">
                 <subentities>
                     <subentity index="0" materialName="blue_opaque" />
                     <subentity index="1" materialName="blue_transparent" />
                 </subentities>
             </entity>
         </node>
-        <node name="red03">
+        <node name="r9">
             <position x="-45.6719" y="29.0001" z="55.288" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="red03" castShadows="true" receiveShadows="true" meshFile="red03.mesh">
+            <entity name="r9" castShadows="true" receiveShadows="true" meshFile="r9.mesh">
                 <subentities>
                     <subentity index="0" materialName="red_opaque" />
                     <subentity index="1" materialName="red_transparent" />
                 </subentities>
             </entity>
         </node>
-        <node name="red04">
+        <node name="r8">
             <position x="-49.2292" y="33.9783" z="67.5372" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="red04" castShadows="true" receiveShadows="true" meshFile="red04.mesh">
+            <entity name="r8" castShadows="true" receiveShadows="true" meshFile="r8.mesh">
                 <subentities>
                     <subentity index="0" materialName="red_opaque" />
                     <subentity index="1" materialName="red_transparent" />
                 </subentities>
             </entity>
         </node>
-        <node name="red05">
+        <node name="r6">
             <position x="-36.738" y="43.9512" z="90.3046" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="red05" castShadows="true" receiveShadows="true" meshFile="red05.mesh">
+            <entity name="r6" castShadows="true" receiveShadows="true" meshFile="r6.mesh">
                 <subentities>
                     <subentity index="0" materialName="red_opaque" />
                     <subentity index="1" materialName="red_transparent" />
                 </subentities>
             </entity>
         </node>
-        <node name="blue08">
+        <node name="b5">
             <position x="-45.4686" y="38.9558" z="80.2643" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="blue08" castShadows="true" receiveShadows="true" meshFile="blue08.mesh">
+            <entity name="b5" castShadows="true" receiveShadows="true" meshFile="b5.mesh">
                 <subentities>
                     <subentity index="0" materialName="blue_opaque" />
                     <subentity index="1" materialName="blue_transparent" />
                 </subentities>
             </entity>
         </node>
-        <node name="red06">
+        <node name="r4">
             <position x="-2.22006" y="53.9143" z="125.238" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="red06" castShadows="true" receiveShadows="true" meshFile="red06.mesh">
+            <entity name="r4" castShadows="true" receiveShadows="true" meshFile="r4.mesh">
                 <subentities>
                     <subentity index="0" materialName="red_opaque" />
                     <subentity index="1" materialName="red_transparent" />
                 </subentities>
             </entity>
         </node>
-        <node name="blue09">
+        <node name="b6">
             <position x="-25.3883" y="48.9189" z="100.345" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="blue09" castShadows="true" receiveShadows="true" meshFile="blue09.mesh">
+            <entity name="b6" castShadows="true" receiveShadows="true" meshFile="b6.mesh">
                 <subentities>
                     <subentity index="0" materialName="blue_opaque" />
                     <subentity index="1" materialName="blue_transparent" />
                 </subentities>
             </entity>
         </node>
-        <node name="blue010">
+        <node name="b8">
             <position x="6.95366" y="57.9801" z="136.403" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="blue010" castShadows="true" receiveShadows="true" meshFile="blue010.mesh">
+            <entity name="b8" castShadows="true" receiveShadows="true" meshFile="b8.mesh">
                 <subentities>
                     <subentity index="0" materialName="blue_opaque" />
                     <subentity index="1" materialName="blue_transparent" />
                 </subentities>
             </entity>
         </node>
-        <node name="blue011">
-            <position x="17.8436" y="62.9971" z="145.082" />
-            <scale x="1" y="1" z="1" />
-            <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="blue011" castShadows="true" receiveShadows="true" meshFile="blue011.mesh">
-                <subentities>
-                    <subentity index="0" materialName="blue_opaque" />
-                    <subentity index="1" materialName="blue_transparent" />
-                </subentities>
-            </entity>
-        </node>
-        <node name="red07">
+        <node name="r3">
             <position x="27.5393" y="67.9559" z="156.794" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="red07" castShadows="true" receiveShadows="true" meshFile="red07.mesh">
+            <entity name="r3" castShadows="true" receiveShadows="true" meshFile="r3.mesh">
                 <subentities>
                     <subentity index="0" materialName="red_opaque" />
                     <subentity index="1" materialName="red_transparent" />
                 </subentities>
             </entity>
         </node>
-        <node name="red08">
+        <node name="r2">
             <position x="39.7206" y="72.9342" z="170.378" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="red08" castShadows="true" receiveShadows="true" meshFile="red08.mesh">
+            <entity name="r2" castShadows="true" receiveShadows="true" meshFile="r2.mesh">
                 <subentities>
                     <subentity index="0" materialName="red_opaque" />
                     <subentity index="1" materialName="red_transparent" />
                 </subentities>
             </entity>
         </node>
-        <node name="red09">
+        <node name="r1">
             <position x="45.1523" y="78.0365" z="180.294" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="red09" castShadows="true" receiveShadows="true" meshFile="red09.mesh">
+            <entity name="r1" castShadows="true" receiveShadows="true" meshFile="r1.mesh">
                 <subentities>
                     <subentity index="0" materialName="red_opaque" />
                     <subentity index="1" materialName="red_transparent" />
                 </subentities>
             </entity>
         </node>
-        <node name="blue012">
+        <node name="b10">
             <position x="40.9679" y="82.1023" z="190.418" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="blue012" castShadows="true" receiveShadows="true" meshFile="blue012.mesh">
+            <entity name="b10" castShadows="true" receiveShadows="true" meshFile="b10.mesh">
                 <subentities>
                     <subentity index="0" materialName="blue_opaque" />
                     <subentity index="1" materialName="blue_transparent" />
                 </subentities>
             </entity>
         </node>
-        <node name="blue013">
-            <position x="33.2009" y="87.1193" z="201.973" />
-            <scale x="1" y="1" z="1" />
-            <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="blue013" castShadows="true" receiveShadows="true" meshFile="blue013.mesh">
-                <subentities>
-                    <subentity index="0" materialName="blue_opaque" />
-                    <subentity index="1" materialName="blue_transparent" />
-                </subentities>
-            </entity>
-        </node>
-        <node name="blue014">
-            <position x="33.2009" y="82.0289" z="201.897" />
-            <scale x="1" y="1" z="1" />
-            <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="blue014" castShadows="true" receiveShadows="true" meshFile="blue014.mesh">
-                <subentities>
-                    <subentity index="0" materialName="blue_opaque" />
-                    <subentity index="1" materialName="blue_transparent" />
-                </subentities>
-            </entity>
-        </node>
-        <node name="red012">
+        <node name="r0">
             <position x="20.3914" y="86.9877" z="210.339" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="red012" castShadows="true" receiveShadows="true" meshFile="red012.mesh">
+            <entity name="r0" castShadows="true" receiveShadows="true" meshFile="r0.mesh">
                 <subentities>
                     <subentity index="0" materialName="red_opaque" />
                     <subentity index="1" materialName="red_transparent" />
                 </subentities>
             </entity>
         </node>
-        <node name="blue015">
+        <node name="b7">
             <position x="17.8436" y="57.9801" z="144.752" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="blue015" castShadows="true" receiveShadows="true" meshFile="blue015.mesh">
+            <entity name="b7" castShadows="true" receiveShadows="true" meshFile="b7.mesh">
                 <subentities>
                     <subentity index="0" materialName="blue_opaque" />
                     <subentity index="1" materialName="blue_transparent" />
                 </subentities>
             </entity>
         </node>
-        <node name="blue016">
+        <node name="b9">
             <position x="27.5393" y="62.9971" z="156.837" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="blue016" castShadows="true" receiveShadows="true" meshFile="blue016.mesh">
+            <entity name="b9" castShadows="true" receiveShadows="true" meshFile="b9.mesh">
                 <subentities>
                     <subentity index="0" materialName="blue_opaque" />
                     <subentity index="1" materialName="blue_transparent" />
                 </subentities>
             </entity>
         </node>
-        <node name="red014">
-            <position x="39.7206" y="67.9559" z="170.256" />
-            <scale x="1" y="1" z="1" />
-            <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="red014" castShadows="true" receiveShadows="true" meshFile="red014.mesh">
-                <subentities>
-                    <subentity index="0" materialName="red_opaque" />
-                    <subentity index="1" materialName="red_transparent" />
-                </subentities>
-            </entity>
-        </node>
-        <node name="red015">
+        <node name="r7">
             <position x="-36.738" y="38.9949" z="90.2605" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="red015" castShadows="true" receiveShadows="true" meshFile="red015.mesh">
+            <entity name="r7" castShadows="true" receiveShadows="true" meshFile="r7.mesh">
                 <subentities>
                     <subentity index="0" materialName="red_opaque" />
                     <subentity index="1" materialName="red_transparent" />
                 </subentities>
             </entity>
         </node>
-        <node name="red016">
+        <node name="r5">
             <position x="-12.0129" y="48.9678" z="112.836" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="red016" castShadows="true" receiveShadows="true" meshFile="red016.mesh">
+            <entity name="r5" castShadows="true" receiveShadows="true" meshFile="r5.mesh">
                 <subentities>
                     <subentity index="0" materialName="red_opaque" />
                     <subentity index="1" materialName="red_transparent" />
                 </subentities>
             </entity>
         </node>
-        <node name="blue017">
-            <position x="-25.3883" y="43.9724" z="100.301" />
-            <scale x="1" y="1" z="1" />
-            <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="blue017" castShadows="true" receiveShadows="true" meshFile="blue017.mesh">
-                <subentities>
-                    <subentity index="0" materialName="blue_opaque" />
-                    <subentity index="1" materialName="blue_transparent" />
-                </subentities>
-            </entity>
-        </node>
-        <node name="red017">
+        <node name="r11">
             <position x="-20.1483" y="14.9585" z="20.1718" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="red017" castShadows="true" receiveShadows="true" meshFile="red017.mesh">
+            <entity name="r11" castShadows="true" receiveShadows="true" meshFile="r11.mesh">
                 <subentities>
                     <subentity index="0" materialName="red_opaque" />
                     <subentity index="1" materialName="red_transparent" />
                 </subentities>
             </entity>
         </node>
-        <node name="blue018">
+        <node name="b2">
             <position x="-28.0444" y="19.0243" z="30.2925" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="blue018" castShadows="true" receiveShadows="true" meshFile="blue018.mesh">
+            <entity name="b2" castShadows="true" receiveShadows="true" meshFile="b2.mesh">
                 <subentities>
                     <subentity index="0" materialName="blue_opaque" />
                     <subentity index="1" materialName="blue_transparent" />
@@ -328,22 +273,11 @@
             <position x="0" y="0" z="0" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <node name="pasted__blue014">
-                <position x="33.2009" y="82.0289" z="201.897" />
-                <scale x="1" y="1" z="1" />
-                <rotation qx="0" qy="0" qz="0" qw="1" />
-                <entity name="pasted__blue014" castShadows="true" receiveShadows="true" meshFile="pasted__blue014.mesh">
-                    <subentities>
-                        <subentity index="0" materialName="pasted__blue_opaque" />
-                        <subentity index="1" materialName="pasted__blue_transparent" />
-                    </subentities>
-                </entity>
-            </node>
-            <node name="pasted__blue013">
+            <node name="b11">
                 <position x="33.2009" y="87.1193" z="201.973" />
                 <scale x="1" y="1" z="1" />
                 <rotation qx="0" qy="0" qz="0" qw="1" />
-                <entity name="pasted__blue013" castShadows="true" receiveShadows="true" meshFile="pasted__blue013.mesh">
+                <entity name="b11" castShadows="true" receiveShadows="true" meshFile="b11.mesh">
                     <subentities>
                         <subentity index="0" materialName="pasted__blue_opaque" />
                         <subentity index="1" materialName="pasted__blue_transparent" />
@@ -355,22 +289,22 @@
             <position x="0" y="9.8744" z="20.0807" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <node name="pasted__blue014_1">
+            <node name="b13">
                 <position x="12.0492" y="82.0289" z="201.897" />
                 <scale x="1" y="1" z="1" />
                 <rotation qx="0" qy="0" qz="0" qw="1" />
-                <entity name="pasted__blue014_1" castShadows="true" receiveShadows="true" meshFile="pasted__blue014_1.mesh">
+                <entity name="b13" castShadows="true" receiveShadows="true" meshFile="b13.mesh">
                     <subentities>
                         <subentity index="0" materialName="pasted__blue_opaque" />
                         <subentity index="1" materialName="pasted__blue_transparent" />
                     </subentities>
                 </entity>
             </node>
-            <node name="pasted__blue013_1">
+            <node name="b12">
                 <position x="-1.17603" y="87.1193" z="210.249" />
                 <scale x="1" y="1" z="1" />
                 <rotation qx="0" qy="0" qz="0" qw="1" />
-                <entity name="pasted__blue013_1" castShadows="true" receiveShadows="true" meshFile="pasted__blue013_1.mesh">
+                <entity name="b12" castShadows="true" receiveShadows="true" meshFile="b12.mesh">
                     <subentities>
                         <subentity index="0" materialName="pasted__blue_opaque" />
                         <subentity index="1" materialName="pasted__blue_transparent" />

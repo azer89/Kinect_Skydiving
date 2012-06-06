@@ -1,54 +1,12 @@
-material blue_opaque
-{
-	technique
-	{
-		pass
-		{
-			//lighting off
-		
-			ambient 0 0.54902 1 1
-			diffuse 0 0.249486 1 1
-			specular 0 0.249486 1 1
-		}
-
-	}
-
-}
-
-
-
-material blue_transparent
-{
-	technique
-	{
-		pass
-		{
-			scene_blend colour_blend
-			depth_write off
-
-			texture_unit
-			{
-				texture water_blue.jpg
-				scroll_anim 0.01 0.01
-			}
-		}
-	}
-
-}
-
-
-
 material red_opaque
 {
 	technique
 	{
 		pass
 		{
-			//lighting off
-		
 			ambient 0.292683 0.0470283 0 1
-			diffuse 0.192683 0.0270283 0 1
-			specular 0.192683 0.0270283 0 1
+			diffuse 0.562 0.0936667 0 1
+			specular 0.5 0.5 0.5 1 89.6
 		}
 
 	}
@@ -63,15 +21,103 @@ material red_transparent
 	{
 		pass
 		{
-			scene_blend colour_blend
-			depth_write off
+			ambient 0.341466 0.0549172 0 1
+			diffuse 0.562 0.0936667 0 1
+			specular 0.5 0.5 0.5 1 89.6
+			scene_blend add
 
 			texture_unit
 			{
-				texture water_red.jpg
-				scroll_anim 0.01 0.01
+				colour_op_ex blend_manual src_manual src_current 0.504067 1 1 1
+				colour_op_multipass_fallback dest_colour zero
+				alpha_op_ex source1 src_manual src_current 0.504067
 			}
 		}
+
+	}
+
+}
+
+
+
+material blue_opaque
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0.54902 1 1
+			diffuse 0 0.549486 1 1
+			specular 0.5 0.5 0.5 1 89.6
+		}
+
+	}
+
+}
+
+
+
+material blue_transparent
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.0588235 0.729412 1 1
+			diffuse 0.0588235 0.729412 1 1
+			specular 0.5 0.5 0.5 1 89.6
+			scene_blend add
+
+			texture_unit
+			{
+				colour_op_ex blend_manual src_manual src_current 0.504067 1 1 1
+				colour_op_multipass_fallback dest_colour zero
+				alpha_op_ex source1 src_manual src_current 0.504067
+			}
+		}
+
+	}
+
+}
+
+
+
+material pasted__blue_opaque
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0.54902 1 1
+			diffuse 0 0.549486 1 1
+			specular 0.5 0.5 0.5 1 89.6
+		}
+
+	}
+
+}
+
+
+
+material pasted__blue_transparent
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.0588235 0.729412 1 1
+			diffuse 0.0588235 0.729412 1 1
+			specular 0.5 0.5 0.5 1 89.6
+			scene_blend add
+
+			texture_unit
+			{
+				colour_op_ex blend_manual src_manual src_current 0.504067 1 1 1
+				colour_op_multipass_fallback dest_colour zero
+				alpha_op_ex source1 src_manual src_current 0.504067
+			}
+		}
+
 	}
 
 }
