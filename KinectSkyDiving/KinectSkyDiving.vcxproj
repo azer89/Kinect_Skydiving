@@ -130,6 +130,7 @@
     <ClInclude Include="include\FreeImage.h" />
     <ClInclude Include="include\App.h" />
     <ClInclude Include="include\GameSystem.h" />
+    <ClInclude Include="include\ParticleManager.h" />
     <ClInclude Include="include\Planet.h" />
     <ClInclude Include="include\PlanetLoader_Hybrid.h" />
     <ClInclude Include="include\PlanetMath.h" />
@@ -160,6 +161,7 @@
     <ClCompile Include="src\App.cpp" />
     <ClCompile Include="src\GameSystem.cpp" />
     <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\ParticleManager.cpp" />
     <ClCompile Include="src\Planet.cpp" />
     <ClCompile Include="src\PlanetLoader_Hybrid.cpp" />
     <ClCompile Include="src\PlanetMath.cpp" />

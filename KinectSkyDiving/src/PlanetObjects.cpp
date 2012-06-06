@@ -30,7 +30,7 @@ void PlanetObjects::setup(Ogre::SceneManager* mSceneManager, RayCastCollision* c
 		Ogre::SceneNode* childNode = nodeList[a];
 
 		childNode->setScale(5, 5, 5);
-		childNode->translate(0, 2500, 0);
+		childNode->translate(0, 5100, 0);
 
 		Ogre::Vector3 devPos = childNode->_getDerivedPosition();
 		Ogre::Vector3 upVector = devPos;
@@ -42,9 +42,9 @@ void PlanetObjects::setup(Ogre::SceneManager* mSceneManager, RayCastCollision* c
 				
 		childNode->setOrientation(q);
 		
-		if(intersection.x == 0 && intersection.y == 2000 && intersection.z == 0)	// ray intersection fails
+		if(intersection.x == 0 && intersection.y == 5000 && intersection.z == 0)	// ray intersection fails
 		{
-			childNode->setPosition(upVector * 2000);	// guess the terrain height is 2000 from planet's center
+			childNode->setPosition(upVector * 5000);	// guess the terrain height is 2000 from planet's center
 		}
 		else	// ray intersection is obtained
 		{

@@ -181,7 +181,8 @@ namespace GalaxyEngine
 		}
 
 		for (uint32 i = 0; i < 6; ++i) {
-			setColorMap((PlanetMath::CubeFace)i, prefix + "color_" + faceName[i] + ".dds");
+			//setColorMap((PlanetMath::CubeFace)i, prefix + "color_" + faceName[i] + ".dds");
+			setColorMap((PlanetMath::CubeFace)i, prefix + "color_" + faceName[i] + ".jpg");
 		}
 
 		//generateNormalMaps();

@@ -13,6 +13,7 @@
 #include "SimpleCloud.h"
 #include "PlanetObjects.h"
 #include "TargetCircles.h"
+#include "ParticleManager.h"
 
 class GameSystem
 {
@@ -49,6 +50,7 @@ private:
 	PlanetObjects*		pObjects;
 	TargetCircles*		tCircles;
 	SimpleCloud*		cloud;
+	ParticleManager*	pManager;
 	CameraListener*     mCameraListener;
 	ThirdPersonCamera*  exCamera;
 
