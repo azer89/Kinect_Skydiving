@@ -17,6 +17,7 @@ PlanetObjects::~PlanetObjects(void)
 //------------------------------------------------------------------------------------
 void PlanetObjects::setup(Ogre::SceneManager* mSceneManager, RayCastCollision* collisionDetector)
 {
+	
 	this->mSceneManager = mSceneManager;	
 	this->mMainNode = mSceneManager->getRootSceneNode()->createChildSceneNode();
 
@@ -25,32 +26,47 @@ void PlanetObjects::setup(Ogre::SceneManager* mSceneManager, RayCastCollision* c
 	
 	std::vector<Ogre::SceneNode*> nodeList = sceneLoader->nodeList;
 
+	Ogre::Vector3 scaleVect(5.0f);
+	Ogre::Vector3 transVect(0, 5250, 0);
+	
 	for(int a = 0; a < nodeList.size(); a++)
 	{
 		Ogre::SceneNode* childNode = nodeList[a];
 
-		childNode->setScale(5, 5, 5);
-		childNode->translate(0, 5100, 0);
+		//Ogre::String name = childNode->getName();
+		//if(!Ogre::StringUtil::startsWith(name, "object"))
+		//{			
+		//	continue;
+		//}
 
-		Ogre::Vector3 devPos = childNode->_getDerivedPosition();
-		Ogre::Vector3 upVector = devPos;
-		upVector.normalise();
-		Ogre::Quaternion q = Ogre::Vector3::UNIT_Y.getRotationTo(upVector);
+		Ogre::Vector3 pos = childNode->_getDerivedPosition();
 
-		Ogre::Vector3 intersection = Ogre::Vector3::ZERO;
-		collisionDetector->getChunksIntersection(devPos, -upVector, intersection);
-				
-		childNode->setOrientation(q);
+		Ogre::Vector3 tempPos((pos.x * scaleVect.x) + transVect.x, 
+							 transVect.y, 
+							 (pos.z * scaleVect.z) + transVect.z);
+
+		Ogre::Vector3 dirVector = tempPos.normalisedCopy();
+		childNode->setScale(scaleVect);
+		//childNode->setPosition(tempPos);
+
+		Ogre::Vector3 actualPos = dirVector * 5000;
 		
+		Ogre::Vector3 intersection = Ogre::Vector3::ZERO;
+		collisionDetector->getChunksIntersection(tempPos, -dirVector, intersection);
+
 		if(intersection.x == 0 && intersection.y == 5000 && intersection.z == 0)	// ray intersection fails
 		{
-			childNode->setPosition(upVector * 5000);	// guess the terrain height is 2000 from planet's center
+			childNode->setPosition(actualPos);	// guess the terrain height is 2000 from planet's center
 		}
 		else	// ray intersection is obtained
 		{
 			childNode->setPosition(intersection);
+			actualPos = intersection;
 		}
-		
+
+		Ogre::Vector3 upVector = tempPos.normalisedCopy();
+		Ogre::Quaternion q = Ogre::Vector3::UNIT_Y.getRotationTo(upVector);
+		childNode->setOrientation(q);
 	}
 
 	delete sceneLoader;

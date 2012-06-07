@@ -374,7 +374,7 @@ void DotSceneLoader::processNode(TiXmlElement *XMLNode, SceneNode *pParent)
 {
 	// Construct the node's name
 	String name = m_sPrependNode + getAttrib(XMLNode, "name");
-
+	//std::cout << "==" << name << "==\n";
 	// Create the scene node
 	SceneNode *pNode;
 	if(name.empty())
