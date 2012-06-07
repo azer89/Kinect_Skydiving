@@ -1,0 +1,1034 @@
+material pasted__pasted__greentree_color
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+
+			texture_unit
+			{
+				texture tree.jpg
+			}
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__tree_trunk
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.609751 0.38616 0 1
+			diffuse 0.609751 0.38616 0 1
+		}
+
+	}
+
+}
+
+
+
+material lambert1
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 0.5 0.5 0.5 1
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__orange_roof
+{
+	technique
+	{
+		pass
+		{
+			ambient 1 0.313745 0 1
+			diffuse 1 0.313745 0 1
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__orange_windows
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.337 0.129183 0 1
+			diffuse 0.337 0.129183 0 1
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted__ladder
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.735 0.581689 0.32046 1
+			diffuse 0.735 0.581689 0.32046 1
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted__house_wood3
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.66116 0.432839 0.171902 1
+			diffuse 0.66116 0.432839 0.171902 1
+			specular 0 0 0 1 94.1491
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__small_tree_2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+
+			texture_unit
+			{
+				texture tree1.jpg
+			}
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__blinn6SG
+{
+	technique
+	{
+		pass
+		{
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__small_tree1
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+
+			texture_unit
+			{
+				texture tree2.jpg
+			}
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__alittle_yellow_wall
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.901961 0.879163 0.760477 1
+			diffuse 0.901961 0.879163 0.760477 1
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__white_wall
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.941176 0.926422 0.701269 1
+			diffuse 0.941176 0.926422 0.701269 1
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__yellow_wal_and_roofl_color
+{
+	technique
+	{
+		pass
+		{
+			ambient 1 0.853233 0.371 1
+			diffuse 1 0.853233 0.371 1
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__blue_roof
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.1375 0.330833 0.5 1
+			diffuse 0.1375 0.330833 0.5 1
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__bluewindows
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 0 0.121767 0.281 1
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__railing_color
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.735 0.581689 0.32046 1
+			diffuse 0.735 0.581689 0.32046 1
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted__wind3
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.858 0.747505 0.392106 1
+			diffuse 0.858 0.747505 0.392106 1
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted__light
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.67768 0.67589 0.583483 1
+			diffuse 1 0.999072 0.978 1
+			specular 0 0 0 1 96.2688
+			scene_blend add
+
+			texture_unit
+			{
+				colour_op_ex blend_manual src_manual src_current 0.47108 1 1 1
+				colour_op_multipass_fallback dest_colour zero
+				alpha_op_ex source1 src_manual src_current 0.47108
+			}
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted__pasted__small_tree1
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+
+			texture_unit
+			{
+				texture tree2.jpg
+			}
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted__pasted__greentree_color
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+
+			texture_unit
+			{
+				texture tree.jpg
+			}
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__target_landing
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+
+			texture_unit
+			{
+				texture landing.jpg
+			}
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__girl_cloth
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+
+			texture_unit
+			{
+				texture girl.jpg
+			}
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__girl_skin
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.878431 0.745098 0.490196 1
+			diffuse 0.878431 0.745098 0.490196 1
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted__house_door2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.1 0.0820168 0.0482 1
+			diffuse 0.388 0.254011 0.10088 1
+			specular 0 0 0 1 94.1491
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted__house_wood2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.1 0.0820168 0.0482 1
+			diffuse 0.66116 0.432839 0.171902 1
+			specular 0 0 0 1 94.1491
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted__wheel2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.1 0.0790146 0.0366 1
+
+			texture_unit
+			{
+				texture cycle.jpg
+			}
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted___house_door2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.2 0.164034 0.0964 1
+			diffuse 0.388 0.254011 0.10088 1
+			specular 0 0 0 1 94.1491
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted___brick2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.2 0.198929 0.1964 1
+			diffuse 0.455283 0.455283 0.455283 1
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted__bucket2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.1 0.0994645 0.0982 1
+			diffuse 0.5 0.5 0.5 1
+			specular 0 0 0 1 115.305
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted__rock4
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.1 0.1 0.1 1
+			diffuse 0.33 0.33 0.33 1
+			specular 0.30578 0.30578 0.30578 1 89.6
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted__line2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.0996828 0.1 0.0922 1
+			diffuse 0.786 0.719123 0.561204 1
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__windmail_fan_color2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.1 0.0790146 0.0366 1
+			diffuse 0.858 0.747505 0.392106 1
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted__lambert33SG2
+{
+	technique
+	{
+		pass
+		{
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted__ladder5
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.0996828 0.1 0.0922 1
+			diffuse 0.735 0.581689 0.32046 1
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__house_browndoor2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.1 0.0820168 0.0482 1
+			diffuse 0.388 0.254011 0.10088 1
+			specular 0 0 0 1 94.1491
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted__otherjaw2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.1 0.0994645 0.0982 1
+			diffuse 0.42148 0.42148 0.42148 1
+			specular 0.7438 0.7438 0.7438 1 107.901
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted__push5
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.1 0.1 0.1 1
+			diffuse 0.09092 0.09092 0.09092 1
+			specular 0.28926 0.28926 0.28926 1 46.551
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted__house3
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.0996828 0.1 0.0922 1
+			specular 0 0 0 1 89.6
+
+			texture_unit
+			{
+				texture house.jpg
+			}
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted__rock9
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.1 0.1 0.1 1
+			diffuse 0.757 0.757 0.757 1
+			specular 0.30578 0.30578 0.30578 1 89.6
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted__rock10
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.1 0.1 0.1 1
+			diffuse 0.518 0.518 0.518 1
+			specular 0.30578 0.30578 0.30578 1 89.6
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted__rock11
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.1 0.1 0.1 1
+			diffuse 0.33 0.33 0.33 1
+			specular 0.30578 0.30578 0.30578 1 89.6
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted__brick3
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.1 0.0654667 0.026 1
+			diffuse 0.619 0.229855 0 1
+			specular 0.1405 0.1405 0.1405 1 16.0358
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted__wsterpipe2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.1 0.0994645 0.0982 1
+			diffuse 0.52892 0.526088 0.519399 1
+			specular 0.04958 0.04958 0.04958 1 89.6
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted__wind6
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.1 0.0790146 0.0366 1
+			diffuse 0.91 0.91 0.91 1
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted__wind7
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.1 0.0790146 0.0366 1
+			diffuse 0.180276 0.211374 0.249 1
+		}
+
+	}
+
+}
+
+
+
+material NoMaterial
+{
+	technique
+	{
+		pass
+		{
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted__light4
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.0996828 0.1 0.0922 1
+			diffuse 0.851 0.620981 0.396566 1
+			specular 0 0 0 1 101.555
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted__push6
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.1 0.1 0.1 1
+			diffuse 0.866 0.866 0.866 1
+			specular 0 0 0 1 46.551
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted__oil_cap1
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.1 0.1 0.1 1
+			diffuse 0.07438 0.0442069 0.0338429 1
+			specular 0 0 0 1 109.338
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted__scarp2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.1 0.1 0.1 1
+			diffuse 0.5 0.359296 0.259 1
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted__rock12
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.1 0.1 0.1 1
+			diffuse 0.518 0.518 0.518 1
+			specular 0.30578 0.30578 0.30578 1 89.6
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted__rock13
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.1 0.1 0.1 1
+			diffuse 0.33 0.33 0.33 1
+			specular 0.30578 0.30578 0.30578 1 89.6
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted__push7
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.1 0.1 0.1 1
+			diffuse 0.09092 0.09092 0.09092 1
+			specular 0.28926 0.28926 0.28926 1 46.551
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted__pumpkin
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.1 0.0613167 0 1
+			diffuse 0.866 0.495123 0.169736 1
+			specular 0.06612 0.06612 0.06612 1 103.67
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted__pumpkin1
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.1 0.0613167 0 1
+			diffuse 0.030744 0.366 0.0577321 1
+			specular 0.2314 0.2314 0.2314 1 76.1677
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted__icead
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.1 0.0994645 0.0982 1
+			specular 0.00826 0.00826 0.00826 1 89.6
+
+			texture_unit
+			{
+				texture ad.jpg
+			}
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted__ladder6
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.735 0.581689 0.32046 1
+			diffuse 0.735 0.581689 0.32046 1
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted__lambert37
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.1 0.0994645 0.0982 1
+			diffuse 0.779 0.44836 0.351329 1
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted__house_door4
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.1 0.0820168 0.0482 1
+			diffuse 0.388 0.254011 0.10088 1
+			specular 0 0 0 1 94.1491
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted__light5
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.67768 0.67589 0.583483 1
+			diffuse 1 0.999072 0.978 1
+			specular 0 0 0 1 96.2688
+			scene_blend add
+
+			texture_unit
+			{
+				colour_op_ex blend_manual src_manual src_current 0.47108 1 1 1
+				colour_op_multipass_fallback dest_colour zero
+				alpha_op_ex source1 src_manual src_current 0.47108
+			}
+		}
+
+	}
+
+}
