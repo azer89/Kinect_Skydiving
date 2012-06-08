@@ -21,15 +21,17 @@ BaseApplication::BaseApplication(void)
     mShutDown(false),
     mInputManager(0),
     mMouse(0),
-    mKeyboard(0)
+    mKeyboard(0),
+	mLoadingBar(0)
 {
 }
 
 //-------------------------------------------------------------------------------------
 BaseApplication::~BaseApplication(void)
 {
-    if (mTrayMgr) delete mTrayMgr;
-    if (mCameraMan) delete mCameraMan;
+    if (mTrayMgr)		delete mTrayMgr;
+    if (mCameraMan)		delete mCameraMan;
+	if (mLoadingBar)	delete mLoadingBar;
 
     //Remove ourself as a Window listener
     Ogre::WindowEventUtilities::removeWindowEventListener(mWindow, this);
@@ -188,6 +190,7 @@ void BaseApplication::createResourceListener(void)
 //-------------------------------------------------------------------------------------
 void BaseApplication::loadResources(void)
 {
+	mLoadingBar->start(mWindow, 1, 1, 1.0);
     Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 }
 //-------------------------------------------------------------------------------------
@@ -232,9 +235,14 @@ bool BaseApplication::setup(void)
     createResourceListener();
     // Load resources
 	mTrayMgr->hideFrameStats();
-	mTrayMgr->showLoadingBar();
+	//mTrayMgr->showLoadingBar();
+
+	mLoadingBar = new ExampleLoadingBar();
+
     loadResources();
-	mTrayMgr->hideLoadingBar();
+
+
+	//mTrayMgr->hideLoadingBar();
 	mTrayMgr->showFrameStats(OgreBites::TL_BOTTOMLEFT);
 
     // Create the scene

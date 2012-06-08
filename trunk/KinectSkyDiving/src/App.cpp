@@ -21,14 +21,21 @@ void App::createScene(void)
 {	
 	planetEngine = new GalaxyEngine::Core("../../media", this->mSceneMgr, this->mWindow, this->mCamera->getViewport(), this->mCamera, this->mRoot);
 	gameSystem = new GameSystem();
-	gameSystem->initSystem(mRoot, mCamera, mSceneMgr, mMouse, mKeyboard, mWindow, planetEngine);
+
+	mLoadingBar->update();
+
+	gameSystem->initSystem(mRoot, mCamera, mSceneMgr, mMouse, mKeyboard, mWindow, planetEngine, mLoadingBar);
 	gameSystem->createScene();
+
+	mLoadingBar->update();
+
+	//mLoadingBar->finish();
 }
 
 //--------------------------------------------------------------------------------------
 bool App::frameRenderingQueued(const Ogre::FrameEvent& evt)
 {
-	if(!BaseApplication::frameRenderingQueued(evt)) { return false; }	
+	if(!BaseApplication::frameRenderingQueued(evt)) { return false; }
 	gameSystem->update(evt.timeSinceLastEvent);
 	return true;
 }
