@@ -14,6 +14,7 @@
 #include "PlanetObjects.h"
 #include "TargetCircles.h"
 #include "ParticleManager.h"
+#include "ExampleLoadingBar.h"
 
 class GameSystem
 {
@@ -27,7 +28,8 @@ public:
 		OIS::Mouse* mMouse, 
 		OIS::Keyboard* mKeyboard,
 		Ogre::RenderWindow* mWindow,
-		GalaxyEngine::Core* planetEngine);
+		GalaxyEngine::Core* planetEngine,
+		ExampleLoadingBar* mLoadingBar);
 
 	void createScene(void);
 	void update(Ogre::Real elapsedTime);
@@ -53,6 +55,7 @@ private:
 	ParticleManager*	pManager;
 	CameraListener*     mCameraListener;
 	ThirdPersonCamera*  exCamera;
+	ExampleLoadingBar*	mLoadingBar;
 
 	Ogre::Real          collisionDelay;				// collision engine isn't optimized so make it run every 1/60 second
 	bool				isPlanetInitialized;		// is planet is fully initialized?

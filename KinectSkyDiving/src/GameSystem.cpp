@@ -47,8 +47,12 @@ void GameSystem::createScene(void)
 	//this->character->setup(mSceneMgr, Ogre::Vector3(0, 2400, 0), Ogre::Vector3(1.0f), Ogre::Quaternion::IDENTITY);
 	this->character->setGravity(9.8f);
 
+	mLoadingBar->update();
+
 	cloud = new SimpleCloud();
 	cloud->initCloud(mSceneMgr, 60);
+
+	mLoadingBar->update();
 }
 
 //-------------------------------------------------------------------------------------
@@ -59,7 +63,8 @@ void GameSystem::initSystem(Ogre::Root *mRoot,
 	OIS::Mouse* mMouse, 
 	OIS::Keyboard* mKeyboard, 
 	Ogre::RenderWindow* mWindow, 
-	GalaxyEngine::Core *planetEngine)
+	GalaxyEngine::Core *planetEngine,
+	ExampleLoadingBar* mLoadingBar)
 {
 	this->mRoot = mRoot;
 	this->mCamera = mCamera;
@@ -68,6 +73,7 @@ void GameSystem::initSystem(Ogre::Root *mRoot,
 	this->mKeyboard = mKeyboard;
 	this->planetEngine = planetEngine;
 	this->mWindow = mWindow;
+	this->mLoadingBar = mLoadingBar;
 }
 
 //------------------------------------------------------------------------------------
@@ -174,14 +180,22 @@ void GameSystem::postPlanetInitialization()
 	collisionDetector->init(this->mSceneMgr, planet);
 	collisionDetector->crawlBaseChunks();
 
+	mLoadingBar->update();
+
 	pObjects = new PlanetObjects();
 	pObjects->setup(mSceneMgr, collisionDetector);
+
+	mLoadingBar->update();
 
 	tCircles = new TargetCircles();
 	tCircles->setup(mSceneMgr);
 
+	mLoadingBar->update();
+
 	pManager = new ParticleManager();
 	pManager->initParticle(mSceneMgr);
+
+	mLoadingBar->finish();
 }
 
 //-------------------------------------------------------------------------------------
