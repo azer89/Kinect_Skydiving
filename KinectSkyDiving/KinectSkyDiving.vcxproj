@@ -67,7 +67,7 @@
       <FloatingPointModel>Fast</FloatingPointModel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>include;include\Hikari;include\tinyxml;include\Bullet;$(OGRE_HOME)\include;$(OGRE_HOME)\include\OIS;$(OGRE_HOME)\include\OGRE;$(OGRE_HOME)\Samples\Common\include;$(OGRE_HOME)\boost_1_47;$(OGRE_HOME)\boost_1_47\boost;C:\Ogre3D\AddOns\bullet-2.80\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;include\Hikari;include\tinyxml;include\Bullet;include\irrKlang-1.3.0;$(OGRE_HOME)\include;$(OGRE_HOME)\include\OIS;$(OGRE_HOME)\include\OGRE;$(OGRE_HOME)\Samples\Common\include;$(OGRE_HOME)\boost_1_47;$(OGRE_HOME)\boost_1_47\boost;C:\Ogre3D\AddOns\bullet-2.80\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>Stdafx.h</PrecompiledHeaderFile>
       <AdditionalOptions>/Zm256 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -78,7 +78,7 @@
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
       <TargetMachine>MachineX86</TargetMachine>
       <AdditionalLibraryDirectories>$(OGRE_HOME)\lib\debug;$(OGRE_HOME)\boost_1_47\lib;lib;lib\bullet;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>OgreMain_d.lib;OIS_d.lib;Hikari.lib;FreeImage.lib;tinyxml.lib;tinyxmlSTL.lib;Kinect10.lib;BulletCollision_debug.lib;BulletDynamics_debug.lib;BulletSoftBody_debug.lib;ConvexDecomposition_debug.lib;LinearMath_debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>OgreMain_d.lib;OIS_d.lib;Hikari_d.lib;FreeImage.lib;tinyxml.lib;tinyxmlSTL.lib;Kinect10.lib;BulletCollision_debug.lib;BulletDynamics_debug.lib;BulletSoftBody_debug.lib;ConvexDecomposition_debug.lib;LinearMath_debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Message>Copying exe to samples bin directory ...</Message>
@@ -142,27 +142,6 @@
     <ClInclude Include="include\FSM.H" />
     <ClInclude Include="include\GameSystem.h" />
     <ClInclude Include="include\GGBird.H" />
-    <ClInclude Include="include\irrKlang-1.3.0\ik_ESoundEngineOptions.h" />
-    <ClInclude Include="include\irrKlang-1.3.0\ik_ESoundOutputDrivers.h" />
-    <ClInclude Include="include\irrKlang-1.3.0\ik_EStreamModes.h" />
-    <ClInclude Include="include\irrKlang-1.3.0\ik_IAudioRecorder.h" />
-    <ClInclude Include="include\irrKlang-1.3.0\ik_IAudioStream.h" />
-    <ClInclude Include="include\irrKlang-1.3.0\ik_IAudioStreamLoader.h" />
-    <ClInclude Include="include\irrKlang-1.3.0\ik_IFileFactory.h" />
-    <ClInclude Include="include\irrKlang-1.3.0\ik_IFileReader.h" />
-    <ClInclude Include="include\irrKlang-1.3.0\ik_IRefCounted.h" />
-    <ClInclude Include="include\irrKlang-1.3.0\ik_irrKlangTypes.h" />
-    <ClInclude Include="include\irrKlang-1.3.0\ik_ISound.h" />
-    <ClInclude Include="include\irrKlang-1.3.0\ik_ISoundDeviceList.h" />
-    <ClInclude Include="include\irrKlang-1.3.0\ik_ISoundEffectControl.h" />
-    <ClInclude Include="include\irrKlang-1.3.0\ik_ISoundEngine.h" />
-    <ClInclude Include="include\irrKlang-1.3.0\ik_ISoundMixedOutputReceiver.h" />
-    <ClInclude Include="include\irrKlang-1.3.0\ik_ISoundSource.h" />
-    <ClInclude Include="include\irrKlang-1.3.0\ik_ISoundStopEventReceiver.h" />
-    <ClInclude Include="include\irrKlang-1.3.0\ik_IVirtualRefCounted.h" />
-    <ClInclude Include="include\irrKlang-1.3.0\ik_SAudioStreamFormat.h" />
-    <ClInclude Include="include\irrKlang-1.3.0\ik_vec3d.h" />
-    <ClInclude Include="include\irrKlang-1.3.0\irrKlang.h" />
     <ClInclude Include="include\OgreKinect.h" />
     <ClInclude Include="include\ParticleManager.h" />
     <ClInclude Include="include\Planet.h" />
