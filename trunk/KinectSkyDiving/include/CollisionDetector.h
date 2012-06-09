@@ -14,6 +14,7 @@ public:
 	virtual ~CollisionDetector(void);
 
 	void initCollisionDetector(Character* character, TargetCircles* tCircles);
+	void update(Ogre::Real elapsedTime);
 
 private:
 	Character* character;
