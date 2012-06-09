@@ -5,7 +5,7 @@
 #include "Exception.h"
 #include "ConfigScript.h"
 
-using namespace Ogre;
+//using namespace Ogre;
 
 namespace GalaxyEngine
 {
@@ -29,8 +29,8 @@ namespace GalaxyEngine
 		Core::mRoot = mRoot;
 
 		//Create the default main camera and viewport
-		viewPort->setBackgroundColour(ColourValue(0, 0, 0));
-		camera->setAspectRatio(Real(viewPort->getActualWidth()) / Real(viewPort->getActualHeight()));
+		viewPort->setBackgroundColour(Ogre::ColourValue(0, 0, 0));
+		camera->setAspectRatio(Ogre::Real(viewPort->getActualWidth()) / Ogre::Real(viewPort->getActualHeight()));
 	}
 
 	Core::~Core()

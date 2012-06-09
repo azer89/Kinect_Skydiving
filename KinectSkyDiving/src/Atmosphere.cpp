@@ -4,11 +4,11 @@
 #include "PlanetMath.h"
 
 
-using namespace Ogre;
+//using namespace Ogre;
 
 namespace GalaxyEngine
 {
-	Atmosphere::Atmosphere(float radius, uint32 highRes, uint32 mediumRes, uint32 lowRes, float maxPixelError, const String &atmosphereMap)
+	Atmosphere::Atmosphere(float radius, Ogre::uint32 highRes, Ogre::uint32 mediumRes, Ogre::uint32 lowRes, float maxPixelError, const Ogre::String &atmosphereMap)
 		: withinFarDistance(false),
 		minDistanceSquared(0),
 		bestTechnique(NULL),
@@ -19,16 +19,16 @@ namespace GalaxyEngine
 		bounds.setMinimum(-radius, -radius, -radius);
 		bounds.setMaximum(radius, radius, radius);
 
-		material = MaterialManager::getSingleton().create(Utility::getUniqueID(), ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
-		Pass *pass = material->getTechnique(0)->getPass(0);
+		material = Ogre::MaterialManager::getSingleton().create(Utility::getUniqueID(), Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+		Ogre::Pass *pass = material->getTechnique(0)->getPass(0);
 		//pass->createTextureUnitState(atmosphereMap);
 		pass->setVertexProgram("Atmosphere_vs");
 		pass->setFragmentProgram("Atmosphere_ps");
 
-		pass->setSceneBlending(SBT_TRANSPARENT_ALPHA);
+		pass->setSceneBlending(Ogre::SBT_TRANSPARENT_ALPHA);
 		pass->setDepthCheckEnabled(true);
 		pass->setDepthWriteEnabled(false);
-		pass->setCullingMode(CULL_NONE);		// Make nice blue sky
+		pass->setCullingMode(Ogre::CULL_NONE);		// Make nice blue sky
 		//pass->isTransparent(true);
 
 		Atmosphere::maxPixelError = maxPixelError;
@@ -36,9 +36,9 @@ namespace GalaxyEngine
 		mediumMesh = new AtmosphereRenderable(this, mediumRes);
 		highMesh = new AtmosphereRenderable(this, highRes);
 
-		lowMeshError = ((0.5f * Math::PI * radius) / (float)lowRes);
-		mediumMeshError = ((0.5f * Math::PI * radius) / (float)mediumRes);
-		highMeshError = ((0.5f * Math::PI * radius) / (float)highRes);
+		lowMeshError = ((0.5f * Ogre::Math::PI * radius) / (float)lowRes);
+		mediumMeshError = ((0.5f * Ogre::Math::PI * radius) / (float)mediumRes);
+		highMeshError = ((0.5f * Ogre::Math::PI * radius) / (float)highRes);
 	}
 
 	Atmosphere::~Atmosphere()
@@ -48,12 +48,12 @@ namespace GalaxyEngine
 		delete highMesh;
 	}
 
-	void Atmosphere::_notifyCurrentCamera(Camera *cam)
+	void Atmosphere::_notifyCurrentCamera(Ogre::Camera *cam)
 	{
 		//Calculate camera distance
 		camPos = cam->getDerivedPosition();
-		Vector3 camVec = camPos - getParentSceneNode()->_getDerivedPosition();
-		Real centerDistanceSquared = camVec.squaredLength();
+		Ogre::Vector3 camVec = camPos - getParentSceneNode()->_getDerivedPosition();
+		Ogre::Real centerDistanceSquared = camVec.squaredLength();
 
 		//withinFarDistance = true;
 		
@@ -66,7 +66,7 @@ namespace GalaxyEngine
 			//the atmosphere.
 
 			//Determine whether the atmosphere is within the far rendering distance
-			withinFarDistance = minDistanceSquared <= Math::Sqr(getRenderingDistance());
+			withinFarDistance = minDistanceSquared <= Ogre::Math::Sqr(getRenderingDistance());
 		}
 		
 		//Calculate the best material technique
@@ -87,20 +87,20 @@ namespace GalaxyEngine
 
         //Calculate the "perspective scaling factor" (used in LOD calculations)
         float viewportHeight = cam->getViewport()->getActualHeight();
-        perspectiveScalingFactor = viewportHeight / (2 * Math::Tan(cam->getFOVy()/2));
+        perspectiveScalingFactor = viewportHeight / (2 * Ogre::Math::Tan(cam->getFOVy()/2));
 	}
 
-	void Atmosphere::updateLighting(Light *light, Camera *cam, SceneNode *node)
+	void Atmosphere::updateLighting(Ogre::Light *light, Ogre::Camera *cam, Ogre::SceneNode *node)
 	{		
-		Vector3 lightDir = light->getDerivedPosition() - node->_getDerivedPosition();
+		Ogre::Vector3 lightDir = light->getDerivedPosition() - node->_getDerivedPosition();
 		lightDir.normalise();
 
-		Vector3 relativeCameraPos = cam->getDerivedPosition() - getParentSceneNode()->_getDerivedPosition();
+		Ogre::Vector3 relativeCameraPos = cam->getDerivedPosition() - getParentSceneNode()->_getDerivedPosition();
 		relativeCameraPos /= radius;
 
-		Pass *pass = material->getTechnique(0)->getPass(0);
-		GpuProgramParametersSharedPtr vsParams = pass->getVertexProgramParameters();
-		GpuProgramParametersSharedPtr psParams = pass->getFragmentProgramParameters();
+		Ogre::Pass *pass = material->getTechnique(0)->getPass(0);
+		Ogre::GpuProgramParametersSharedPtr vsParams = pass->getVertexProgramParameters();
+		Ogre::GpuProgramParametersSharedPtr psParams = pass->getFragmentProgramParameters();
 		vsParams->setNamedConstant("lightDirection", lightDir);
 		psParams->setNamedConstant("relativeCameraPos", relativeCameraPos);
 	}
@@ -110,7 +110,7 @@ namespace GalaxyEngine
 		return mVisible && withinFarDistance;
 	}
 
-	void Atmosphere::_updateRenderQueue(RenderQueue *queue)
+	void Atmosphere::_updateRenderQueue(Ogre::RenderQueue *queue)
 	{
 		//Render
         float distance = std::max(0.00001f, getParentSceneNode()->_getDerivedPosition().distance(camPos) - radius);
@@ -131,29 +131,29 @@ namespace GalaxyEngine
 		float invRes = 1.0f / resolution;
 
 		//Load vertex buffer
-		uint32 vertCount = 6 * (resolution+1) * (resolution+1);
+		Ogre::uint32 vertCount = 6 * (resolution+1) * (resolution+1);
 		assert(vertCount < 0xFFFF);
 		size_t offset = 0;
-		vertexData.vertexDeclaration->addElement(0, offset, VET_FLOAT3, VES_POSITION);
-		offset += VertexElement::getTypeSize(VET_FLOAT3);
+		vertexData.vertexDeclaration->addElement(0, offset, Ogre::VET_FLOAT3, Ogre::VES_POSITION);
+		offset += Ogre::VertexElement::getTypeSize(Ogre::VET_FLOAT3);
 		//vertexData.vertexDeclaration->addElement(0, offset, VET_FLOAT2, VES_TEXTURE_COORDINATES);
-		HardwareVertexBufferSharedPtr vertBuff = HardwareBufferManager::getSingleton().createVertexBuffer(
-			vertexData.vertexDeclaration->getVertexSize(0), vertCount, HardwareBuffer::HBU_STATIC_WRITE_ONLY, false);
+		Ogre::HardwareVertexBufferSharedPtr vertBuff = Ogre::HardwareBufferManager::getSingleton().createVertexBuffer(
+			vertexData.vertexDeclaration->getVertexSize(0), vertCount, Ogre::HardwareBuffer::HBU_STATIC_WRITE_ONLY, false);
 
-		float *vBuff = static_cast<float*>(vertBuff->lock(HardwareBuffer::HBL_DISCARD));
+		float *vBuff = static_cast<float*>(vertBuff->lock(Ogre::HardwareBuffer::HBL_DISCARD));
 
-		for (uint32 face = 0; face < 6; ++face) {
+		for (Ogre::uint32 face = 0; face < 6; ++face) {
 			float faceNormalOffsetU = (face % 3) / 4.0f;
 			float faceNormalOffsetV = (face / 3) / 2.0f;
 
-			for (uint32 y = 0; y <= resolution; ++y){
-				for (uint32 x = 0; x <= resolution; ++x){
+			for (Ogre::uint32 y = 0; y <= resolution; ++y){
+				for (Ogre::uint32 x = 0; x <= resolution; ++x){
 					//Calculate UVs and terrain height
-					Real tx = x * invRes;
-					Real ty = y * invRes;
+					Ogre::Real tx = x * invRes;
+					Ogre::Real ty = y * invRes;
 
 					//Calculate vertex position / normal
-					Vector3 pos = PlanetMath::mapCubeToUnitSphere(mapPlaneToCube(tx, ty, (PlanetMath::CubeFace)face));
+					Ogre::Vector3 pos = PlanetMath::mapCubeToUnitSphere(mapPlaneToCube(tx, ty, (PlanetMath::CubeFace)face));
 
 					//Add vertex
 					*vBuff++ = pos.x; *vBuff++ = pos.y; *vBuff++ = pos.z;
@@ -168,19 +168,19 @@ namespace GalaxyEngine
 		vertexData.vertexBufferBinding->setBinding(0, vertBuff);
 
 		//Load index buffer
-		uint32 indexCount = 6 * 6 * resolution * resolution;
-		HardwareIndexBufferSharedPtr indexBuff = HardwareBufferManager::getSingleton().createIndexBuffer(
-			HardwareIndexBuffer::IT_16BIT, indexCount, HardwareBuffer::HBU_STATIC_WRITE_ONLY, false);
+		Ogre::uint32 indexCount = 6 * 6 * resolution * resolution;
+		Ogre::HardwareIndexBufferSharedPtr indexBuff = Ogre::HardwareBufferManager::getSingleton().createIndexBuffer(
+			Ogre::HardwareIndexBuffer::IT_16BIT, indexCount, Ogre::HardwareBuffer::HBU_STATIC_WRITE_ONLY, false);
 
-		uint16 *iBuff = static_cast<uint16*>(indexBuff->lock(HardwareBuffer::HBL_DISCARD));
+		Ogre::uint16 *iBuff = static_cast<Ogre::uint16*>(indexBuff->lock(Ogre::HardwareBuffer::HBL_DISCARD));
 
 		//Index the chunk grid
-		for (uint32 face = 0; face < 6; ++face) {
-			uint32 faceOffset = face * ((resolution+1) * (resolution+1));
-			for (uint32 y = 0; y < resolution; ++y){
-				for (uint32 x = 0; x < resolution; ++x){
-					uint16 vTopLeft = faceOffset + (y * (resolution+1) + x);
-					uint16 vBottomLeft = faceOffset + ((y+1) * (resolution+1) + x);
+		for (Ogre::uint32 face = 0; face < 6; ++face) {
+			Ogre::uint32 faceOffset = face * ((resolution+1) * (resolution+1));
+			for (Ogre::uint32 y = 0; y < resolution; ++y){
+				for (Ogre::uint32 x = 0; x < resolution; ++x){
+					Ogre::uint16 vTopLeft = faceOffset + (y * (resolution+1) + x);
+					Ogre::uint16 vBottomLeft = faceOffset + ((y+1) * (resolution+1) + x);
 					*iBuff++ = vBottomLeft;
 					*iBuff++ = vTopLeft+1;
 					*iBuff++ = vTopLeft;
@@ -211,7 +211,7 @@ namespace GalaxyEngine
 
 	void Atmosphere::AtmosphereRenderable::getRenderOperation(Ogre::RenderOperation& op)
 	{
-		op.operationType = RenderOperation::OT_TRIANGLE_LIST;
+		op.operationType = Ogre::RenderOperation::OT_TRIANGLE_LIST;
 		op.srcRenderable = this;
 		op.useIndexes = true;
 		op.vertexData = &vertexData;
@@ -220,7 +220,7 @@ namespace GalaxyEngine
 
 	Ogre::Real Atmosphere::AtmosphereRenderable::getSquaredViewDepth(const Ogre::Camera* cam) const
 	{
-		Vector3 camVec = cam->getDerivedPosition() - atmosphere->getParentSceneNode()->_getDerivedPosition();
+		Ogre::Vector3 camVec = cam->getDerivedPosition() - atmosphere->getParentSceneNode()->_getDerivedPosition();
 		return camVec.squaredLength();
 	}
 

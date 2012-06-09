@@ -5,17 +5,17 @@
 #include "Utility.h"
 #include "Exception.h"
 
-using namespace Ogre;
+//using namespace Ogre;
 
 namespace GalaxyEngine
 {
-	SpritePlanet::SpritePlanet(float radius, const String planetName)
+	SpritePlanet::SpritePlanet(float radius, const Ogre::String planetName)
 		: withinFarDistance(false),
 		minDistanceSquared(0),
 		bestTechnique(NULL),
 		sunLight(NULL)
 	{
-		String prefix = "";
+		Ogre::String prefix = "";
 		if (planetName != "") prefix = planetName + "_";
 		loadedPlanetName = planetName;
 
@@ -23,10 +23,10 @@ namespace GalaxyEngine
 		bounds.setMinimum(-radius, -radius, -radius);
 		bounds.setMaximum(radius, radius, radius);
 
-		material = MaterialManager::getSingleton().create(Utility::getUniqueID(), ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
-		Pass *pass = material->getTechnique(0)->getPass(0);
+		material = Ogre::MaterialManager::getSingleton().create(Utility::getUniqueID(), Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+		Ogre::Pass *pass = material->getTechnique(0)->getPass(0);
 		pass->createTextureUnitState(prefix + "sprite.dds");
-		pass->setSceneBlending(SBT_TRANSPARENT_ALPHA);
+		pass->setSceneBlending(Ogre::SBT_TRANSPARENT_ALPHA);
 		pass->setVertexProgram("SpritePlanet_vs");
 		pass->setFragmentProgram("SpritePlanet_ps");
 
@@ -38,13 +38,13 @@ namespace GalaxyEngine
 		delete renderable;
 	}
 
-	void SpritePlanet::_notifyCurrentCamera(Camera *cam)
+	void SpritePlanet::_notifyCurrentCamera(Ogre::Camera *cam)
 	{
-		SceneNode *node = getParentSceneNode();
+		Ogre::SceneNode *node = getParentSceneNode();
 
 		//Calculate camera distance
-		Vector3 camVec = cam->getDerivedPosition() - node->_getDerivedPosition();
-		Real centerDistanceSquared = camVec.squaredLength();
+		Ogre::Vector3 camVec = cam->getDerivedPosition() - node->_getDerivedPosition();
+		Ogre::Real centerDistanceSquared = camVec.squaredLength();
 
 		if (getRenderingDistance() == 0) {
 			withinFarDistance = true;
@@ -55,7 +55,7 @@ namespace GalaxyEngine
 			//the planet.
 
 			//Determine whether the planet is within the far rendering distance
-			withinFarDistance = minDistanceSquared <= Math::Sqr(getRenderingDistance());
+			withinFarDistance = minDistanceSquared <= Ogre::Math::Sqr(getRenderingDistance());
 		}
 
 		//Calculate the best material technique
@@ -69,13 +69,13 @@ namespace GalaxyEngine
 
 		//Update the planet's lighting calculations
 		if (sunLight) {
-			Vector3 lightDir = sunLight->getDerivedPosition() - node->_getDerivedPosition();
+			Ogre::Vector3 lightDir = sunLight->getDerivedPosition() - node->_getDerivedPosition();
 			lightDir.normalise();
 			lightDir = cam->getDerivedOrientation().Inverse() * lightDir;
 			std::swap(lightDir.x, lightDir.z);
 
-			Pass *pass = material->getTechnique(0)->getPass(0);
-			GpuProgramParametersSharedPtr params = pass->getFragmentProgramParameters();
+			Ogre::Pass *pass = material->getTechnique(0)->getPass(0);
+			Ogre::GpuProgramParametersSharedPtr params = pass->getFragmentProgramParameters();
 			params->setNamedConstant("lightDirection", lightDir);
 		}
 
@@ -88,10 +88,10 @@ namespace GalaxyEngine
 		return mVisible && withinFarDistance;
 	}
 
-	void SpritePlanet::_updateRenderQueue(RenderQueue *queue)
+	void SpritePlanet::_updateRenderQueue(Ogre::RenderQueue *queue)
 	{
 		//Requires unit scale
-		getParentSceneNode()->setScale(Vector3::UNIT_SCALE);
+		getParentSceneNode()->setScale(Ogre::Vector3::UNIT_SCALE);
 
 		//Render
 		queue->addRenderable(renderable);
@@ -99,10 +99,10 @@ namespace GalaxyEngine
 
 	void SpritePlanet::generateNormalMap()
 	{
-		String prefix = "";
+		Ogre::String prefix = "";
 		if (loadedPlanetName != "")
 			prefix = loadedPlanetName + "_";
-		String normalMapFile = prefix + "sprite.png";
+		Ogre::String normalMapFile = prefix + "sprite.png";
 
 		int halfWidth = 64;
 		int height = 64;
@@ -119,13 +119,13 @@ namespace GalaxyEngine
 
 		for (int y = height-1; y >= 0; --y){
 			for (int x = 0; x < halfWidth; ++x){
-				Vector3 vertexNormal;
+				Ogre::Vector3 vertexNormal;
 
 				vertexNormal.x = (2.0f * (float)x / halfWidth) - 1.0f;
 				vertexNormal.y = (2.0f * (float)y / height) - 1.0f;
 				float sq = 1.0f - vertexNormal.x*vertexNormal.x - vertexNormal.y*vertexNormal.y;
 				if (sq > 0.0f) {
-					vertexNormal.z = Math::Sqrt(sq);
+					vertexNormal.z = Ogre::Math::Sqrt(sq);
 				} else {
 					vertexNormal.z = 0.0f;
 					vertexNormal.normalise();
@@ -155,13 +155,13 @@ namespace GalaxyEngine
 
 		//Load vertex buffer
 		size_t offset = 0;
-		vertexData.vertexDeclaration->addElement(0, offset, VET_FLOAT3, VES_POSITION);
-		offset += VertexElement::getTypeSize(VET_FLOAT3);
-		vertexData.vertexDeclaration->addElement(0, offset, VET_FLOAT2, VES_TEXTURE_COORDINATES);
-		HardwareVertexBufferSharedPtr vertBuff = HardwareBufferManager::getSingleton().createVertexBuffer(
-			vertexData.vertexDeclaration->getVertexSize(0), 4, HardwareBuffer::HBU_STATIC_WRITE_ONLY, false);
+		vertexData.vertexDeclaration->addElement(0, offset, Ogre::VET_FLOAT3, Ogre::VES_POSITION);
+		offset += Ogre::VertexElement::getTypeSize(Ogre::VET_FLOAT3);
+		vertexData.vertexDeclaration->addElement(0, offset, Ogre::VET_FLOAT2, Ogre::VES_TEXTURE_COORDINATES);
+		Ogre::HardwareVertexBufferSharedPtr vertBuff = Ogre::HardwareBufferManager::getSingleton().createVertexBuffer(
+			vertexData.vertexDeclaration->getVertexSize(0), 4, Ogre::HardwareBuffer::HBU_STATIC_WRITE_ONLY, false);
 
-		float *vBuff = static_cast<float*>(vertBuff->lock(HardwareBuffer::HBL_DISCARD));
+		float *vBuff = static_cast<float*>(vertBuff->lock(Ogre::HardwareBuffer::HBL_DISCARD));
 
 		//Add vertex
 		*vBuff++ = -radius; *vBuff++ = -radius; *vBuff++ = 0.0f;
@@ -182,10 +182,10 @@ namespace GalaxyEngine
 		vertexData.vertexBufferBinding->setBinding(0, vertBuff);
 
 		//Load index buffer
-		HardwareIndexBufferSharedPtr indexBuff = HardwareBufferManager::getSingleton().createIndexBuffer(
-			HardwareIndexBuffer::IT_16BIT, 6, HardwareBuffer::HBU_STATIC_WRITE_ONLY, false);
+		Ogre::HardwareIndexBufferSharedPtr indexBuff = Ogre::HardwareBufferManager::getSingleton().createIndexBuffer(
+			Ogre::HardwareIndexBuffer::IT_16BIT, 6, Ogre::HardwareBuffer::HBU_STATIC_WRITE_ONLY, false);
 
-		uint16 *iBuff = static_cast<uint16*>(indexBuff->lock(HardwareBuffer::HBL_DISCARD));
+		Ogre::uint16 *iBuff = static_cast<Ogre::uint16*>(indexBuff->lock(Ogre::HardwareBuffer::HBL_DISCARD));
 
 		*iBuff++ = 0;
 		*iBuff++ = 1;
@@ -214,7 +214,7 @@ namespace GalaxyEngine
 
 	void SpritePlanet::SpritePlanetRenderable::getRenderOperation(Ogre::RenderOperation& op)
 	{
-		op.operationType = RenderOperation::OT_TRIANGLE_LIST;
+		op.operationType = Ogre::RenderOperation::OT_TRIANGLE_LIST;
 		op.srcRenderable = this;
 		op.useIndexes = true;
 		op.vertexData = &vertexData;
@@ -223,7 +223,7 @@ namespace GalaxyEngine
 
 	Ogre::Real SpritePlanet::SpritePlanetRenderable::getSquaredViewDepth(const Ogre::Camera* cam) const
 	{
-		Vector3 camVec = cam->getDerivedPosition() - planet->getParentSceneNode()->_getDerivedPosition();
+		Ogre::Vector3 camVec = cam->getDerivedPosition() - planet->getParentSceneNode()->_getDerivedPosition();
 		return camVec.squaredLength();
 	}
 

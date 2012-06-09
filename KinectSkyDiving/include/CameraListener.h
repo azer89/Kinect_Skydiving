@@ -6,13 +6,13 @@
 #include "ThirdPersonCamera.h"
 //#include "ExampleFrameListener.h"
 
-using namespace Ogre;
+//using namespace Ogre;
 
 // Class which holds third-person-camera and current character
 class CameraListener
 {
 public:
-	CameraListener(RenderWindow* win, Camera* cam);
+	CameraListener(Ogre::RenderWindow* win, Ogre::Camera* cam);
 
 	void setCharacter (Character *character);
 	void setExtendedCamera (ThirdPersonCamera *cam);

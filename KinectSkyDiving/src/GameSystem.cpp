@@ -14,7 +14,8 @@ GameSystem::GameSystem(void)
 	  pObjects(0),
 	  tCircles(0),
 	  pManager(0),
-	  isPlanetInitialized(false)
+	  isPlanetInitialized(false),
+	  mEnabledPhysicsDebugDraw(true)
 {
 }
 
@@ -35,7 +36,7 @@ GameSystem::~GameSystem(void)
 /**  Create your scene here */
 void GameSystem::createScene(void)
 {
-	mSceneMgr->setSkyBox(true, "Sky/Bright", 10000, true);
+	mSceneMgr->setSkyBox(true, "Sky/Space", 10000, true);
 
 	exCamera = new ThirdPersonCamera("ThirdPersonCamera", mSceneMgr, mCamera);
 	mCameraListener = new CameraListener(mWindow, mCamera);
@@ -43,9 +44,19 @@ void GameSystem::createScene(void)
 	this->character = new Character();
 	mCameraListener->setCharacter(character);
 
-	this->character->setup(mSceneMgr, Ogre::Vector3(0, 6000, 6000), Ogre::Vector3(0.5f, 0.5f, 0.5f), Ogre::Quaternion::IDENTITY);
+	this->mPhysics = new MyPhysics();
+
+	this->character->setup(mSceneMgr, 
+						   Ogre::Vector3(0, 6000, 6000), 
+						   Ogre::Vector3(0.5f, 0.5f, 0.5f), 
+						   Ogre::Quaternion::IDENTITY,
+						   mPhysics);
 	//this->character->setup(mSceneMgr, Ogre::Vector3(0, 2400, 0), Ogre::Vector3(1.0f), Ogre::Quaternion::IDENTITY);
 	this->character->setGravity(9.8f);
+
+	mPhysics->setRootSceneNode(mSceneMgr->getRootSceneNode());
+	mDebugDrawer = new BtOgre::DebugDrawer(mSceneMgr->getRootSceneNode(), mPhysics->getDynamicsWorld());
+	mPhysics->getDynamicsWorld()->setDebugDrawer(mDebugDrawer);
 
 	mLoadingBar->update();
 
@@ -85,6 +96,10 @@ void GameSystem::update(Ogre::Real elapsedTime)
 	character->update(elapsedTime);
 	mCameraListener->update(elapsedTime);
 	cloud->updateClouds(elapsedTime);
+
+	mPhysics->getDynamicsWorld()->stepSimulation(elapsedTime);
+	mDebugDrawer->setDebugMode(mEnabledPhysicsDebugDraw);
+	mDebugDrawer->step();
 
 	if(pManager != 0) pManager->update(character->getBodyNode()->_getDerivedPosition());
 }

@@ -8,13 +8,13 @@
 #include "Core.h"
 
 
-using namespace Ogre;
+//using namespace Ogre;
 
 namespace GalaxyEngine
 {
 	SpaceBackdrop *SpaceBackdrop::singletonPtr = NULL;
 
-	SpaceBackdrop::SpaceBackdrop(float radius, uint32 subdivision)
+	SpaceBackdrop::SpaceBackdrop(float radius, Ogre::uint32 subdivision)
 		: withinFarDistance(false),
 		minDistanceSquared(0),
 		bestTechnique(NULL)
@@ -29,7 +29,7 @@ namespace GalaxyEngine
 		bounds.setMinimum(-radius, -radius, -radius);
 		bounds.setMaximum(radius, radius, radius);
 
-		material = MaterialManager::getSingleton().create(Utility::getUniqueID(), ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+		material = Ogre::MaterialManager::getSingleton().create(Utility::getUniqueID(), Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 
 		renderable = new SpaceBackdropRenderable(this);
 
@@ -46,20 +46,20 @@ namespace GalaxyEngine
 		delete renderable;
 	}
 
-	void SpaceBackdrop::setBackdropImage(const String &fileName)
+	void SpaceBackdrop::setBackdropImage(const Ogre::String &fileName)
 	{
-		Pass *pass = material->getTechnique(0)->getPass(0);
+		Ogre::Pass *pass = material->getTechnique(0)->getPass(0);
 		pass->setLightingEnabled(false);
-		pass->setCullingMode(CULL_NONE);
-		TextureUnitState *t = pass->createTextureUnitState(fileName);
+		pass->setCullingMode(Ogre::CULL_NONE);
+		Ogre::TextureUnitState *t = pass->createTextureUnitState(fileName);
 		t->setNumMipmaps(0);
 	}
 
-	void SpaceBackdrop::_notifyCurrentCamera(Camera *cam)
+	void SpaceBackdrop::_notifyCurrentCamera(Ogre::Camera *cam)
 	{
 		//Calculate camera distance
-		Vector3 camVec = cam->getDerivedPosition() - getParentSceneNode()->_getDerivedPosition();
-		Real centerDistanceSquared = camVec.squaredLength();
+		Ogre::Vector3 camVec = cam->getDerivedPosition() - getParentSceneNode()->_getDerivedPosition();
+		Ogre::Real centerDistanceSquared = camVec.squaredLength();
 
 		withinFarDistance = true;
 
@@ -79,7 +79,7 @@ namespace GalaxyEngine
 		return mVisible && withinFarDistance;
 	}
 
-	void SpaceBackdrop::_updateRenderQueue(RenderQueue *queue)
+	void SpaceBackdrop::_updateRenderQueue(Ogre::RenderQueue *queue)
 	{
 		queue->addRenderable(renderable);
 	}
@@ -88,36 +88,36 @@ namespace GalaxyEngine
 	{
 		//Save misc. variables
 		this->backdrop = backdrop;
-		uint32 tiles = backdrop->getSubdivision();
+		Ogre::uint32 tiles = backdrop->getSubdivision();
 		float invTiles = 1.0f / tiles;
 
 		//Set material
 		material = backdrop->getMaterial();
 
 		//Load vertex buffer
-		uint32 vertCount = 6 * (tiles+1) * (tiles+1);
+		Ogre::uint32 vertCount = 6 * (tiles+1) * (tiles+1);
 		assert(vertCount < 0xFFFF);
 		size_t offset = 0;
-		vertexData.vertexDeclaration->addElement(0, offset, VET_FLOAT3, VES_POSITION);
-		offset += VertexElement::getTypeSize(VET_FLOAT3);
-		vertexData.vertexDeclaration->addElement(0, offset, VET_FLOAT2, VES_TEXTURE_COORDINATES);
-		HardwareVertexBufferSharedPtr vertBuff = HardwareBufferManager::getSingleton().createVertexBuffer(
-			vertexData.vertexDeclaration->getVertexSize(0), vertCount, HardwareBuffer::HBU_STATIC_WRITE_ONLY, false);
+		vertexData.vertexDeclaration->addElement(0, offset, Ogre::VET_FLOAT3, Ogre::VES_POSITION);
+		offset += Ogre::VertexElement::getTypeSize(Ogre::VET_FLOAT3);
+		vertexData.vertexDeclaration->addElement(0, offset, Ogre::VET_FLOAT2, Ogre::VES_TEXTURE_COORDINATES);
+		Ogre::HardwareVertexBufferSharedPtr vertBuff = Ogre::HardwareBufferManager::getSingleton().createVertexBuffer(
+			vertexData.vertexDeclaration->getVertexSize(0), vertCount, Ogre::HardwareBuffer::HBU_STATIC_WRITE_ONLY, false);
 
-		float *vBuff = static_cast<float*>(vertBuff->lock(HardwareBuffer::HBL_DISCARD));
+		float *vBuff = static_cast<float*>(vertBuff->lock(Ogre::HardwareBuffer::HBL_DISCARD));
 
-		for (uint32 face = 0; face < 6; ++face) {
+		for (Ogre::uint32 face = 0; face < 6; ++face) {
 			float faceNormalOffsetU = (face % 3) / 4.0f;
-			float faceNormalOffsetV = ((uint32)face / (uint32)3) / 2.0f;
+			float faceNormalOffsetV = ((Ogre::uint32)face / (Ogre::uint32)3) / 2.0f;
 
-			for (uint32 y = 0; y <= tiles; ++y){
-				for (uint32 x = 0; x <= tiles; ++x){
+			for (Ogre::uint32 y = 0; y <= tiles; ++y){
+				for (Ogre::uint32 x = 0; x <= tiles; ++x){
 					//Calculate UVs and terrain height
-					Real tx = x * invTiles;
-					Real ty = y * invTiles;
+					Ogre::Real tx = x * invTiles;
+					Ogre::Real ty = y * invTiles;
 
 					//Calculate vertex position
-					Vector3 pos = PlanetMath::mapCubeToUnitSphere(mapPlaneToCube(tx, ty, (PlanetMath::CubeFace)face)) * backdrop->radius;
+					Ogre::Vector3 pos = PlanetMath::mapCubeToUnitSphere(mapPlaneToCube(tx, ty, (PlanetMath::CubeFace)face)) * backdrop->radius;
 
 					//Add vertex
 					*vBuff++ = pos.x; *vBuff++ = pos.y; *vBuff++ = pos.z;
@@ -132,19 +132,19 @@ namespace GalaxyEngine
 		vertexData.vertexBufferBinding->setBinding(0, vertBuff);
 
 		//Load index buffer
-		uint32 indexCount = 6 * 6 * tiles * tiles;
-		HardwareIndexBufferSharedPtr indexBuff = HardwareBufferManager::getSingleton().createIndexBuffer(
-			HardwareIndexBuffer::IT_16BIT, indexCount, HardwareBuffer::HBU_STATIC_WRITE_ONLY, false);
+		Ogre::uint32 indexCount = 6 * 6 * tiles * tiles;
+		Ogre::HardwareIndexBufferSharedPtr indexBuff = Ogre::HardwareBufferManager::getSingleton().createIndexBuffer(
+			Ogre::HardwareIndexBuffer::IT_16BIT, indexCount, Ogre::HardwareBuffer::HBU_STATIC_WRITE_ONLY, false);
 
-		uint16 *iBuff = static_cast<uint16*>(indexBuff->lock(HardwareBuffer::HBL_DISCARD));
+		Ogre::uint16 *iBuff = static_cast<Ogre::uint16*>(indexBuff->lock(Ogre::HardwareBuffer::HBL_DISCARD));
 
 		//Index the chunk grid
-		for (uint32 face = 0; face < 6; ++face) {
-			uint32 faceOffset = face * ((tiles+1) * (tiles+1));
-			for (uint32 y = 0; y < tiles; ++y){
-				for (uint32 x = 0; x < tiles; ++x){
-					uint16 vTopLeft = faceOffset + (y * (tiles+1) + x);
-					uint16 vBottomLeft = faceOffset + ((y+1) * (tiles+1) + x);
+		for (Ogre::uint32 face = 0; face < 6; ++face) {
+			Ogre::uint32 faceOffset = face * ((tiles+1) * (tiles+1));
+			for (Ogre::uint32 y = 0; y < tiles; ++y){
+				for (Ogre::uint32 x = 0; x < tiles; ++x){
+					Ogre::uint16 vTopLeft = faceOffset + (y * (tiles+1) + x);
+					Ogre::uint16 vBottomLeft = faceOffset + ((y+1) * (tiles+1) + x);
 					*iBuff++ = vTopLeft;
 					*iBuff++ = vTopLeft+1;
 					*iBuff++ = vBottomLeft;
@@ -175,7 +175,7 @@ namespace GalaxyEngine
 
 	void SpaceBackdrop::SpaceBackdropRenderable::getRenderOperation(Ogre::RenderOperation& op)
 	{
-		op.operationType = RenderOperation::OT_TRIANGLE_LIST;
+		op.operationType = Ogre::RenderOperation::OT_TRIANGLE_LIST;
 		op.srcRenderable = this;
 		op.useIndexes = true;
 		op.vertexData = &vertexData;
@@ -184,7 +184,7 @@ namespace GalaxyEngine
 
 	Ogre::Real SpaceBackdrop::SpaceBackdropRenderable::getSquaredViewDepth(const Ogre::Camera* cam) const
 	{
-		Vector3 camVec = cam->getDerivedPosition() - backdrop->getParentSceneNode()->_getDerivedPosition();
+		Ogre::Vector3 camVec = cam->getDerivedPosition() - backdrop->getParentSceneNode()->_getDerivedPosition();
 		return camVec.squaredLength();
 	}
 

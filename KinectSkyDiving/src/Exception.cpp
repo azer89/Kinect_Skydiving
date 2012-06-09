@@ -4,11 +4,11 @@
 #include "Exception.h"
 
 #include <OgreString.h>
-using namespace Ogre;
+//using namespace Ogre;
 
 namespace GalaxyEngine
 {
-	Exception::Exception(const String &description, const String &source, const char *file)
+	Exception::Exception(const Ogre::String &description, const Ogre::String &source, const char *file)
 	{
 		this->description = description;
 		this->source = source;
@@ -16,7 +16,7 @@ namespace GalaxyEngine
 		fullDescription = "";
 	}
 
-	const String &Exception::getFullDescription() const
+	const Ogre::String &Exception::getFullDescription() const
 	{
 		if (fullDescription.empty())
 		{

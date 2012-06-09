@@ -5,9 +5,9 @@
 #include <Ogre/Ogre.h>
 
 using namespace std;
-using namespace Ogre;
+//using namespace Ogre;
 
-void DotSceneLoader::parseDotScene(const String &SceneName, const String &groupName, SceneManager *yourSceneMgr, SceneNode *pAttachNode, const String &sPrependNode)
+void Ogre::DotSceneLoader::parseDotScene(const Ogre::String &SceneName, const Ogre::String &groupName, Ogre::SceneManager *yourSceneMgr, Ogre::SceneNode *pAttachNode, const Ogre::String &sPrependNode)
 {
 	// set up shared object values
 	m_sGroupName = groupName;
@@ -25,13 +25,13 @@ void DotSceneLoader::parseDotScene(const String &SceneName, const String &groupN
 		Ogre::String basename, path;
 		Ogre::StringUtil::splitFilename(SceneName, basename, path);
 
-		DataStreamPtr pStream = ResourceGroupManager::getSingleton().
+		Ogre::DataStreamPtr pStream = Ogre::ResourceGroupManager::getSingleton().
 			openResource( basename, groupName );
 
 		//DataStreamPtr pStream = ResourceGroupManager::getSingleton().
 		//    openResource( SceneName, groupName );
 
-		String data = pStream->getAsString();
+		Ogre::String data = pStream->getAsString();
 		// Open the .scene File
 		XMLDoc = new TiXmlDocument();
 		XMLDoc->Parse( data.c_str() );
@@ -41,7 +41,7 @@ void DotSceneLoader::parseDotScene(const String &SceneName, const String &groupN
 		if( XMLDoc->Error() )
 		{
 			//We'll just log, and continue on gracefully
-			LogManager::getSingleton().logMessage("[DotSceneLoader] The TiXmlDocument reported an error");
+			Ogre::LogManager::getSingleton().logMessage("[DotSceneLoader] The TiXmlDocument reported an error");
 			delete XMLDoc;
 			return;
 		}
@@ -49,15 +49,15 @@ void DotSceneLoader::parseDotScene(const String &SceneName, const String &groupN
 	catch(...)
 	{
 		//We'll just log, and continue on gracefully
-		LogManager::getSingleton().logMessage("[DotSceneLoader] Error creating TiXmlDocument");
+		Ogre::LogManager::getSingleton().logMessage("[DotSceneLoader] Error creating TiXmlDocument");
 		delete XMLDoc;
 		return;
 	}
 
 	// Validate the File
 	XMLRoot = XMLDoc->RootElement();
-	if( String( XMLRoot->Value()) != "scene"  ) {
-		LogManager::getSingleton().logMessage( "[DotSceneLoader] Error: Invalid .scene File. Missing <scene>" );
+	if( Ogre::String( XMLRoot->Value()) != "scene"  ) {
+		Ogre::LogManager::getSingleton().logMessage( "[DotSceneLoader] Error: Invalid .scene File. Missing <scene>" );
 		delete XMLDoc;      
 		return;
 	}
@@ -74,22 +74,22 @@ void DotSceneLoader::parseDotScene(const String &SceneName, const String &groupN
 	delete XMLDoc;
 }
 
-void DotSceneLoader::processScene(TiXmlElement *XMLRoot)
+void Ogre::DotSceneLoader::processScene(TiXmlElement *XMLRoot)
 {
 	// Process the scene parameters
-	String version = getAttrib(XMLRoot, "formatVersion", "unknown");
+	Ogre::String version = getAttrib(XMLRoot, "formatVersion", "unknown");
 
-	String message = "[DotSceneLoader] Parsing dotScene file with version " + version;
+	Ogre::String message = "[DotSceneLoader] Parsing dotScene file with version " + version;
 	if(XMLRoot->Attribute("ID"))
-		message += ", id " + String(XMLRoot->Attribute("ID"));
+		message += ", id " + Ogre::String(XMLRoot->Attribute("ID"));
 	if(XMLRoot->Attribute("sceneManager"))
-		message += ", scene manager " + String(XMLRoot->Attribute("sceneManager"));
+		message += ", scene manager " + Ogre::String(XMLRoot->Attribute("sceneManager"));
 	if(XMLRoot->Attribute("minOgreVersion"))
-		message += ", min. Ogre version " + String(XMLRoot->Attribute("minOgreVersion"));
+		message += ", min. Ogre version " + Ogre::String(XMLRoot->Attribute("minOgreVersion"));
 	if(XMLRoot->Attribute("author"))
-		message += ", author " + String(XMLRoot->Attribute("author"));
+		message += ", author " + Ogre::String(XMLRoot->Attribute("author"));
 
-	LogManager::getSingleton().logMessage(message);
+	Ogre::LogManager::getSingleton().logMessage(message);
 
 	TiXmlElement *pElement;
 
@@ -134,7 +134,7 @@ void DotSceneLoader::processScene(TiXmlElement *XMLRoot)
 		processCamera(pElement);
 }
 
-void DotSceneLoader::processNodes(TiXmlElement *XMLNode)
+void Ogre::DotSceneLoader::processNodes(TiXmlElement *XMLNode)
 {
 	TiXmlElement *pElement;
 
@@ -171,12 +171,12 @@ void DotSceneLoader::processNodes(TiXmlElement *XMLNode)
 	}
 }
 
-void DotSceneLoader::processExternals(TiXmlElement *XMLNode)
+void Ogre::DotSceneLoader::processExternals(TiXmlElement *XMLNode)
 {
 	//! @todo Implement this
 }
 
-void DotSceneLoader::processEnvironment(TiXmlElement *XMLNode)
+void Ogre::DotSceneLoader::processEnvironment(TiXmlElement *XMLNode)
 {
 	TiXmlElement *pElement;
 
@@ -222,33 +222,33 @@ void DotSceneLoader::processEnvironment(TiXmlElement *XMLNode)
 		processUserDataReference(pElement);
 }
 
-void DotSceneLoader::processTerrain(TiXmlElement *XMLNode)
+void Ogre::DotSceneLoader::processTerrain(TiXmlElement *XMLNode)
 {
 	//! @todo Implement this
 }
 
-void DotSceneLoader::processUserDataReference(TiXmlElement *XMLNode, SceneNode *pParent)
+void Ogre::DotSceneLoader::processUserDataReference(TiXmlElement *XMLNode, Ogre::SceneNode *pParent)
 {
 	//! @todo Implement this
 }
 
-void DotSceneLoader::processOctree(TiXmlElement *XMLNode)
+void Ogre::DotSceneLoader::processOctree(TiXmlElement *XMLNode)
 {
 	//! @todo Implement this
 }
 
-void DotSceneLoader::processLight(TiXmlElement *XMLNode, SceneNode *pParent)
+void Ogre::DotSceneLoader::processLight(TiXmlElement *XMLNode, SceneNode *pParent)
 {
 	// Process attributes
-	String name = getAttrib(XMLNode, "name");
-	String id = getAttrib(XMLNode, "id");
+	Ogre::String name = getAttrib(XMLNode, "name");
+	Ogre::String id = getAttrib(XMLNode, "id");
 
 	// Create the light
-	Light *pLight = mSceneMgr->createLight(name);
+	Ogre::Light *pLight = mSceneMgr->createLight(name);
 	if(pParent)
 		pParent->attachObject(pLight);
 
-	String sValue = getAttrib(XMLNode, "type");
+	Ogre::String sValue = getAttrib(XMLNode, "type");
 	if(sValue == "point")
 		pLight->setType(Light::LT_POINT);
 	else if(sValue == "directional")
@@ -299,7 +299,7 @@ void DotSceneLoader::processLight(TiXmlElement *XMLNode, SceneNode *pParent)
 		;//processUserDataReference(pElement, pLight);
 }
 
-void DotSceneLoader::processCamera(TiXmlElement *XMLNode, SceneNode *pParent)
+void Ogre::DotSceneLoader::processCamera(TiXmlElement *XMLNode, Ogre::SceneNode *pParent)
 {
 	// Process attributes
 	String name = getAttrib(XMLNode, "name");
@@ -370,7 +370,7 @@ void DotSceneLoader::processCamera(TiXmlElement *XMLNode, SceneNode *pParent)
 		;//!< @todo Implement the camera user data reference
 }
 
-void DotSceneLoader::processNode(TiXmlElement *XMLNode, SceneNode *pParent)
+void Ogre::DotSceneLoader::processNode(TiXmlElement *XMLNode, Ogre::SceneNode *pParent)
 {
 	// Construct the node's name
 	String name = m_sPrependNode + getAttrib(XMLNode, "name");
@@ -498,7 +498,7 @@ void DotSceneLoader::processNode(TiXmlElement *XMLNode, SceneNode *pParent)
 		processUserDataReference(pElement, pNode);
 }
 
-void DotSceneLoader::processLookTarget(TiXmlElement *XMLNode, SceneNode *pParent)
+void Ogre::DotSceneLoader::processLookTarget(TiXmlElement *XMLNode, Ogre::SceneNode *pParent)
 {
 	//! @todo Is this correct? Cause I don't have a clue actually
 
@@ -533,7 +533,7 @@ void DotSceneLoader::processLookTarget(TiXmlElement *XMLNode, SceneNode *pParent
 	{
 		if(!nodeName.empty())
 		{
-			SceneNode *pLookNode = mSceneMgr->getSceneNode(nodeName);
+			Ogre::SceneNode *pLookNode = mSceneMgr->getSceneNode(nodeName);
 			position = pLookNode->_getDerivedPosition();
 		}
 
@@ -545,7 +545,7 @@ void DotSceneLoader::processLookTarget(TiXmlElement *XMLNode, SceneNode *pParent
 	}
 }
 
-void DotSceneLoader::processTrackTarget(TiXmlElement *XMLNode, SceneNode *pParent)
+void Ogre::DotSceneLoader::processTrackTarget(TiXmlElement *XMLNode, Ogre::SceneNode *pParent)
 {
 	// Process attributes
 	String nodeName = getAttrib(XMLNode, "nodeName");
@@ -567,7 +567,7 @@ void DotSceneLoader::processTrackTarget(TiXmlElement *XMLNode, SceneNode *pParen
 	// Setup the track target
 	try
 	{
-		SceneNode *pTrackNode = mSceneMgr->getSceneNode(nodeName);
+		Ogre::SceneNode *pTrackNode = mSceneMgr->getSceneNode(nodeName);
 		pParent->setAutoTracking(true, pTrackNode, localDirection, offset);
 	}
 	catch(Ogre::Exception &/*e*/)
@@ -576,7 +576,7 @@ void DotSceneLoader::processTrackTarget(TiXmlElement *XMLNode, SceneNode *pParen
 	}
 }
 
-void DotSceneLoader::processEntity(TiXmlElement *XMLNode, SceneNode *pParent)
+void Ogre::DotSceneLoader::processEntity(TiXmlElement *XMLNode, Ogre::SceneNode *pParent)
 {
 	// Process attributes
 	String name = getAttrib(XMLNode, "name");
@@ -629,7 +629,7 @@ void DotSceneLoader::processEntity(TiXmlElement *XMLNode, SceneNode *pParent)
 
 }
 
-void DotSceneLoader::processParticleSystem(TiXmlElement *XMLNode, SceneNode *pParent)
+void Ogre::DotSceneLoader::processParticleSystem(TiXmlElement *XMLNode, Ogre::SceneNode *pParent)
 {
 	// Process attributes
 	String name = getAttrib(XMLNode, "name");
@@ -648,17 +648,17 @@ void DotSceneLoader::processParticleSystem(TiXmlElement *XMLNode, SceneNode *pPa
 	}
 }
 
-void DotSceneLoader::processBillboardSet(TiXmlElement *XMLNode, SceneNode *pParent)
+void Ogre::DotSceneLoader::processBillboardSet(TiXmlElement *XMLNode, Ogre::SceneNode *pParent)
 {
 	//! @todo Implement this
 }
 
-void DotSceneLoader::processPlane(TiXmlElement *XMLNode, SceneNode *pParent)
+void Ogre::DotSceneLoader::processPlane(TiXmlElement *XMLNode, Ogre::SceneNode *pParent)
 {
 	//! @todo Implement this
 }
 
-void DotSceneLoader::processFog(TiXmlElement *XMLNode)
+void Ogre::DotSceneLoader::processFog(TiXmlElement *XMLNode)
 {
 	// Process attributes
 	Real expDensity = getAttribReal(XMLNode, "expDensity", 0.001);
@@ -688,7 +688,7 @@ void DotSceneLoader::processFog(TiXmlElement *XMLNode)
 	mSceneMgr->setFog(mode, colourDiffuse, expDensity, linearStart, linearEnd);
 }
 
-void DotSceneLoader::processSkyBox(TiXmlElement *XMLNode)
+void Ogre::DotSceneLoader::processSkyBox(TiXmlElement *XMLNode)
 {
 	// Process attributes
 	String material = getAttrib(XMLNode, "material");
@@ -707,7 +707,7 @@ void DotSceneLoader::processSkyBox(TiXmlElement *XMLNode)
 	mSceneMgr->setSkyBox(true, material, distance, drawFirst, rotation, m_sGroupName);
 }
 
-void DotSceneLoader::processSkyDome(TiXmlElement *XMLNode)
+void Ogre::DotSceneLoader::processSkyDome(TiXmlElement *XMLNode)
 {
 	// Process attributes
 	String material = XMLNode->Attribute("material");
@@ -728,7 +728,7 @@ void DotSceneLoader::processSkyDome(TiXmlElement *XMLNode)
 	mSceneMgr->setSkyDome(true, material, curvature, tiling, distance, drawFirst, rotation, 16, 16, -1, m_sGroupName);
 }
 
-void DotSceneLoader::processSkyPlane(TiXmlElement *XMLNode)
+void Ogre::DotSceneLoader::processSkyPlane(TiXmlElement *XMLNode)
 {
 	// Process attributes
 	String material = getAttrib(XMLNode, "material");
@@ -748,7 +748,7 @@ void DotSceneLoader::processSkyPlane(TiXmlElement *XMLNode)
 	mSceneMgr->setSkyPlane(true, plane, material, scale, tiling, drawFirst, bow, 1, 1, m_sGroupName);
 }
 
-void DotSceneLoader::processClipping(TiXmlElement *XMLNode)
+void Ogre::DotSceneLoader::processClipping(TiXmlElement *XMLNode)
 {
 	//! @todo Implement this
 
@@ -757,7 +757,7 @@ void DotSceneLoader::processClipping(TiXmlElement *XMLNode)
 	Real fFar = getAttribReal(XMLNode, "far", 1);
 }
 
-void DotSceneLoader::processLightRange(TiXmlElement *XMLNode, Light *pLight)
+void Ogre::DotSceneLoader::processLightRange(TiXmlElement *XMLNode, Ogre::Light *pLight)
 {
 	// Process attributes
 	Real inner = getAttribReal(XMLNode, "inner");
@@ -768,7 +768,7 @@ void DotSceneLoader::processLightRange(TiXmlElement *XMLNode, Light *pLight)
 	pLight->setSpotlightRange(Angle(inner), Angle(outer), falloff);
 }
 
-void DotSceneLoader::processLightAttenuation(TiXmlElement *XMLNode, Light *pLight)
+void Ogre::DotSceneLoader::processLightAttenuation(TiXmlElement *XMLNode, Light *pLight)
 {
 	// Process attributes
 	Real range = getAttribReal(XMLNode, "range");
@@ -780,7 +780,7 @@ void DotSceneLoader::processLightAttenuation(TiXmlElement *XMLNode, Light *pLigh
 	pLight->setAttenuation(range, constant, linear, quadratic);
 }
 
-String DotSceneLoader::getAttrib(TiXmlElement *XMLNode, const String &attrib, const String &defaultValue)
+Ogre::String Ogre::DotSceneLoader::getAttrib(TiXmlElement *XMLNode, const Ogre::String &attrib, const Ogre::String &defaultValue)
 {
 	if(XMLNode->Attribute(attrib.c_str()))
 		return XMLNode->Attribute(attrib.c_str());
@@ -788,7 +788,7 @@ String DotSceneLoader::getAttrib(TiXmlElement *XMLNode, const String &attrib, co
 		return defaultValue;
 }
 
-Real DotSceneLoader::getAttribReal(TiXmlElement *XMLNode, const String &attrib, Real defaultValue)
+Ogre::Real Ogre::DotSceneLoader::getAttribReal(TiXmlElement *XMLNode, const Ogre::String &attrib, Ogre::Real defaultValue)
 {
 	if(XMLNode->Attribute(attrib.c_str()))
 		return StringConverter::parseReal(XMLNode->Attribute(attrib.c_str()));
@@ -796,18 +796,18 @@ Real DotSceneLoader::getAttribReal(TiXmlElement *XMLNode, const String &attrib, 
 		return defaultValue;
 }
 
-bool DotSceneLoader::getAttribBool(TiXmlElement *XMLNode, const String &attrib, bool defaultValue)
+bool Ogre::DotSceneLoader::getAttribBool(TiXmlElement *XMLNode, const Ogre::String &attrib, bool defaultValue)
 {
 	if(!XMLNode->Attribute(attrib.c_str()))
 		return defaultValue;
 
-	if(String(XMLNode->Attribute(attrib.c_str())) == "true")
+	if(Ogre::String(XMLNode->Attribute(attrib.c_str())) == "true")
 		return true;
 
 	return false;
 }
 
-Vector3 DotSceneLoader::parseVector3(TiXmlElement *XMLNode)
+Ogre::Vector3 Ogre::DotSceneLoader::parseVector3(TiXmlElement *XMLNode)
 {
 	return Vector3(
 		StringConverter::parseReal(XMLNode->Attribute("x")),
@@ -816,11 +816,11 @@ Vector3 DotSceneLoader::parseVector3(TiXmlElement *XMLNode)
 		);
 }
 
-Quaternion DotSceneLoader::parseQuaternion(TiXmlElement *XMLNode)
+Ogre::Quaternion Ogre::DotSceneLoader::parseQuaternion(TiXmlElement *XMLNode)
 {
 	//! @todo Fix this crap!
 
-	Quaternion orientation;
+	Ogre::Quaternion orientation;
 
 	if(XMLNode->Attribute("qx"))
 	{
@@ -851,7 +851,7 @@ Quaternion DotSceneLoader::parseQuaternion(TiXmlElement *XMLNode)
 	return orientation;
 }
 
-ColourValue DotSceneLoader::parseColour(TiXmlElement *XMLNode)
+Ogre::ColourValue Ogre::DotSceneLoader::parseColour(TiXmlElement *XMLNode)
 {
 	return ColourValue(
 		StringConverter::parseReal(XMLNode->Attribute("r")),
@@ -861,7 +861,7 @@ ColourValue DotSceneLoader::parseColour(TiXmlElement *XMLNode)
 		);
 }
 
-String DotSceneLoader::getProperty(const String &ndNm, const String &prop)
+Ogre::String Ogre::DotSceneLoader::getProperty(const Ogre::String &ndNm, const Ogre::String &prop)
 {
 	for ( unsigned int i = 0 ; i < nodeProperties.size(); i++ )
 	{
@@ -874,8 +874,8 @@ String DotSceneLoader::getProperty(const String &ndNm, const String &prop)
 	return "";
 }
 
-void DotSceneLoader::processUserDataReference(TiXmlElement *XMLNode, Entity *pEntity)
+void Ogre::DotSceneLoader::processUserDataReference(TiXmlElement *XMLNode, Ogre::Entity *pEntity)
 {
-	String str = XMLNode->Attribute("id");
+	Ogre::String str = XMLNode->Attribute("id");
 	pEntity->setUserAny(Any(str));
 }

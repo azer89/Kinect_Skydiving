@@ -4,25 +4,25 @@
 #include "PlanetMath.h"
 
 #include <math.h>
-using namespace Ogre;
+//using namespace Ogre;
 
 namespace GalaxyEngine
 {
 	namespace PlanetMath
 	{
-		Vector3 mapCubeToUnitSphere(const Vector3 &cubeCoord)
+		Ogre::Vector3 mapCubeToUnitSphere(const Ogre::Vector3 &cubeCoord)
 		{
-			Real x = cubeCoord.x;
-			Real y = cubeCoord.y;
-			Real z = cubeCoord.z;
+			Ogre::Real x = cubeCoord.x;
+			Ogre::Real y = cubeCoord.y;
+			Ogre::Real z = cubeCoord.z;
 
 			assert(x >= -1 && x <= 1 && y >= -1 && y <= 1 && z >= -1 && z <= 1);
 
-			Vector3 sphereCoord;
-			const Real div3 = 1.0f / 3.0f;
-			sphereCoord.x = x * Math::Sqrt(1.0f - y * y * 0.5f - z * z * 0.5f + y * y * z * z * div3);
-			sphereCoord.y = y * Math::Sqrt(1.0f - z * z * 0.5f - x * x * 0.5f + z * z * x * x * div3);
-			sphereCoord.z = z * Math::Sqrt(1.0f - x * x * 0.5f - y * y * 0.5f + x * x * y * y * div3);
+			Ogre::Vector3 sphereCoord;
+			const Ogre::Real div3 = 1.0f / 3.0f;
+			sphereCoord.x = x * Ogre::Math::Sqrt(1.0f - y * y * 0.5f - z * z * 0.5f + y * y * z * z * div3);
+			sphereCoord.y = y * Ogre::Math::Sqrt(1.0f - z * z * 0.5f - x * x * 0.5f + z * z * x * x * div3);
+			sphereCoord.z = z * Ogre::Math::Sqrt(1.0f - x * x * 0.5f - y * y * 0.5f + x * x * y * y * div3);
 
 			return sphereCoord;
 		}

@@ -20,6 +20,8 @@ private:
 	Ogre::SceneNode*     mMainNode;
 	Ogre::Entity*        mMainEntity;
 
+	Ogre::DotSceneLoader* sceneLoader;
+
 	//Ogre::DotSceneLoader*		 sceneLoader;
 };
 

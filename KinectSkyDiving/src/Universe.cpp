@@ -16,7 +16,7 @@
 #include "Star.h"
 #include "Atmosphere.h"
 
-using namespace Ogre;
+//using namespace Ogre;
 using namespace std;
 
 #include <vector>
@@ -39,8 +39,8 @@ namespace GalaxyEngine
 		//Initialize the resource group for the universe
 		ConfigNode *node = root->findChild("mediaPath"); assert(node);
 		Universe::mediaPath = Core::getSingleton().getMediaPath() + node->getValue();
-		ResourceGroupManager::getSingleton().addResourceLocation(Universe::mediaPath, "FileSystem", "Universe");
-		ResourceGroupManager::getSingleton().initialiseResourceGroup("Universe");
+		Ogre::ResourceGroupManager::getSingleton().addResourceLocation(Universe::mediaPath, "FileSystem", "Universe");
+		Ogre::ResourceGroupManager::getSingleton().initialiseResourceGroup("Universe");
 
 		//Init. variables
 		stepSize = root->findChild("timeStep")->getValueF(0);
@@ -51,7 +51,7 @@ namespace GalaxyEngine
 
 		//Calculate the "perspective scaling factor" (used in LOD calculations)
 		float viewportHeight = cam->getViewport()->getActualHeight();
-		perspectiveScalingFactor = viewportHeight / (2 * Math::Tan(cam->getFOVy()/2));
+		perspectiveScalingFactor = viewportHeight / (2 * Ogre::Math::Tan(cam->getFOVy()/2));
 
 		//Load backdrop
 		//backdrop = new SpaceBackdrop(cam->getFarClipDistance() - 10.0f, 8);
@@ -59,8 +59,8 @@ namespace GalaxyEngine
         //backdrop->setRenderQueueGroup(RENDER_QUEUE_Starfield);
 
 		//Load planets and stars
-		uint32 nodes = (uint32)root->getChildren().size();
-		for (uint32 i = 0; i < nodes; ++i) 
+		Ogre::uint32 nodes = (Ogre::uint32)root->getChildren().size();
+		for (Ogre::uint32 i = 0; i < nodes; ++i) 
 		{
 			ConfigNode *node = root->getChild(i);
 			ConfigNode *subNode;
@@ -71,7 +71,7 @@ namespace GalaxyEngine
 				subNode = node->findChild("radius"); assert(subNode);
 				float radius = subNode->getValueF();
 				subNode = node->findChild("colorMap"); assert(subNode);
-				String starColorMap = subNode->getValue();
+				Ogre::String starColorMap = subNode->getValue();
 
 				StarProxy *star = addStar(radius, starColorMap);
 
@@ -101,9 +101,9 @@ namespace GalaxyEngine
 				planet->setVelocity(velocity);
 
 				subNode = node->findChild("axialRotation"); assert(subNode);
-				Vector3 axisOfRotation(subNode->getValueF(0), subNode->getValueF(1), subNode->getValueF(2));
+				Ogre::Vector3 axisOfRotation(subNode->getValueF(0), subNode->getValueF(1), subNode->getValueF(2));
 				axisOfRotation.normalise();
-				planet->setAxialRotation(axisOfRotation, Degree(subNode->getValueF(3)), Degree(subNode->getValueF(4)));
+				planet->setAxialRotation(axisOfRotation, Ogre::Degree(subNode->getValueF(3)), Ogre::Degree(subNode->getValueF(4)));
 
 				subNode = node->findChild("mass"); assert(subNode);
 				planet->mass = subNode->getValueD();
@@ -154,7 +154,7 @@ namespace GalaxyEngine
 		Core::getSingleton().getSceneManager()->destroySceneNode(sunLightNode01->getName());
 	}
 
-	PlanetProxy *Universe::addPlanet(const String &planetName)
+	PlanetProxy *Universe::addPlanet(const Ogre::String &planetName)
 	{
 		planets.push_back(PlanetProxy(this));
 		PlanetProxy *body = &planets.back();
@@ -164,7 +164,7 @@ namespace GalaxyEngine
 		return body;
 	}
 
-	StarProxy *Universe::addStar(float radius, const String &starColorMap)
+	StarProxy *Universe::addStar(float radius, const Ogre::String &starColorMap)
 	{
 		stars.push_back(StarProxy(this));
 		StarProxy *body = &stars.back();
@@ -184,8 +184,8 @@ namespace GalaxyEngine
 		double stepSizeSquared = stepSize * stepSize;
 	
 		//Get misc. values
-		const uint32 numPlanets = (uint32)planets.size();
-		const uint32 numStars = (uint32)stars.size();
+		const Ogre::uint32 numPlanets = (Ogre::uint32)planets.size();
+		const Ogre::uint32 numStars = (Ogre::uint32)stars.size();
 
 		//Convert the origin-relative camera position to an absolute one
 		DVector3 camPos = origin.translateLocalToGlobal(Core::getSingleton().getCamera()->getDerivedPosition());
@@ -205,14 +205,14 @@ namespace GalaxyEngine
 			interpolationFactor = 0.0f;
 
 			//Perform gravity simulation on all stars
-			for (uint32 i = 0; i < numStars; ++i) 
+			for (Ogre::uint32 i = 0; i < numStars; ++i) 
 			{
 				StarProxy &body = stars[i];
 
 				//Calculate the gravitational force to apply to the star. Planets are not considered
 				//because their effect is too insignificant in the game and would only waste CPU time.
-				Vector3 forceVec = Vector3::ZERO;
-				for (uint32 o = 0; o < numStars; ++o) {
+				Ogre::Vector3 forceVec = Ogre::Vector3::ZERO;
+				for (Ogre::uint32 o = 0; o < numStars; ++o) {
 					if (o != i) {
 						StarProxy &body2 = stars[o];
 
@@ -297,7 +297,7 @@ namespace GalaxyEngine
 		//Select the LODs and update interpolation of stars
 		double maxStarPixelSize = 0.0;
 		maxStar = NULL;
-		for (uint32 i = 0; i < numStars; ++i) {
+		for (Ogre::uint32 i = 0; i < numStars; ++i) {
 			StarProxy &star = stars[i];
 
 			//Interpolate between the last and next position to get the current position. This way when the
@@ -340,7 +340,7 @@ namespace GalaxyEngine
 
 			//If this LOD isn't loaded yet, use a lower detail one
 			while (lodLevel < StarProxy::LOD_Invisible && !star.isloadedLOD(lodLevel))
-				lodLevel = (StarProxy::StarLOD)(((uint32)lodLevel) + 1);
+				lodLevel = (StarProxy::StarLOD)(((Ogre::uint32)lodLevel) + 1);
 
 			//Set the chosen LOD
 			star.setLOD(lodLevel);
@@ -350,7 +350,7 @@ namespace GalaxyEngine
 		//Select the LODs and update interpolation of planets
 		double maxPlanetPixelSize = 0.0;
 		maxPlanet = NULL;
-		for (uint32 i = 0; i < numPlanets; ++i) {
+		for (Ogre::uint32 i = 0; i < numPlanets; ++i) {
 			PlanetProxy &planet = planets[i];
 
 			//Rotate the planet slowly around it's axis. This is done here in the LOD loop which is executed
@@ -419,12 +419,12 @@ namespace GalaxyEngine
 
 			//If this LOD isn't loaded yet, use a lower detail one
 			while (lodLevel < PlanetProxy::LOD_Invisible && !planet.isloadedLOD(lodLevel))
-				lodLevel = (PlanetProxy::PlanetLOD)(((uint32)lodLevel) + 1);
+				lodLevel = (PlanetProxy::PlanetLOD)(((Ogre::uint32)lodLevel) + 1);
 
 			//If the planet will be rendered in LOD_Simple or LOD_Complex mode,
 			//planet rotation will be visible, so it needs to be calculated here.
 			if (lodLevel == PlanetProxy::LOD_Simple || lodLevel == PlanetProxy::LOD_Complex) {
-				planet.currentRotation = Quaternion(planet.currentAngle, planet.axisOfRotation);
+				planet.currentRotation = Ogre::Quaternion(planet.currentAngle, planet.axisOfRotation);
 			}
 
 			//Set the chosen LOD
@@ -475,7 +475,7 @@ namespace GalaxyEngine
 			else if (centerStar) {
 				//Center the origin around the star
 				origin.setPosition(maxStar->getPosition());
-				origin.setRotation(Quaternion::IDENTITY);
+				origin.setRotation(Ogre::Quaternion::IDENTITY);
 				if (origin.getTarget() != maxStar) {
 					origin.setTarget(maxStar);
 					originChanged = true;
@@ -486,7 +486,7 @@ namespace GalaxyEngine
 				//far away from the origin's current position.
 				if (origin.getPosition().distanceSquared(camPos) > 1000 * 1000 || origin.getTarget() != NULL) {
 					origin.setPosition(camPos);
-					origin.setRotation(Quaternion::IDENTITY);
+					origin.setRotation(Ogre::Quaternion::IDENTITY);
 					origin.setTarget(NULL);
 					originChanged = true;
 				}
@@ -515,11 +515,11 @@ namespace GalaxyEngine
 
 
 		//Update the LODs of every planet and star
-		for (uint32 i = 0; i < numPlanets; ++i) {
+		for (Ogre::uint32 i = 0; i < numPlanets; ++i) {
 			PlanetProxy &planet = planets[i];
 			planet.update();
 		}
-		for (uint32 i = 0; i < numStars; ++i) {
+		for (Ogre::uint32 i = 0; i < numStars; ++i) {
 			StarProxy &star = stars[i];
 			star.update();
 		}
@@ -535,7 +535,7 @@ namespace GalaxyEngine
 
 
 
-	void PlanetProxy::initialize(const String &name)
+	void PlanetProxy::initialize(const Ogre::String &name)
 	{
 		cfgScript = ConfigScriptLoader::getSingleton().getConfigScript("planet", name);
 		radius = cfgScript->findChild("terrain")->findChild("radius")->getValueF();
@@ -552,10 +552,10 @@ namespace GalaxyEngine
 		position = DVector3(0, 0, 0);
 		mass = 2.0;
 
-		axisOfRotation = Vector3::UNIT_Y;
-		angularMomentum = Radian(0.0f);
-		currentAngle = Radian(0.0f);
-		currentRotation = Quaternion::IDENTITY;
+		axisOfRotation = Ogre::Vector3::UNIT_Y;
+		angularMomentum = Ogre::Radian(0.0f);
+		currentAngle = Ogre::Radian(0.0f);
+		currentRotation = Ogre::Quaternion::IDENTITY;
 	}
 
 	void PlanetProxy::destroy()
@@ -579,8 +579,8 @@ namespace GalaxyEngine
 		if (node) {
 			if (static_cast<PlanetProxy*>(universe->getCurrentOrigin().getTarget()) == this) {
 				//If the current floating origin is set to this planet, it will be perfectly centered with no rotation
-				node->setPosition(Vector3::ZERO);
-				node->setOrientation(Quaternion::IDENTITY);
+				node->setPosition(Ogre::Vector3::ZERO);
+				node->setOrientation(Ogre::Quaternion::IDENTITY);
 			} 
 			else 
 			{
@@ -626,9 +626,9 @@ namespace GalaxyEngine
 				//Load the full-detail planet
 				if (!planet) 
 				{
-					const String planetMediaPath = universe->getMediaPath() + cfgScript->findChild("mediaPath")->getValue();
-					ResourceGroupManager::getSingleton().addResourceLocation(planetMediaPath, "FileSystem", "Planet");
-					ResourceGroupManager::getSingleton().initialiseResourceGroup("Planet");
+					const Ogre::String planetMediaPath = universe->getMediaPath() + cfgScript->findChild("mediaPath")->getValue();
+					Ogre::ResourceGroupManager::getSingleton().addResourceLocation(planetMediaPath, "FileSystem", "Planet");
+					Ogre::ResourceGroupManager::getSingleton().initialiseResourceGroup("Planet");
 
 					float maxTerrainHeight = cfgTerrain->findChild("heightRange")->getValueF();
 					int virtualRes = cfgTerrain->findChild("virtualRes")->getValueI();
@@ -675,7 +675,7 @@ namespace GalaxyEngine
 				if (planet) {
 					delete planet->getChunkLoader();
 					delete planet;
-					ResourceGroupManager::getSingleton().destroyResourceGroup("Planet");
+					Ogre::ResourceGroupManager::getSingleton().destroyResourceGroup("Planet");
 					planet = NULL;
 				}
 				break;
@@ -804,7 +804,7 @@ namespace GalaxyEngine
 
 
 
-	void StarProxy::initialize(float radius, const String &colorMap)
+	void StarProxy::initialize(float radius, const Ogre::String &colorMap)
 	{
 		this->radius = radius;
 		starColorMap = colorMap;
@@ -834,13 +834,13 @@ namespace GalaxyEngine
 		if (node) {
 			if (static_cast<StarProxy*>(universe->getCurrentOrigin().getTarget()) == this) {
 				//If the current floating origin is set to this star, it will be perfectly centered
-				node->setPosition(Vector3::ZERO);
-				node->setOrientation(Quaternion::IDENTITY);
+				node->setPosition(Ogre::Vector3::ZERO);
+				node->setOrientation(Ogre::Quaternion::IDENTITY);
 			} else {
 				//Otherwise translate this planet according to the floating origin's position / rotation
 				FloatingOrigin &origin = universe->getCurrentOrigin();
 				node->setPosition(origin.translateGlobalToLocal(position));
-				node->setOrientation(origin.translateGlobalToLocal(Quaternion::IDENTITY));
+				node->setOrientation(origin.translateGlobalToLocal(Ogre::Quaternion::IDENTITY));
 			}
 		}
 	}
@@ -948,25 +948,25 @@ namespace GalaxyEngine
 		lastPosition.z = nextPosition.z - (velocity.z * universe->getSimStepSize());
 	}
 
-	GalaxyEngine::DVector3 FloatingOrigin::translateLocalToGlobal(const Vector3 &pos)
+	GalaxyEngine::DVector3 FloatingOrigin::translateLocalToGlobal(const Ogre::Vector3 &pos)
 	{
 		DVector3 globalPos = rotation * pos;
 		globalPos.x += position.x; globalPos.y += position.y; globalPos.z += position.z;
 		return globalPos;
 	}
 
-	Quaternion FloatingOrigin::translateLocalToGlobal(const Quaternion &rot)
+	Ogre::Quaternion FloatingOrigin::translateLocalToGlobal(const Ogre::Quaternion &rot)
 	{
 		return rotation * rot;
 	}
 
-	Vector3 FloatingOrigin::translateGlobalToLocal(const DVector3 &pos)
+	Ogre::Vector3 FloatingOrigin::translateGlobalToLocal(const DVector3 &pos)
 	{
-		Vector3 localPos((pos.x - position.x), (pos.y - position.y), (pos.z - position.z));
+		Ogre::Vector3 localPos((pos.x - position.x), (pos.y - position.y), (pos.z - position.z));
 		return inverseRotation * localPos;
 	}
 
-	Quaternion FloatingOrigin::translateGlobalToLocal(const Quaternion &rot)
+	Ogre::Quaternion FloatingOrigin::translateGlobalToLocal(const Ogre::Quaternion &rot)
 	{
 		return inverseRotation * rot;
 	}

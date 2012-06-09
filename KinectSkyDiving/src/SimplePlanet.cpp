@@ -6,19 +6,19 @@
 #include "PlanetMath.h"
 
 
-using namespace Ogre;
+//using namespace Ogre;
 
 namespace GalaxyEngine
 {
 	std::vector<SimplePlanetMesh*> SimplePlanet::loadedMeshes;
 
-	SimplePlanet::SimplePlanet(float radius, uint32 subdivision, const String planetName)
+	SimplePlanet::SimplePlanet(float radius, Ogre::uint32 subdivision, const Ogre::String planetName)
 		: withinFarDistance(false),
 		minDistanceSquared(0),
 		bestTechnique(NULL),
 		sunLight(NULL)
 	{
-		String prefix = "";
+		Ogre::String prefix = "";
 		if (planetName != "") prefix = planetName + "_";
 
 		SimplePlanet::subdivision = subdivision;
@@ -26,8 +26,8 @@ namespace GalaxyEngine
 		bounds.setMinimum(-radius, -radius, -radius);
 		bounds.setMaximum(radius, radius, radius);
 
-		material = MaterialManager::getSingleton().create(Utility::getUniqueID(), ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
-		Pass *pass = material->getTechnique(0)->getPass(0);
+		material = Ogre::MaterialManager::getSingleton().create(Utility::getUniqueID(), Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+		Ogre::Pass *pass = material->getTechnique(0)->getPass(0);
 		pass->createTextureUnitState(prefix + "norm_atlas.dds");
 		pass->createTextureUnitState(prefix + "color_atlas.dds");
 		pass->setVertexProgram("SimplePlanet_vs");
@@ -42,11 +42,11 @@ namespace GalaxyEngine
 		delete renderable;
 	}
 
-	void SimplePlanet::_notifyCurrentCamera(Camera *cam)
+	void SimplePlanet::_notifyCurrentCamera(Ogre::Camera *cam)
 	{
 		//Calculate camera distance
-		Vector3 camVec = cam->getDerivedPosition() - getParentSceneNode()->_getDerivedPosition();
-		Real centerDistanceSquared = camVec.squaredLength();
+		Ogre::Vector3 camVec = cam->getDerivedPosition() - getParentSceneNode()->_getDerivedPosition();
+		Ogre::Real centerDistanceSquared = camVec.squaredLength();
 
 		if (getRenderingDistance() == 0) {
 			withinFarDistance = true;
@@ -57,7 +57,7 @@ namespace GalaxyEngine
 			//the planet.
 
 			//Determine whether the planet is within the far rendering distance
-			withinFarDistance = minDistanceSquared <= Math::Sqr(getRenderingDistance());
+			withinFarDistance = minDistanceSquared <= Ogre::Math::Sqr(getRenderingDistance());
 		}
 
 		//Calculate the best material technique
@@ -74,15 +74,15 @@ namespace GalaxyEngine
 		}
 	}
 
-	void SimplePlanet::updateLighting(Light *light, SceneNode *planet)
+	void SimplePlanet::updateLighting(Ogre::Light *light, Ogre::SceneNode *planet)
 	{
-		Vector3 lightDir = light->getDerivedPosition() - planet->_getDerivedPosition();
+		Ogre::Vector3 lightDir = light->getDerivedPosition() - planet->_getDerivedPosition();
 		lightDir.normalise();
 		std::swap(lightDir.x, lightDir.z);
 		lightDir = planet->_getDerivedOrientation() * lightDir;
 
-		Pass *pass = material->getTechnique(0)->getPass(0);
-		GpuProgramParametersSharedPtr params = pass->getFragmentProgramParameters();
+		Ogre::Pass *pass = material->getTechnique(0)->getPass(0);
+		Ogre::GpuProgramParametersSharedPtr params = pass->getFragmentProgramParameters();
 		params->setNamedConstant("lightDirection", lightDir);
 	}
 
@@ -91,7 +91,7 @@ namespace GalaxyEngine
 		return mVisible && withinFarDistance;
 	}
 
-	void SimplePlanet::_updateRenderQueue(RenderQueue *queue)
+	void SimplePlanet::_updateRenderQueue(Ogre::RenderQueue *queue)
 	{
 		//Scale the parent node to achieve the correct planet radius
 		getParentSceneNode()->setScale(radius, radius, radius);
@@ -100,7 +100,7 @@ namespace GalaxyEngine
 		queue->addRenderable(renderable);
 	}
 
-	SimplePlanetMesh *SimplePlanet::loadSphereMesh(uint32 resolution)
+	SimplePlanetMesh *SimplePlanet::loadSphereMesh(Ogre::uint32 resolution)
 	{
 		//Search for an existing mesh that is identical to the requested one
 		std::vector<SimplePlanetMesh*>::iterator it;
@@ -132,57 +132,57 @@ namespace GalaxyEngine
 		meshData = mesh;
 	}
 
-	void SimplePlanet::SimplePlanetRenderable::getRenderOperation(RenderOperation& op)
+	void SimplePlanet::SimplePlanetRenderable::getRenderOperation(Ogre::RenderOperation& op)
 	{
-		op.operationType = RenderOperation::OT_TRIANGLE_LIST;
+		op.operationType = Ogre::RenderOperation::OT_TRIANGLE_LIST;
 		op.srcRenderable = this;
 		op.useIndexes = true;
 		op.vertexData = &(meshData->vertexData);
 		op.indexData = &(meshData->indexData);
 	}
 
-	Real SimplePlanet::SimplePlanetRenderable::getSquaredViewDepth(const Camera* cam) const
+	Ogre::Real SimplePlanet::SimplePlanetRenderable::getSquaredViewDepth(const Ogre::Camera* cam) const
 	{
-		Vector3 camVec = cam->getDerivedPosition() - planet->getParentSceneNode()->_getDerivedPosition();
+		Ogre::Vector3 camVec = cam->getDerivedPosition() - planet->getParentSceneNode()->_getDerivedPosition();
 		return camVec.squaredLength();
 	}
 
-	const LightList& SimplePlanet::SimplePlanetRenderable::getLights(void) const
+	const Ogre::LightList& SimplePlanet::SimplePlanetRenderable::getLights(void) const
 	{
 		return planet->queryLights();
 	}
 
 
-	SimplePlanetMesh::SimplePlanetMesh(uint32 resolution, float radius)
+	SimplePlanetMesh::SimplePlanetMesh(Ogre::uint32 resolution, float radius)
 	{
 		this->resolution = resolution;
 		this->radius = radius;
 		float invRes = 1.0f / resolution;
 
 		//Load vertex buffer
-		uint32 vertCount = 6 * (resolution+1) * (resolution+1);
+		Ogre::uint32 vertCount = 6 * (resolution+1) * (resolution+1);
 		assert(vertCount < 0xFFFF);
 		size_t offset = 0;
-		vertexData.vertexDeclaration->addElement(0, offset, VET_FLOAT3, VES_POSITION);
-		offset += VertexElement::getTypeSize(VET_FLOAT3);
-		vertexData.vertexDeclaration->addElement(0, offset, VET_FLOAT2, VES_TEXTURE_COORDINATES);
-		HardwareVertexBufferSharedPtr vertBuff = HardwareBufferManager::getSingleton().createVertexBuffer(
-			vertexData.vertexDeclaration->getVertexSize(0), vertCount, HardwareBuffer::HBU_STATIC_WRITE_ONLY, false);
+		vertexData.vertexDeclaration->addElement(0, offset, Ogre::VET_FLOAT3, Ogre::VES_POSITION);
+		offset += Ogre::VertexElement::getTypeSize(Ogre::VET_FLOAT3);
+		vertexData.vertexDeclaration->addElement(0, offset, Ogre::VET_FLOAT2, Ogre::VES_TEXTURE_COORDINATES);
+		Ogre::HardwareVertexBufferSharedPtr vertBuff = Ogre::HardwareBufferManager::getSingleton().createVertexBuffer(
+			vertexData.vertexDeclaration->getVertexSize(0), vertCount, Ogre::HardwareBuffer::HBU_STATIC_WRITE_ONLY, false);
 
-		float *vBuff = static_cast<float*>(vertBuff->lock(HardwareBuffer::HBL_DISCARD));
+		float *vBuff = static_cast<float*>(vertBuff->lock(Ogre::HardwareBuffer::HBL_DISCARD));
 
-		for (uint32 face = 0; face < 6; ++face) {
+		for (Ogre::uint32 face = 0; face < 6; ++face) {
 			float faceNormalOffsetV = (face % 2) / 2.0f;
 			float faceNormalOffsetU = (face / 2) / 4.0f;
 
-			for (uint32 y = 0; y <= resolution; ++y){
-				for (uint32 x = 0; x <= resolution; ++x){
+			for (Ogre::uint32 y = 0; y <= resolution; ++y){
+				for (Ogre::uint32 x = 0; x <= resolution; ++x){
 					//Calculate UVs and terrain height
-					Real tx = x * invRes;
-					Real ty = y * invRes;
+					Ogre::Real tx = x * invRes;
+					Ogre::Real ty = y * invRes;
 
 					//Calculate vertex position
-					Vector3 pos = PlanetMath::mapCubeToUnitSphere(mapPlaneToCube(tx, ty, (PlanetMath::CubeFace)face)) * radius;
+					Ogre::Vector3 pos = PlanetMath::mapCubeToUnitSphere(mapPlaneToCube(tx, ty, (PlanetMath::CubeFace)face)) * radius;
 
 					//Add vertex
 					*vBuff++ = pos.x; *vBuff++ = pos.y; *vBuff++ = pos.z;
@@ -197,19 +197,19 @@ namespace GalaxyEngine
 		vertexData.vertexBufferBinding->setBinding(0, vertBuff);
 
 		//Load index buffer
-		uint32 indexCount = 6 * 6 * resolution * resolution;
-		HardwareIndexBufferSharedPtr indexBuff = HardwareBufferManager::getSingleton().createIndexBuffer(
-			HardwareIndexBuffer::IT_16BIT, indexCount, HardwareBuffer::HBU_STATIC_WRITE_ONLY, false);
+		Ogre::uint32 indexCount = 6 * 6 * resolution * resolution;
+		Ogre::HardwareIndexBufferSharedPtr indexBuff = Ogre::HardwareBufferManager::getSingleton().createIndexBuffer(
+			Ogre::HardwareIndexBuffer::IT_16BIT, indexCount, Ogre::HardwareBuffer::HBU_STATIC_WRITE_ONLY, false);
 
-		uint16 *iBuff = static_cast<uint16*>(indexBuff->lock(HardwareBuffer::HBL_DISCARD));
+		Ogre::uint16 *iBuff = static_cast<Ogre::uint16*>(indexBuff->lock(Ogre::HardwareBuffer::HBL_DISCARD));
 
 		//Index the chunk grid
-		for (uint32 face = 0; face < 6; ++face) {
-			uint32 faceOffset = face * ((resolution+1) * (resolution+1));
-			for (uint32 y = 0; y < resolution; ++y){
-				for (uint32 x = 0; x < resolution; ++x){
-					uint16 vTopLeft = faceOffset + (y * (resolution+1) + x);
-					uint16 vBottomLeft = faceOffset + ((y+1) * (resolution+1) + x);
+		for (Ogre::uint32 face = 0; face < 6; ++face) {
+			Ogre::uint32 faceOffset = face * ((resolution+1) * (resolution+1));
+			for (Ogre::uint32 y = 0; y < resolution; ++y){
+				for (Ogre::uint32 x = 0; x < resolution; ++x){
+					Ogre::uint16 vTopLeft = faceOffset + (y * (resolution+1) + x);
+					Ogre::uint16 vBottomLeft = faceOffset + ((y+1) * (resolution+1) + x);
 					*iBuff++ = vBottomLeft;
 					*iBuff++ = vTopLeft+1;
 					*iBuff++ = vTopLeft;

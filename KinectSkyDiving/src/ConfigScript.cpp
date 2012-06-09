@@ -3,7 +3,7 @@
 #include "ConfigScript.h"
 #include "Exception.h"
 
-using namespace Ogre;
+//using namespace Ogre;
 
 #include <vector>
 #include <hash_map>
@@ -23,7 +23,7 @@ ConfigScriptLoader::ConfigScriptLoader()
 	//Register as a ScriptLoader
 	mLoadOrder = 100.0f;
 	mScriptPatterns.push_back("*.object");
-	ResourceGroupManager::getSingleton()._registerScriptLoader(this);
+	Ogre::ResourceGroupManager::getSingleton()._registerScriptLoader(this);
 }
 
 ConfigScriptLoader::~ConfigScriptLoader()
@@ -31,32 +31,32 @@ ConfigScriptLoader::~ConfigScriptLoader()
 	singletonPtr = NULL;
 
 	//Delete all scripts
-	stdext::hash_map<String, ConfigNode*>::iterator i;
+	stdext::hash_map<Ogre::String, ConfigNode*>::iterator i;
 	for (i = scriptList.begin(); i != scriptList.end(); i++){
 		delete i->second;
 	}
 	scriptList.clear();
 
 	//Unregister with resource group manager
-	if (ResourceGroupManager::getSingletonPtr())
-		ResourceGroupManager::getSingleton()._unregisterScriptLoader(this);
+	if (Ogre::ResourceGroupManager::getSingletonPtr())
+		Ogre::ResourceGroupManager::getSingleton()._unregisterScriptLoader(this);
 }
 
-Real ConfigScriptLoader::getLoadingOrder() const
+Ogre::Real ConfigScriptLoader::getLoadingOrder() const
 {
 	return mLoadOrder;
 }
 
-const StringVector &ConfigScriptLoader::getScriptPatterns() const
+const Ogre::StringVector &ConfigScriptLoader::getScriptPatterns() const
 {
 	return mScriptPatterns;
 }
 
-ConfigNode *ConfigScriptLoader::getConfigScript(const String &type, const String &name)
+ConfigNode *ConfigScriptLoader::getConfigScript(const Ogre::String &type, const Ogre::String &name)
 {
-	stdext::hash_map<String, ConfigNode*>::iterator i;
+	stdext::hash_map<Ogre::String, ConfigNode*>::iterator i;
 
-	String key = type + ' ' + name;
+	Ogre::String key = type + ' ' + name;
 	i = scriptList.find(key);
 
 	//If found..
@@ -66,7 +66,7 @@ ConfigNode *ConfigScriptLoader::getConfigScript(const String &type, const String
 		return NULL;
 }
 
-void ConfigScriptLoader::parseScript(DataStreamPtr &stream, const String &groupName)
+void ConfigScriptLoader::parseScript(Ogre::DataStreamPtr &stream, const Ogre::String &groupName)
 {
 	//Copy the entire file into a buffer for fast access
 	parseBuffLen = stream->size();
@@ -178,7 +178,7 @@ void ConfigScriptLoader::_prevToken()
 
 void ConfigScriptLoader::_parseNodes(ConfigNode *parent)
 {
-	typedef std::pair<String, ConfigNode*> ScriptItem;
+	typedef std::pair<Ogre::String, ConfigNode*> ScriptItem;
 
 	while (1) {
 		switch (tok){
@@ -200,7 +200,7 @@ void ConfigScriptLoader::_parseNodes(ConfigNode *parent)
 
 				//Add root nodes to scriptList
 				if (!parent){
-					String key;
+					Ogre::String key;
 
 					if (newNode->getValues().empty())
 						key = newNode->getName() + ' ';
@@ -257,7 +257,7 @@ void ConfigScriptLoader::_parseNodes(ConfigNode *parent)
 
 
 
-ConfigNode::ConfigNode(ConfigNode *parent, const String &name)
+ConfigNode::ConfigNode(ConfigNode *parent, const Ogre::String &name)
 {
 	ConfigNode::name = name;
 	ConfigNode::parent = parent;
@@ -287,7 +287,7 @@ ConfigNode::~ConfigNode()
 		parent->children.erase(_iter);
 }
 
-ConfigNode *ConfigNode::addChild(const String &name, bool replaceExisting)
+ConfigNode *ConfigNode::addChild(const Ogre::String &name, bool replaceExisting)
 {
 	if (replaceExisting) {
 		ConfigNode *node = findChild(name, false);
@@ -297,7 +297,7 @@ ConfigNode *ConfigNode::addChild(const String &name, bool replaceExisting)
 	return new ConfigNode(this, name);
 }
 
-ConfigNode *ConfigNode::findChild(const String &name, bool recursive)
+ConfigNode *ConfigNode::findChild(const Ogre::String &name, bool recursive)
 {
 	int indx, prevC, nextC;
 	int childCount = (int)children.size();

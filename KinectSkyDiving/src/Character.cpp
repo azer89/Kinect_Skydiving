@@ -23,9 +23,11 @@ Character::~Character(void)
 void Character::setup(Ogre::SceneManager* mSceneManager, 
 					  Ogre::Vector3 position, 
 					  Ogre::Vector3 scale, 
-					  Ogre::Quaternion orientation)
+					  Ogre::Quaternion orientation,
+					  MyPhysics* mPhysics)
 {
 	this->mSceneManager = mSceneManager;
+	this->mPhysics = mPhysics;
 
 	this->entityName = "MainBodyCharacter";
 
@@ -52,11 +54,55 @@ void Character::setup(Ogre::SceneManager* mSceneManager,
 
 	mSightNode = this->mMainNode->createChildSceneNode("sightNode", sight);
 	mCameraNode = this->mMainNode->createChildSceneNode("cameraNode", cam);	
+
+	this->initPhysics();
+}
+
+//--------------------------------------------------------------------------------------
+void Character::initPhysics()
+{
+	btTransform startTransform;
+	startTransform.setIdentity();
+
+	Ogre::Vector3 origin = this->mMainNode->getPosition();
+	startTransform.setOrigin(btVector3(origin.x,origin.y, origin.z));
+	btPairCachingGhostObject * characterGhostObject = new btPairCachingGhostObject();
+	characterGhostObject->setWorldTransform(startTransform);
+
+	btScalar characterHeight = 2.f;
+	btScalar characterWidth = 1.f;
+
+	btConvexShape * capsule = new btCapsuleShape(characterWidth, characterHeight);
+	mPhysics->addCollisionShape(capsule);
+	characterGhostObject->setCollisionShape(capsule);
+	characterGhostObject->setCollisionFlags(btCollisionObject::CF_KINEMATIC_OBJECT);
+
+	// duck setup
+	btConvexShape * duck = new btCapsuleShape(characterWidth, characterHeight / 3);
+	mPhysics->addCollisionShape(duck);
+
+	btScalar stepHeight = 0.35f;
+	this->mCCPhysics = new CharacterControllerPhysics(characterGhostObject, 
+		capsule, 
+		stepHeight, 
+		mPhysics->getCollisionWorld(), 
+		1);
+
+	this->mCCPhysics->setDuckingConvexShape(duck);
+
+	//this->mCCPhysics->setGravity(9.8);
+	//this->mCCPhysics->setF
+
+	mPhysics->getBroadphase()->getOverlappingPairCache()->setInternalGhostPairCallback(new btGhostPairCallback());
+	mPhysics->getDynamicsWorld()->addCollisionObject(characterGhostObject, btBroadphaseProxy::CharacterFilter, btBroadphaseProxy::StaticFilter | btBroadphaseProxy::DefaultFilter|btBroadphaseProxy::CharacterFilter);
+	mPhysics->getDynamicsWorld()->addAction(this->mCCPhysics);
+
 }
 
 //--------------------------------------------------------------------------------------
 void Character::update(Ogre::Real elapsedTime)
 {
+	
 	Ogre::Vector3 upVector = this->mMainNode->_getDerivedPosition();
 	upVector.normalise();
 	Ogre::Quaternion qA;
@@ -67,13 +113,14 @@ void Character::update(Ogre::Real elapsedTime)
 	//std::cout << this->mMainNode->_getDerivedPosition() << "\n";
 
 	if(!isLanding)
-	{
-		
+	{		
 		fallDown(elapsedTime);
 		moveCharacter(elapsedTime);
 	}
 
-	
+	//btVector3 btPos = mCCPhysics->getPosition();
+	//std::cout << btPos.x() << " " << btPos.y() << " " << btPos.z() << "\n";
+
 }
 
 //--------------------------------------------------------------------------------------
@@ -89,6 +136,9 @@ void Character::fallDown(Ogre::Real elapsedTime)
 	upVector.normalise();
 
 	mMainNode->translate(-upVector * gravity * elapsedTime);
+
+	//Ogre::Vector3 moveDirection(-upVector * gravity * elapsedTime);
+	//mCCPhysics->setWalkDirection(moveDirection.x, moveDirection.y, moveDirection.z);
 }
 
 //--------------------------------------------------------------------------------------
