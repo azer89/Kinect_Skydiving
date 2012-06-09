@@ -7,7 +7,7 @@
 #include "QueryFlags.h"
 
 using namespace GalaxyEngine::PlanetMath;
-using namespace Ogre;
+//using namespace Ogre;
 
 #include <list>
 using namespace std;
@@ -30,7 +30,7 @@ namespace GalaxyEngine
 		updateBounds();
 
 		//Initialize the 6 faces of the planet "cube"
-		const FloatRect globalBounds(0, 0, 1, 1);
+		const Ogre::FloatRect globalBounds(0, 0, 1, 1);
 		planetFace[CUBEFACE_Front]	= new ChunkNode(this, NULL, globalBounds, (Quadrant)0, CUBEFACE_Front, 0);
 		planetFace[CUBEFACE_Back]	= new ChunkNode(this, NULL, globalBounds, (Quadrant)0, CUBEFACE_Back, 0);
 		planetFace[CUBEFACE_Right]	= new ChunkNode(this, NULL, globalBounds, (Quadrant)0, CUBEFACE_Right, 0);
@@ -49,12 +49,12 @@ namespace GalaxyEngine
 		ChunkManager::unregisterPlanet(this);
 
 		//Delete the 6 faces of the planet "cube"
-		for (uint32 i = 0; i < 6; ++i) {
+		for (Ogre::uint32 i = 0; i < 6; ++i) {
 			delete planetFace[i];
 		}
 	}
 
-	void Planet::_notifyCurrentCamera(Camera *cam)
+	void Planet::_notifyCurrentCamera(Ogre::Camera *cam)
 	{
 		if (getRenderingDistance() == 0) 
 		{
@@ -63,20 +63,20 @@ namespace GalaxyEngine
 		else 
 		{
 			//Calculate camera distance
-			Vector3 camVec = cam->getDerivedPosition() - getParentSceneNode()->_getDerivedPosition();
-			Real centerDistanceSquared = camVec.squaredLength();
+			Ogre::Vector3 camVec = cam->getDerivedPosition() - getParentSceneNode()->_getDerivedPosition();
+			Ogre::Real centerDistanceSquared = camVec.squaredLength();
 			minDistanceSquared = std::max(0.0f, centerDistanceSquared - (outerRadius * outerRadius));
 			//Note: centerDistanceSquared measures the distance between the camera and the center of the planet,
 			//while minDistanceSquared measures the closest distance between the camera and the closest vertex of
 			//the planet.
 
 			//Determine whether the planet is within the far rendering distance
-			withinFarDistance = minDistanceSquared <= Math::Sqr(getRenderingDistance());
+			withinFarDistance = minDistanceSquared <= Ogre::Math::Sqr(getRenderingDistance());
 		}
 
 		//Calculate the "perspective scaling factor" (used in LOD calculations)
 		float viewportHeight = cam->getViewport()->getActualHeight();
-		perspectiveScalingFactor = viewportHeight / (2 * Math::Tan(cam->getFOVy()/2));
+		perspectiveScalingFactor = viewportHeight / (2 *Ogre:: Math::Tan(cam->getFOVy()/2));
 
 		//Store camera position data. The camera position is translated to be relative to the
 		//planet's center for easier LOD calculation.
@@ -96,10 +96,10 @@ namespace GalaxyEngine
 		return mVisible && withinFarDistance;
 	}
 
-	void Planet::_updateRenderQueue(RenderQueue *queue)
+	void Planet::_updateRenderQueue(Ogre::RenderQueue *queue)
 	{
 		//Unit scale required
-		getParentSceneNode()->setScale(Vector3::UNIT_SCALE);
+		getParentSceneNode()->setScale(Ogre::Vector3::UNIT_SCALE);
 
 		//Update and render the planet
 		if (chunkLoader) {
@@ -107,9 +107,9 @@ namespace GalaxyEngine
 
 			if (isVisible()) {
 				timeOfLastRender = timer.getMilliseconds();   //for use in node expiration calculations, etc.
-
+				
 				//Render all 6 faces of the planet "cube"
-				for (uint32 i = 0; i < 6; ++i) 
+				for (Ogre::uint32 i = 0; i < 6; ++i) 
 				{
 					planetFace[i]->renderNodeHierarchyWithLOD(queue, true);
 				}
@@ -124,20 +124,20 @@ namespace GalaxyEngine
 			innerRadius = chunkLoader->getInnerRadius();
 			outerRadius = chunkLoader->getOuterRadius();
 			heightRange = outerRadius - innerRadius;
-			planetBounds = AxisAlignedBox(-outerRadius, -outerRadius, -outerRadius, outerRadius, outerRadius, outerRadius);
+			planetBounds = Ogre::AxisAlignedBox(-outerRadius, -outerRadius, -outerRadius, outerRadius, outerRadius, outerRadius);
 		} 
 		else 
 		{
 			innerRadius = 0.0f;
 			outerRadius = 0.0f;
 			heightRange = 0.0f;
-			planetBounds = AxisAlignedBox();
+			planetBounds = Ogre::AxisAlignedBox();
 		}
 	}
 
 	void Planet::reload()
 	{
-		for (uint32 i = 0; i < 6; ++i) 
+		for (Ogre::uint32 i = 0; i < 6; ++i) 
 		{
 			planetFace[i]->deleteSubNodes();
 		}
@@ -146,7 +146,7 @@ namespace GalaxyEngine
 	}
 
 
-	Planet::ChunkNode::ChunkNode(Planet *owner, ChunkNode *parent, const FloatRect dataBounds, const Quadrant subQuad, const CubeFace cubeFace, uint32 chunkLevel)
+	Planet::ChunkNode::ChunkNode(Planet *owner, ChunkNode *parent, const Ogre::FloatRect dataBounds, const Quadrant subQuad, const CubeFace cubeFace, Ogre::uint32 chunkLevel)
 	{
 		planet = owner;
 		this->parent = parent;
@@ -196,7 +196,7 @@ namespace GalaxyEngine
 		if(indices != 0) delete indices;
 	}
 
-	void Planet::ChunkNode::renderNodeHierarchyWithLOD(RenderQueue *queue, bool parentChunkVisible)
+	void Planet::ChunkNode::renderNodeHierarchyWithLOD(Ogre::RenderQueue *queue, bool parentChunkVisible)
 	{
 		if (!loaded) return;
 
@@ -204,7 +204,7 @@ namespace GalaxyEngine
 		lastTimeUsed = planet->timeOfLastRender;
 
 		//Get the camera's position, relative to the planet
-		Vector3 camPos = planet->cameraPosition;
+		Ogre::Vector3 camPos = planet->cameraPosition;
 
 		//Check if the chunk is visible
 		bool chunkVisible;
@@ -225,7 +225,7 @@ namespace GalaxyEngine
 			loadSubNodes();
 		}
 		else {
-			for (uint32 i = 0; i < 4; ++i) {
+			for (Ogre::uint32 i = 0; i < 4; ++i) {
 				subNode[i]->renderNodeHierarchyWithLOD(queue, chunkVisible);
 			}
 		}
@@ -238,7 +238,7 @@ namespace GalaxyEngine
 		bool chunkVisible = true;
 
 		//Bounding sphere and bounding box frustum check
-		if (!planet->camera->isVisible(Sphere(center, radius)))
+		if (!planet->camera->isVisible(Ogre::Sphere(center, radius)))
 			chunkVisible = false;
 		else
 			if (!planet->camera->isVisible(boundingBox))
@@ -246,12 +246,12 @@ namespace GalaxyEngine
 
 		//Horizon culling check
 		if (chunkVisible) {
-			Vector3 camPos = planet->cameraPosition;
-			Vector3 camVec = camPos.normalisedCopy();
+			Ogre::Vector3 camPos = planet->cameraPosition;
+			Ogre::Vector3 camVec = camPos.normalisedCopy();
 			float camHeight = camPos.length();
 
-			Radian cosAng = Math::ACos(chunkNormal.dotProduct(camVec)) - Math::ATan(dataBounds.width());
-			Degree theta = Math::ACos(planet->innerRadius / camHeight) + Degree(5);
+			Ogre::Radian cosAng = Ogre::Math::ACos(chunkNormal.dotProduct(camVec)) - Ogre::Math::ATan(dataBounds.width());
+			Ogre::Degree theta = Ogre::Math::ACos(planet->innerRadius / camHeight) + Ogre::Degree(5);
 
 			if (cosAng > theta)
 				chunkVisible = false;
@@ -260,7 +260,7 @@ namespace GalaxyEngine
 		return chunkVisible;
 	}
 
-	void Planet::ChunkNode::render(RenderQueue *queue, float distanceToCamera)
+	void Planet::ChunkNode::render(Ogre::RenderQueue *queue, float distanceToCamera)
 	{
 		if (!material.isNull()) {
 			bestTechnique = material->getBestTechnique(material->getLodIndex(distanceToCamera*distanceToCamera));
@@ -286,10 +286,10 @@ namespace GalaxyEngine
 				float w = ww * 0.5f;
 				float h = hh * 0.5f;
 
-				subNode[QUADRANT_TopLeft] = new ChunkNode(planet, this, FloatRect(left, top, left+w, top+h), QUADRANT_TopLeft, cubeFace, chunkLevel+1);
-				subNode[QUADRANT_TopRight] = new ChunkNode(planet, this, FloatRect(left+w, top, left+ww, top+h), QUADRANT_TopRight, cubeFace, chunkLevel+1);
-				subNode[QUADRANT_BottomLeft] = new ChunkNode(planet, this, FloatRect(left, top+h, left+w, top+hh), QUADRANT_BottomLeft, cubeFace, chunkLevel+1);
-				subNode[QUADRANT_BottomRight] = new ChunkNode(planet, this, FloatRect(left+w, top+h, left+ww, top+hh), QUADRANT_BottomRight, cubeFace, chunkLevel+1);
+				subNode[QUADRANT_TopLeft] = new ChunkNode(planet, this, Ogre::FloatRect(left, top, left+w, top+h), QUADRANT_TopLeft, cubeFace, chunkLevel+1);
+				subNode[QUADRANT_TopRight] = new ChunkNode(planet, this, Ogre::FloatRect(left+w, top, left+ww, top+h), QUADRANT_TopRight, cubeFace, chunkLevel+1);
+				subNode[QUADRANT_BottomLeft] = new ChunkNode(planet, this, Ogre::FloatRect(left, top+h, left+w, top+hh), QUADRANT_BottomLeft, cubeFace, chunkLevel+1);
+				subNode[QUADRANT_BottomRight] = new ChunkNode(planet, this, Ogre::FloatRect(left+w, top+h, left+ww, top+hh), QUADRANT_BottomRight, cubeFace, chunkLevel+1);
 				subNodesInitialized = true;
 			}
 		}
@@ -299,7 +299,7 @@ namespace GalaxyEngine
 		//the sub-nodes don't expire due to the fact that they aren't being used.
 		loadNeeded = true;
 		if (subNodesInitialized) {
-			for (uint32 i = 0; i < 4; ++i) {
+			for (Ogre::uint32 i = 0; i < 4; ++i) {
 				ChunkNode *node = subNode[i];
 				node->loadNeeded = true;
 				node->lastTimeUsed = planet->timeOfLastRender;
@@ -378,18 +378,18 @@ namespace GalaxyEngine
 		}
 	}
 
-	void Planet::ChunkNode::getRenderOperation(RenderOperation& op)
+	void Planet::ChunkNode::getRenderOperation(Ogre::RenderOperation& op)
 	{
-		op.operationType = RenderOperation::OT_TRIANGLE_LIST;
+		op.operationType = Ogre::RenderOperation::OT_TRIANGLE_LIST;
 		op.srcRenderable = this;
 		op.useIndexes = true;
 		op.vertexData = &vertexData;
 		op.indexData = &indexData;
 	}
 
-	Real Planet::ChunkNode::getSquaredViewDepth(const Camera* cam) const
+	Ogre::Real Planet::ChunkNode::getSquaredViewDepth(const Ogre::Camera* cam) const
 	{
-		Vector3 camVec = cam->getDerivedPosition() - planet->getParentSceneNode()->_getDerivedPosition();
+		Ogre::Vector3 camVec = cam->getDerivedPosition() - planet->getParentSceneNode()->_getDerivedPosition();
 		return camVec.squaredLength();
 	}
 
@@ -441,7 +441,7 @@ namespace GalaxyEngine
 				Planet *planet = *i;
 
 				expirationTime = planet->getChunkLoader()->getExpirationTime();
-				for (uint32 o = 0; o < 6; ++o) 
+				for (Ogre::uint32 o = 0; o < 6; ++o) 
 				{
 					updateNode(planet->getCubeFace(o));
 				}
@@ -456,7 +456,7 @@ namespace GalaxyEngine
 		if (node->hasSubNodes()) 
 		{
 			//If all subnodes have expired, delete them
-			ulong inactiveTime = timeNow - node->getSubNode(QUADRANT_TopLeft)->getLastTimeUsed();
+			Ogre::ulong inactiveTime = timeNow - node->getSubNode(QUADRANT_TopLeft)->getLastTimeUsed();
 			if (inactiveTime >= expirationTime) 
 			{
 				node->deleteSubNodes();
@@ -464,7 +464,7 @@ namespace GalaxyEngine
 			else 
 			{
 				//If not expired, then continue to update them
-				for (uint32 i = 0; i < 4; ++i) 
+				for (Ogre::uint32 i = 0; i < 4; ++i) 
 				{
 					Planet::ChunkNode *subNode = node->getSubNode((Quadrant)i);
 					if (subNode && subNode->isLoadNeeded())

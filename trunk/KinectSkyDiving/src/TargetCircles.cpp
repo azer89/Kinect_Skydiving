@@ -18,7 +18,7 @@ void TargetCircles::setup(Ogre::SceneManager* mSceneManager)
 	this->mSceneManager = mSceneManager;	
 	this->mMainNode = mSceneManager->getRootSceneNode()->createChildSceneNode();
 
-	Ogre::DotSceneLoader* sceneLoader = new Ogre::DotSceneLoader();
+	sceneLoader = new Ogre::DotSceneLoader();
 	sceneLoader->parseDotScene("circles.scene", "Popular", mSceneManager, mMainNode);
 	std::vector<Ogre::SceneNode*> nodeList = sceneLoader->nodeList;
 	

@@ -1,15 +1,17 @@
-material Sky/EarlyMorning
+
+material Sky/Space
 {
 	technique
 	{
 		pass
 		{
+			fog_override true none
 			lighting off
 			depth_write off
 
 			texture_unit
 			{
-				cubic_texture early_morning.jpg separateUV
+				cubic_texture space.png separateUV
 				tex_address_mode clamp
 			}
 		}
@@ -22,6 +24,7 @@ material Sky/Bright
 	{
 		pass
 		{
+			fog_override true none
 			lighting off
 			depth_write off
 
@@ -34,30 +37,13 @@ material Sky/Bright
 	}
 }
 
-material Sky/ClubTropicana
-{
-	technique
-	{
-		pass
-		{
-			lighting off
-			depth_write off
-
-			texture_unit
-			{
-				cubic_texture ct.png separateUV
-				tex_address_mode clamp
-			}
-		}
-	}
-}
-
 material Sky/Clouds
 {
 	technique
 	{
 		pass
 		{
+			fog_override true none
 			lighting off
 			depth_write off
 

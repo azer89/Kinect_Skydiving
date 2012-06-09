@@ -61,7 +61,7 @@
       <FloatingPointModel>Fast</FloatingPointModel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>include;include\Hikari;include\tinyxml;$(OGRE_HOME)\include;$(OGRE_HOME)\include\OIS;$(OGRE_HOME)\include\OGRE;$(OGRE_HOME)\Samples\Common\include;$(OGRE_HOME)\boost_1_47;$(OGRE_HOME)\boost_1_47\boost;C:\Ogre3D\AddOns\bullet-2.80\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;include\Hikari;include\tinyxml;include\Bullet;$(OGRE_HOME)\include;$(OGRE_HOME)\include\OIS;$(OGRE_HOME)\include\OGRE;$(OGRE_HOME)\Samples\Common\include;$(OGRE_HOME)\boost_1_47;$(OGRE_HOME)\boost_1_47\boost;C:\Ogre3D\AddOns\bullet-2.80\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>Stdafx.h</PrecompiledHeaderFile>
       <AdditionalOptions>/Zm256 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -99,7 +99,7 @@
       <StringPooling>true</StringPooling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FloatingPointModel>Fast</FloatingPointModel>
-      <AdditionalIncludeDirectories>include;include\Hikari;include\tinyxml;$(OGRE_HOME)\include;$(OGRE_HOME)\include\OIS;$(OGRE_HOME)\include\OGRE;$(OGRE_HOME)\Samples\Common\include;$(OGRE_HOME)\boost_1_47;$(OGRE_HOME)\boost_1_47\boost;C:\Ogre3D\AddOns\bullet-2.80\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;include\Hikari;include\tinyxml;include\Bullet;$(OGRE_HOME)\include;$(OGRE_HOME)\include\OIS;$(OGRE_HOME)\include\OGRE;$(OGRE_HOME)\Samples\Common\include;$(OGRE_HOME)\boost_1_47;$(OGRE_HOME)\boost_1_47\boost;C:\Ogre3D\AddOns\bullet-2.80\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -118,10 +118,17 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\AnimationBlender.h" />
     <ClInclude Include="include\Atmosphere.h" />
     <ClInclude Include="include\BaseApplication.h" />
+    <ClInclude Include="include\Bullet\BtOgreExtras.h" />
+    <ClInclude Include="include\Bullet\BtOgreGP.h" />
+    <ClInclude Include="include\Bullet\BtOgrePG.h" />
+    <ClInclude Include="include\Bullet\OgreToBulletMesh.h" />
     <ClInclude Include="include\CameraListener.h" />
+    <ClInclude Include="include\CCPhysics.h" />
     <ClInclude Include="include\Character.h" />
+    <ClInclude Include="include\CollisionDetector.h" />
     <ClInclude Include="include\ConfigScript.h" />
     <ClInclude Include="include\Core.h" />
     <ClInclude Include="include\DotSceneLoader.h" />
@@ -132,6 +139,7 @@
     <ClInclude Include="include\App.h" />
     <ClInclude Include="include\GameSystem.h" />
     <ClInclude Include="include\ParticleManager.h" />
+    <ClInclude Include="include\Physics.h" />
     <ClInclude Include="include\Planet.h" />
     <ClInclude Include="include\PlanetLoader_Hybrid.h" />
     <ClInclude Include="include\PlanetMath.h" />
@@ -151,10 +159,14 @@
     <ClInclude Include="res\Resource.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\AnimationBlender.cpp" />
     <ClCompile Include="src\Atmosphere.cpp" />
     <ClCompile Include="src\BaseApplication.cpp" />
+    <ClCompile Include="src\Bullet\BtOgre.cpp" />
     <ClCompile Include="src\CameraListener.cpp" />
+    <ClCompile Include="src\CCPhysics.cpp" />
     <ClCompile Include="src\Character.cpp" />
+    <ClCompile Include="src\CollisionDetector.cpp" />
     <ClCompile Include="src\ConfigScript.cpp" />
     <ClCompile Include="src\Core.cpp" />
     <ClCompile Include="src\DotSceneLoader.cpp" />

@@ -79,6 +79,18 @@
     <ClCompile Include="src\ParticleManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Bullet\BtOgre.cpp">
+      <Filter>Source Files\BulletPhysics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AnimationBlender.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CCPhysics.cpp">
+      <Filter>Source Files\BulletPhysics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CollisionDetector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\App.h">
@@ -172,6 +184,30 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\ExampleLoadingBar.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Bullet\BtOgreExtras.h">
+      <Filter>Header Files\BulletPhysics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Bullet\BtOgreGP.h">
+      <Filter>Header Files\BulletPhysics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Bullet\BtOgrePG.h">
+      <Filter>Header Files\BulletPhysics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\AnimationBlender.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Bullet\OgreToBulletMesh.h">
+      <Filter>Header Files\BulletPhysics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Physics.h">
+      <Filter>Header Files\BulletPhysics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CCPhysics.h">
+      <Filter>Header Files\BulletPhysics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CollisionDetector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -225,6 +261,15 @@
     </Filter>
     <Filter Include="Source Files\Camera">
       <UniqueIdentifier>{6d3b1395-d66c-4c15-81f6-86b78ac4207c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\UI">
+      <UniqueIdentifier>{3dd28d4d-e101-4cb8-a24c-fc4bddbb1f64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\BulletPhysics">
+      <UniqueIdentifier>{4236b037-d587-4989-b94b-d56cb4531bcd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\BulletPhysics">
+      <UniqueIdentifier>{78a2c332-cdca-4f2f-b7bf-a63fb9873f36}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

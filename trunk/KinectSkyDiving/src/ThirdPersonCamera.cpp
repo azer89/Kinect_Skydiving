@@ -2,9 +2,9 @@
 #include "Stdafx.h"
 #include "ThirdPersonCamera.h"
 
-using namespace Ogre;
+//using namespace Ogre;
 
-ThirdPersonCamera::ThirdPersonCamera (String name, SceneManager *sceneMgr, Camera *camera) 
+ThirdPersonCamera::ThirdPersonCamera (Ogre::String name, Ogre::SceneManager *sceneMgr, Ogre::Camera *camera) 
 {
 	camera->setPosition(0, 3000.0f, 3000.0f);
 	camera->lookAt(0, 1000, 0);
@@ -55,11 +55,11 @@ void ThirdPersonCamera::setTightness (Ogre::Vector3 tightness) { mTightness = ti
 
 Ogre::Vector3 ThirdPersonCamera::getTightness () { return mTightness; }
 
-Vector3 ThirdPersonCamera::getCameraPosition () { return mCameraNode->getPosition (); }
+Ogre::Vector3 ThirdPersonCamera::getCameraPosition () { return mCameraNode->getPosition (); }
 
-void ThirdPersonCamera::instantUpdate (Vector3 cameraPosition) { mCameraNode->setPosition (cameraPosition); }
+void ThirdPersonCamera::instantUpdate (Ogre::Vector3 cameraPosition) { mCameraNode->setPosition (cameraPosition); }
 
-void ThirdPersonCamera::instantUpdate (Vector3 cameraPosition, Vector3 targetPosition) 
+void ThirdPersonCamera::instantUpdate (Ogre::Vector3 cameraPosition, Ogre::Vector3 targetPosition) 
 {
 	mCameraNode->setPosition (cameraPosition);
 	mTargetNode->setPosition (targetPosition);
@@ -67,14 +67,14 @@ void ThirdPersonCamera::instantUpdate (Vector3 cameraPosition, Vector3 targetPos
 	//mCamera->lookAt(targetPosition);
 }
 
-void ThirdPersonCamera::update (Real elapsedTime, Vector3 cameraPosition, Vector3 targetPosition, Quaternion camOrientation) 
+void ThirdPersonCamera::update (Ogre::Real elapsedTime, Ogre::Vector3 cameraPosition, Ogre::Vector3 targetPosition, Ogre::Quaternion camOrientation) 
 {
-	Vector3 displacement01 = (targetPosition - mTargetNode->getPosition());
+	Ogre::Vector3 displacement01 = (targetPosition - mTargetNode->getPosition());
 	displacement01.x *= mTightness.x * 10.0f * elapsedTime;
 	displacement01.y *= mTightness.y * 10.0f * elapsedTime;
 	displacement01.z *= mTightness.z * 10.0f * elapsedTime;
 
-	Vector3 displacement02 = (cameraPosition - mCameraNode->getPosition());
+	Ogre::Vector3 displacement02 = (cameraPosition - mCameraNode->getPosition());
 	displacement02.x *= mTightness.x * 10.0f * elapsedTime;
 	displacement02.y *= mTightness.y * 10.0f * elapsedTime;	
 	displacement02.z *= mTightness.z * 10.0f * elapsedTime;

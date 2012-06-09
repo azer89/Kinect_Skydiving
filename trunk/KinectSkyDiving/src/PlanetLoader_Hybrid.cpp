@@ -5,20 +5,20 @@
 #include "Planet.h"
 #include "Exception.h"
 
-using namespace Ogre;
+//using namespace Ogre;
 
 #include <list>
 using namespace std;
 
 namespace GalaxyEngine
 {
-	PlanetLoader_Hybrid::PlanetLoader_Hybrid(Real radius, Real maxTerrainHeight, uint32 chunkResolution)
+	PlanetLoader_Hybrid::PlanetLoader_Hybrid(Ogre::Real radius, Ogre::Real maxTerrainHeight, Ogre::uint32 chunkResolution)
 	{
 		//Vertex and pixel shaders are required
-		const RenderSystemCapabilities *caps = Root::getSingleton().getRenderSystem()->getCapabilities();
-		if (!caps->hasCapability(RSC_VERTEX_PROGRAM))
+		const Ogre::RenderSystemCapabilities *caps = Ogre::Root::getSingleton().getRenderSystem()->getCapabilities();
+		if (!caps->hasCapability(Ogre::RSC_VERTEX_PROGRAM))
 			EXCEPTION("Your video card does not support shaders. Vertex and pixel shaders are necessary to render planets.", "PlanetLoader_Hybrid");
-		if (!caps->hasCapability(RSC_FRAGMENT_PROGRAM))
+		if (!caps->hasCapability(Ogre::RSC_FRAGMENT_PROGRAM))
 			EXCEPTION("Your video card does not support pixel shaders. Vertex and pixel shaders are necessary to render planets.", "PlanetLoader_Hybrid");
 		loadedPlanetName = "NewPlanet";
 
@@ -27,11 +27,11 @@ namespace GalaxyEngine
 		outerRadius = radius + maxTerrainHeight;
 
 		//Setup materials for all 6 faces of the planet
-		for (uint32 i = 0; i < 6; ++i){
+		for (Ogre::uint32 i = 0; i < 6; ++i){
 			heightMap[i].deallocate();
 
-			material[i] = MaterialManager::getSingleton().create("PlanetMat" + StringConverter::toString(i), "Planet");
-			Pass *pass = material[i]->getTechnique(0)->getPass(0);
+			material[i] = Ogre::MaterialManager::getSingleton().create("PlanetMat" + Ogre::StringConverter::toString(i), "Planet");
+			Ogre::Pass *pass = material[i]->getTechnique(0)->getPass(0);
 			pass->createTextureUnitState();
 			pass->createTextureUnitState();
 		}
@@ -55,17 +55,17 @@ namespace GalaxyEngine
 		//a single index buffer can be used for all terrain chunks.
 
 		//Allocate hardware index buffer
-		uint32 indexCount = (6 * chunkRes * chunkRes) + 6*(2*chunkRes + 2*chunkRes) + 12*3;
-		HardwareIndexBufferSharedPtr indexBuff = HardwareBufferManager::getSingleton().createIndexBuffer(
-			HardwareIndexBuffer::IT_16BIT, indexCount, HardwareBuffer::HBU_WRITE_ONLY, false);
+		Ogre::uint32 indexCount = (6 * chunkRes * chunkRes) + 6*(2*chunkRes + 2*chunkRes) + 12*3;
+		Ogre::HardwareIndexBufferSharedPtr indexBuff = Ogre::HardwareBufferManager::getSingleton().createIndexBuffer(
+			Ogre::HardwareIndexBuffer::IT_16BIT, indexCount, Ogre::HardwareBuffer::HBU_WRITE_ONLY, false);
 
-		uint16 *iBuff = static_cast<uint16*>(indexBuff->lock(HardwareBuffer::HBL_DISCARD));
+		Ogre::uint16 *iBuff = static_cast<Ogre::uint16*>(indexBuff->lock(Ogre::HardwareBuffer::HBL_DISCARD));
 
 		//Index the chunk grid
-		for (uint32 y = 0; y < chunkRes; ++y){
-			for (uint32 x = 0; x < chunkRes; ++x){
-				uint16 vTopLeft = y * (chunkRes+1) + x;
-				uint16 vBottomLeft = (y+1) * (chunkRes+1) + x;
+		for (Ogre::uint32 y = 0; y < chunkRes; ++y){
+			for (Ogre::uint32 x = 0; x < chunkRes; ++x){
+				Ogre::uint16 vTopLeft = y * (chunkRes+1) + x;
+				Ogre::uint16 vBottomLeft = (y+1) * (chunkRes+1) + x;
 				*iBuff++ = vBottomLeft;
 				*iBuff++ = vTopLeft+1;
 				*iBuff++ = vTopLeft;
@@ -76,13 +76,13 @@ namespace GalaxyEngine
 		}
 
 		//Index the chunk skirt
-		uint16 skirtStart = (chunkRes+1) * (chunkRes+1);
+		Ogre::uint16 skirtStart = (chunkRes+1) * (chunkRes+1);
 
 		{
-			uint32 y = 0;
-			for (uint32 x = 0; x < chunkRes; ++x){
-				uint16 vTopLeft = y * (chunkRes+1) + x;
-				uint16 vBottomLeft = skirtStart++;
+			Ogre::uint32 y = 0;
+			for (Ogre::uint32 x = 0; x < chunkRes; ++x){
+				Ogre::uint16 vTopLeft = y * (chunkRes+1) + x;
+				Ogre::uint16 vBottomLeft = skirtStart++;
 				*iBuff++ = vTopLeft+1;
 				*iBuff++ = vBottomLeft;
 				*iBuff++ = vTopLeft;
@@ -93,9 +93,9 @@ namespace GalaxyEngine
 			++skirtStart;
 
 			y = chunkRes;
-			for (uint32 x = 0; x < chunkRes; ++x){
-				uint16 vTopLeft = y * (chunkRes+1) + x;
-				uint16 vBottomLeft = skirtStart++;
+			for (Ogre::uint32 x = 0; x < chunkRes; ++x){
+				Ogre::uint16 vTopLeft = y * (chunkRes+1) + x;
+				Ogre::uint16 vBottomLeft = skirtStart++;
 				*iBuff++ = vBottomLeft;
 				*iBuff++ = vTopLeft+1;
 				*iBuff++ = vTopLeft;
@@ -107,11 +107,11 @@ namespace GalaxyEngine
 		}
 
 		{
-			uint32 x = 0;
-			for (uint32 y = 0; y < chunkRes; ++y){
-				uint16 vTopLeft = y * (chunkRes+1) + x;
-				uint16 vTopRight = (y+1) * (chunkRes+1) + x;
-				uint16 vBottomLeft = skirtStart++;
+			Ogre::uint32 x = 0;
+			for (Ogre::uint32 y = 0; y < chunkRes; ++y){
+				Ogre::uint16 vTopLeft = y * (chunkRes+1) + x;
+				Ogre::uint16 vTopRight = (y+1) * (chunkRes+1) + x;
+				Ogre::uint16 vBottomLeft = skirtStart++;
 				*iBuff++ = vBottomLeft;
 				*iBuff++ = vTopRight;
 				*iBuff++ = vTopLeft;
@@ -122,10 +122,10 @@ namespace GalaxyEngine
 			++skirtStart;
 
 			x = chunkRes;
-			for (uint32 y = 0; y < chunkRes; ++y){
-				uint16 vTopLeft = y * (chunkRes+1) + x;
-				uint16 vTopRight = (y+1) * (chunkRes+1) + x;
-				uint16 vBottomLeft = skirtStart++;
+			for (Ogre::uint32 y = 0; y < chunkRes; ++y){
+				Ogre::uint16 vTopLeft = y * (chunkRes+1) + x;
+				Ogre::uint16 vTopRight = (y+1) * (chunkRes+1) + x;
+				Ogre::uint16 vBottomLeft = skirtStart++;
 				*iBuff++ = vTopRight;
 				*iBuff++ = vBottomLeft;
 				*iBuff++ = vTopLeft;
@@ -147,40 +147,40 @@ namespace GalaxyEngine
 		if (normalBuffer)
 			delete[] normalBuffer;
 
-		for (uint32 i = 0; i < 6; ++i){
+		for (Ogre::uint32 i = 0; i < 6; ++i){
 			heightMap[i].deallocate();
 			material[i]->unload();
 			
-			const String matName = material[i]->getName();
+			const Ogre::String matName = material[i]->getName();
 			material[i].setNull();
-			MaterialManager::getSingleton().remove(matName);
+			Ogre::MaterialManager::getSingleton().remove(matName);
 		}
 	}
 
-	void PlanetLoader_Hybrid::loadPlanet(const String &planetName)
+	void PlanetLoader_Hybrid::loadPlanet(const Ogre::String &planetName)
 	{
 		//This function loads the planet's 6 normal maps and color map, and applies them.
-		const String faceName[6] = { "front", "back", "right", "left", "top", "bottom" };
+		const Ogre::String faceName[6] = { "front", "back", "right", "left", "top", "bottom" };
 		
-		String prefix = "";
+		Ogre::String prefix = "";
 		if (planetName != "")
 			prefix = planetName + "_";
 		loadedPlanetName = planetName;
 
-		for (uint32 i = 0; i < 6; ++i) {
+		for (Ogre::uint32 i = 0; i < 6; ++i) {
 			setHeightMap((PlanetMath::CubeFace)i, prefix + "height_" + faceName[i] + ".png");
 		}
 
-		for (uint32 i = 0; i < 6; ++i) {
+		for (Ogre::uint32 i = 0; i < 6; ++i) {
 			setPropertyMap((PlanetMath::CubeFace)i, prefix + "prop_" + faceName[i] + ".jpg");
 		}
 
-		for (uint32 i = 0; i < 6; ++i) {
+		for (Ogre::uint32 i = 0; i < 6; ++i) {
 			//setNormalMap((PlanetMath::CubeFace)i, prefix + "norm_" + faceName[i] + ".dds");
 			setNormalMap((PlanetMath::CubeFace)i, prefix + "norm_" + faceName[i] + ".png");
 		}
 
-		for (uint32 i = 0; i < 6; ++i) {
+		for (Ogre::uint32 i = 0; i < 6; ++i) {
 			//setColorMap((PlanetMath::CubeFace)i, prefix + "color_" + faceName[i] + ".dds");
 			setColorMap((PlanetMath::CubeFace)i, prefix + "color_" + faceName[i] + ".jpg");
 		}
@@ -188,44 +188,44 @@ namespace GalaxyEngine
 		//generateNormalMaps();
 	}
 
-	void PlanetLoader_Hybrid::setHeightMap(const PlanetMath::CubeFace cubeFace, const String &fileName)
+	void PlanetLoader_Hybrid::setHeightMap(const PlanetMath::CubeFace cubeFace, const Ogre::String &fileName)
 	{
 		ByteMap &map = heightMap[cubeFace];
 		map.deallocate();
 
 		//Load heightmap image
-		Image img;
+		Ogre::Image img;
 		img.load(fileName, "Planet");
-		if (img.getFormat() != PF_L8) {
+		if (img.getFormat() != Ogre::PF_L8) {
 			EXCEPTION("Wrong pixel format for heightmap image (must be 8-bit grayscale)", "PlanetLoader_Hybrid::setHeightMap()");
 		}
-		uint32 width = (uint32)img.getWidth();
-		uint32 height = (uint32)img.getHeight();
+		Ogre::uint32 width = (Ogre::uint32)img.getWidth();
+		Ogre::uint32 height = (Ogre::uint32)img.getHeight();
 		if (width != height) {
 			EXCEPTION("Heightmap images must be square", "PlanetLoader_Hybrid::setHeightMap()");
 		}
 
 		//Calculate max. levels
-		hmapLevels = (Math::Log(width / chunkRes) / Math::Log(2));
+		hmapLevels = (Ogre::Math::Log(width / chunkRes) / Ogre::Math::Log(2));
 
 		//Copy into the ByteMap
 		map.allocate(width, height);
 		memcpy(map.data, img.getData(), map.getTotalBytes());
 	}
 
-	void PlanetLoader_Hybrid::setPropertyMap(const PlanetMath::CubeFace cubeFace, const String &fileName)
+	void PlanetLoader_Hybrid::setPropertyMap(const PlanetMath::CubeFace cubeFace, const Ogre::String &fileName)
 	{
 		ByteMap &map = propertyMap[cubeFace];
 		map.deallocate();
 
 		//Load property map image
-		Image img;
+		Ogre::Image img;
 		img.load(fileName, "Planet");
-		if (img.getFormat() != PF_R8G8B8) {
+		if (img.getFormat() != Ogre::PF_R8G8B8) {
 			EXCEPTION("Wrong pixel format for property map image (must be 24-bit RGB)", "PlanetLoader_Hybrid::setPropertyMap()");
 		}
-		uint32 width = (uint32)img.getWidth();
-		uint32 height = (uint32)img.getHeight();
+		Ogre::uint32 width = (Ogre::uint32)img.getWidth();
+		Ogre::uint32 height = (Ogre::uint32)img.getHeight();
 		if (width != height) {
 			EXCEPTION("Property map images must be square", "PlanetLoader_Hybrid::setPropertyMap()");
 		}
@@ -235,42 +235,43 @@ namespace GalaxyEngine
 		memcpy(map.data, img.getData(), map.getTotalBytes());
 	}
 
-	void PlanetLoader_Hybrid::setNormalMap(const PlanetMath::CubeFace cubeFace, const String &fileName)
+	void PlanetLoader_Hybrid::setNormalMap(const PlanetMath::CubeFace cubeFace, const Ogre::String &fileName)
 	{
-		BackgroundProcessTicket t = ResourceBackgroundQueue::getSingleton().load(TextureManager::getSingleton().getResourceType(), fileName, "Planet");
+
+		Ogre::BackgroundProcessTicket t = Ogre::ResourceBackgroundQueue::getSingleton().load(Ogre::TextureManager::getSingleton().getResourceType(), fileName, "Planet");
 		ticketList.push_back(t);
 
-		TextureUnitState *tex = material[cubeFace]->getTechnique(0)->getPass(0)->getTextureUnitState(0);
+		Ogre::TextureUnitState *tex = material[cubeFace]->getTechnique(0)->getPass(0)->getTextureUnitState(0);
 		tex->setTextureName(fileName);
-		tex->setTextureAddressingMode(TextureUnitState::TAM_CLAMP);
+		tex->setTextureAddressingMode(Ogre::TextureUnitState::TAM_CLAMP);
 
 		if (!material_highResNormals[cubeFace].isNull()) {
-			TextureUnitState *tex = material_highResNormals[cubeFace]->getTechnique(0)->getPass(0)->getTextureUnitState(0);
+			Ogre::TextureUnitState *tex = material_highResNormals[cubeFace]->getTechnique(0)->getPass(0)->getTextureUnitState(0);
 			tex->setTextureName(fileName);
-			tex->setTextureAddressingMode(TextureUnitState::TAM_CLAMP);
+			tex->setTextureAddressingMode(Ogre::TextureUnitState::TAM_CLAMP);
 		}
 	}
 
-	void PlanetLoader_Hybrid::setColorMap(const PlanetMath::CubeFace cubeFace, const String &fileName)
+	void PlanetLoader_Hybrid::setColorMap(const PlanetMath::CubeFace cubeFace, const Ogre::String &fileName)
 	{
-		BackgroundProcessTicket t = ResourceBackgroundQueue::getSingleton().load(TextureManager::getSingleton().getResourceType(), fileName, "Planet");
+		Ogre::BackgroundProcessTicket t = Ogre::ResourceBackgroundQueue::getSingleton().load(Ogre::TextureManager::getSingleton().getResourceType(), fileName, "Planet");
 		ticketList.push_back(t);
 
-		TextureUnitState *tex = material[cubeFace]->getTechnique(0)->getPass(0)->getTextureUnitState(1);
+		Ogre::TextureUnitState *tex = material[cubeFace]->getTechnique(0)->getPass(0)->getTextureUnitState(1);
 		tex->setTextureName(fileName);
-		tex->setTextureAddressingMode(TextureUnitState::TAM_WRAP);
+		tex->setTextureAddressingMode(Ogre::TextureUnitState::TAM_WRAP);
 
 		if (!material_highResNormals[cubeFace].isNull()) {
-			TextureUnitState *tex = material_highResNormals[cubeFace]->getTechnique(0)->getPass(0)->getTextureUnitState(1);
+			Ogre::TextureUnitState *tex = material_highResNormals[cubeFace]->getTechnique(0)->getPass(0)->getTextureUnitState(1);
 			tex->setTextureName(fileName);
-			tex->setTextureAddressingMode(TextureUnitState::TAM_WRAP);
+			tex->setTextureAddressingMode(Ogre::TextureUnitState::TAM_WRAP);
 		}
 	}
 
-	void PlanetLoader_Hybrid::setVirtualResolution(const uint32 mapSize)
+	void PlanetLoader_Hybrid::setVirtualResolution(const Ogre::uint32 mapSize)
 	{
 		//Calculate max. levels
-		maxLevels = (Math::Log(mapSize / chunkRes) / Math::Log(2));		
+		maxLevels = (Ogre::Math::Log(mapSize / chunkRes) / Ogre::Math::Log(2));		
 	}
 
 	bool PlanetLoader_Hybrid::isFinishedLoading()
@@ -280,10 +281,10 @@ namespace GalaxyEngine
 			return true;
 		else {
 			//If background processes were running, check if they still are
-			std::list<BackgroundProcessTicket>::iterator i = ticketList.begin();
+			std::list<Ogre::BackgroundProcessTicket>::iterator i = ticketList.begin();
 			while (i != ticketList.end()){
-				BackgroundProcessTicket t = (*i);
-				if (ResourceBackgroundQueue::getSingleton().isProcessComplete(t))
+				Ogre::BackgroundProcessTicket t = (*i);
+				if (Ogre::ResourceBackgroundQueue::getSingleton().isProcessComplete(t))
 					i = ticketList.erase(i);
 				else
 					++i;
@@ -300,12 +301,12 @@ namespace GalaxyEngine
 	{
 		//High res normals require a second set of materials/shaders
 		if (highResNormals) {
-			for (uint32 i = 0; i < 6; ++i){
+			for (Ogre::uint32 i = 0; i < 6; ++i){
 				if (material_highResNormals[i].isNull())
-					material_highResNormals[i] = material[i]->clone("PlanetMatN" + StringConverter::toString(i));
+					material_highResNormals[i] = material[i]->clone("PlanetMatN" + Ogre::StringConverter::toString(i));
 			}
 		} else {
-			for (uint32 i = 0; i < 6; ++i){
+			for (Ogre::uint32 i = 0; i < 6; ++i){
 				if (!material_highResNormals[i].isNull())
 					material_highResNormals[i].setNull();
 			}
@@ -314,54 +315,54 @@ namespace GalaxyEngine
 		//Select shader types based on planet rendering options
 		{
 			//Get non high res normal shaders
-			StringUtil::StrStreamType tmpName;
+			Ogre::StringUtil::StrStreamType tmpName;
 			tmpName << "Planet_";
 			if (ambientOcclusion)
 				tmpName << "ambientOcclusion_";
-			const String vsName = tmpName.str() + "vs";
-			const String psName = tmpName.str() + "ps";
+			const Ogre::String vsName = tmpName.str() + "vs";
+			const Ogre::String psName = tmpName.str() + "ps";
 			
 			//Apply the shader
-			for (uint32 i = 0; i < 6; ++i){
-				MaterialPtr mat = material[i];
+			for (Ogre::uint32 i = 0; i < 6; ++i){
+				Ogre::MaterialPtr mat = material[i];
 
-				Pass *pass = mat->getTechnique(0)->getPass(0);
+				Ogre::Pass *pass = mat->getTechnique(0)->getPass(0);
 				pass->setVertexProgram(vsName);
 				pass->setFragmentProgram(psName);
 			}
 		}
 		if (highResNormals) {
 			//Get high res normal shaders
-			StringUtil::StrStreamType tmpName;
+			Ogre::StringUtil::StrStreamType tmpName;
 			tmpName << "Planet_";
 			if (highResNormals)
 				tmpName << "highResNormals_";
 			if (ambientOcclusion)
 				tmpName << "ambientOcclusion_";
-			const String vsName = tmpName.str() + "vs";
-			const String psName = tmpName.str() + "ps";
+			const Ogre::String vsName = tmpName.str() + "vs";
+			const Ogre::String psName = tmpName.str() + "ps";
 			
 			//Apply the shader
-			for (uint32 i = 0; i < 6; ++i){
-				MaterialPtr mat = material_highResNormals[i];
+			for (Ogre::uint32 i = 0; i < 6; ++i){
+				Ogre::MaterialPtr mat = material_highResNormals[i];
 
-				Pass *pass = mat->getTechnique(0)->getPass(0);
+				Ogre::Pass *pass = mat->getTechnique(0)->getPass(0);
 				pass->setVertexProgram(vsName);
 				pass->setFragmentProgram(psName);
 			}
 		}
 	}
 
-	void PlanetLoader_Hybrid::updateLighting(Light *light, SceneNode *planet)
+	void PlanetLoader_Hybrid::updateLighting(Ogre::Light *light, Ogre::SceneNode *planet)
 	{
-		Vector3 lightDir = light->getDerivedPosition() - planet->_getDerivedPosition();
+		Ogre::Vector3 lightDir = light->getDerivedPosition() - planet->_getDerivedPosition();
 		lightDir.normalise();
 		std::swap(lightDir.x, lightDir.z);
 		lightDir = planet->_getDerivedOrientation() * lightDir;
 
-		for (uint32 i = 0; i < 6; ++i){
-			Pass *pass;
-			GpuProgramParametersSharedPtr params;
+		for (Ogre::uint32 i = 0; i < 6; ++i){
+			Ogre::Pass *pass;
+			Ogre::GpuProgramParametersSharedPtr params;
 
 			pass = material[i]->getTechnique(0)->getPass(0);
 			params = pass->getFragmentProgramParameters();
@@ -394,7 +395,7 @@ namespace GalaxyEngine
 
 		//----------------------------------- LOD Calculations ----------------------------------
 		//Calculate the approximate size (width or height) of a single tile
-		float tileSize = (Math::PI * 0.25f * outerRadius) * (chunk->getDataBounds().width() / chunkRes);
+		float tileSize = (Ogre::Math::PI * 0.25f * outerRadius) * (chunk->getDataBounds().width() / chunkRes);
 
 		//Estimate the maximum vertex error (extremely crude estimate - to be replaced later)
 		mesh.maxVertexError = tileSize * 0.5f;
@@ -425,12 +426,12 @@ namespace GalaxyEngine
 
 				if (normalBuffer)
 					delete[] normalBuffer;
-				normalBuffer = new Vector3[normalBufferSize * normalBufferSize];
+				normalBuffer = new Ogre::Vector3[normalBufferSize * normalBufferSize];
 			}
 
 			//---------- Main normal generation ----------
-			for (uint32 y = 1; y < chunkRes; ++y){
-				for (uint32 x = 1; x < chunkRes; ++x){
+			for (Ogre::uint32 y = 1; y < chunkRes; ++y){
+				for (Ogre::uint32 x = 1; x < chunkRes; ++x){
 					float tx = dataBoundsLeft + x * dataBoundsWidthDivRes;
 					float ty = dataBoundsTop + y * dataBoundsHeightDivRes;
 
@@ -440,15 +441,15 @@ namespace GalaxyEngine
 					hT = chunkDat->getTerrainHeight(x, y-1);
 					hB = chunkDat->getTerrainHeight(x, y+1);
 
-					Vector3 vL, vR, vT, vB;
+					Ogre::Vector3 vL, vR, vT, vB;
 					vL = planet->mapCubeToPlanet(PlanetMath::mapPlaneToCube(tx-dataBoundsWidthDivRes, ty, cubeFace), hL);
 					vR = planet->mapCubeToPlanet(PlanetMath::mapPlaneToCube(tx+dataBoundsWidthDivRes, ty, cubeFace), hR);
 					vT = planet->mapCubeToPlanet(PlanetMath::mapPlaneToCube(tx, ty-dataBoundsWidthDivRes, cubeFace), hT);
 					vB = planet->mapCubeToPlanet(PlanetMath::mapPlaneToCube(tx, ty+dataBoundsWidthDivRes, cubeFace), hB);
 
-					Vector3 vec1 = vR - vL;
-					Vector3 vec2 = vT - vB;
-					Vector3 normal = vec1.crossProduct(vec2);
+					Ogre::Vector3 vec1 = vR - vL;
+					Ogre::Vector3 vec2 = vT - vB;
+					Ogre::Vector3 normal = vec1.crossProduct(vec2);
 					normal.normalise();
 					normalBuffer[y * normalBufferSize + x] = normal;
 				}
@@ -460,11 +461,11 @@ namespace GalaxyEngine
 			assert(hMap->width == hMap->height);	//Heightmap must be square
 
 			//Get heightmap width/height
-			uint32 hmapWidth0 = hMap->width-1, hmapHeight0 = hMap->height-1;	//1024x1024, for example
-			uint32 hmapWidth1 = hMap->width, hmapHeight1 = hMap->height;		//1025x1025, for example
+			Ogre::uint32 hmapWidth0 = hMap->width-1, hmapHeight0 = hMap->height-1;	//1024x1024, for example
+			Ogre::uint32 hmapWidth1 = hMap->width, hmapHeight1 = hMap->height;		//1025x1025, for example
 
 			//Calculate the section of the heightmap to use for this chunk
-			TRect<uint32> chunkHmapBounds;	//Calculate chunk bounds in heightmap pixel-space coordinates
+			Ogre::TRect<Ogre::uint32> chunkHmapBounds;	//Calculate chunk bounds in heightmap pixel-space coordinates
 			chunkHmapBounds.left = hmapWidth0 * dataBoundsLeft;
 			chunkHmapBounds.top = hmapHeight0 * dataBoundsTop;
 			chunkHmapBounds.right = hmapWidth0 * dataBoundsRight;
@@ -477,14 +478,14 @@ namespace GalaxyEngine
 			//Generate seamless normals
 			if (chunkHmapBounds.top > 0 && chunkHmapBounds.bottom < hmapWidth0 && chunkHmapBounds.left > 0 && chunkHmapBounds.right < hmapWidth0) {
 				//No wrapping
-				uint32 x, y;
+				Ogre::uint32 x, y;
 				y = 0;
-				for (uint32 yi = chunkHmapBounds.top; yi <= chunkHmapBounds.bottom; yi += chunkHmapBounds.height()) {
+				for (Ogre::uint32 yi = chunkHmapBounds.top; yi <= chunkHmapBounds.bottom; yi += chunkHmapBounds.height()) {
 					x = 0;
-					uint32 oldindx = 0xFFFFFFFF;
-					Vector3 normal;
+					Ogre::uint32 oldindx = 0xFFFFFFFF;
+					Ogre::Vector3 normal;
 					for (float xif = chunkHmapBounds.left; xif <= chunkHmapBounds.right; xif += chunkHmapStep) {
-						uint32 xi = xif;
+						Ogre::uint32 xi = xif;
 
 						if (xi != oldindx) {
 							oldindx = xi;
@@ -498,14 +499,14 @@ namespace GalaxyEngine
 							float tx = xi * hmapPixelWidth;
 							float ty = yi * hmapPixelWidth;
 
-							Vector3 vL, vR, vT, vB;
+							Ogre::Vector3 vL, vR, vT, vB;
 							vL = planet->mapCubeToPlanet(PlanetMath::mapPlaneToCube(tx-hmapPixelWidth, ty, cubeFace), hL);
 							vR = planet->mapCubeToPlanet(PlanetMath::mapPlaneToCube(tx+hmapPixelWidth, ty, cubeFace), hR);
 							vT = planet->mapCubeToPlanet(PlanetMath::mapPlaneToCube(tx, ty-hmapPixelWidth, cubeFace), hT);
 							vB = planet->mapCubeToPlanet(PlanetMath::mapPlaneToCube(tx, ty+hmapPixelWidth, cubeFace), hB);
 
-							Vector3 vec1 = vR - vL;
-							Vector3 vec2 = vT - vB;
+							Ogre::Vector3 vec1 = vR - vL;
+							Ogre::Vector3 vec2 = vT - vB;
 
 							normal = vec1.crossProduct(vec2);
 							normal.normalise();
@@ -518,12 +519,12 @@ namespace GalaxyEngine
 				}
 
 				x = 0;
-				for (uint32 xi = chunkHmapBounds.left; xi <= chunkHmapBounds.right; xi += chunkHmapBounds.width()) {
+				for (Ogre::uint32 xi = chunkHmapBounds.left; xi <= chunkHmapBounds.right; xi += chunkHmapBounds.width()) {
 					y = 0;
-					uint32 oldindx = 0xFFFFFFFF;
-					Vector3 normal;
+					Ogre::uint32 oldindx = 0xFFFFFFFF;
+					Ogre::Vector3 normal;
 					for (float yif = chunkHmapBounds.top; yif <= chunkHmapBounds.bottom; yif += chunkHmapStep) {
-						uint32 yi = yif;
+						Ogre::uint32 yi = yif;
 
 						if (yi != oldindx) {
 							oldindx = yi;
@@ -537,14 +538,14 @@ namespace GalaxyEngine
 							float tx = xi * hmapPixelWidth;
 							float ty = yi * hmapPixelWidth;
 
-							Vector3 vL, vR, vT, vB;
+							Ogre::Vector3 vL, vR, vT, vB;
 							vL = planet->mapCubeToPlanet(PlanetMath::mapPlaneToCube(tx-hmapPixelWidth, ty, cubeFace), hL);
 							vR = planet->mapCubeToPlanet(PlanetMath::mapPlaneToCube(tx+hmapPixelWidth, ty, cubeFace), hR);
 							vT = planet->mapCubeToPlanet(PlanetMath::mapPlaneToCube(tx, ty-hmapPixelWidth, cubeFace), hT);
 							vB = planet->mapCubeToPlanet(PlanetMath::mapPlaneToCube(tx, ty+hmapPixelWidth, cubeFace), hB);
 
-							Vector3 vec1 = vR - vL;
-							Vector3 vec2 = vT - vB;
+							Ogre::Vector3 vec1 = vR - vL;
+							Ogre::Vector3 vec2 = vT - vB;
 
 							normal = vec1.crossProduct(vec2);
 							normal.normalise();
@@ -557,19 +558,19 @@ namespace GalaxyEngine
 				}
 			} else {
 				//Wrapping
-				uint32 x, y;
+				Ogre::uint32 x, y;
 				y = 0;
-				for (uint32 yi = chunkHmapBounds.top; yi <= chunkHmapBounds.bottom; yi += chunkHmapBounds.height()) {
+				for (Ogre::uint32 yi = chunkHmapBounds.top; yi <= chunkHmapBounds.bottom; yi += chunkHmapBounds.height()) {
 					x = 0;
-					uint32 oldindx = 0xFFFFFFFF;
-					Vector3 normal;
+					Ogre::uint32 oldindx = 0xFFFFFFFF;
+					Ogre::Vector3 normal;
 					for (float xif = chunkHmapBounds.left; xif <= chunkHmapBounds.right; xif += chunkHmapStep) {
-						uint32 xi = xif;
+						Ogre::uint32 xi = xif;
 
 						if (yi != oldindx) {
 							oldindx = yi;
 
-							Vector3 vL, vR, vT, vB;
+							Ogre::Vector3 vL, vR, vT, vB;
 							int tmpX, tmpY;
 							PlanetMath::CubeFace tmpFace;
 							float tmpH, tx, ty;
@@ -598,8 +599,8 @@ namespace GalaxyEngine
 							tx = tmpX * hmapPixelWidth; ty = tmpY * hmapPixelWidth;
 							vB = planet->mapCubeToPlanet(PlanetMath::mapPlaneToCube(tx, ty, tmpFace), tmpH);
 
-							Vector3 vec1 = vR - vL;
-							Vector3 vec2 = vT - vB;
+							Ogre::Vector3 vec1 = vR - vL;
+							Ogre::Vector3 vec2 = vT - vB;
 
 							normal = vec1.crossProduct(vec2);
 							normal.normalise();
@@ -612,17 +613,17 @@ namespace GalaxyEngine
 				}
 
 				x = 0;
-				for (uint32 xi = chunkHmapBounds.left; xi <= chunkHmapBounds.right; xi += chunkHmapBounds.width()) {
+				for (Ogre::uint32 xi = chunkHmapBounds.left; xi <= chunkHmapBounds.right; xi += chunkHmapBounds.width()) {
 					y = 0;
-					uint32 oldindx = 0xFFFFFFFF;
-					Vector3 normal;
+					Ogre::uint32 oldindx = 0xFFFFFFFF;
+					Ogre::Vector3 normal;
 					for (float yif = chunkHmapBounds.top; yif <= chunkHmapBounds.bottom; yif += chunkHmapStep) {
-						uint32 yi = yif;
+						Ogre::uint32 yi = yif;
 
 						if (yi != oldindx) {
 							oldindx = yi;
 
-							Vector3 vL, vR, vT, vB;
+							Ogre::Vector3 vL, vR, vT, vB;
 							int tmpX, tmpY;
 							PlanetMath::CubeFace tmpFace;
 							float tmpH, tx, ty;
@@ -651,8 +652,8 @@ namespace GalaxyEngine
 							tx = tmpX * hmapPixelWidth; ty = tmpY * hmapPixelWidth;
 							vB = planet->mapCubeToPlanet(PlanetMath::mapPlaneToCube(tx, ty, tmpFace), tmpH);
 
-							Vector3 vec1 = vR - vL;
-							Vector3 vec2 = vT - vB;
+							Ogre::Vector3 vec1 = vR - vL;
+							Ogre::Vector3 vec2 = vT - vB;
 
 							normal = vec1.crossProduct(vec2);
 							normal.normalise();
@@ -668,47 +669,47 @@ namespace GalaxyEngine
 
 		//----------------------------- Allocate & Lock Vertex Buffer ---------------------------
 		//Allocate hardware vertex buffer
-		VertexData &vertexData = *mesh.vertexData;
-		uint32 vertCount = (chunkRes+1) * (chunkRes+1) + (2*(chunkRes+1) + 2*(chunkRes+1));
+		Ogre::VertexData &vertexData = *mesh.vertexData;
+		Ogre::uint32 vertCount = (chunkRes+1) * (chunkRes+1) + (2*(chunkRes+1) + 2*(chunkRes+1));
 		assert(vertCount < 0xFFFF);
 		size_t offset = 0;
 
-		vertexData.vertexDeclaration->addElement(0, offset, VET_FLOAT3, VES_POSITION);
-		offset += VertexElement::getTypeSize(VET_FLOAT3);
+		vertexData.vertexDeclaration->addElement(0, offset, Ogre::VET_FLOAT3, Ogre::VES_POSITION);
+		offset += Ogre::VertexElement::getTypeSize(Ogre::VET_FLOAT3);
 
 		if (calculateNormals) {
-			vertexData.vertexDeclaration->addElement(0, offset, VET_FLOAT3, VES_NORMAL);
-			offset += VertexElement::getTypeSize(VET_FLOAT3);
+			vertexData.vertexDeclaration->addElement(0, offset, Ogre::VET_FLOAT3, Ogre::VES_NORMAL);
+			offset += Ogre::VertexElement::getTypeSize(Ogre::VET_FLOAT3);
 		}
 
-		vertexData.vertexDeclaration->addElement(0, offset, VET_FLOAT2, VES_TEXTURE_COORDINATES);
+		vertexData.vertexDeclaration->addElement(0, offset, Ogre::VET_FLOAT2, Ogre::VES_TEXTURE_COORDINATES);
 
-		HardwareVertexBufferSharedPtr vertBuff = HardwareBufferManager::getSingleton().createVertexBuffer(
-			vertexData.vertexDeclaration->getVertexSize(0), vertCount, HardwareBuffer::HBU_WRITE_ONLY, false);
+		Ogre::HardwareVertexBufferSharedPtr vertBuff = Ogre::HardwareBufferManager::getSingleton().createVertexBuffer(
+			vertexData.vertexDeclaration->getVertexSize(0), vertCount, Ogre::HardwareBuffer::HBU_WRITE_ONLY, false);
 
-		float *vBuff = static_cast<float*>(vertBuff->lock(HardwareBuffer::HBL_DISCARD));
+		float *vBuff = static_cast<float*>(vertBuff->lock(Ogre::HardwareBuffer::HBL_DISCARD));
 
 		//---------------------------------- Vertex Generation ----------------------------------
 		//Initialize bounds info
-		float minX = Math::POS_INFINITY, minY = Math::POS_INFINITY, minZ = Math::POS_INFINITY;
-		float maxX = Math::NEG_INFINITY, maxY = Math::NEG_INFINITY, maxZ = Math::NEG_INFINITY;
-		float minElevation = Math::POS_INFINITY, maxElevation = Math::NEG_INFINITY;
+		float minX = Ogre::Math::POS_INFINITY, minY = Ogre::Math::POS_INFINITY, minZ = Ogre::Math::POS_INFINITY;
+		float maxX = Ogre::Math::NEG_INFINITY, maxY = Ogre::Math::NEG_INFINITY, maxZ = Ogre::Math::NEG_INFINITY;
+		float minElevation = Ogre::Math::POS_INFINITY, maxElevation = Ogre::Math::NEG_INFINITY;
 
 		//Create chunk grid
-		for (uint32 y = 0; y <= chunkRes; ++y) {
-			for (uint32 x = 0; x <= chunkRes; ++x) {
+		for (Ogre::uint32 y = 0; y <= chunkRes; ++y) {
+			for (Ogre::uint32 x = 0; x <= chunkRes; ++x) {
 				//Calculate UVs and terrain height
 				float tx = dataBoundsLeft + x * dataBoundsWidthDivRes;
 				float ty = dataBoundsTop + y * dataBoundsHeightDivRes;
 				float elevation = chunkDat->getTerrainHeight(x, y);
 
 				//Calculate vertex position
-				Vector3 pos = planet->mapCubeToPlanet(PlanetMath::mapPlaneToCube(tx, ty, cubeFace), elevation);
+				Ogre::Vector3 pos = planet->mapCubeToPlanet(PlanetMath::mapPlaneToCube(tx, ty, cubeFace), elevation);
 
 				//Add vertex
 				*vBuff++ = pos.x; *vBuff++ = pos.y; *vBuff++ = pos.z;
 				if (calculateNormals) {
-					const Vector3 &normal = normalBuffer[y * normalBufferSize + x];
+					const Ogre::Vector3 &normal = normalBuffer[y * normalBufferSize + x];
 					*vBuff++ = normal.z; *vBuff++ = normal.y; *vBuff++ = normal.x;
 				}
 				*vBuff++ = tx; *vBuff++ = ty;
@@ -722,20 +723,20 @@ namespace GalaxyEngine
 		}
 
 		//Create chunk skirt
-		for (uint32 y = 0; y <= chunkRes; y += chunkRes) {
-			for (uint32 x = 0; x <= chunkRes; ++x) {
+		for (Ogre::uint32 y = 0; y <= chunkRes; y += chunkRes) {
+			for (Ogre::uint32 x = 0; x <= chunkRes; ++x) {
 				//Calculate UVs and terrain height
 				float tx = dataBoundsLeft + x * dataBoundsWidthDivRes;
 				float ty = dataBoundsTop + y * dataBoundsHeightDivRes;
 				float elevation = chunkDat->getTerrainHeight(x, y);
 
 				//Calculate vertex position
-				Vector3 pos = planet->mapCubeToPlanet(PlanetMath::mapPlaneToCube(tx, ty, cubeFace), elevation - skirtSize);
+				Ogre::Vector3 pos = planet->mapCubeToPlanet(PlanetMath::mapPlaneToCube(tx, ty, cubeFace), elevation - skirtSize);
 
 				//Add vertex
 				*vBuff++ = pos.x; *vBuff++ = pos.y; *vBuff++ = pos.z;
 				if (calculateNormals) {
-					const Vector3 &normal = normalBuffer[y * normalBufferSize + x];
+					const Ogre::Vector3 &normal = normalBuffer[y * normalBufferSize + x];
 					*vBuff++ = normal.x; *vBuff++ = normal.y; *vBuff++ = normal.z;
 				}
 				*vBuff++ = tx; *vBuff++ = ty;	
@@ -743,20 +744,20 @@ namespace GalaxyEngine
 		}
 
 
-		for (uint32 x = 0; x <= chunkRes; x += chunkRes) {
-			for (uint32 y = 0; y <= chunkRes; ++y) {
+		for (Ogre::uint32 x = 0; x <= chunkRes; x += chunkRes) {
+			for (Ogre::uint32 y = 0; y <= chunkRes; ++y) {
 				//Calculate UVs and terrain height
 				float tx = dataBoundsLeft + x * dataBoundsWidthDivRes;
 				float ty = dataBoundsTop + y * dataBoundsHeightDivRes;
 				float elevation = chunkDat->getTerrainHeight(x, y);
 
 				//Calculate vertex position
-				Vector3 pos = planet->mapCubeToPlanet(PlanetMath::mapPlaneToCube(tx, ty, cubeFace), elevation - skirtSize);
+				Ogre::Vector3 pos = planet->mapCubeToPlanet(PlanetMath::mapPlaneToCube(tx, ty, cubeFace), elevation - skirtSize);
 
 				//Add vertex
 				*vBuff++ = pos.x; *vBuff++ = pos.y; *vBuff++ = pos.z;
 				if (calculateNormals) {
-					const Vector3 &normal = normalBuffer[y * normalBufferSize + x];
+					const Ogre::Vector3 &normal = normalBuffer[y * normalBufferSize + x];
 					*vBuff++ = normal.x; *vBuff++ = normal.y; *vBuff++ = normal.z;
 				}
 				*vBuff++ = tx; *vBuff++ = ty;	
@@ -764,7 +765,7 @@ namespace GalaxyEngine
 		}
 
 		//Save bounding box
-		mesh.boundingBox = AxisAlignedBox(minX, minY, minZ, maxX, maxY, maxZ);
+		mesh.boundingBox = Ogre::AxisAlignedBox(minX, minY, minZ, maxX, maxY, maxZ);
 
 		//Calculate center point & radius
 		float tx, ty, tempR;
@@ -853,19 +854,19 @@ namespace GalaxyEngine
 
 	void PlanetLoader_Hybrid::generateNormalMaps()
 	{
-		const String faceName[6] = { "front", "back", "right", "left", "top", "bottom" };
+		const Ogre::String faceName[6] = { "front", "back", "right", "left", "top", "bottom" };
 		
-		String prefix = "";
+		Ogre::String prefix = "";
 		if (loadedPlanetName != "")
 			prefix = loadedPlanetName + "_";
 
 		//Calculate normals for each cube face
-		for (uint32 cubeFace = 0; cubeFace < 6; ++cubeFace) {
-			String normalMapFile = prefix + "norm_" + faceName[cubeFace] + ".png";
+		for (Ogre::uint32 cubeFace = 0; cubeFace < 6; ++cubeFace) {
+			Ogre::String normalMapFile = prefix + "norm_" + faceName[cubeFace] + ".png";
 
 			const ByteMap &hmap = heightMap[cubeFace];
-			uint32 hmapWidth = heightMap[cubeFace].width;
-			uint32 hmapHeight = heightMap[cubeFace].height;
+			Ogre::uint32 hmapWidth = heightMap[cubeFace].width;
+			Ogre::uint32 hmapHeight = heightMap[cubeFace].height;
 			
 			int width = hmapWidth - 1;
 			int height = hmapHeight - 1;
@@ -876,8 +877,8 @@ namespace GalaxyEngine
 
 			for (int y = height-1; y >= 0; --y){
 				for (int x = 0; x < width; ++x){
-					Vector3 vertexNormal;
-					Vector3 vpos[3][3];
+					Ogre::Vector3 vertexNormal;
+					Ogre::Vector3 vpos[3][3];
 
 					int x2, y2;
 					if (x < width-1 && y < height-1) {
@@ -910,12 +911,12 @@ namespace GalaxyEngine
 					}
 
 					//Calculate the face normals
-					Vector3 n1 = (vpos[0][2] - vpos[1][1]).crossProduct((vpos[0][1] - vpos[1][1]));
-					Vector3 n2 = (vpos[0][1] - vpos[1][1]).crossProduct((vpos[1][0] - vpos[1][1]));
-					Vector3 n3 = (vpos[1][0] - vpos[1][1]).crossProduct((vpos[2][0] - vpos[1][1]));
-					Vector3 n4 = (vpos[2][0] - vpos[1][1]).crossProduct((vpos[2][1] - vpos[1][1]));
-					Vector3 n5 = (vpos[2][1] - vpos[1][1]).crossProduct((vpos[1][2] - vpos[1][1]));
-					Vector3 n6 = (vpos[1][2] - vpos[1][1]).crossProduct((vpos[0][2] - vpos[1][1]));
+					Ogre::Vector3 n1 = (vpos[0][2] - vpos[1][1]).crossProduct((vpos[0][1] - vpos[1][1]));
+					Ogre::Vector3 n2 = (vpos[0][1] - vpos[1][1]).crossProduct((vpos[1][0] - vpos[1][1]));
+					Ogre::Vector3 n3 = (vpos[1][0] - vpos[1][1]).crossProduct((vpos[2][0] - vpos[1][1]));
+					Ogre::Vector3 n4 = (vpos[2][0] - vpos[1][1]).crossProduct((vpos[2][1] - vpos[1][1]));
+					Ogre::Vector3 n5 = (vpos[2][1] - vpos[1][1]).crossProduct((vpos[1][2] - vpos[1][1]));
+					Ogre::Vector3 n6 = (vpos[1][2] - vpos[1][1]).crossProduct((vpos[0][2] - vpos[1][1]));
 
 					//Average the normals
 					vertexNormal = (n1+n2+n3+n4+n5+n6);
@@ -952,25 +953,25 @@ namespace GalaxyEngine
 			assert(heightMap.width == heightMap.height);	//Heightmap must be square
 			
 			//Get heightmap width/height
-			uint32 hmapWidth0 = heightMap.width-1, hmapHeight0 = heightMap.height-1;	//1024x1024, for example
-			uint32 hmapWidth1 = heightMap.width, hmapHeight1 = heightMap.height;		//1025x1025, for example
+			Ogre::uint32 hmapWidth0 = heightMap.width-1, hmapHeight0 = heightMap.height-1;	//1024x1024, for example
+			Ogre::uint32 hmapWidth1 = heightMap.width, hmapHeight1 = heightMap.height;		//1025x1025, for example
 
 			//Calculate the section of the heightmap to use for this chunk
-			FloatRect unitBounds = chunkNode->getDataBounds();	//Chunk bounds within a (0,0) - (1,1) square
-			TRect<uint32> hmapBounds;	//Calculate chunk bounds in heightmap pixel-space coordinates
+			Ogre::FloatRect unitBounds = chunkNode->getDataBounds();	//Chunk bounds within a (0,0) - (1,1) square
+			Ogre::TRect<Ogre::uint32> hmapBounds;	//Calculate chunk bounds in heightmap pixel-space coordinates
 			hmapBounds.left = hmapWidth0 * unitBounds.left;
 			hmapBounds.top = hmapHeight0 * unitBounds.top;
 			hmapBounds.right = hmapWidth0 * unitBounds.right;
 			hmapBounds.bottom = hmapHeight0 * unitBounds.bottom;
 
 			//Calculate height pixel sample step size
-			uint32 stepSize = hmapBounds.width() / loader->chunkRes;
+			Ogre::uint32 stepSize = hmapBounds.width() / loader->chunkRes;
 			assert((hmapBounds.width() / stepSize) == loader->chunkRes);
 
 			//Load the height pixels into the vertex height array
 			float *buffPtr = vertexHeights;
-			for (uint32 y = hmapBounds.top; y <= hmapBounds.bottom; y += stepSize) {
-				for (uint32 x = hmapBounds.left; x <= hmapBounds.right; x += stepSize) {
+			for (Ogre::uint32 y = hmapBounds.top; y <= hmapBounds.bottom; y += stepSize) {
+				for (Ogre::uint32 x = hmapBounds.left; x <= hmapBounds.right; x += stepSize) {
 					//Load the heightmap pixel into the vertex height array, converting from 8-bit height value to a 0-1 float
 					*buffPtr = (float)heightMap.getByteAt(x, y) * div255;
 					++buffPtr;
@@ -986,16 +987,16 @@ namespace GalaxyEngine
 			assert(parentChunkDat->vertexArrayWidth == vertexArrayWidth);
 
 			//This sub-chunk will be based on a sub-area of that data. Calculate the section of it's height array to use.
-			FloatRect parentBounds = parentChunk->getDataBounds();
-			FloatRect thisBounds = chunkNode->getDataBounds();
-			FloatRect relativeBounds;
+			Ogre::FloatRect parentBounds = parentChunk->getDataBounds();
+			Ogre::FloatRect thisBounds = chunkNode->getDataBounds();
+			Ogre::FloatRect relativeBounds;
 			relativeBounds.left = (thisBounds.left - parentBounds.left) / parentBounds.width();
 			relativeBounds.top = (thisBounds.top - parentBounds.top) / parentBounds.height();
 			relativeBounds.right = (thisBounds.right - parentBounds.left) / parentBounds.width();
 			relativeBounds.bottom = (thisBounds.bottom - parentBounds.top) / parentBounds.height();
 
 			//Convert relativeBounds to pixel-space
-			TRect<uint32> hmapBounds;
+			Ogre::TRect<Ogre::uint32> hmapBounds;
 			hmapBounds.left = loader->chunkRes * relativeBounds.left;
 			hmapBounds.top = loader->chunkRes * relativeBounds.top;
 			hmapBounds.right = loader->chunkRes * relativeBounds.right;
@@ -1006,7 +1007,7 @@ namespace GalaxyEngine
 			assert(propertyMap->width == propertyMap->height);	//Property map must be square
 
 			//Calculate the section of the property map that applies to this chunk
-			TRect<uint32> pmapBounds;
+			Ogre::TRect<Ogre::uint32> pmapBounds;
 			pmapBounds.left = propertyMap->width * thisBounds.left;
 			pmapBounds.top = propertyMap->height * thisBounds.top;
 			pmapBounds.right = propertyMap->width * thisBounds.right;
@@ -1014,11 +1015,11 @@ namespace GalaxyEngine
 
 			//Calculate map scaling factor. This should always be 2 since this chunk node's resolution should always be
 			//exactly twice as high (or 4x the area) as the parent's (due to the quad tree based planet chunk system).
-			uint32 mapScale = loader->chunkRes / hmapBounds.width();
+			Ogre::uint32 mapScale = loader->chunkRes / hmapBounds.width();
 			assert(mapScale == 2);
 
 			//Calculate the size of a single non-procedural tile
-			float tileSize = (Math::PI * 0.25 * loader->outerRadius) / loader->heightMap[chunkNode->getCubeFace()].width;
+			float tileSize = (Ogre::Math::PI * 0.25 * loader->outerRadius) / loader->heightMap[chunkNode->getCubeFace()].width;
 
 			//-------------------------- Procedural Terrain Generation --------------------------
 			//This code fills the chunk's height array with heights based on a subset of the parent's
@@ -1029,27 +1030,27 @@ namespace GalaxyEngine
 			//twice the resolution of it's parent.
 
 			//Seed random number generator based on chunk location
-			uint32 seed = (thisBounds.top * 2000) * 2000 + (thisBounds.left * 2000);
+			Ogre::uint32 seed = (thisBounds.top * 2000) * 2000 + (thisBounds.left * 2000);
 			srand(seed);
 
 			//Prepare property map access
-			uint32 pmapStepX = pmapBounds.width() / hmapBounds.width();
-			uint32 pmapStepY = pmapBounds.height() / hmapBounds.height();
-			uint32 pmapY = pmapBounds.top;
-			uint32 lastPmapX = 0xFFFFFFFF, lastPmapY = 0xFFFFFFFF;
+			Ogre::uint32 pmapStepX = pmapBounds.width() / hmapBounds.width();
+			Ogre::uint32 pmapStepY = pmapBounds.height() / hmapBounds.height();
+			Ogre::uint32 pmapY = pmapBounds.top;
+			Ogre::uint32 lastPmapX = 0xFFFFFFFF, lastPmapY = 0xFFFFFFFF;
 			int subLevel = chunkNode->getChunkLevel() - loader->hmapLevels;
 
 			//Procedural generation
 			float rndMin = 0.0f, rndMax = 0.0f;
 			float magScale = tileSize * loader->chunkRes;
-			uint32 oy = 0, ox = 0;
-			for (uint32 iy = hmapBounds.top; iy < hmapBounds.bottom; ++iy) {
+			Ogre::uint32 oy = 0, ox = 0;
+			for (Ogre::uint32 iy = hmapBounds.top; iy < hmapBounds.bottom; ++iy) {
 				ox = 0;
-				uint32 pmapX = pmapBounds.left;
-				for (uint32 ix = hmapBounds.left; ix < hmapBounds.right; ++ix) {
+				Ogre::uint32 pmapX = pmapBounds.left;
+				for (Ogre::uint32 ix = hmapBounds.left; ix < hmapBounds.right; ++ix) {
 					//If a re-sample of the property map is needed...
 					if (pmapX != lastPmapX || pmapY != lastPmapY) {
-						uint8 *bytes = propertyMap->getBytesAt(pmapX, pmapY);
+						Ogre::uint8 *bytes = propertyMap->getBytesAt(pmapX, pmapY);
 						
 						//byte[0] = peaks/hills (0 = full hills, 128 = neutral, 255 = full peaks).
 						//Converted into random number range shift
@@ -1062,7 +1063,7 @@ namespace GalaxyEngine
 						float magnitude = ((float)bytes[2] * div255) * magScale;
 
 						//Calculate random variance for this level at this pixel
-						float randomVariance = magnitude / Math::Pow(division, subLevel-1);
+						float randomVariance = magnitude / Ogre::Math::Pow(division, subLevel-1);
 
 						//Calculate random min and max
 						rndMin = -randomVariance + (rangeShift * randomVariance);
@@ -1078,9 +1079,9 @@ namespace GalaxyEngine
 					float h01 = (h00 + h02) * 0.5f;
 					float h11 = (h00 + h20 + h02 + h22) * 0.25f;
 
-					h11 += Math::RangeRandom(rndMin, rndMax);
-					h01 += Math::RangeRandom(rndMin, rndMax) * 0.5f;
-					h10 += Math::RangeRandom(rndMin, rndMax) * 0.5f;
+					h11 += Ogre::Math::RangeRandom(rndMin, rndMax);
+					h01 += Ogre::Math::RangeRandom(rndMin, rndMax) * 0.5f;
+					h10 += Ogre::Math::RangeRandom(rndMin, rndMax) * 0.5f;
 
 					vertexHeights[oy * vertexArrayWidth + ox] = h00;
 					vertexHeights[oy * vertexArrayWidth + (ox+1)] = h10;
@@ -1095,9 +1096,9 @@ namespace GalaxyEngine
 			}
 
 			//Top edge (y = top, x = left to right-1)
-			uint32 iy = hmapBounds.top;
+			Ogre::uint32 iy = hmapBounds.top;
 			ox = 0; oy = 0;
-			for (uint32 ix = hmapBounds.left; ix < hmapBounds.right; ++ix) {
+			for (Ogre::uint32 ix = hmapBounds.left; ix < hmapBounds.right; ++ix) {
 				float h00 = parentChunkDat->vertexHeights[iy * vertexArrayWidth + ix];
 				float h20 = parentChunkDat->vertexHeights[iy * vertexArrayWidth + ix+1];
 				float h10 = (h00 + h20) * 0.5f;
@@ -1109,7 +1110,7 @@ namespace GalaxyEngine
 			//Bottom edge (y = bottom, x = left to right-1)
 			iy = hmapBounds.bottom;
 			oy = vertexArrayWidth-1; ox = 0;
-			for (uint32 ix = hmapBounds.left; ix < hmapBounds.right; ++ix) {
+			for (Ogre::uint32 ix = hmapBounds.left; ix < hmapBounds.right; ++ix) {
 				float h00 = parentChunkDat->vertexHeights[iy * vertexArrayWidth + ix];
 				float h20 = parentChunkDat->vertexHeights[iy * vertexArrayWidth + ix+1];
 				float h10 = (h00 + h20) * 0.5f;
@@ -1119,9 +1120,9 @@ namespace GalaxyEngine
 			}
 
 			//Left edge (x = left, y = top to bottom-1)
-			uint32 ix = hmapBounds.left;
+			Ogre::uint32 ix = hmapBounds.left;
 			ox = 0; oy = 0;
-			for (uint32 iy = hmapBounds.top; iy < hmapBounds.bottom; ++iy) {
+			for (Ogre::uint32 iy = hmapBounds.top; iy < hmapBounds.bottom; ++iy) {
 				float h00 = parentChunkDat->vertexHeights[iy * vertexArrayWidth + ix];
 				float h02 = parentChunkDat->vertexHeights[(iy+1) * vertexArrayWidth + ix];
 				float h01 = (h00 + h02) * 0.5f;
@@ -1133,7 +1134,7 @@ namespace GalaxyEngine
 			//Right edge (x = right, y = top to bottom-1)
 			ix = hmapBounds.right;
 			ox = vertexArrayWidth-1; oy = 0;
-			for (uint32 iy = hmapBounds.top; iy < hmapBounds.bottom; ++iy) {
+			for (Ogre::uint32 iy = hmapBounds.top; iy < hmapBounds.bottom; ++iy) {
 				float h00 = parentChunkDat->vertexHeights[iy * vertexArrayWidth + ix];
 				float h02 = parentChunkDat->vertexHeights[(iy+1) * vertexArrayWidth + ix];
 				float h01 = (h00 + h02) * 0.5f;

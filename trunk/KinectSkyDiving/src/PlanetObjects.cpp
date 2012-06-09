@@ -16,14 +16,14 @@ PlanetObjects::~PlanetObjects(void)
 
 //------------------------------------------------------------------------------------
 void PlanetObjects::setup(Ogre::SceneManager* mSceneManager, RayCastCollision* collisionDetector)
-{
-	
+{	
 	this->mSceneManager = mSceneManager;	
 	this->mMainNode = mSceneManager->getRootSceneNode()->createChildSceneNode();
 
 	Ogre::DotSceneLoader* sceneLoader = new Ogre::DotSceneLoader();
-	sceneLoader->parseDotScene("village.scene", "Popular", mSceneManager, mMainNode);
-	
+	//sceneLoader->parseDotScene("village.scene", "Popular", mSceneManager, mMainNode);
+	sceneLoader->parseDotScene("village_few.scene", "Popular", mSceneManager, mMainNode);
+
 	std::vector<Ogre::SceneNode*> nodeList = sceneLoader->nodeList;
 
 	Ogre::Vector3 scaleVect(5.0f);
@@ -32,13 +32,6 @@ void PlanetObjects::setup(Ogre::SceneManager* mSceneManager, RayCastCollision* c
 	for(int a = 0; a < nodeList.size(); a++)
 	{
 		Ogre::SceneNode* childNode = nodeList[a];
-
-		//Ogre::String name = childNode->getName();
-		//if(!Ogre::StringUtil::startsWith(name, "object"))
-		//{			
-		//	continue;
-		//}
-
 		Ogre::Vector3 pos = childNode->_getDerivedPosition();
 
 		Ogre::Vector3 tempPos((pos.x * scaleVect.x) + transVect.x, 

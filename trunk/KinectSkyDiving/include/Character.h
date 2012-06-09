@@ -3,6 +3,8 @@
 #define __Character_h_
 
 #include "Stdafx.h"
+#include "Physics.h"
+#include "CCPhysics.h"
 
 /** Character's Movement*/
 enum Movement
@@ -27,10 +29,10 @@ public:
 	void setup(Ogre::SceneManager* mSceneManager, 
 		Ogre::Vector3 position, 
 		Ogre::Vector3 scale, 
-		Ogre::Quaternion orientation);
+		Ogre::Quaternion orientation,
+		MyPhysics* mPhysics);
 
-	void update(Ogre::Real elapsedTime);
-	
+	void update(Ogre::Real elapsedTime);	
 	void setState(Movement m);
 	void setGravity(Ogre::Real gravity) { this->gravity = gravity; }
 	void setLanding() { isLanding = true; }
@@ -40,20 +42,23 @@ public:
 	inline Ogre::SceneNode* getSightNode() { return mSightNode; }
 	inline Ogre::SceneNode* getCameraNode() { return mCameraNode; }
 	inline Ogre::Vector3    getWorldPosition() { return mMainNode->_getDerivedPosition (); }
+	inline CharacterControllerPhysics* getCCPhysics() { return mCCPhysics; }
 
 public:
 	Ogre::String entityName;
 
-protected:
+private:
+	void initPhysics();
 	void moveCharacter(Ogre::Real elapsedTime);
 	void fallDown(Ogre::Real elapsedTime);
 
-protected:
-
-	bool isLanding;
-	Ogre::Real gravity;
-	Ogre::Real degreeRotation;
-	Movement state;
+private:
+	CharacterControllerPhysics*		mCCPhysics;
+	bool			isLanding;
+	Ogre::Real		gravity;
+	Ogre::Real		degreeRotation;
+	Movement		state;
+	MyPhysics*		mPhysics;
 
 	Ogre::SceneNode*     mMainNode;			// Main character node
 	Ogre::SceneNode*	 mSightNode;		// "Sight" node - The character is supposed to be looking here

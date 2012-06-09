@@ -16,6 +16,9 @@
 #include "ParticleManager.h"
 #include "ExampleLoadingBar.h"
 
+#include "Physics.h"
+#include "BtOgreExtras.h"
+
 class GameSystem
 {
 public:
@@ -56,6 +59,10 @@ private:
 	CameraListener*     mCameraListener;
 	ThirdPersonCamera*  exCamera;
 	ExampleLoadingBar*	mLoadingBar;
+
+	MyPhysics*				mPhysics;
+	bool					mEnabledPhysicsDebugDraw;
+	BtOgre::DebugDrawer*	mDebugDrawer;
 
 	Ogre::Real          collisionDelay;				// collision engine isn't optimized so make it run every 1/60 second
 	bool				isPlanetInitialized;		// is planet is fully initialized?

@@ -3,7 +3,7 @@
 
 #include "Utility.h"
 
-using namespace Ogre;
+//using namespace Ogre;
 
 #include <stdio.h>
 #include <ddraw.h>
@@ -15,7 +15,7 @@ namespace GalaxyEngine
 	{
 		unsigned long GUID;
 
-		void saveVolumeToDDS(const String &filename, int width, int height, int depth, const char *colors)
+		void saveVolumeToDDS(const Ogre::String &filename, int width, int height, int depth, const char *colors)
 		{
 			FILE *file = fopen(filename.c_str(), "w");
 			if (file == NULL)

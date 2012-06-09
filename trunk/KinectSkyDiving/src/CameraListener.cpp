@@ -3,7 +3,7 @@
 #include "CameraListener.h"
 
 //------------------------------------------------------------------------------------- 
-CameraListener::CameraListener(RenderWindow* win, Camera* cam)
+CameraListener::CameraListener(Ogre::RenderWindow* win, Ogre::Camera* cam)
 	: character(0),
 	  mExCamera(0),
 	  mMode(0)
@@ -44,7 +44,7 @@ bool CameraListener::update(Ogre::Real elapsedTime)
 			else if(mMode == 1) // 3rd person fixed
 			{
 				mExCamera->update (elapsedTime, 
-								   Vector3 (0, 200, 0), 
+								   Ogre::Vector3 (0, 200, 0), 
 								   character->getSightNode()->_getDerivedPosition(),
 								   character->getBodyNode()->getOrientation());
 			}

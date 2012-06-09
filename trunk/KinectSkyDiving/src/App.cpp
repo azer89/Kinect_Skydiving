@@ -9,6 +9,7 @@ App::App(void)
 	  gameSystem(0)
 {
 }
+
 //-------------------------------------------------------------------------------------
 App::~App(void)
 {	
@@ -29,7 +30,9 @@ void App::createScene(void)
 
 	mLoadingBar->update();
 
-	//mLoadingBar->finish();
+	/*Ogre::ColourValue fadeColour(0, 168.0/255.0, 1.0);
+	mSceneMgr->setFog(Ogre::FOG_LINEAR, fadeColour, 0.0, 0.001, 10000);
+	mWindow->getViewport(0)->setBackgroundColour(fadeColour);*/
 }
 
 //--------------------------------------------------------------------------------------
