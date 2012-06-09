@@ -201,69 +201,6 @@
     <ClInclude Include="include\CollisionDetector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\irrKlang-1.3.0\ik_ESoundOutputDrivers.h">
-      <Filter>Header Files\irrKlang-1.3.0</Filter>
-    </ClInclude>
-    <ClInclude Include="include\irrKlang-1.3.0\ik_EStreamModes.h">
-      <Filter>Header Files\irrKlang-1.3.0</Filter>
-    </ClInclude>
-    <ClInclude Include="include\irrKlang-1.3.0\ik_IAudioRecorder.h">
-      <Filter>Header Files\irrKlang-1.3.0</Filter>
-    </ClInclude>
-    <ClInclude Include="include\irrKlang-1.3.0\ik_IAudioStream.h">
-      <Filter>Header Files\irrKlang-1.3.0</Filter>
-    </ClInclude>
-    <ClInclude Include="include\irrKlang-1.3.0\ik_IAudioStreamLoader.h">
-      <Filter>Header Files\irrKlang-1.3.0</Filter>
-    </ClInclude>
-    <ClInclude Include="include\irrKlang-1.3.0\ik_IFileFactory.h">
-      <Filter>Header Files\irrKlang-1.3.0</Filter>
-    </ClInclude>
-    <ClInclude Include="include\irrKlang-1.3.0\ik_IFileReader.h">
-      <Filter>Header Files\irrKlang-1.3.0</Filter>
-    </ClInclude>
-    <ClInclude Include="include\irrKlang-1.3.0\ik_IRefCounted.h">
-      <Filter>Header Files\irrKlang-1.3.0</Filter>
-    </ClInclude>
-    <ClInclude Include="include\irrKlang-1.3.0\ik_irrKlangTypes.h">
-      <Filter>Header Files\irrKlang-1.3.0</Filter>
-    </ClInclude>
-    <ClInclude Include="include\irrKlang-1.3.0\ik_ISound.h">
-      <Filter>Header Files\irrKlang-1.3.0</Filter>
-    </ClInclude>
-    <ClInclude Include="include\irrKlang-1.3.0\ik_ISoundDeviceList.h">
-      <Filter>Header Files\irrKlang-1.3.0</Filter>
-    </ClInclude>
-    <ClInclude Include="include\irrKlang-1.3.0\ik_ISoundEffectControl.h">
-      <Filter>Header Files\irrKlang-1.3.0</Filter>
-    </ClInclude>
-    <ClInclude Include="include\irrKlang-1.3.0\ik_ISoundEngine.h">
-      <Filter>Header Files\irrKlang-1.3.0</Filter>
-    </ClInclude>
-    <ClInclude Include="include\irrKlang-1.3.0\ik_ISoundMixedOutputReceiver.h">
-      <Filter>Header Files\irrKlang-1.3.0</Filter>
-    </ClInclude>
-    <ClInclude Include="include\irrKlang-1.3.0\ik_ISoundSource.h">
-      <Filter>Header Files\irrKlang-1.3.0</Filter>
-    </ClInclude>
-    <ClInclude Include="include\irrKlang-1.3.0\ik_ISoundStopEventReceiver.h">
-      <Filter>Header Files\irrKlang-1.3.0</Filter>
-    </ClInclude>
-    <ClInclude Include="include\irrKlang-1.3.0\ik_IVirtualRefCounted.h">
-      <Filter>Header Files\irrKlang-1.3.0</Filter>
-    </ClInclude>
-    <ClInclude Include="include\irrKlang-1.3.0\ik_SAudioStreamFormat.h">
-      <Filter>Header Files\irrKlang-1.3.0</Filter>
-    </ClInclude>
-    <ClInclude Include="include\irrKlang-1.3.0\ik_vec3d.h">
-      <Filter>Header Files\irrKlang-1.3.0</Filter>
-    </ClInclude>
-    <ClInclude Include="include\irrKlang-1.3.0\irrKlang.h">
-      <Filter>Header Files\irrKlang-1.3.0</Filter>
-    </ClInclude>
-    <ClInclude Include="include\irrKlang-1.3.0\ik_ESoundEngineOptions.h">
-      <Filter>Header Files\irrKlang-1.3.0</Filter>
-    </ClInclude>
     <ClInclude Include="include\OgreKinect.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -333,9 +270,6 @@
     </Filter>
     <Filter Include="Header Files\UI">
       <UniqueIdentifier>{3dd28d4d-e101-4cb8-a24c-fc4bddbb1f64}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\irrKlang-1.3.0">
-      <UniqueIdentifier>{77053479-ad58-4874-8d35-f173ece86244}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

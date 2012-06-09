@@ -17,7 +17,7 @@
 #include "ExampleLoadingBar.h"
 #include "CollisionDetector.h"
 
-#include "PPSoundManager.h"
+//#include "PPSoundManager.h"
 #include "GGBird.H"
 #include "OgreKinect.h"
 
@@ -68,7 +68,7 @@ private:
 
 	bool bStopFalling;
 	GGBirdFatory* mGGBirds;
-	PPSoundManager* mPPSoundManager;
+	//PPSoundManager* mPPSoundManager;
 
 	Ogre::Real          collisionDelay;				// collision engine isn't optimized so make it run every 1/60 second
 	bool				isPlanetInitialized;		// is planet is fully initialized?

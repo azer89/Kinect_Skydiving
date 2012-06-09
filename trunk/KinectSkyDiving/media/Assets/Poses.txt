@@ -1,0 +1,10 @@
+back
+front
+right
+left
+rotate_left
+rotate_right
+open
+fly_with_parachute
+land
+after_landing_wait

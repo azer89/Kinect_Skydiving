@@ -56,7 +56,7 @@ void GameSystem::createScene(void)
 	mGGBirds = new GGBirdFatory();
 
 	// Sound
-	mPPSoundManager = new PPSoundManager();
+	//mPPSoundManager = new PPSoundManager();
 
 	// Kinect
 	mOgreKinect = new OgreKinect(mSceneMgr);
