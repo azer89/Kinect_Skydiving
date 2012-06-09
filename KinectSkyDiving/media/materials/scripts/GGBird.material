@@ -1,0 +1,91 @@
+material lambert5
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0 0 0 1
+			emissive 0 0 0
+
+			texture_unit
+			{
+				texture uv4.jpg
+				tex_coord_set 0
+				colour_op modulate
+				scale 1 1
+				scroll 0 0
+				rotate 0
+			}
+		}
+	}
+}
+material tg_pasted__lambert9SG1
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.85 0.72 0.13 1
+			diffuse 0.85 0.72 0.13 1
+			specular 0 0 0 1
+			emissive 0.85 0.72 0.13
+		}
+	}
+}
+material tex_girl_eyes_w
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			ambient 0.1 0.1 0.1 1
+			diffuse 0.978563 0.982 0.975126 1
+			specular 0.61984 0.61984 0.61984 119.808
+			emissive 0 0 0
+		}
+	}
+}
+material tex_girl_eyes_in
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			ambient 0.0876 0.142601 0.2 1
+			diffuse 1 1 1 1
+			specular 1 1 1 119.808
+			emissive 0 0 0
+
+			texture_unit
+			{
+				texture gir2_eyes_co_8002.jpg
+				tex_coord_set 0
+				colour_op modulate
+				scale 1 1
+				scroll 0 0
+				rotate 0
+			}
+		}
+	}
+}
+material tex_girl_eyes_tran
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.2 0.2 0.2 1
+			diffuse 0.341202 0.555431 0.779 0.17356
+			specular 1 1 1 121.651
+			emissive 0 0 0
+
+			scene_blend alpha_blend
+			depth_write off
+		}
+	}
+}

@@ -79,16 +79,25 @@
     <ClCompile Include="src\ParticleManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Bullet\BtOgre.cpp">
-      <Filter>Source Files\BulletPhysics</Filter>
-    </ClCompile>
     <ClCompile Include="src\AnimationBlender.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\CCPhysics.cpp">
-      <Filter>Source Files\BulletPhysics</Filter>
-    </ClCompile>
     <ClCompile Include="src\CollisionDetector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FSM.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GGBird.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OgreKinect.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PoseDetect.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PPSoundManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -186,28 +195,88 @@
     <ClInclude Include="include\ExampleLoadingBar.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
-    <ClInclude Include="include\Bullet\BtOgreExtras.h">
-      <Filter>Header Files\BulletPhysics</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Bullet\BtOgreGP.h">
-      <Filter>Header Files\BulletPhysics</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Bullet\BtOgrePG.h">
-      <Filter>Header Files\BulletPhysics</Filter>
-    </ClInclude>
     <ClInclude Include="include\AnimationBlender.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Bullet\OgreToBulletMesh.h">
-      <Filter>Header Files\BulletPhysics</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Physics.h">
-      <Filter>Header Files\BulletPhysics</Filter>
-    </ClInclude>
-    <ClInclude Include="include\CCPhysics.h">
-      <Filter>Header Files\BulletPhysics</Filter>
-    </ClInclude>
     <ClInclude Include="include\CollisionDetector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\irrKlang-1.3.0\ik_ESoundOutputDrivers.h">
+      <Filter>Header Files\irrKlang-1.3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="include\irrKlang-1.3.0\ik_EStreamModes.h">
+      <Filter>Header Files\irrKlang-1.3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="include\irrKlang-1.3.0\ik_IAudioRecorder.h">
+      <Filter>Header Files\irrKlang-1.3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="include\irrKlang-1.3.0\ik_IAudioStream.h">
+      <Filter>Header Files\irrKlang-1.3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="include\irrKlang-1.3.0\ik_IAudioStreamLoader.h">
+      <Filter>Header Files\irrKlang-1.3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="include\irrKlang-1.3.0\ik_IFileFactory.h">
+      <Filter>Header Files\irrKlang-1.3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="include\irrKlang-1.3.0\ik_IFileReader.h">
+      <Filter>Header Files\irrKlang-1.3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="include\irrKlang-1.3.0\ik_IRefCounted.h">
+      <Filter>Header Files\irrKlang-1.3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="include\irrKlang-1.3.0\ik_irrKlangTypes.h">
+      <Filter>Header Files\irrKlang-1.3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="include\irrKlang-1.3.0\ik_ISound.h">
+      <Filter>Header Files\irrKlang-1.3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="include\irrKlang-1.3.0\ik_ISoundDeviceList.h">
+      <Filter>Header Files\irrKlang-1.3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="include\irrKlang-1.3.0\ik_ISoundEffectControl.h">
+      <Filter>Header Files\irrKlang-1.3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="include\irrKlang-1.3.0\ik_ISoundEngine.h">
+      <Filter>Header Files\irrKlang-1.3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="include\irrKlang-1.3.0\ik_ISoundMixedOutputReceiver.h">
+      <Filter>Header Files\irrKlang-1.3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="include\irrKlang-1.3.0\ik_ISoundSource.h">
+      <Filter>Header Files\irrKlang-1.3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="include\irrKlang-1.3.0\ik_ISoundStopEventReceiver.h">
+      <Filter>Header Files\irrKlang-1.3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="include\irrKlang-1.3.0\ik_IVirtualRefCounted.h">
+      <Filter>Header Files\irrKlang-1.3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="include\irrKlang-1.3.0\ik_SAudioStreamFormat.h">
+      <Filter>Header Files\irrKlang-1.3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="include\irrKlang-1.3.0\ik_vec3d.h">
+      <Filter>Header Files\irrKlang-1.3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="include\irrKlang-1.3.0\irrKlang.h">
+      <Filter>Header Files\irrKlang-1.3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="include\irrKlang-1.3.0\ik_ESoundEngineOptions.h">
+      <Filter>Header Files\irrKlang-1.3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="include\OgreKinect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PoseDetect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PPSoundManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\FSM.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GGBird.H">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -265,11 +334,8 @@
     <Filter Include="Header Files\UI">
       <UniqueIdentifier>{3dd28d4d-e101-4cb8-a24c-fc4bddbb1f64}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\BulletPhysics">
-      <UniqueIdentifier>{4236b037-d587-4989-b94b-d56cb4531bcd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\BulletPhysics">
-      <UniqueIdentifier>{78a2c332-cdca-4f2f-b7bf-a63fb9873f36}</UniqueIdentifier>
+    <Filter Include="Header Files\irrKlang-1.3.0">
+      <UniqueIdentifier>{77053479-ad58-4874-8d35-f173ece86244}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

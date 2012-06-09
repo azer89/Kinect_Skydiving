@@ -23,11 +23,9 @@ Character::~Character(void)
 void Character::setup(Ogre::SceneManager* mSceneManager, 
 					  Ogre::Vector3 position, 
 					  Ogre::Vector3 scale, 
-					  Ogre::Quaternion orientation,
-					  MyPhysics* mPhysics)
+					  Ogre::Quaternion orientation)
 {
 	this->mSceneManager = mSceneManager;
-	this->mPhysics = mPhysics;
 
 	this->entityName = "MainBodyCharacter";
 
@@ -54,49 +52,6 @@ void Character::setup(Ogre::SceneManager* mSceneManager,
 
 	mSightNode = this->mMainNode->createChildSceneNode("sightNode", sight);
 	mCameraNode = this->mMainNode->createChildSceneNode("cameraNode", cam);	
-
-	this->initPhysics();
-}
-
-//--------------------------------------------------------------------------------------
-void Character::initPhysics()
-{
-	btTransform startTransform;
-	startTransform.setIdentity();
-
-	Ogre::Vector3 origin = this->mMainNode->getPosition();
-	startTransform.setOrigin(btVector3(origin.x,origin.y, origin.z));
-	btPairCachingGhostObject * characterGhostObject = new btPairCachingGhostObject();
-	characterGhostObject->setWorldTransform(startTransform);
-
-	btScalar characterHeight = 2.f;
-	btScalar characterWidth = 1.f;
-
-	btConvexShape * capsule = new btCapsuleShape(characterWidth, characterHeight);
-	mPhysics->addCollisionShape(capsule);
-	characterGhostObject->setCollisionShape(capsule);
-	characterGhostObject->setCollisionFlags(btCollisionObject::CF_KINEMATIC_OBJECT);
-
-	// duck setup
-	btConvexShape * duck = new btCapsuleShape(characterWidth, characterHeight / 3);
-	mPhysics->addCollisionShape(duck);
-
-	btScalar stepHeight = 0.35f;
-	this->mCCPhysics = new CharacterControllerPhysics(characterGhostObject, 
-		capsule, 
-		stepHeight, 
-		mPhysics->getCollisionWorld(), 
-		1);
-
-	this->mCCPhysics->setDuckingConvexShape(duck);
-
-	//this->mCCPhysics->setGravity(9.8);
-	//this->mCCPhysics->setF
-
-	mPhysics->getBroadphase()->getOverlappingPairCache()->setInternalGhostPairCallback(new btGhostPairCallback());
-	mPhysics->getDynamicsWorld()->addCollisionObject(characterGhostObject, btBroadphaseProxy::CharacterFilter, btBroadphaseProxy::StaticFilter | btBroadphaseProxy::DefaultFilter|btBroadphaseProxy::CharacterFilter);
-	mPhysics->getDynamicsWorld()->addAction(this->mCCPhysics);
-
 }
 
 //--------------------------------------------------------------------------------------
