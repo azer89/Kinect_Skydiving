@@ -11,7 +11,7 @@ material Sky/Space
 
 			texture_unit
 			{
-				cubic_texture space.png separateUV
+				cubic_texture test-skybox.png separateUV
 				tex_address_mode clamp
 			}
 		}

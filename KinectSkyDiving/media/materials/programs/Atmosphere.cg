@@ -27,7 +27,7 @@ void mainPS(
 {
 	float3 camDirection = normalize(relativeCameraPos - normal);
 	float d = dot(normal, camDirection);
-	float dm = saturate(d*d * 1.5);
+	float dm = saturate(d*d * 1.0);
 	float edge = dm * (1-d);
 
 	oColor.rgb = float3(.3, .5, 1);
