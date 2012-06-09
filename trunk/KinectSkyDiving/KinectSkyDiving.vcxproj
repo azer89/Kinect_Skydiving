@@ -41,11 +41,17 @@
     <IntDir>obj\$(Configuration)\</IntDir>
     <OutDir>bin\$(Configuration)\</OutDir>
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(KINECTSDK10_DIR)\inc;D:\Study\Program\Ogre\OgreSDK_vc10_v1-7-4\include\OIS;D:\Study\Program\Ogre\OgreSDK_vc10_v1-7-4\include\OGRE;D:\Study\Program\Ogre\OgreSDK_vc10_v1-7-4\boost_1_47;D:\Study\Program\Ogre\OgreSDK_vc10_v1-7-4\include;$(IncludePath)</IncludePath>
+    <ReferencePath>$(KINECTSDK10_DIR)\lib\x86;D:\Study\Program\Ogre\OgreSDK_vc10_v1-7-4\boost_1_47\lib;D:\Study\Program\Ogre\OgreSDK_vc10_v1-7-4\lib\debug;$(ReferencePath)</ReferencePath>
+    <LibraryPath>$(KINECTSDK10_DIR)\lib\x86;D:\Study\Program\Ogre\OgreSDK_vc10_v1-7-4\boost_1_47\lib;D:\Study\Program\Ogre\OgreSDK_vc10_v1-7-4\lib\debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IntDir>obj\$(Configuration)\</IntDir>
     <OutDir>bin\$(Configuration)\</OutDir>
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(KINECTSDK10_DIR)\inc;D:\Study\Program\Ogre\OgreSDK_vc10_v1-7-4\include\OIS;D:\Study\Program\Ogre\OgreSDK_vc10_v1-7-4\include\OGRE;D:\Study\Program\Ogre\OgreSDK_vc10_v1-7-4\include;D:\Study\Program\Ogre\OgreSDK_vc10_v1-7-4\boost_1_47;$(IncludePath)</IncludePath>
+    <ReferencePath>$(KINECTSDK10_DIR)\lib\x86;D:\Study\Program\Ogre\OgreSDK_vc10_v1-7-4\lib\release;D:\Study\Program\Ogre\OgreSDK_vc10_v1-7-4\boost_1_47\lib;$(ReferencePath)</ReferencePath>
+    <LibraryPath>$(KINECTSDK10_DIR)\lib\x86;D:\Study\Program\Ogre\OgreSDK_vc10_v1-7-4\lib\release;D:\Study\Program\Ogre\OgreSDK_vc10_v1-7-4\boost_1_47\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -76,7 +82,8 @@
     </Link>
     <PostBuildEvent>
       <Message>Copying exe to samples bin directory ...</Message>
-      <Command>copy "$(OutDir)\$(TargetFileName)" "$(OGRE_HOME)\Bin\$(Configuration)"</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -108,7 +115,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
       <AdditionalLibraryDirectories>$(OGRE_HOME)\lib\release;$(OGRE_HOME)\boost_1_47\lib;lib;lib\bullet;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>OgreMain.lib;OIS.lib;Hikari.lib;FreeImage.lib;tinyxml.lib;tinyxmlSTL.lib;BulletCollision.lib;BulletDynamics.lib;BulletSoftBody.lib;ConvexDecomposition.lib;LinearMath.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>OgreMain.lib;OIS.lib;Hikari.lib;FreeImage.lib;tinyxml.lib;tinyxmlSTL.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Message>
@@ -121,12 +128,7 @@
     <ClInclude Include="include\AnimationBlender.h" />
     <ClInclude Include="include\Atmosphere.h" />
     <ClInclude Include="include\BaseApplication.h" />
-    <ClInclude Include="include\Bullet\BtOgreExtras.h" />
-    <ClInclude Include="include\Bullet\BtOgreGP.h" />
-    <ClInclude Include="include\Bullet\BtOgrePG.h" />
-    <ClInclude Include="include\Bullet\OgreToBulletMesh.h" />
     <ClInclude Include="include\CameraListener.h" />
-    <ClInclude Include="include\CCPhysics.h" />
     <ClInclude Include="include\Character.h" />
     <ClInclude Include="include\CollisionDetector.h" />
     <ClInclude Include="include\ConfigScript.h" />
@@ -137,13 +139,38 @@
     <ClInclude Include="include\Exception.h" />
     <ClInclude Include="include\FreeImage.h" />
     <ClInclude Include="include\App.h" />
+    <ClInclude Include="include\FSM.H" />
     <ClInclude Include="include\GameSystem.h" />
+    <ClInclude Include="include\GGBird.H" />
+    <ClInclude Include="include\irrKlang-1.3.0\ik_ESoundEngineOptions.h" />
+    <ClInclude Include="include\irrKlang-1.3.0\ik_ESoundOutputDrivers.h" />
+    <ClInclude Include="include\irrKlang-1.3.0\ik_EStreamModes.h" />
+    <ClInclude Include="include\irrKlang-1.3.0\ik_IAudioRecorder.h" />
+    <ClInclude Include="include\irrKlang-1.3.0\ik_IAudioStream.h" />
+    <ClInclude Include="include\irrKlang-1.3.0\ik_IAudioStreamLoader.h" />
+    <ClInclude Include="include\irrKlang-1.3.0\ik_IFileFactory.h" />
+    <ClInclude Include="include\irrKlang-1.3.0\ik_IFileReader.h" />
+    <ClInclude Include="include\irrKlang-1.3.0\ik_IRefCounted.h" />
+    <ClInclude Include="include\irrKlang-1.3.0\ik_irrKlangTypes.h" />
+    <ClInclude Include="include\irrKlang-1.3.0\ik_ISound.h" />
+    <ClInclude Include="include\irrKlang-1.3.0\ik_ISoundDeviceList.h" />
+    <ClInclude Include="include\irrKlang-1.3.0\ik_ISoundEffectControl.h" />
+    <ClInclude Include="include\irrKlang-1.3.0\ik_ISoundEngine.h" />
+    <ClInclude Include="include\irrKlang-1.3.0\ik_ISoundMixedOutputReceiver.h" />
+    <ClInclude Include="include\irrKlang-1.3.0\ik_ISoundSource.h" />
+    <ClInclude Include="include\irrKlang-1.3.0\ik_ISoundStopEventReceiver.h" />
+    <ClInclude Include="include\irrKlang-1.3.0\ik_IVirtualRefCounted.h" />
+    <ClInclude Include="include\irrKlang-1.3.0\ik_SAudioStreamFormat.h" />
+    <ClInclude Include="include\irrKlang-1.3.0\ik_vec3d.h" />
+    <ClInclude Include="include\irrKlang-1.3.0\irrKlang.h" />
+    <ClInclude Include="include\OgreKinect.h" />
     <ClInclude Include="include\ParticleManager.h" />
-    <ClInclude Include="include\Physics.h" />
     <ClInclude Include="include\Planet.h" />
     <ClInclude Include="include\PlanetLoader_Hybrid.h" />
     <ClInclude Include="include\PlanetMath.h" />
     <ClInclude Include="include\PlanetObjects.h" />
+    <ClInclude Include="include\PoseDetect.h" />
+    <ClInclude Include="include\PPSoundManager.h" />
     <ClInclude Include="include\QueryFlags.h" />
     <ClInclude Include="include\RayCastCollision.h" />
     <ClInclude Include="include\SimpleCloud.h" />
@@ -162,9 +189,7 @@
     <ClCompile Include="src\AnimationBlender.cpp" />
     <ClCompile Include="src\Atmosphere.cpp" />
     <ClCompile Include="src\BaseApplication.cpp" />
-    <ClCompile Include="src\Bullet\BtOgre.cpp" />
     <ClCompile Include="src\CameraListener.cpp" />
-    <ClCompile Include="src\CCPhysics.cpp" />
     <ClCompile Include="src\Character.cpp" />
     <ClCompile Include="src\CollisionDetector.cpp" />
     <ClCompile Include="src\ConfigScript.cpp" />
@@ -172,13 +197,18 @@
     <ClCompile Include="src\DotSceneLoader.cpp" />
     <ClCompile Include="src\Exception.cpp" />
     <ClCompile Include="src\App.cpp" />
+    <ClCompile Include="src\FSM.cpp" />
     <ClCompile Include="src\GameSystem.cpp" />
+    <ClCompile Include="src\GGBird.cpp" />
     <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\OgreKinect.cpp" />
     <ClCompile Include="src\ParticleManager.cpp" />
     <ClCompile Include="src\Planet.cpp" />
     <ClCompile Include="src\PlanetLoader_Hybrid.cpp" />
     <ClCompile Include="src\PlanetMath.cpp" />
     <ClCompile Include="src\PlanetObjects.cpp" />
+    <ClCompile Include="src\PoseDetect.cpp" />
+    <ClCompile Include="src\PPSoundManager.cpp" />
     <ClCompile Include="src\RayCastCollision.cpp" />
     <ClCompile Include="src\SimpleCloud.cpp" />
     <ClCompile Include="src\SimplePlanet.cpp" />

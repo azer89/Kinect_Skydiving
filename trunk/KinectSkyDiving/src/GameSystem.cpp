@@ -1,5 +1,4 @@
 
-
 #include "Stdafx.h"
 #include "GameSystem.h"
 
@@ -15,7 +14,7 @@ GameSystem::GameSystem(void)
 	  tCircles(0),
 	  pManager(0),
 	  isPlanetInitialized(false),
-	  mEnabledPhysicsDebugDraw(true)
+	  bStopFalling(false)
 {
 }
 
@@ -44,19 +43,21 @@ void GameSystem::createScene(void)
 	this->character = new Character();
 	mCameraListener->setCharacter(character);
 
-	this->mPhysics = new MyPhysics();
-
 	this->character->setup(mSceneMgr, 
 						   Ogre::Vector3(0, 6000, 6000), 
 						   Ogre::Vector3(0.5f, 0.5f, 0.5f), 
-						   Ogre::Quaternion::IDENTITY,
-						   mPhysics);
+						   Ogre::Quaternion::IDENTITY);
 	//this->character->setup(mSceneMgr, Ogre::Vector3(0, 2400, 0), Ogre::Vector3(1.0f), Ogre::Quaternion::IDENTITY);
 	this->character->setGravity(9.8f);
 
-	mPhysics->setRootSceneNode(mSceneMgr->getRootSceneNode());
-	mDebugDrawer = new BtOgre::DebugDrawer(mSceneMgr->getRootSceneNode(), mPhysics->getDynamicsWorld());
-	mPhysics->getDynamicsWorld()->setDebugDrawer(mDebugDrawer);
+	// GGBird
+	mGGBirds = new GGBirdFatory();
+
+	// Sound
+	mPPSoundManager = new PPSoundManager();
+
+	// Kinect
+	mOgreKinect = new OgreKinect(mSceneMgr);
 
 	mLoadingBar->update();
 
@@ -97,9 +98,9 @@ void GameSystem::update(Ogre::Real elapsedTime)
 	mCameraListener->update(elapsedTime);
 	cloud->updateClouds(elapsedTime);
 
-	mPhysics->getDynamicsWorld()->stepSimulation(elapsedTime);
-	mDebugDrawer->setDebugMode(mEnabledPhysicsDebugDraw);
-	mDebugDrawer->step();
+	mGGBirds->Update(elapsedTime, character->getBodyNode()->_getDerivedPosition());
+	mOgreKinect->update(elapsedTime);
+	processKinectInput();
 
 	if(pManager != 0) pManager->update(character->getBodyNode()->_getDerivedPosition());
 }
@@ -145,7 +146,21 @@ void GameSystem::checkPlanetColission(Ogre::Real timeElapsed)
 
 //-------------------------------------------------------------------------------------
 void GameSystem::keyPressed( const OIS::KeyEvent &arg )
-{
+{	
+	if (arg.key == OIS::KC_P)
+		bStopFalling = !bStopFalling;
+	if (arg.key == OIS::KC_G)
+	{
+		Ogre::Vector3 vecA = character->getWorldPosition();
+		Ogre::Vector3 vecUP = character->getWorldPosition().normalisedCopy() * 5;
+		Ogre::Vector3 vecRand(rand() % 24 - 12, rand() % 24 - 12, rand() % 24 - 12 );
+		while (vecA.distance(vecA - vecUP + vecRand) < 8)
+		{
+			vecRand = Ogre::Vector3(rand() % 24 - 12, rand() % 24 - 12, rand() % 24 - 12 );
+		}
+		mGGBirds->addBird(mSceneMgr, vecA - vecUP + vecRand);
+	}
+
 	if(arg.key == OIS::KC_W)
 	{
 		character->setState(Movement::MOVE_FRONT);
@@ -231,6 +246,41 @@ void GameSystem::isPlanetReady()
 			isPlanetInitialized = true;
 			postPlanetInitialization();
 		}
+	}
+}
+
+
+void GameSystem::processKinectInput()
+{
+
+	if(mOgreKinect->mPoseDetect->isPose("front"))
+	{
+		printf("front\n");
+		character->setState(Movement::MOVE_FRONT);
+	}	
+	else if(mOgreKinect->mPoseDetect->isPose("back"))
+	{
+		character->setState(Movement::MOVE_BACK);
+	}
+	else if(mOgreKinect->mPoseDetect->isPose("left"))
+	{
+		printf("left\n");
+		character->setState(Movement::MOVE_LEFT);
+	}
+	else if(mOgreKinect->mPoseDetect->isPose("right"))
+	{
+		printf("right\n");
+		character->setState(Movement::MOVE_RIGHT);
+	}
+	else if(mOgreKinect->mPoseDetect->isPose("rotate_left"))
+	{
+		printf("rotate_left\n");
+		character->setState(Movement::ROTATE_LEFT);
+	}
+	else if(mOgreKinect->mPoseDetect->isPose("rotate_right"))
+	{
+		printf("rotate_right\n");
+		character->setState(Movement::ROTATE_RIGHT);
 	}
 }
 

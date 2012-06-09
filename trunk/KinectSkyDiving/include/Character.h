@@ -3,7 +3,6 @@
 #define __Character_h_
 
 #include "Stdafx.h"
-#include "Physics.h"
 #include "CCPhysics.h"
 
 /** Character's Movement*/
@@ -29,8 +28,7 @@ public:
 	void setup(Ogre::SceneManager* mSceneManager, 
 		Ogre::Vector3 position, 
 		Ogre::Vector3 scale, 
-		Ogre::Quaternion orientation,
-		MyPhysics* mPhysics);
+		Ogre::Quaternion orientation);
 
 	void update(Ogre::Real elapsedTime);	
 	void setState(Movement m);
@@ -48,7 +46,6 @@ public:
 	Ogre::String entityName;
 
 private:
-	void initPhysics();
 	void moveCharacter(Ogre::Real elapsedTime);
 	void fallDown(Ogre::Real elapsedTime);
 
@@ -58,7 +55,6 @@ private:
 	Ogre::Real		gravity;
 	Ogre::Real		degreeRotation;
 	Movement		state;
-	MyPhysics*		mPhysics;
 
 	Ogre::SceneNode*     mMainNode;			// Main character node
 	Ogre::SceneNode*	 mSightNode;		// "Sight" node - The character is supposed to be looking here

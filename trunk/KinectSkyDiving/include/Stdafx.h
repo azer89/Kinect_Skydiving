@@ -1,4 +1,10 @@
 
+#include <windows.h> // Please note that NuiApi.h expects windows.h to be included first. 
+namespace KinectSDK
+{
+#include <NuiApi.h>
+};
+
 #include "Ogre.h"
 #include "OgreMath.h"
 #include "OgreCamera.h"
