@@ -1,0 +1,226 @@
+material pasted__pasted__greentree_color
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+
+			texture_unit
+			{
+				texture tree.jpg
+			}
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__tree_trunk
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.609751 0.38616 0 1
+			diffuse 0.609751 0.38616 0 1
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__small_tree_2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+
+			texture_unit
+			{
+				texture tree1.jpg
+			}
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__railing_color
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.735 0.581689 0.32046 1
+			diffuse 0.735 0.581689 0.32046 1
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__target_landing
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+
+			texture_unit
+			{
+				texture landing.jpg
+			}
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted__house_door2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.1 0.0820168 0.0482 1
+			diffuse 0.388 0.254011 0.10088 1
+			specular 0 0 0 1 94.1491
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted__house_wood2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.1 0.0820168 0.0482 1
+			diffuse 0.66116 0.432839 0.171902 1
+			specular 0 0 0 1 94.1491
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted__wheel2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.1 0.0790146 0.0366 1
+
+			texture_unit
+			{
+				texture cycle.jpg
+			}
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted___house_door2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.2 0.164034 0.0964 1
+			diffuse 0.388 0.254011 0.10088 1
+			specular 0 0 0 1 94.1491
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted___brick2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.2 0.198929 0.1964 1
+			diffuse 0.455283 0.455283 0.455283 1
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted__bucket2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.1 0.0994645 0.0982 1
+			diffuse 0.5 0.5 0.5 1
+			specular 0 0 0 1 115.305
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted__rock4
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.1 0.1 0.1 1
+			diffuse 0.33 0.33 0.33 1
+			specular 0.30578 0.30578 0.30578 1 89.6
+		}
+
+	}
+
+}
+
+
+
+material pasted__pasted__pasted__line2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.0996828 0.1 0.0922 1
+			diffuse 0.786 0.719123 0.561204 1
+		}
+
+	}
+
+}

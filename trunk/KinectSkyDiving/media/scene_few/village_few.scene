@@ -1,0 +1,68 @@
+<scene formatVersion="1.0" upAxis="y" unitsPerMeter="100" unitType="centimeters" minOgreVersion="1.7" ogreMaxVersion="2.4.3" author="OgreMax Scene Exporter (www.ogremax.com)" application="Maya">
+    <environment>
+        <colourAmbient r="0.33" g="0.33" b="0.33" />
+        <colourBackground r="0" g="0" b="0" />
+        <clipping near="0" far="100000" />
+    </environment>
+    <nodes>
+        <node name="object5">
+            <position x="-12.4941" y="0" z="20.1275" />
+            <scale x="1" y="1" z="1" />
+            <rotation qx="0" qy="0" qz="0" qw="1" />
+            <entity name="object5" castShadows="true" receiveShadows="true" meshFile="object5.mesh">
+                <subentities>
+                    <subentity index="0" materialName="pasted__pasted__greentree_color" />
+                    <subentity index="1" materialName="pasted__pasted__tree_trunk" />
+                </subentities>
+            </entity>
+        </node>
+        <node name="object6">
+            <position x="-18.3051" y="0" z="12.2371" />
+            <scale x="1" y="1" z="1" />
+            <rotation qx="0" qy="0" qz="0" qw="1" />
+            <entity name="object6" castShadows="true" receiveShadows="true" meshFile="object6.mesh">
+                <subentities>
+                    <subentity index="0" materialName="pasted__pasted__small_tree_2" />
+                    <subentity index="1" materialName="pasted__pasted__tree_trunk" />
+                </subentities>
+            </entity>
+        </node>
+        <node name="object30">
+            <position x="6.89023" y="0" z="16.3906" />
+            <scale x="1" y="1" z="1" />
+            <rotation qx="0" qy="0" qz="0" qw="1" />
+            <entity name="object30" castShadows="true" receiveShadows="true" meshFile="object30.mesh">
+                <subentities>
+                    <subentity index="0" materialName="pasted__pasted__railing_color" />
+                </subentities>
+            </entity>
+        </node>
+        <node name="object53">
+            <position x="-0.0292354" y="0" z="-0.146631" />
+            <scale x="1" y="1" z="1" />
+            <rotation qx="0" qy="0" qz="0" qw="1" />
+            <entity name="object53" castShadows="true" receiveShadows="true" meshFile="object53.mesh">
+                <subentities>
+                    <subentity index="0" materialName="pasted__pasted__target_landing" />
+                </subentities>
+            </entity>
+        </node>
+        <node name="object55">
+            <position x="16.3596" y="0" z="8.11438" />
+            <scale x="1" y="1" z="1" />
+            <rotation qx="0" qy="0" qz="0" qw="1" />
+            <entity name="object55" castShadows="true" receiveShadows="true" meshFile="object55.mesh">
+                <subentities>
+                    <subentity index="0" materialName="pasted__pasted__pasted__house_door2" />
+                    <subentity index="1" materialName="pasted__pasted__pasted__house_wood2" />
+                    <subentity index="2" materialName="pasted__pasted__pasted__wheel2" />
+                    <subentity index="3" materialName="pasted__pasted__pasted___house_door2" />
+                    <subentity index="4" materialName="pasted__pasted__pasted___brick2" />
+                    <subentity index="5" materialName="pasted__pasted__pasted__bucket2" />
+                    <subentity index="6" materialName="pasted__pasted__pasted__rock4" />
+                    <subentity index="7" materialName="pasted__pasted__pasted__line2" />
+                </subentities>
+            </entity>
+        </node>
+    </nodes>
+</scene>
