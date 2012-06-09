@@ -14,6 +14,10 @@ public:
 	virtual ~TargetCircles(void);
 
 	void setup(Ogre::SceneManager* mSceneManager);
+	inline std::vector<Ogre::SceneNode*> getNodeList(void) 
+	{
+		return this->nodeList; 
+	}
 
 private:
 	Ogre::SceneManager*  mSceneManager;	
@@ -21,7 +25,7 @@ private:
 	Ogre::Entity*        mMainEntity;
 
 	Ogre::DotSceneLoader* sceneLoader;
-
+	std::vector<Ogre::SceneNode*> nodeList;
 	//Ogre::DotSceneLoader*		 sceneLoader;
 };
 

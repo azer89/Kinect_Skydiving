@@ -20,7 +20,8 @@ void TargetCircles::setup(Ogre::SceneManager* mSceneManager)
 
 	sceneLoader = new Ogre::DotSceneLoader();
 	sceneLoader->parseDotScene("circles.scene", "Popular", mSceneManager, mMainNode);
-	std::vector<Ogre::SceneNode*> nodeList = sceneLoader->nodeList;
+	if(nodeList.size() == 0)
+		nodeList = sceneLoader->nodeList;
 	
 	Ogre::Vector3 targetPoint(0, 5050, 100);	// supposed goal
 	Ogre::Vector3 charPos(0, 5700, 5700);		// character position a more forward

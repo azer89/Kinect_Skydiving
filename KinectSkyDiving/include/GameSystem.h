@@ -15,6 +15,7 @@
 #include "TargetCircles.h"
 #include "ParticleManager.h"
 #include "ExampleLoadingBar.h"
+#include "CollisionDetector.h"
 
 #include "PPSoundManager.h"
 #include "GGBird.H"
@@ -50,7 +51,7 @@ private:
 	void isPlanetReady();
 
 private:
-	RayCastCollision*   collisionDetector;			// simple planet collision engine	
+	RayCastCollision*   rayCollisionDetector;			// simple planet collision engine	
 	GalaxyEngine::Core* planetEngine;				// planet rendering engine
 	Character*          character;					// character
 	PlanetObjects*		pObjects;
@@ -60,6 +61,7 @@ private:
 	CameraListener*     mCameraListener;
 	ThirdPersonCamera*  exCamera;
 	ExampleLoadingBar*	mLoadingBar;
+	CollisionDetector*	collisionDetector;
 
 	OgreKinect* mOgreKinect;
 	void processKinectInput();

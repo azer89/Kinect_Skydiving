@@ -107,8 +107,8 @@ HRESULT OgreKinect::initKinect()
     hr = KinectSDK::NuiCreateSensorByIndex(0, &m_pNuiSensor);
 
 	// Disable Kinect 
-	//if(rc.bottom==0 &&rc.left==0&&rc.right==0&&rc.top==0)
-	//	return -1;
+	if(rc.bottom==0 &&rc.left==0&&rc.right==0&&rc.top==0)
+	  return -1;
 
 	m_hNextDepthFrameEvent = CreateEvent( NULL, TRUE, FALSE, NULL );
 	m_hNextColorFrameEvent = CreateEvent( NULL, TRUE, FALSE, NULL );

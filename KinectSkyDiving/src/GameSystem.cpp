@@ -4,7 +4,8 @@
 
 //-------------------------------------------------------------------------------------
 GameSystem::GameSystem(void)
-	: collisionDetector(0),
+	: rayCollisionDetector(0),
+	  collisionDetector(0),
 	  collisionDelay(0.0f),
 	  character(0),
 	  cloud(0),
@@ -21,14 +22,15 @@ GameSystem::GameSystem(void)
 //-------------------------------------------------------------------------------------
 GameSystem::~GameSystem(void)
 {
-	if(collisionDetector != 0)	delete collisionDetector;
-	if(character != 0)			delete character;
-	if(cloud != 0)				delete cloud;
-	if(mCameraListener != 0)	delete mCameraListener;
-	if(exCamera != 0)			delete exCamera;
-	if(pObjects != 0)			delete pObjects;
-	if(tCircles != 0)			delete tCircles;
-	if(pManager != 0)			delete pManager;
+	if(rayCollisionDetector != 0)	delete rayCollisionDetector;
+	if(collisionDetector != 0)		delete collisionDetector;
+	if(character != 0)				delete character;
+	if(cloud != 0)					delete cloud;
+	if(mCameraListener != 0)		delete mCameraListener;
+	if(exCamera != 0)				delete exCamera;
+	if(pObjects != 0)				delete pObjects;
+	if(tCircles != 0)				delete tCircles;
+	if(pManager != 0)				delete pManager;
 }
 
 //-------------------------------------------------------------------------------------
@@ -103,6 +105,7 @@ void GameSystem::update(Ogre::Real elapsedTime)
 	processKinectInput();
 
 	if(pManager != 0) pManager->update(character->getBodyNode()->_getDerivedPosition());
+	if(collisionDetector != 0) collisionDetector->update(elapsedTime);
 }
 
 //------------------------------------------------------------------------------------
@@ -112,7 +115,7 @@ void GameSystem::checkPlanetColission(Ogre::Real timeElapsed)
 	if(collisionDelay < 0.0166f) return;		// 60 fps
 	collisionDelay = 0;							// reset
 
-	if(collisionDetector == 0) return;			// collision detector isn't ready yet
+	if(rayCollisionDetector == 0) return;			// collision detector isn't ready yet
 		
 	Ogre::Vector3 charPos = character->getBodyNode()->_getDerivedPosition();
 	Ogre::Real distance1 = Ogre::Math::Abs(Ogre::Vector3::ZERO.distance(charPos));	// distance of the position to center of planet
@@ -127,7 +130,7 @@ void GameSystem::checkPlanetColission(Ogre::Real timeElapsed)
 		Ogre::Vector3 result = Ogre::Vector3::ZERO;		// resulted intersection
 		Ogre::Vector3 camToCenter = -charPos;			// direction to the center
 		camToCenter.normalise();						
-		collisionDetector->getPlanetIntersection(charPos, camToCenter, result);
+		rayCollisionDetector->getPlanetIntersection(charPos, camToCenter, result);
 		Ogre::Real distance2 = Ogre::Math::Abs(Ogre::Vector3::ZERO.distance(result));
 		Ogre::Real halfRadius = radius * 0.5f;
 
@@ -206,19 +209,22 @@ void GameSystem::postPlanetInitialization()
 {
 	GalaxyEngine::Planet* planet = planetEngine->getFirstPlanet();	
 
-	collisionDetector = new RayCastCollision();
-	collisionDetector->init(this->mSceneMgr, planet);
-	collisionDetector->crawlBaseChunks();
+	rayCollisionDetector = new RayCastCollision();
+	rayCollisionDetector->init(this->mSceneMgr, planet);
+	rayCollisionDetector->crawlBaseChunks();
 
 	mLoadingBar->update();
 
 	pObjects = new PlanetObjects();
-	pObjects->setup(mSceneMgr, collisionDetector);
+	pObjects->setup(mSceneMgr, rayCollisionDetector);
 
 	mLoadingBar->update();
 
 	tCircles = new TargetCircles();
 	tCircles->setup(mSceneMgr);
+
+	collisionDetector = new CollisionDetector();
+	collisionDetector->initCollisionDetector(this->character, this->tCircles);
 
 	mLoadingBar->update();
 
