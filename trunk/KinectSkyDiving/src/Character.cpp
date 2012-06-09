@@ -75,7 +75,6 @@ void Character::update(Ogre::Real elapsedTime)
 
 	//btVector3 btPos = mCCPhysics->getPosition();
 	//std::cout << btPos.x() << " " << btPos.y() << " " << btPos.z() << "\n";
-
 }
 
 //--------------------------------------------------------------------------------------

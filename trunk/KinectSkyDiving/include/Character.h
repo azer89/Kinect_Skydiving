@@ -3,7 +3,7 @@
 #define __Character_h_
 
 #include "Stdafx.h"
-#include "CCPhysics.h"
+//#include "CCPhysics.h"
 
 /** Character's Movement*/
 enum Movement
@@ -40,7 +40,7 @@ public:
 	inline Ogre::SceneNode* getSightNode() { return mSightNode; }
 	inline Ogre::SceneNode* getCameraNode() { return mCameraNode; }
 	inline Ogre::Vector3    getWorldPosition() { return mMainNode->_getDerivedPosition (); }
-	inline CharacterControllerPhysics* getCCPhysics() { return mCCPhysics; }
+	//inline CharacterControllerPhysics* getCCPhysics() { return mCCPhysics; }
 
 public:
 	Ogre::String entityName;
@@ -50,7 +50,7 @@ private:
 	void fallDown(Ogre::Real elapsedTime);
 
 private:
-	CharacterControllerPhysics*		mCCPhysics;
+	//CharacterControllerPhysics*		mCCPhysics;
 	bool			isLanding;
 	Ogre::Real		gravity;
 	Ogre::Real		degreeRotation;
