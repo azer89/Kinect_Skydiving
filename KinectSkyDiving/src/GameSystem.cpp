@@ -46,10 +46,10 @@ void GameSystem::createScene(void)
 	mCameraListener->setCharacter(character);
 
 	this->character->setup(mSceneMgr, 
-						   Ogre::Vector3(0, 5750, 5750), 
+						   Ogre::Vector3(0, 5750, 4750), 
 						   Ogre::Vector3(0.5f, 0.5f, 0.5f), 
 						   Ogre::Quaternion::IDENTITY);
-	this->character->setGravity(9.8f);
+	this->character->setGravity(8.0f);
 
 	mLoadingBar->update();
 	

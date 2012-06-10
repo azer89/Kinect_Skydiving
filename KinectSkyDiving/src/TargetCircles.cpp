@@ -24,7 +24,7 @@ void TargetCircles::setup(Ogre::SceneManager* mSceneManager)
 		nodeList = sceneLoader->nodeList;
 	
 	Ogre::Vector3 targetPoint(0, 5050, 100);	// supposed goal
-	Ogre::Vector3 charPos(0, 5700, 5700);		// character position a more forward
+	Ogre::Vector3 charPos(0, 5700, 4600);		// character position a more forward
 	Ogre::Vector3 lastPos = nodeList[nodeList.size() - 1]->_getDerivedPosition();
 
 	// avoid divide by zero
@@ -35,20 +35,22 @@ void TargetCircles::setup(Ogre::SceneManager* mSceneManager)
 
 	Ogre::Real scaleZ = diff.z / lastPos.z;
 	Ogre::Real scaleY = diff.y / lastPos.y;
-	Ogre::Real scaleX = (scaleZ + scaleY) / 4.0f;
+	Ogre::Real scaleX = (scaleZ + scaleY) / 3.0f;
 
-	Ogre::Vector3 posScale(scaleX, scaleY, scaleZ);
+	//Ogre::Vector3 posScale(scaleX, scaleY, scaleZ);
 	Ogre::Vector3 objScale(2.5f);
 	
 
 	for(int a = 0; a < nodeList.size(); a++)
 	{
 		Ogre::SceneNode* childNode = nodeList[a];
-		Ogre::Vector3 pos = childNode->_getDerivedPosition();
+		Ogre::Vector3 pos = childNode->getPosition();
 
-		Ogre::Vector3 newPos((pos.x * posScale.x) + targetPoint.x, 
-							 (pos.y * posScale.y) + targetPoint.y, 
-							 (pos.z * posScale.z) + targetPoint.z);
+		std::cout << pos.x << "\n";
+
+		Ogre::Vector3 newPos((pos.x * scaleX) + targetPoint.x, 
+							 (pos.y * scaleY) + targetPoint.y, 
+							 (pos.z * scaleZ) + targetPoint.z);
 				
 		Ogre::Vector3 upVector = newPos.normalisedCopy();
 		Ogre::Quaternion q = Ogre::Vector3::UNIT_Y.getRotationTo(upVector);

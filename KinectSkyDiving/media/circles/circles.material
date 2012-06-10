@@ -5,10 +5,12 @@ material blue_opaque
 		pass
 		{
 			//lighting off
-		
+			
 			ambient 0 0.54902 1 1
-			diffuse 0 0.249486 1 1
-			specular 0 0.249486 1 1
+			diffuse 0 0.633333 1 1
+			specular 0.5 0.5 0.5 1 89.6
+		
+			
 		}
 
 	}
@@ -45,10 +47,11 @@ material red_opaque
 		pass
 		{
 			//lighting off
-		
+			
 			ambient 0.292683 0.0470283 0 1
-			diffuse 0.192683 0.0270283 0 1
-			specular 0.192683 0.0270283 0 1
+			diffuse 0.784314 0.186681 0 1
+			specular 0.5 0.5 0.5 1 89.6
+			
 		}
 
 	}

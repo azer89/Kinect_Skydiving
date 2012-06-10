@@ -1,6 +1,6 @@
 
 #include "Stdafx.h"
-#include "GGBird.H"
+#include "GGBird.h"
 
 //
 //  GGBird

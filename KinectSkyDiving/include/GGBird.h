@@ -2,7 +2,7 @@
 
 #include "Stdafx.h"
 #include <Ogre.h>
-#include "FSM.H"
+#include "FSM.h"
 #include <vector>
 
 #include "PPSoundManager.h"

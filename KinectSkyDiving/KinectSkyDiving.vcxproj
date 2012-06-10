@@ -139,9 +139,9 @@
     <ClInclude Include="include\Exception.h" />
     <ClInclude Include="include\FreeImage.h" />
     <ClInclude Include="include\App.h" />
-    <ClInclude Include="include\FSM.H" />
+    <ClInclude Include="include\FSM.h" />
     <ClInclude Include="include\GameSystem.h" />
-    <ClInclude Include="include\GGBird.H" />
+    <ClInclude Include="include\GGBird.h" />
     <ClInclude Include="include\OgreKinect.h" />
     <ClInclude Include="include\ParticleManager.h" />
     <ClInclude Include="include\Planet.h" />
