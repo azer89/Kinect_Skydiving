@@ -269,16 +269,6 @@
                 </subentities>
             </entity>
         </node>
-        <node name="group">
-            <position x="0" y="0" z="0" />
-            <scale x="1" y="1" z="1" />
-            <rotation qx="0" qy="0" qz="0" qw="1" />
-        </node>
-        <node name="group1">
-            <position x="0" y="9.8744" z="20.0807" />
-            <scale x="1" y="1" z="1" />
-            <rotation qx="0" qy="0" qz="0" qw="1" />
-        </node>
         <node name="b12">
             <position x="33.744" y="91.9991" z="189.276" />
             <scale x="1" y="1" z="1" />

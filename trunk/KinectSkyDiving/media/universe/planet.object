@@ -13,6 +13,6 @@ planet Planet
 
 	atmosphere
 	{
-		radius 6500.0
+		radius 6000.0
 	}
 }

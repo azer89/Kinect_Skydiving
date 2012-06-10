@@ -27,6 +27,10 @@ void CollisionDetector::update(Ogre::Real elapsedTime)
 	for(int a = 0; a < nodeList.size(); a++)
 	{
 		Ogre::SceneNode* node = nodeList[a];
+		Ogre::String name = node->getName();
+
+		std::cout << name << "\n";
+
 		//Ogre::AxisAlignedBox cBBox = character->getBodyNode()->getAttachedObject(0)->getBoundingBox();
 		//Ogre::AxisAlignedBox bBox = node->getAttachedObject(0)->getBoundingBox();
 		//if(bBox.intersects(cBBox))

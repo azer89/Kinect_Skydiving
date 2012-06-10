@@ -78,10 +78,10 @@ void PoseDetect::savePose( PPose newPose )
 	std::fstream fp;
 	fp.open("newPose.txt", std::ios::out);
 
-	for (int i=0; i<20; i++)
+	for (int i = 0; i < 20; i++)
 		fp << newPose.isTrack[i] << " ";
 	fp << std::endl;
-	for (int i=0; i<20; i++)
+	for (int i = 0; i < 20; i++)
 		fp << newPose.oriSkeleton[i].x << " " << newPose.oriSkeleton[i].y << " " << newPose.oriSkeleton[i].z << " " << newPose.oriSkeleton[i].w << std::endl;	
 
 	fp.close();
@@ -107,7 +107,7 @@ void PoseDetect::clearFlag()
 
 bool PoseDetect::isPose(std::string name)
 {
-	for(int i=0;i<vecPose.size();i++)
+	for(int i = 0;i<vecPose.size();i++)
 	{
 		if(name == vecPose[i].poseName)
 		{

@@ -135,7 +135,7 @@
     <ClInclude Include="include\Core.h" />
     <ClInclude Include="include\DotSceneLoader.h" />
     <ClInclude Include="include\DVector3.h" />
-    <ClInclude Include="include\ExampleLoadingBar.h" />
+    <ClInclude Include="include\LoadingAnimation.h" />
     <ClInclude Include="include\Exception.h" />
     <ClInclude Include="include\FreeImage.h" />
     <ClInclude Include="include\App.h" />
@@ -207,6 +207,8 @@
     <None Include="media\materials\programs\SimplePlanet.cg" />
     <None Include="media\materials\programs\SpritePlanet.cg" />
     <None Include="media\materials\programs\Star.cg" />
+    <None Include="media\universe.object" />
+    <None Include="media\universe\planet.object" />
     <None Include="res\GalaxyEngine.ico" />
   </ItemGroup>
   <ItemGroup>

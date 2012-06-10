@@ -14,7 +14,7 @@
 #include "PlanetObjects.h"
 #include "TargetCircles.h"
 #include "ParticleManager.h"
-#include "ExampleLoadingBar.h"
+#include "LoadingAnimation.h"
 #include "CollisionDetector.h"
 
 //#include "PPSoundManager.h"
@@ -34,7 +34,7 @@ public:
 		OIS::Keyboard* mKeyboard,
 		Ogre::RenderWindow* mWindow,
 		GalaxyEngine::Core* planetEngine,
-		ExampleLoadingBar* mLoadingBar);
+		LoadingAnimation* mLoadingBar);
 
 	void createScene(void);
 	void update(Ogre::Real elapsedTime);
@@ -60,7 +60,7 @@ private:
 	ParticleManager*	pManager;
 	CameraListener*     mCameraListener;
 	ThirdPersonCamera*  exCamera;
-	ExampleLoadingBar*	mLoadingBar;
+	LoadingAnimation*	mLoadingBar;
 	CollisionDetector*	collisionDetector;
 
 	OgreKinect* mOgreKinect;

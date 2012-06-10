@@ -237,7 +237,7 @@ bool BaseApplication::setup(void)
 	mTrayMgr->hideFrameStats();
 	//mTrayMgr->showLoadingBar();
 
-	mLoadingBar = new ExampleLoadingBar();
+	mLoadingBar = new LoadingAnimation();
 
     loadResources();
 

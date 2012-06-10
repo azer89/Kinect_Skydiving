@@ -46,20 +46,16 @@ void GameSystem::createScene(void)
 	mCameraListener->setCharacter(character);
 
 	this->character->setup(mSceneMgr, 
-						   Ogre::Vector3(0, 6000, 6000), 
+						   Ogre::Vector3(0, 5750, 5750), 
 						   Ogre::Vector3(0.5f, 0.5f, 0.5f), 
 						   Ogre::Quaternion::IDENTITY);
-	//this->character->setup(mSceneMgr, Ogre::Vector3(0, 2400, 0), Ogre::Vector3(1.0f), Ogre::Quaternion::IDENTITY);
 	this->character->setGravity(9.8f);
 
-	// GGBird
-	mGGBirds = new GGBirdFatory();
-
-	// Sound
-	//mPPSoundManager = new PPSoundManager();
-
-	// Kinect
-	mOgreKinect = new OgreKinect(mSceneMgr);
+	mLoadingBar->update();
+	
+	mGGBirds = new GGBirdFatory();					// GGBird
+	//mPPSoundManager = new PPSoundManager();		// Sound	
+	mOgreKinect = new OgreKinect(mSceneMgr);		// Kinect
 
 	mLoadingBar->update();
 
@@ -78,7 +74,7 @@ void GameSystem::initSystem(Ogre::Root *mRoot,
 	OIS::Keyboard* mKeyboard, 
 	Ogre::RenderWindow* mWindow, 
 	GalaxyEngine::Core *planetEngine,
-	ExampleLoadingBar* mLoadingBar)
+	LoadingAnimation* mLoadingBar)
 {
 	this->mRoot = mRoot;
 	this->mCamera = mCamera;
@@ -102,7 +98,7 @@ void GameSystem::update(Ogre::Real elapsedTime)
 
 	mGGBirds->Update(elapsedTime, character->getBodyNode()->_getDerivedPosition());
 	mOgreKinect->update(elapsedTime);
-	processKinectInput();
+	//processKinectInput();
 
 	if(pManager != 0) pManager->update(character->getBodyNode()->_getDerivedPosition());
 	if(collisionDetector != 0) collisionDetector->update(elapsedTime);
@@ -261,7 +257,7 @@ void GameSystem::processKinectInput()
 
 	if(mOgreKinect->mPoseDetect->isPose("front"))
 	{
-		printf("front\n");
+		//printf("front\n");
 		character->setState(Movement::MOVE_FRONT);
 	}	
 	else if(mOgreKinect->mPoseDetect->isPose("back"))
@@ -270,22 +266,22 @@ void GameSystem::processKinectInput()
 	}
 	else if(mOgreKinect->mPoseDetect->isPose("left"))
 	{
-		printf("left\n");
+		//printf("left\n");
 		character->setState(Movement::MOVE_LEFT);
 	}
 	else if(mOgreKinect->mPoseDetect->isPose("right"))
 	{
-		printf("right\n");
+		//printf("right\n");
 		character->setState(Movement::MOVE_RIGHT);
 	}
 	else if(mOgreKinect->mPoseDetect->isPose("rotate_left"))
 	{
-		printf("rotate_left\n");
+		//printf("rotate_left\n");
 		character->setState(Movement::ROTATE_LEFT);
 	}
 	else if(mOgreKinect->mPoseDetect->isPose("rotate_right"))
 	{
-		printf("rotate_right\n");
+		//printf("rotate_right\n");
 		character->setState(Movement::ROTATE_RIGHT);
 	}
 }
