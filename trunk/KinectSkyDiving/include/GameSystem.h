@@ -18,7 +18,7 @@
 #include "CollisionDetector.h"
 
 //#include "PPSoundManager.h"
-#include "GGBird.H"
+#include "GGBird.h"
 #include "OgreKinect.h"
 
 class GameSystem
