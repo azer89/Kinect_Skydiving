@@ -35,7 +35,7 @@ void TargetCircles::setup(Ogre::SceneManager* mSceneManager)
 
 	Ogre::Real scaleZ = diff.z / lastPos.z;
 	Ogre::Real scaleY = diff.y / lastPos.y;
-	Ogre::Real scaleX = (scaleZ + scaleY) / 3.0f;
+	Ogre::Real scaleX = (scaleZ + scaleY) / 4.0f;
 
 	Ogre::Vector3 posScale(scaleX, scaleY, scaleZ);
 	Ogre::Vector3 objScale(2.5f);
