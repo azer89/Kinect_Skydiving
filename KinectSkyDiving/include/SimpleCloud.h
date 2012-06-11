@@ -4,6 +4,8 @@
 #define __SimpleCloud_h_
 
 #include "Stdafx.h"
+#include "GameConfig.h"
+
 class SimpleCloud
 {
 public:

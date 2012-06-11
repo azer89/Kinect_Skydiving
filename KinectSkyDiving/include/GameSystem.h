@@ -16,6 +16,7 @@
 #include "ParticleManager.h"
 #include "LoadingAnimation.h"
 #include "CollisionDetector.h"
+#include "GameConfig.h"
 
 //#include "PPSoundManager.h"
 #include "GGBird.h"

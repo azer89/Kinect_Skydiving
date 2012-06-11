@@ -52,53 +52,17 @@
     <ClCompile Include="src\PoseDetect.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Atmosphere.cpp">
-      <Filter>Source Files\GalaxyEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ConfigScript.cpp">
-      <Filter>Source Files\GalaxyEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core.cpp">
-      <Filter>Source Files\GalaxyEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Exception.cpp">
-      <Filter>Source Files\GalaxyEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Planet.cpp">
-      <Filter>Source Files\GalaxyEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\PlanetLoader_Hybrid.cpp">
-      <Filter>Source Files\GalaxyEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\PlanetMath.cpp">
-      <Filter>Source Files\GalaxyEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\PlanetObjects.cpp">
-      <Filter>Source Files\GalaxyEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SimplePlanet.cpp">
-      <Filter>Source Files\GalaxyEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SpaceBackdrop.cpp">
-      <Filter>Source Files\GalaxyEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SpritePlanet.cpp">
-      <Filter>Source Files\GalaxyEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Star.cpp">
-      <Filter>Source Files\GalaxyEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Universe.cpp">
-      <Filter>Source Files\GalaxyEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Utility.cpp">
-      <Filter>Source Files\GalaxyEngine</Filter>
-    </ClCompile>
     <ClCompile Include="src\CameraListener.cpp">
       <Filter>Source Files\Camera</Filter>
     </ClCompile>
     <ClCompile Include="src\ThirdPersonCamera.cpp">
       <Filter>Source Files\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PlanetObjects.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameConfig.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -147,13 +111,7 @@
     <ClInclude Include="include\TargetCircles.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Utility.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\App.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\QueryFlags.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\GGBird.h">
@@ -162,59 +120,20 @@
     <ClInclude Include="include\FSM.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Atmosphere.h">
-      <Filter>Header Files\GalaxyEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ConfigScript.h">
-      <Filter>Header Files\GalaxyEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core.h">
-      <Filter>Header Files\GalaxyEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="include\DVector3.h">
-      <Filter>Header Files\GalaxyEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Exception.h">
-      <Filter>Header Files\GalaxyEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="include\FreeImage.h">
-      <Filter>Header Files\GalaxyEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="include\PlanetLoader_Hybrid.h">
-      <Filter>Header Files\GalaxyEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="include\PlanetMath.h">
-      <Filter>Header Files\GalaxyEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="include\PlanetObjects.h">
-      <Filter>Header Files\GalaxyEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SimplePlanet.h">
-      <Filter>Header Files\GalaxyEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SpaceBackdrop.h">
-      <Filter>Header Files\GalaxyEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SpritePlanet.h">
-      <Filter>Header Files\GalaxyEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Universe.h">
-      <Filter>Header Files\GalaxyEngine</Filter>
-    </ClInclude>
     <ClInclude Include="include\LoadingAnimation.h">
       <Filter>Header Files\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Star.h">
-      <Filter>Header Files\GalaxyEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Planet.h">
-      <Filter>Header Files\GalaxyEngine</Filter>
     </ClInclude>
     <ClInclude Include="include\ThirdPersonCamera.h">
       <Filter>Header Files\Camera</Filter>
     </ClInclude>
     <ClInclude Include="include\CameraListener.h">
       <Filter>Header Files\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PlanetObjects.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameConfig.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -248,6 +167,9 @@
     <None Include="res\GalaxyEngine.ico">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="media\game.config">
+      <Filter>Planet Config</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -265,17 +187,11 @@
     <Filter Include="Resource Files">
       <UniqueIdentifier>{72ccbf9f-9364-4fea-871e-052d19d7a743}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\GalaxyEngine">
-      <UniqueIdentifier>{0fb71823-d397-4d6b-95ca-9a7c50087b67}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\UI">
       <UniqueIdentifier>{b1241c46-866b-4dd5-9b10-1ac0086c8d5e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Camera">
       <UniqueIdentifier>{4c2c2eb0-b7c7-43a2-bb4f-36a03eab4fca}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\GalaxyEngine">
-      <UniqueIdentifier>{5bf17eee-726d-4628-bb17-1689141788a8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Camera">
       <UniqueIdentifier>{5d710141-b019-4bb7-8b9b-9b0b51ec1f15}</UniqueIdentifier>

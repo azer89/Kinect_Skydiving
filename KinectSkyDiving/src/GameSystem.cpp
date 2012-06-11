@@ -37,19 +37,27 @@ GameSystem::~GameSystem(void)
 /**  Create your scene here */
 void GameSystem::createScene(void)
 {
+	GameConfig* gameConfig = GameConfig::getSingletonPtr();
+
 	mSceneMgr->setSkyBox(true, "Sky/Space", 10000, true);
 
 	exCamera = new ThirdPersonCamera("ThirdPersonCamera", mSceneMgr, mCamera);
 	mCameraListener = new CameraListener(mWindow, mCamera);
 	mCameraListener->setExtendedCamera(exCamera);
-	this->character = new Character();
-	mCameraListener->setCharacter(character);
 
-	this->character->setup(mSceneMgr, 
-						   Ogre::Vector3(0, 5750, 4750), 
+	this->character = new Character();
+	/*this->character->setup(mSceneMgr, 
+						   Ogre::Vector3(0, 6000, 1000), 
 						   Ogre::Vector3(0.5f, 0.5f, 0.5f), 
-						   Ogre::Quaternion::IDENTITY);
-	this->character->setGravity(8.0f);
+						   Ogre::Quaternion::IDENTITY);*/
+	this->character->setup(mSceneMgr, 
+						gameConfig->getCharacterPosition(), 
+						gameConfig->getCharacterScale(), 
+						Ogre::Quaternion::IDENTITY);
+	this->character->setGravity(gameConfig->getGravity());
+
+	mCameraListener->setCharacter(character);
+	mCameraListener->instantUpdate();
 
 	mLoadingBar->update();
 	
