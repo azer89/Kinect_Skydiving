@@ -46,10 +46,6 @@ void GameSystem::createScene(void)
 	mCameraListener->setExtendedCamera(exCamera);
 
 	this->character = new Character();
-	/*this->character->setup(mSceneMgr, 
-						   Ogre::Vector3(0, 6000, 1000), 
-						   Ogre::Vector3(0.5f, 0.5f, 0.5f), 
-						   Ogre::Quaternion::IDENTITY);*/
 	this->character->setup(mSceneMgr, 
 						gameConfig->getCharacterPosition(), 
 						gameConfig->getCharacterScale(), 
@@ -147,9 +143,7 @@ void GameSystem::checkPlanetColission(Ogre::Real timeElapsed)
 		{
 			character->setLanding();
 		}
-
-	}
-	
+	}	
 }
 
 //-------------------------------------------------------------------------------------
@@ -243,17 +237,14 @@ void GameSystem::postPlanetInitialization()
 void GameSystem::isPlanetReady()
 {
 	GalaxyEngine::Planet* planet = planetEngine->getFirstPlanet();	
-	//std::cout << "~isPlanetReady~";
 	if(planet != 0)
 	{
 		Ogre::SceneNode* parentNode = planet->getParentSceneNode();
 		if(parentNode == NULL) 
 		{
-			//std::cout << "~parent not found~\n";
 		}
 		else
 		{
-			/** Now the planet is fully initialized */
 			isPlanetInitialized = true;
 			postPlanetInitialization();
 		}

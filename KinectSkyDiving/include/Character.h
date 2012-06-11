@@ -40,8 +40,15 @@ public:
 	inline Ogre::SceneNode* getSightNode() { return mSightNode; }
 	inline Ogre::SceneNode* getCameraNode() { return mCameraNode; }
 	inline Ogre::Vector3    getWorldPosition() { return mMainNode->_getDerivedPosition (); }
+	inline int				getGameplayPoint() { return point; }
 	//inline CharacterControllerPhysics* getCCPhysics() { return mCCPhysics; }
-
+	
+	void addPoint(int num) 
+	{ 
+		point += num;
+		if(point < 0) point = 0;
+	}
+	
 public:
 	Ogre::String entityName;
 
@@ -70,6 +77,8 @@ private:
 	Ogre::SceneManager*  mSceneManager;	
 	Ogre::Entity*        bodyEntity;	
 	Ogre::Skeleton*      skeleton;
+
+	int point;
 
 	//Ogre::RibbonTrail*	 mTrail;
 	//Ogre::SceneNode*	 trail01Node;

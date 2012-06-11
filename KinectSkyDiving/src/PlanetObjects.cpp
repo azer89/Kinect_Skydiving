@@ -4,14 +4,12 @@
 
 //------------------------------------------------------------------------------------
 PlanetObjects::PlanetObjects(void)
-	//: sceneLoader(0)
 {
 }
 
 //------------------------------------------------------------------------------------
 PlanetObjects::~PlanetObjects(void)
 {
-	//if(sceneLoader != 0) delete sceneLoader;
 }
 
 //------------------------------------------------------------------------------------
@@ -21,7 +19,6 @@ void PlanetObjects::setup(Ogre::SceneManager* mSceneManager, RayCastCollision* c
 	this->mMainNode = mSceneManager->getRootSceneNode()->createChildSceneNode();
 
 	Ogre::DotSceneLoader* sceneLoader = new Ogre::DotSceneLoader();
-	//sceneLoader->parseDotScene("village.scene", "Popular", mSceneManager, mMainNode);
 	sceneLoader->parseDotScene(GameConfig::getSingletonPtr()->getVillageSceneName(), "Popular", mSceneManager, mMainNode);
 
 	std::vector<Ogre::SceneNode*> nodeList = sceneLoader->nodeList;
@@ -40,7 +37,6 @@ void PlanetObjects::setup(Ogre::SceneManager* mSceneManager, RayCastCollision* c
 
 		Ogre::Vector3 dirVector = tempPos.normalisedCopy();
 		childNode->setScale(scaleVect);
-		//childNode->setPosition(tempPos);
 
 		Ogre::Vector3 actualPos = dirVector * 5000;
 		

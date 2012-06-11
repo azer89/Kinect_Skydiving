@@ -61,6 +61,8 @@ void Character::setup(Ogre::SceneManager* mSceneManager,
 	mSightNode = this->mMainNode->createChildSceneNode("sightNode", sight);
 	mCameraNode = this->mMainNode->createChildSceneNode("cameraNode", cam);	
 
+	//this->mMainNode->showBoundingBox(true);
+
 	/* // Ribbon Trail
 	Ogre::NameValuePairList params;
 	params["numberOfChains"] = "2";

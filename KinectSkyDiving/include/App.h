@@ -25,6 +25,7 @@ public:
 protected:
 	GalaxyEngine::Core *planetEngine;				// planet rendering engine
 	GameSystem* gameSystem;							// game play system, put your code inside this class
+	GameConfig* gameConfig;
 
 protected:
     virtual void createScene(void);

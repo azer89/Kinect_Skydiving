@@ -19,6 +19,7 @@ public:
 private:
 	Character* character;
 	TargetCircles* tCircles;
+	//Ogre::Real radiusCollision;
 };
 
 #endif // #ifndef __CollisionDetector_h_
