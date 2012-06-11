@@ -8,15 +8,14 @@
 
 /** Character's Movement*/
 enum Movement
-{
-	NOTHING = 0,
-	GO_DOWN = 1,
-	MOVE_FRONT = 2,
-	MOVE_BACK = 3,
-	MOVE_LEFT = 4,
-	MOVE_RIGHT = 5,
-	ROTATE_LEFT = 6,
-	ROTATE_RIGHT = 7,
+{	
+	MOVE_FRONT = 0,
+	MOVE_BACK = 1,
+	MOVE_LEFT = 2,
+	MOVE_RIGHT = 3,
+	NOTHING = 4,
+	ROTATE_LEFT = 5,
+	ROTATE_RIGHT = 6,
 };
 
 /**  Main Character Class*/
@@ -55,10 +54,14 @@ private:
 	bool			isLanding;
 	Ogre::Real		gravity;
 	Ogre::Real		degreeRotation;
-	Movement		state;
 
-	Ogre::Real		currentSpeed;
+	Movement		state;
+	Movement		previousState;
+
+	Ogre::Real		currentSpeed[4];
 	Ogre::Real		maxSpeed;
+	Ogre::Real		acceleration;
+	Ogre::Real		rotationSpeed;
 
 	Ogre::SceneNode*     mMainNode;			// Main character node
 	Ogre::SceneNode*	 mSightNode;		// "Sight" node - The character is supposed to be looking here

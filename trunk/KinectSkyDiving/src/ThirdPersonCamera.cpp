@@ -39,7 +39,7 @@ ThirdPersonCamera::ThirdPersonCamera (Ogre::String name, Ogre::SceneManager *sce
 	mCameraNode->attachObject(mCamera);
 
 	// Default tightness
-	mTightness = Ogre::Vector3(0.5f, 0.5f, 0.5f);
+	mTightness = GameConfig::getSingletonPtr()->getCameraTightness();
 }
 
 ThirdPersonCamera::~ThirdPersonCamera () 
