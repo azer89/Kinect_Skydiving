@@ -67,7 +67,7 @@
       <FloatingPointModel>Fast</FloatingPointModel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>include;include\Hikari;include\tinyxml;include\Bullet;include\irrKlang-1.3.0;$(OGRE_HOME)\include;$(OGRE_HOME)\include\OIS;$(OGRE_HOME)\include\OGRE;$(OGRE_HOME)\Samples\Common\include;$(OGRE_HOME)\boost_1_47;$(OGRE_HOME)\boost_1_47\boost;C:\Ogre3D\AddOns\bullet-2.80\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;include\Hikari;include\tinyxml;include\Bullet;include\irrKlang-1.3.0;..\GalaxyEngine\include;$(OGRE_HOME)\include;$(OGRE_HOME)\include\OIS;$(OGRE_HOME)\include\OGRE;$(OGRE_HOME)\Samples\Common\include;$(OGRE_HOME)\boost_1_47;$(OGRE_HOME)\boost_1_47\boost;C:\Ogre3D\AddOns\bullet-2.80\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>Stdafx.h</PrecompiledHeaderFile>
       <AdditionalOptions>/Zm256 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -77,8 +77,8 @@
       <ProgramDatabaseFile>$(OutDir)/GalaxyEngine.pdb</ProgramDatabaseFile>
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
       <TargetMachine>MachineX86</TargetMachine>
-      <AdditionalLibraryDirectories>$(OGRE_HOME)\lib\debug;$(OGRE_HOME)\boost_1_47\lib;lib;lib\bullet;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>OgreMain_d.lib;OIS_d.lib;Hikari_d.lib;FreeImage.lib;tinyxml.lib;tinyxmlSTL.lib;Kinect10.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OGRE_HOME)\lib\debug;$(OGRE_HOME)\boost_1_47\lib;..\GalaxyEngine\bin\Debug;lib;lib\bullet;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>OgreMain_d.lib;OIS_d.lib;GalaxyEngine_d.lib;Hikari_d.lib;tinyxml.lib;tinyxmlSTL.lib;Kinect10.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Message>Copying exe to samples bin directory ...</Message>
@@ -106,7 +106,7 @@
       <StringPooling>true</StringPooling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FloatingPointModel>Fast</FloatingPointModel>
-      <AdditionalIncludeDirectories>include;include\Hikari;include\tinyxml;include\Bullet;$(OGRE_HOME)\include;$(OGRE_HOME)\include\OIS;$(OGRE_HOME)\include\OGRE;$(OGRE_HOME)\Samples\Common\include;$(OGRE_HOME)\boost_1_47;$(OGRE_HOME)\boost_1_47\boost;C:\Ogre3D\AddOns\bullet-2.80\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;include\Hikari;include\tinyxml;include\Bullet;..\GalaxyEngine\include;$(OGRE_HOME)\include;$(OGRE_HOME)\include\OIS;$(OGRE_HOME)\include\OGRE;$(OGRE_HOME)\Samples\Common\include;$(OGRE_HOME)\boost_1_47;$(OGRE_HOME)\boost_1_47\boost;C:\Ogre3D\AddOns\bullet-2.80\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -114,8 +114,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
-      <AdditionalLibraryDirectories>$(OGRE_HOME)\lib\release;$(OGRE_HOME)\boost_1_47\lib;lib;lib\bullet;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>OgreMain.lib;OIS.lib;Hikari.lib;FreeImage.lib;Kinect10.lib;tinyxml.lib;tinyxmlSTL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OGRE_HOME)\lib\release;$(OGRE_HOME)\boost_1_47\lib;..\GalaxyEngine\bin\Release;lib;lib\bullet;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>OgreMain.lib;OIS.lib;GalaxyEngine.lib;Hikari.lib;FreeImage.lib;Kinect10.lib;tinyxml.lib;tinyxmlSTL.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Message>
@@ -126,55 +126,37 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\AnimationBlender.h" />
-    <ClInclude Include="include\Atmosphere.h" />
     <ClInclude Include="include\BaseApplication.h" />
     <ClInclude Include="include\CameraListener.h" />
     <ClInclude Include="include\Character.h" />
     <ClInclude Include="include\CollisionDetector.h" />
-    <ClInclude Include="include\ConfigScript.h" />
-    <ClInclude Include="include\Core.h" />
+    <ClInclude Include="include\GameConfig.h" />
     <ClInclude Include="include\DotSceneLoader.h" />
-    <ClInclude Include="include\DVector3.h" />
     <ClInclude Include="include\LoadingAnimation.h" />
-    <ClInclude Include="include\Exception.h" />
-    <ClInclude Include="include\FreeImage.h" />
     <ClInclude Include="include\App.h" />
     <ClInclude Include="include\FSM.h" />
     <ClInclude Include="include\GameSystem.h" />
     <ClInclude Include="include\GGBird.h" />
     <ClInclude Include="include\OgreKinect.h" />
     <ClInclude Include="include\ParticleManager.h" />
-    <ClInclude Include="include\Planet.h" />
-    <ClInclude Include="include\PlanetLoader_Hybrid.h" />
-    <ClInclude Include="include\PlanetMath.h" />
     <ClInclude Include="include\PlanetObjects.h" />
     <ClInclude Include="include\PoseDetect.h" />
     <ClInclude Include="include\PPSoundManager.h" />
-    <ClInclude Include="include\QueryFlags.h" />
     <ClInclude Include="include\RayCastCollision.h" />
     <ClInclude Include="include\SimpleCloud.h" />
-    <ClInclude Include="include\SimplePlanet.h" />
-    <ClInclude Include="include\SpaceBackdrop.h" />
-    <ClInclude Include="include\SpritePlanet.h" />
-    <ClInclude Include="include\Star.h" />
     <ClInclude Include="include\Stdafx.h" />
     <ClInclude Include="include\TargetCircles.h" />
     <ClInclude Include="include\ThirdPersonCamera.h" />
-    <ClInclude Include="include\Universe.h" />
-    <ClInclude Include="include\Utility.h" />
     <ClInclude Include="res\Resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\AnimationBlender.cpp" />
-    <ClCompile Include="src\Atmosphere.cpp" />
     <ClCompile Include="src\BaseApplication.cpp" />
     <ClCompile Include="src\CameraListener.cpp" />
     <ClCompile Include="src\Character.cpp" />
     <ClCompile Include="src\CollisionDetector.cpp" />
-    <ClCompile Include="src\ConfigScript.cpp" />
-    <ClCompile Include="src\Core.cpp" />
+    <ClCompile Include="src\GameConfig.cpp" />
     <ClCompile Include="src\DotSceneLoader.cpp" />
-    <ClCompile Include="src\Exception.cpp" />
     <ClCompile Include="src\App.cpp" />
     <ClCompile Include="src\FSM.cpp" />
     <ClCompile Include="src\GameSystem.cpp" />
@@ -182,24 +164,16 @@
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\OgreKinect.cpp" />
     <ClCompile Include="src\ParticleManager.cpp" />
-    <ClCompile Include="src\Planet.cpp" />
-    <ClCompile Include="src\PlanetLoader_Hybrid.cpp" />
-    <ClCompile Include="src\PlanetMath.cpp" />
     <ClCompile Include="src\PlanetObjects.cpp" />
     <ClCompile Include="src\PoseDetect.cpp" />
     <ClCompile Include="src\PPSoundManager.cpp" />
     <ClCompile Include="src\RayCastCollision.cpp" />
     <ClCompile Include="src\SimpleCloud.cpp" />
-    <ClCompile Include="src\SimplePlanet.cpp" />
-    <ClCompile Include="src\SpaceBackdrop.cpp" />
-    <ClCompile Include="src\SpritePlanet.cpp" />
-    <ClCompile Include="src\Star.cpp" />
     <ClCompile Include="src\TargetCircles.cpp" />
     <ClCompile Include="src\ThirdPersonCamera.cpp" />
-    <ClCompile Include="src\Universe.cpp" />
-    <ClCompile Include="src\Utility.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="media\game.config" />
     <None Include="media\materials\programs\Atmosphere.cg" />
     <None Include="media\materials\programs\Defs.program" />
     <None Include="media\materials\programs\Planet.cg" />

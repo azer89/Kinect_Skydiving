@@ -3,6 +3,7 @@
 #define __Character_h_
 
 #include "Stdafx.h"
+#include "GameConfig.h"
 //#include "CCPhysics.h"
 
 /** Character's Movement*/
@@ -56,6 +57,9 @@ private:
 	Ogre::Real		degreeRotation;
 	Movement		state;
 
+	Ogre::Real		currentSpeed;
+	Ogre::Real		maxSpeed;
+
 	Ogre::SceneNode*     mMainNode;			// Main character node
 	Ogre::SceneNode*	 mSightNode;		// "Sight" node - The character is supposed to be looking here
 	Ogre::SceneNode*	 mCameraNode;		// Node for the chase camera
@@ -63,6 +67,10 @@ private:
 	Ogre::SceneManager*  mSceneManager;	
 	Ogre::Entity*        bodyEntity;	
 	Ogre::Skeleton*      skeleton;
+
+	//Ogre::RibbonTrail*	 mTrail;
+	//Ogre::SceneNode*	 trail01Node;
+	//Ogre::SceneNode*	 trail02Node;
 };
 
 #endif // #ifndef __Character_h_

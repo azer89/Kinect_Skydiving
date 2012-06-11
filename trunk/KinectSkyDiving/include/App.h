@@ -11,6 +11,7 @@
 #include "Universe.h"
 #include "Planet.h"
 #include "GameSystem.h"
+#include "GameConfig.h"
 
 class App : public BaseApplication
 {

@@ -6,6 +6,7 @@
 #include "DotSceneLoader.h"
 #include "RayCastCollision.h"
 #include "Planet.h"
+#include "GameConfig.h"
 
 class PlanetObjects
 {

@@ -20,6 +20,10 @@ App::~App(void)
 //-------------------------------------------------------------------------------------
 void App::createScene(void)
 {	
+	new GameConfig("game.config", "Popular");
+
+	mCameraMan->setTopSpeed(GameConfig::getSingletonPtr()->getMCameraManSpeed());
+
 	planetEngine = new GalaxyEngine::Core("../../media", this->mSceneMgr, this->mWindow, this->mCamera->getViewport(), this->mCamera, this->mRoot);
 	gameSystem = new GameSystem();
 
@@ -46,7 +50,7 @@ bool App::frameRenderingQueued(const Ogre::FrameEvent& evt)
 //--------------------------------------------------------------------------------------
 /** Run the system, called on main() */
 void App::go(void)
-{		
+{			
 	BaseApplication::go();		
 	if(gameSystem != 0) planetEngine->runSimulation();		//	Run the planet simulation	
 	BaseApplication::destroyScene();		

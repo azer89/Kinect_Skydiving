@@ -8,7 +8,7 @@
 
 //-------------------------------------------------------------------------------------
 SimpleCloud::SimpleCloud(void)
-	: highestElevation(5500.0f)
+	: highestElevation(GameConfig::getSingletonPtr()->getCloudHighestElevation())
 	  //updateDelay(0.0f)
 {
 }

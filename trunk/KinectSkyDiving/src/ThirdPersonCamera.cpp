@@ -6,8 +6,11 @@
 
 ThirdPersonCamera::ThirdPersonCamera (Ogre::String name, Ogre::SceneManager *sceneMgr, Ogre::Camera *camera) 
 {
-	camera->setPosition(0, 3000.0f, 3000.0f);
-	camera->lookAt(0, 1000, 0);
+	Ogre::Vector3 charPos(0, 5750, 1000);
+	Ogre::Vector3 targetPos(0, 5000, 0);
+
+	camera->setPosition(charPos);
+	camera->lookAt(targetPos);
 	camera->setNearClipDistance(0.5f);
 	camera->setFarClipDistance(17500.0f);
 
@@ -18,13 +21,10 @@ ThirdPersonCamera::ThirdPersonCamera (Ogre::String name, Ogre::SceneManager *sce
 	// Create the camera's node structure
 	mCameraNode = mSceneMgr->getRootSceneNode ()->createChildSceneNode (mName);
 	mTargetNode = mSceneMgr->getRootSceneNode ()->createChildSceneNode (mName + "_target");
-	//mCameraNode->setPosition (Ogre::Vector3::ZERO);
-	//mTargetNode->setPosition (Ogre::Vector3::ZERO);
 	mCameraNode->setAutoTracking (true, mTargetNode);		// The camera will always look at the camera target
 	//mCameraNode->setFixedYawAxis (true);					// Needed because of auto tracking
-	
-	// Create our camera if it wasn't passed as a parameter
-	if (camera == 0) 
+		
+	if (camera == 0)	// Create our camera if it wasn't passed as a parameter
 	{
 		mCamera = mSceneMgr->createCamera(mName);
 		mOwnCamera = true;
@@ -36,7 +36,6 @@ ThirdPersonCamera::ThirdPersonCamera (Ogre::String name, Ogre::SceneManager *sce
 		mOwnCamera = false;
 	}
 
-	// and attach the Ogre camera to the camera node
 	mCameraNode->attachObject(mCamera);
 
 	// Default tightness
@@ -52,19 +51,14 @@ ThirdPersonCamera::~ThirdPersonCamera ()
 }
 
 void ThirdPersonCamera::setTightness (Ogre::Vector3 tightness) { mTightness = tightness; }
-
 Ogre::Vector3 ThirdPersonCamera::getTightness () { return mTightness; }
-
 Ogre::Vector3 ThirdPersonCamera::getCameraPosition () { return mCameraNode->getPosition (); }
-
 void ThirdPersonCamera::instantUpdate (Ogre::Vector3 cameraPosition) { mCameraNode->setPosition (cameraPosition); }
 
 void ThirdPersonCamera::instantUpdate (Ogre::Vector3 cameraPosition, Ogre::Vector3 targetPosition) 
 {
 	mCameraNode->setPosition (cameraPosition);
 	mTargetNode->setPosition (targetPosition);
-
-	//mCamera->lookAt(targetPosition);
 }
 
 void ThirdPersonCamera::update (Ogre::Real elapsedTime, Ogre::Vector3 cameraPosition, Ogre::Vector3 targetPosition, Ogre::Quaternion camOrientation) 
@@ -82,11 +76,7 @@ void ThirdPersonCamera::update (Ogre::Real elapsedTime, Ogre::Vector3 cameraPosi
 	mTargetNode->translate(displacement01);
 	mCameraNode->translate(displacement02);
 
-
 	mCameraNode->setOrientation(camOrientation);
-	//Ogre::Vector3 upVector = mCameraNode->getPosition() - mTargetNode->getPosition();
-	//upVector.normalise();
-	//mCameraNode->lookAt(upVector, Ogre::Node::TransformSpace::TS_WORLD);
 
 
 }

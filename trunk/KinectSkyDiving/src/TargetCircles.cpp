@@ -2,6 +2,10 @@
 #include "Stdafx.h"
 #include "TargetCircles.h"
 
+#include <cstdlib> 
+#include <ctime> 
+#include <iostream>
+
 //------------------------------------------------------------------------------------
 TargetCircles::TargetCircles(void)
 {
@@ -19,12 +23,15 @@ void TargetCircles::setup(Ogre::SceneManager* mSceneManager)
 	this->mMainNode = mSceneManager->getRootSceneNode()->createChildSceneNode();
 
 	sceneLoader = new Ogre::DotSceneLoader();
-	sceneLoader->parseDotScene("circles.scene", "Popular", mSceneManager, mMainNode);
+	sceneLoader->parseDotScene(GameConfig::getSingletonPtr()->getCircleSceneName(), "Popular", mSceneManager, mMainNode);
 	if(nodeList.size() == 0)
 		nodeList = sceneLoader->nodeList;
 	
-	Ogre::Vector3 targetPoint(0, 5050, 100);	// supposed goal
-	Ogre::Vector3 charPos(0, 5700, 4600);		// character position a more forward
+	Ogre::Vector3 v1 = GameConfig::getSingletonPtr()->getTargetPosition();
+	Ogre::Vector3 v2 = GameConfig::getSingletonPtr()->getCharacterPosition();
+
+	Ogre::Vector3 targetPoint(v1.x, v1.y, v1.z);				// supposed goal
+	Ogre::Vector3 charPos(v2.x, v2.y - 50, v2.z - 100);			// character position a more forward
 	Ogre::Vector3 lastPos = nodeList[nodeList.size() - 1]->_getDerivedPosition();
 
 	// avoid divide by zero
@@ -38,15 +45,14 @@ void TargetCircles::setup(Ogre::SceneManager* mSceneManager)
 	Ogre::Real scaleX = (scaleZ + scaleY) / 3.0f;
 
 	//Ogre::Vector3 posScale(scaleX, scaleY, scaleZ);
-	Ogre::Vector3 objScale(2.5f);
+	Ogre::Vector3 objScale(GameConfig::getSingletonPtr()->getCircleScale());
 	
+	srand (time(0));
 
 	for(int a = 0; a < nodeList.size(); a++)
 	{
 		Ogre::SceneNode* childNode = nodeList[a];
 		Ogre::Vector3 pos = childNode->getPosition();
-
-		std::cout << pos.x << "\n";
 
 		Ogre::Vector3 newPos((pos.x * scaleX) + targetPoint.x, 
 							 (pos.y * scaleY) + targetPoint.y, 
@@ -59,7 +65,25 @@ void TargetCircles::setup(Ogre::SceneManager* mSceneManager)
 		childNode->setOrientation(q);
 		childNode->setScale(objScale);
 
-		//childNode->showBoundingBox(true);
+		if(a > 5)
+		{
+			char name[16];
+			sprintf(name, "StaticCloud%d", a);
+
+			Ogre::SceneNode* myNode = static_cast<Ogre::SceneNode*>(mSceneManager->getRootSceneNode()->createChild());
+			Ogre::BillboardSet* mySet = mSceneManager->createBillboardSet(name);
+			mySet->setBillboardType(Ogre::BillboardType::BBT_POINT);
+			mySet->setMaterialName("Examples/Cloud01");	
+			Ogre::Billboard* myBillboard = mySet->createBillboard(Ogre::Vector3::ZERO);
+			myNode->attachObject(mySet);
+
+			int rx = (rand() % 500) - 250;
+			int ry = (rand() % 500) - 250;
+			int rz = (rand() % 500) - 250;
+
+			myNode->setPosition(newPos + Ogre::Vector3(rx, ry, rz));
+			myNode->setScale(Ogre::Vector3(1.5));
+		}
 	}
 
 	delete sceneLoader;

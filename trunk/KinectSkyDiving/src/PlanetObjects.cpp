@@ -22,12 +22,12 @@ void PlanetObjects::setup(Ogre::SceneManager* mSceneManager, RayCastCollision* c
 
 	Ogre::DotSceneLoader* sceneLoader = new Ogre::DotSceneLoader();
 	//sceneLoader->parseDotScene("village.scene", "Popular", mSceneManager, mMainNode);
-	sceneLoader->parseDotScene("village_few.scene", "Popular", mSceneManager, mMainNode);
+	sceneLoader->parseDotScene(GameConfig::getSingletonPtr()->getVillageSceneName(), "Popular", mSceneManager, mMainNode);
 
 	std::vector<Ogre::SceneNode*> nodeList = sceneLoader->nodeList;
 
-	Ogre::Vector3 scaleVect(5.0f);
-	Ogre::Vector3 transVect(0, 5250, 0);
+	Ogre::Vector3 scaleVect = GameConfig::getSingletonPtr()->getPlanetObjectScaling();
+	Ogre::Vector3 transVect = GameConfig::getSingletonPtr()->getPlanetObjectTranslation();
 	
 	for(int a = 0; a < nodeList.size(); a++)
 	{
