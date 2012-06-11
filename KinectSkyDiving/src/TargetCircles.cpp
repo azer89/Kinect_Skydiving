@@ -44,7 +44,6 @@ void TargetCircles::setup(Ogre::SceneManager* mSceneManager)
 	Ogre::Real scaleY = diff.y / lastPos.y;
 	Ogre::Real scaleX = (scaleZ + scaleY) / 3.0f;
 
-	//Ogre::Vector3 posScale(scaleX, scaleY, scaleZ);
 	Ogre::Vector3 objScale(GameConfig::getSingletonPtr()->getCircleScale());
 	
 	srand (time(0));
@@ -52,6 +51,13 @@ void TargetCircles::setup(Ogre::SceneManager* mSceneManager)
 	for(int a = 0; a < nodeList.size(); a++)
 	{
 		Ogre::SceneNode* childNode = nodeList[a];
+
+		Ogre::Entity* entity = static_cast<Ogre::Entity*>(childNode->getAttachedObject(0));
+		Ogre::AnimationState* state = entity->getAnimationState("go");
+		state->setEnabled(true);
+		state->setLoop(true);
+		animations.push_back(state);
+
 		Ogre::Vector3 pos = childNode->getPosition();
 
 		Ogre::Vector3 newPos((pos.x * scaleX) + targetPoint.x, 
@@ -87,7 +93,14 @@ void TargetCircles::setup(Ogre::SceneManager* mSceneManager)
 	}
 
 	delete sceneLoader;
+}
 
+void TargetCircles::update(Ogre::Real elapsedTime)
+{
+	for(int a = 0; a < animations.size(); a++)
+	{
+		animations[a]->addTime(elapsedTime * 1.0);
+	}
 }
 
 

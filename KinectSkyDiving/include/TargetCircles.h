@@ -15,6 +15,8 @@ public:
 	virtual ~TargetCircles(void);
 
 	void setup(Ogre::SceneManager* mSceneManager);
+	void update(Ogre::Real elapsedTime);
+
 	inline std::vector<Ogre::SceneNode*> getNodeList(void) 
 	{
 		return this->nodeList; 
@@ -27,6 +29,7 @@ private:
 
 	Ogre::DotSceneLoader* sceneLoader;
 	std::vector<Ogre::SceneNode*> nodeList;
+	std::vector<Ogre::AnimationState*> animations;
 	//Ogre::DotSceneLoader*		 sceneLoader;
 };
 

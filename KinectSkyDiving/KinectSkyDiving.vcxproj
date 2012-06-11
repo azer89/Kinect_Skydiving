@@ -173,7 +173,9 @@
     <ClCompile Include="src\ThirdPersonCamera.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="media\game.config" />
+    <None Include="media\game.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="media\materials\programs\Atmosphere.cg" />
     <None Include="media\materials\programs\Defs.program" />
     <None Include="media\materials\programs\Planet.cg" />

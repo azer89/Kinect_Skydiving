@@ -6,13 +6,16 @@
 //-------------------------------------------------------------------------------------
 Character::Character(void) : 
 	state(Movement::NOTHING),
-	//rotQ(Ogre::Quaternion::IDENTITY),
+	previousState(Movement::NOTHING),
 	degreeRotation(0.0f),
 	gravity(0.0f),
 	isLanding(false),
 	maxSpeed(GameConfig::getSingletonPtr()->getCharacterMaxSpeed()),
-	currentSpeed(0.0f)
+	acceleration(GameConfig::getSingletonPtr()->getCharacterAcceleration()),
+	rotationSpeed(GameConfig::getSingletonPtr()->getCharacterRotationSpeed())
 {
+	for(int a = 0; a < 4 ; a++)
+		currentSpeed[a] = 0.0f;
 }
 
 //-------------------------------------------------------------------------------------
@@ -39,7 +42,6 @@ void Character::setup(Ogre::SceneManager* mSceneManager,
 	Ogre::Quaternion q1 = Ogre::Quaternion::IDENTITY;
 	Ogre::Quaternion q2 = Ogre::Quaternion::IDENTITY;
 	q1.FromAngleAxis(Ogre::Degree(180), Ogre::Vector3::UNIT_Y);
-	//q2.FromAngleAxis(Ogre::Degree(90), Ogre::Vector3::UNIT_X);
 	innerNode->setOrientation(q1 * q2);
 	this->mMainNode->addChild(innerNode);
 
@@ -85,8 +87,7 @@ void Character::setup(Ogre::SceneManager* mSceneManager,
 
 //--------------------------------------------------------------------------------------
 void Character::update(Ogre::Real elapsedTime)
-{
-	
+{	
 	Ogre::Vector3 upVector = this->mMainNode->_getDerivedPosition();
 	upVector.normalise();
 	Ogre::Quaternion qA;
@@ -94,21 +95,31 @@ void Character::update(Ogre::Real elapsedTime)
 	Ogre::Quaternion qB = Ogre::Vector3::UNIT_Y.getRotationTo(upVector);
 	this->mMainNode->setOrientation(qA * qB);
 
-	//std::cout << this->mMainNode->_getDerivedPosition() << "\n";
+	for(int a = 0; a < 4; a++)
+	{
+		if(this->state == Movement::NOTHING && currentSpeed[a] > 0)
+		{
+			currentSpeed[a] -= acceleration;
+			if(currentSpeed[a] < 0.0f) currentSpeed[a] = 0.0f;
+		}
+		else if(this->state == static_cast<Movement>(a) && currentSpeed[a] < maxSpeed)
+		{
+			currentSpeed[a] += acceleration;
+			if(currentSpeed[a] > maxSpeed) currentSpeed[a] = maxSpeed;
+		}
+	}
 
 	if(!isLanding)
 	{		
 		fallDown(elapsedTime);
 		moveCharacter(elapsedTime);
 	}
-
-	//btVector3 btPos = mCCPhysics->getPosition();
-	//std::cout << btPos.x() << " " << btPos.y() << " " << btPos.z() << "\n";
 }
 
 //--------------------------------------------------------------------------------------
 void Character::setState(Movement m)
 {
+	this->previousState = this->state;
 	this->state = m;
 }
 
@@ -119,9 +130,6 @@ void Character::fallDown(Ogre::Real elapsedTime)
 	upVector.normalise();
 
 	mMainNode->translate(-upVector * gravity * elapsedTime);
-
-	//Ogre::Vector3 moveDirection(-upVector * gravity * elapsedTime);
-	//mCCPhysics->setWalkDirection(moveDirection.x, moveDirection.y, moveDirection.z);
 }
 
 //--------------------------------------------------------------------------------------
@@ -130,36 +138,47 @@ void Character::moveCharacter(Ogre::Real elapsedTime)
 	
 	Ogre::Vector3 direction = Ogre::Vector3::ZERO;
 
-	if(state == Movement::MOVE_BACK)
+	Movement mState = this->state;
+	Ogre::Real mSpeed = this->currentSpeed[static_cast<int>(this->state)];
+
+	if(this->state == Movement::NOTHING && 
+		previousState != Movement::ROTATE_LEFT &&
+		previousState != Movement::ROTATE_RIGHT) 
+	{
+		mState = this->previousState;
+		mSpeed = this->currentSpeed[static_cast<int>(mState)];
+	}
+
+	if(mState == Movement::MOVE_BACK)
 	{
 		direction = Ogre::Vector3::UNIT_Z;
 	}
-	else if(state == Movement::MOVE_FRONT)
+	else if(mState == Movement::MOVE_FRONT)
 	{
 		direction = Ogre::Vector3::NEGATIVE_UNIT_Z;
 	}
-	else if(state == Movement::MOVE_LEFT)
+	else if(mState == Movement::MOVE_LEFT)
 	{
 		direction = Ogre::Vector3::NEGATIVE_UNIT_X;
 	}
-	else if(state == Movement::MOVE_RIGHT)
+	else if(mState == Movement::MOVE_RIGHT)
 	{
 		direction = Ogre::Vector3::UNIT_X;
 	}
-	else if(state == Movement::ROTATE_LEFT)
+	else if(mState == Movement::ROTATE_LEFT)
 	{
-		degreeRotation += 200 * elapsedTime;
+		degreeRotation += this->rotationSpeed * elapsedTime;
 	}
-	else if (state == Movement::ROTATE_RIGHT)
+	else if (mState == Movement::ROTATE_RIGHT)
 	{
-		degreeRotation -= 200 * elapsedTime;
+		degreeRotation -= this->rotationSpeed * elapsedTime;
 	}
 
 	if(direction != Ogre::Vector3::ZERO)
 	{
 		Ogre::Vector3 trans = direction;
 		Ogre::Quaternion q = mMainNode->getOrientation();
-		trans = trans * 15 * elapsedTime;
+		trans = trans * mSpeed * elapsedTime;
 		trans = q * trans;
 			
 		this->mMainNode->translate(trans);

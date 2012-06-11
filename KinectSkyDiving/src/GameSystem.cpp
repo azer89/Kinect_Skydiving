@@ -110,6 +110,7 @@ void GameSystem::update(Ogre::Real elapsedTime)
 
 	if(pManager != 0) pManager->update(character->getBodyNode()->_getDerivedPosition());
 	if(collisionDetector != 0) collisionDetector->update(elapsedTime);
+	if(tCircles != 0) tCircles->update(elapsedTime);
 }
 
 //------------------------------------------------------------------------------------

@@ -4,6 +4,7 @@
 #define __ThirdPersonCamera_h_
 
 #include "Ogre.h"
+#include "GameConfig.h"
 
 //using namespace Ogre;
 

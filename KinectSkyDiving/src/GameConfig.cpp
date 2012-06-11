@@ -28,7 +28,6 @@ GameConfig::GameConfig(const Ogre::String &SceneName, const Ogre::String &groupN
 	{
 		Ogre::String dataName = pElement->Attribute("name");
 		TiXmlElement *vElement =  pElement->FirstChildElement("value");
-		//std::cout << dataName << "===\n";
 
 		if(dataName == "characterPosition")
 		{
@@ -85,6 +84,18 @@ GameConfig::GameConfig(const Ogre::String &SceneName, const Ogre::String &groupN
 		else if(dataName == "cloudHighestElevation")
 		{
 			this->cloudHighestElevation = this->parseReal(vElement);
+		}
+		else if(dataName == "characterAcceleration")
+		{
+			this->characterAcceleration = this->parseReal(vElement);
+		}
+		else if(dataName == "characterRotationSpeed")
+		{
+			this->characterRotationSpeed = this->parseReal(vElement);
+		}
+		else if(dataName == "cameraTightness")
+		{
+			this->cameraTightness = this->parseVector3(vElement);
 		}
 
 		pElement = pElement->NextSiblingElement("data");
