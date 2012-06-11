@@ -238,3 +238,4 @@ void RayCastCollision::getPlanetIntersection(const Ogre::Vector3 &point,
 	Ogre::Ray ray(Ogre::Vector3(point.x, point.y, point.z), Ogre::Vector3(normal.x, normal.y, normal.z));
 	getPlanetIntersection(ray, result);
 }
+

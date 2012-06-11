@@ -6,7 +6,8 @@
 //-------------------------------------------------------------------------------------
 App::App(void)
 	: planetEngine(0),
-	  gameSystem(0)
+	  gameSystem(0),
+	  gameConfig(0)
 {
 }
 
@@ -15,12 +16,13 @@ App::~App(void)
 {	
 	if(gameSystem != 0) delete gameSystem;
 	if(planetEngine != 0) delete planetEngine;
+	if(gameConfig != 0) delete gameConfig;
 }
 
 //-------------------------------------------------------------------------------------
 void App::createScene(void)
 {	
-	new GameConfig("game.config", "Popular");
+	gameConfig = new GameConfig("game.config", "Popular");
 
 	mCameraMan->setTopSpeed(GameConfig::getSingletonPtr()->getMCameraManSpeed());
 

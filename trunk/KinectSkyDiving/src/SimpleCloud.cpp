@@ -9,7 +9,6 @@
 //-------------------------------------------------------------------------------------
 SimpleCloud::SimpleCloud(void)
 	: highestElevation(GameConfig::getSingletonPtr()->getCloudHighestElevation())
-	  //updateDelay(0.0f)
 {
 }
 
@@ -104,8 +103,6 @@ void SimpleCloud::createSingleCloud(Ogre::Vector3 pos, Ogre::Vector3 scale)
 	Ogre::SceneNode* myNode = static_cast<Ogre::SceneNode*>(mSceneMgr->getRootSceneNode()->createChild());
 	Ogre::BillboardSet* mySet = mSceneMgr->createBillboardSet(name);
 	mySet->setBillboardType(Ogre::BillboardType::BBT_POINT);
-	//mySet->setBillboardType(Ogre::BillboardType::BBT_PERPENDICULAR_COMMON);
-	//mySet->setCommonDirection(pos.normalisedCopy());
 	mySet->setMaterialName("Examples/Cloud01");	
 	Ogre::Billboard* myBillboard = mySet->createBillboard(Ogre::Vector3::ZERO);
 	myNode->attachObject(mySet);
