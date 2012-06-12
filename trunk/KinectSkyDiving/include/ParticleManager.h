@@ -10,10 +10,12 @@ public:
 	virtual ~ParticleManager(void);
 
 	void initParticle(Ogre::SceneManager* mSceneMgr);
-
+	void disableParticle(void);
 	void update(Ogre::Vector3 characterPosition);
+	void setParticleQuota(int numParticle);
 
 private:
+	Ogre::SceneManager* mSceneMgr;
 	Ogre::ParticleSystem* ps;
 	Ogre::SceneNode* baseNode;
 	Ogre::SceneNode* mainNode;
