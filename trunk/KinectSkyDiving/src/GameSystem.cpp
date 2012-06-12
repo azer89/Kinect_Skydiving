@@ -187,6 +187,12 @@ void GameSystem::keyPressed( const OIS::KeyEvent &arg )
 	{
 		character->setState(Movement::ROTATE_RIGHT);
 	}
+	else if(arg.key == OIS::KC_O)
+	{
+		character->openParachute();
+		//pManager->disableParticle();
+		//pManager->setParticleQuota(500);
+	}
 }
 
 //-------------------------------------------------------------------------------------
