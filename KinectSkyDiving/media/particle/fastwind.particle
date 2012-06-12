@@ -1,8 +1,7 @@
 // A downpour
-particle_system Examples/WindCloud
+particle_system Examples/FastWind
 {
     material          Examples/Droplet
-    //material 		  Examples/Cloud01
     particle_width    20
     particle_height   20
     cull_each         true
