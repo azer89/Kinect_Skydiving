@@ -5,33 +5,33 @@
         <clipping near="0" far="100000" />
     </environment>
     <nodes>
-        <node name="object0">
+        <node name="roundtree1">
             <position x="-123.109" y="0" z="-112.29" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object0" castShadows="true" receiveShadows="true" meshFile="object0.mesh">
+            <entity name="roundtree1" castShadows="true" receiveShadows="true" meshFile="roundtree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__greentree_color" />
                     <subentity index="1" materialName="pasted__pasted__tree_trunk" />
                 </subentities>
             </entity>
         </node>
-        <node name="object1">
+        <node name="roundtree0">
             <position x="-123.109" y="0" z="-118.306" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object1" castShadows="true" receiveShadows="true" meshFile="object1.mesh">
+            <entity name="roundtree0" castShadows="true" receiveShadows="true" meshFile="roundtree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__greentree_color" />
                     <subentity index="1" materialName="pasted__pasted__tree_trunk" />
                 </subentities>
             </entity>
         </node>
-        <node name="object2">
+        <node name="building16">
             <position x="-163.487" y="0" z="-114.036" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object2" castShadows="true" receiveShadows="true" meshFile="object2.mesh">
+            <entity name="building16" castShadows="true" receiveShadows="true" meshFile="building16.mesh">
                 <subentities>
                     <subentity index="0" materialName="lambert1" />
                     <subentity index="1" materialName="pasted__pasted__orange_roof" />
@@ -41,55 +41,55 @@
                 </subentities>
             </entity>
         </node>
-        <node name="object3">
+        <node name="rectangletree1">
             <position x="-60.8954" y="0" z="-48.2715" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object3" castShadows="true" receiveShadows="true" meshFile="object3.mesh">
+            <entity name="rectangletree1" castShadows="true" receiveShadows="true" meshFile="rectangletree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__greentree_color" />
                     <subentity index="1" materialName="pasted__pasted__tree_trunk" />
                 </subentities>
             </entity>
         </node>
-        <node name="object4">
+        <node name="rectangletree2">
             <position x="-53.8827" y="0" z="-44.5589" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object4" castShadows="true" receiveShadows="true" meshFile="object4.mesh">
+            <entity name="rectangletree2" castShadows="true" receiveShadows="true" meshFile="rectangletree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__small_tree_2" />
                     <subentity index="1" materialName="pasted__pasted__tree_trunk" />
                 </subentities>
             </entity>
         </node>
-        <node name="object5">
+        <node name="roundtree8">
             <position x="-12.4941" y="0" z="20.1275" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object5" castShadows="true" receiveShadows="true" meshFile="object5.mesh">
+            <entity name="roundtree8" castShadows="true" receiveShadows="true" meshFile="roundtree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__greentree_color" />
                     <subentity index="1" materialName="pasted__pasted__tree_trunk" />
                 </subentities>
             </entity>
         </node>
-        <node name="object6">
+        <node name="roundtree7">
             <position x="-18.3051" y="0" z="12.2371" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object6" castShadows="true" receiveShadows="true" meshFile="object6.mesh">
+            <entity name="roundtree7" castShadows="true" receiveShadows="true" meshFile="roundtree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__small_tree_2" />
                     <subentity index="1" materialName="pasted__pasted__tree_trunk" />
                 </subentities>
             </entity>
         </node>
-        <node name="object7">
+        <node name="roundtree12">
             <position x="-40.2378" y="0" z="158.647" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object7" castShadows="true" receiveShadows="true" meshFile="object7.mesh">
+            <entity name="roundtree12" castShadows="true" receiveShadows="true" meshFile="roundtree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__blinn6SG" />
                     <subentity index="1" materialName="pasted__pasted__tree_trunk" />
@@ -97,11 +97,11 @@
                 </subentities>
             </entity>
         </node>
-        <node name="object8">
+        <node name="roundtree11">
             <position x="-40.2378" y="0" z="152.631" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object8" castShadows="true" receiveShadows="true" meshFile="object8.mesh">
+            <entity name="roundtree11" castShadows="true" receiveShadows="true" meshFile="roundtree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__small_tree_2" />
                     <subentity index="1" materialName="pasted__pasted__tree_trunk" />
@@ -109,55 +109,55 @@
                 </subentities>
             </entity>
         </node>
-        <node name="object9">
+        <node name="rectangletree8">
             <position x="-61.377" y="0" z="138.937" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object9" castShadows="true" receiveShadows="true" meshFile="object9.mesh">
+            <entity name="rectangletree8" castShadows="true" receiveShadows="true" meshFile="rectangletree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__small_tree1" />
                     <subentity index="1" materialName="pasted__pasted__tree_trunk" />
                 </subentities>
             </entity>
         </node>
-        <node name="object10">
+        <node name="rectangletree10">
             <position x="-189.467" y="0" z="115.956" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object10" castShadows="true" receiveShadows="true" meshFile="object10.mesh">
+            <entity name="rectangletree10" castShadows="true" receiveShadows="true" meshFile="rectangletree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__greentree_color" />
                     <subentity index="1" materialName="pasted__pasted__tree_trunk" />
                 </subentities>
             </entity>
         </node>
-        <node name="object11">
+        <node name="rectangletree9">
             <position x="-192.767" y="0" z="108.943" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object11" castShadows="true" receiveShadows="true" meshFile="object11.mesh">
+            <entity name="rectangletree9" castShadows="true" receiveShadows="true" meshFile="rectangletree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__small_tree1" />
                     <subentity index="1" materialName="pasted__pasted__tree_trunk" />
                 </subentities>
             </entity>
         </node>
-        <node name="object12">
+        <node name="rectangletree7">
             <position x="-76.7798" y="0" z="25.1165" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object12" castShadows="true" receiveShadows="true" meshFile="object12.mesh">
+            <entity name="rectangletree7" castShadows="true" receiveShadows="true" meshFile="rectangletree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__greentree_color" />
                     <subentity index="1" materialName="pasted__pasted__tree_trunk" />
                 </subentities>
             </entity>
         </node>
-        <node name="object13">
+        <node name="roundtree6">
             <position x="-72.4289" y="0" z="-0.313162" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object13" castShadows="true" receiveShadows="true" meshFile="object13.mesh">
+            <entity name="roundtree6" castShadows="true" receiveShadows="true" meshFile="roundtree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__small_tree_2" />
                     <subentity index="1" materialName="pasted__pasted__tree_trunk" />
@@ -165,22 +165,22 @@
                 </subentities>
             </entity>
         </node>
-        <node name="object14">
+        <node name="roundtree5">
             <position x="-72.4289" y="0" z="-6.3293" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object14" castShadows="true" receiveShadows="true" meshFile="object14.mesh">
+            <entity name="roundtree5" castShadows="true" receiveShadows="true" meshFile="roundtree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__greentree_color" />
                     <subentity index="1" materialName="pasted__pasted__tree_trunk" />
                 </subentities>
             </entity>
         </node>
-        <node name="object15">
+        <node name="building15">
             <position x="-85.03" y="0" z="-6.19622" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object15" castShadows="true" receiveShadows="true" meshFile="object15.mesh">
+            <entity name="building15" castShadows="true" receiveShadows="true" meshFile="building15.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__alittle_yellow_wall" />
                     <subentity index="1" materialName="pasted__pasted__orange_roof" />
@@ -190,55 +190,55 @@
                 </subentities>
             </entity>
         </node>
-        <node name="object16">
+        <node name="rectangletree6">
             <position x="-92.3783" y="0" z="-2.77815" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object16" castShadows="true" receiveShadows="true" meshFile="object16.mesh">
+            <entity name="rectangletree6" castShadows="true" receiveShadows="true" meshFile="rectangletree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__greentree_color" />
                     <subentity index="1" materialName="pasted__pasted__tree_trunk" />
                 </subentities>
             </entity>
         </node>
-        <node name="object17">
+        <node name="rectangletree3">
             <position x="-1.56649" y="0" z="-99.8085" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object17" castShadows="true" receiveShadows="true" meshFile="object17.mesh">
+            <entity name="rectangletree3" castShadows="true" receiveShadows="true" meshFile="rectangletree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__greentree_color" />
                     <subentity index="1" materialName="pasted__pasted__tree_trunk" />
                 </subentities>
             </entity>
         </node>
-        <node name="object18">
+        <node name="rectangletree5">
             <position x="0.496062" y="0" z="-107.234" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object18" castShadows="true" receiveShadows="true" meshFile="object18.mesh">
+            <entity name="rectangletree5" castShadows="true" receiveShadows="true" meshFile="rectangletree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__small_tree1" />
                     <subentity index="1" materialName="pasted__pasted__tree_trunk" />
                 </subentities>
             </entity>
         </node>
-        <node name="object19">
+        <node name="rectangletree4">
             <position x="-8.57918" y="0" z="-103.521" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object19" castShadows="true" receiveShadows="true" meshFile="object19.mesh">
+            <entity name="rectangletree4" castShadows="true" receiveShadows="true" meshFile="rectangletree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__small_tree_2" />
                     <subentity index="1" materialName="pasted__pasted__tree_trunk" />
                 </subentities>
             </entity>
         </node>
-        <node name="object20">
+        <node name="building14">
             <position x="-16.1534" y="0" z="-102.838" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object20" castShadows="true" receiveShadows="true" meshFile="object20.mesh">
+            <entity name="building14" castShadows="true" receiveShadows="true" meshFile="building14.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__white_wall" />
                     <subentity index="1" materialName="pasted__pasted__yellow_wal_and_roofl_color" />
@@ -247,11 +247,11 @@
                 </subentities>
             </entity>
         </node>
-        <node name="object21">
+        <node name="building13">
             <position x="117.768" y="0" z="140.337" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object21" castShadows="true" receiveShadows="true" meshFile="object21.mesh">
+            <entity name="building13" castShadows="true" receiveShadows="true" meshFile="building13.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__white_wall" />
                     <subentity index="1" materialName="pasted__pasted__orange_roof" />
@@ -259,31 +259,31 @@
                 </subentities>
             </entity>
         </node>
-        <node name="object22">
+        <node name="building12">
             <position x="-24.1194" y="0" z="-108.339" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object22" castShadows="true" receiveShadows="true" meshFile="object22.mesh">
+            <entity name="building12" castShadows="true" receiveShadows="true" meshFile="building12.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__railing_color" />
                 </subentities>
             </entity>
         </node>
-        <node name="object23">
+        <node name="building11">
             <position x="3.92604" y="0" z="-27.1866" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object23" castShadows="true" receiveShadows="true" meshFile="object23.mesh">
+            <entity name="building11" castShadows="true" receiveShadows="true" meshFile="building11.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__railing_color" />
                 </subentities>
             </entity>
         </node>
-        <node name="object24">
+        <node name="roundtree3">
             <position x="54.4419" y="0" z="-41.7894" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object24" castShadows="true" receiveShadows="true" meshFile="object24.mesh">
+            <entity name="roundtree3" castShadows="true" receiveShadows="true" meshFile="roundtree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__small_tree_2" />
                     <subentity index="1" materialName="pasted__pasted__tree_trunk" />
@@ -291,11 +291,11 @@
                 </subentities>
             </entity>
         </node>
-        <node name="object25">
+        <node name="roundtree4">
             <position x="48.9174" y="0" z="-37.955" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object25" castShadows="true" receiveShadows="true" meshFile="object25.mesh">
+            <entity name="roundtree4" castShadows="true" receiveShadows="true" meshFile="roundtree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__small_tree_2" />
                     <subentity index="1" materialName="pasted__pasted__tree_trunk" />
@@ -303,11 +303,11 @@
                 </subentities>
             </entity>
         </node>
-        <node name="object26">
+        <node name="building17">
             <position x="97.9266" y="0" z="-18.2491" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object26" castShadows="true" receiveShadows="true" meshFile="object26.mesh">
+            <entity name="building17" castShadows="true" receiveShadows="true" meshFile="building17.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__blue_roof" />
                     <subentity index="1" materialName="pasted__pasted__yellow_wal_and_roofl_color" />
@@ -315,21 +315,21 @@
                 </subentities>
             </entity>
         </node>
-        <node name="object27">
+        <node name="building18">
             <position x="97.5493" y="0" z="-29.3621" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object27" castShadows="true" receiveShadows="true" meshFile="object27.mesh">
+            <entity name="building18" castShadows="true" receiveShadows="true" meshFile="building18.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__railing_color" />
                 </subentities>
             </entity>
         </node>
-        <node name="object28">
+        <node name="roundtree2">
             <position x="-34.9836" y="0" z="-41.8063" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object28" castShadows="true" receiveShadows="true" meshFile="object28.mesh">
+            <entity name="roundtree2" castShadows="true" receiveShadows="true" meshFile="roundtree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__small_tree_2" />
                     <subentity index="1" materialName="pasted__pasted__tree_trunk" />
@@ -337,63 +337,63 @@
                 </subentities>
             </entity>
         </node>
-        <node name="object29">
+        <node name="rectangletree0">
             <position x="-53.8827" y="0" z="-53.6342" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object29" castShadows="true" receiveShadows="true" meshFile="object29.mesh">
+            <entity name="rectangletree0" castShadows="true" receiveShadows="true" meshFile="rectangletree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__greentree_color" />
                     <subentity index="1" materialName="pasted__pasted__tree_trunk" />
                 </subentities>
             </entity>
         </node>
-        <node name="object30">
+        <node name="building10">
             <position x="6.89023" y="0" z="16.3906" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object30" castShadows="true" receiveShadows="true" meshFile="object30.mesh">
+            <entity name="building10" castShadows="true" receiveShadows="true" meshFile="building10.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__railing_color" />
                 </subentities>
             </entity>
         </node>
-        <node name="object31">
+        <node name="building9">
             <position x="89.0526" y="0" z="117.4" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object31" castShadows="true" receiveShadows="true" meshFile="object31.mesh">
+            <entity name="building9" castShadows="true" receiveShadows="true" meshFile="building9.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__railing_color" />
                 </subentities>
             </entity>
         </node>
-        <node name="object32">
+        <node name="building8">
             <position x="94.8522" y="0" z="-3.25008" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object32" castShadows="true" receiveShadows="true" meshFile="object32.mesh">
+            <entity name="building8" castShadows="true" receiveShadows="true" meshFile="building8.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__pasted__wind3" />
                 </subentities>
             </entity>
         </node>
-        <node name="object33">
+        <node name="roundtree9">
             <position x="70.1178" y="0" z="113.89" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object33" castShadows="true" receiveShadows="true" meshFile="object33.mesh">
+            <entity name="roundtree9" castShadows="true" receiveShadows="true" meshFile="roundtree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__greentree_color" />
                     <subentity index="1" materialName="pasted__pasted__tree_trunk" />
                 </subentities>
             </entity>
         </node>
-        <node name="object34">
+        <node name="roundtree10">
             <position x="75.6423" y="0" z="110.056" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object34" castShadows="true" receiveShadows="true" meshFile="object34.mesh">
+            <entity name="roundtree10" castShadows="true" receiveShadows="true" meshFile="roundtree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__blinn6SG" />
                     <subentity index="1" materialName="pasted__pasted__tree_trunk" />
@@ -401,212 +401,212 @@
                 </subentities>
             </entity>
         </node>
-        <node name="object35">
+        <node name="building7">
             <position x="109.95" y="0" z="103.249" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object35" castShadows="true" receiveShadows="true" meshFile="object35.mesh">
+            <entity name="building7" castShadows="true" receiveShadows="true" meshFile="building7.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__railing_color" />
                 </subentities>
             </entity>
         </node>
-        <node name="object36">
+        <node name="building6">
             <position x="48.6575" y="0" z="33.5406" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object36" castShadows="true" receiveShadows="true" meshFile="object36.mesh">
+            <entity name="building6" castShadows="true" receiveShadows="true" meshFile="building6.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__pasted__light" />
                 </subentities>
             </entity>
         </node>
-        <node name="object37">
+        <node name="bigtree13">
             <position x="-5.84492" y="0" z="105.818" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object37" castShadows="true" receiveShadows="true" meshFile="object37.mesh">
+            <entity name="bigtree13" castShadows="true" receiveShadows="true" meshFile="bigtree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__pasted__pasted__small_tree1" />
                 </subentities>
             </entity>
         </node>
-        <node name="object38">
+        <node name="bigtree8">
             <position x="-51.338" y="0" z="51.4559" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object38" castShadows="true" receiveShadows="true" meshFile="object38.mesh">
+            <entity name="bigtree8" castShadows="true" receiveShadows="true" meshFile="bigtree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__pasted__pasted__greentree_color" />
                 </subentities>
             </entity>
         </node>
-        <node name="object39">
+        <node name="bigtree6">
             <position x="38.1811" y="0" z="-40.8169" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object39" castShadows="true" receiveShadows="true" meshFile="object39.mesh">
+            <entity name="bigtree6" castShadows="true" receiveShadows="true" meshFile="bigtree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__pasted__pasted__greentree_color" />
                 </subentities>
             </entity>
         </node>
-        <node name="object40">
+        <node name="bigtree5">
             <position x="49.5427" y="0" z="-53.1253" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object40" castShadows="true" receiveShadows="true" meshFile="object40.mesh">
+            <entity name="bigtree5" castShadows="true" receiveShadows="true" meshFile="bigtree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__pasted__pasted__greentree_color" />
                 </subentities>
             </entity>
         </node>
-        <node name="object41">
+        <node name="bigtree2">
             <position x="-137.441" y="0" z="-125.381" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object41" castShadows="true" receiveShadows="true" meshFile="object41.mesh">
+            <entity name="bigtree2" castShadows="true" receiveShadows="true" meshFile="bigtree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__pasted__pasted__small_tree1" />
                 </subentities>
             </entity>
         </node>
-        <node name="object42">
+        <node name="bigtree1">
             <position x="-149.311" y="0" z="-118.548" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object42" castShadows="true" receiveShadows="true" meshFile="object42.mesh">
+            <entity name="bigtree1" castShadows="true" receiveShadows="true" meshFile="bigtree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__pasted__pasted__small_tree1" />
                 </subentities>
             </entity>
         </node>
-        <node name="object43">
+        <node name="bigtree9">
             <position x="137.205" y="0" z="36.5991" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object43" castShadows="true" receiveShadows="true" meshFile="object43.mesh">
+            <entity name="bigtree9" castShadows="true" receiveShadows="true" meshFile="bigtree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__pasted__pasted__greentree_color" />
                 </subentities>
             </entity>
         </node>
-        <node name="object44">
+        <node name="bigtree3">
             <position x="111.521" y="0" z="-115.126" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object44" castShadows="true" receiveShadows="true" meshFile="object44.mesh">
+            <entity name="bigtree3" castShadows="true" receiveShadows="true" meshFile="bigtree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__pasted__pasted__greentree_color" />
                 </subentities>
             </entity>
         </node>
-        <node name="object45">
+        <node name="bigtree15">
             <position x="-188.422" y="0" z="97.7613" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object45" castShadows="true" receiveShadows="true" meshFile="object45.mesh">
+            <entity name="bigtree15" castShadows="true" receiveShadows="true" meshFile="bigtree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__pasted__pasted__greentree_color" />
                 </subentities>
             </entity>
         </node>
-        <node name="object46">
+        <node name="bigtree14">
             <position x="-100.051" y="0" z="95.8339" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object46" castShadows="true" receiveShadows="true" meshFile="object46.mesh">
+            <entity name="bigtree14" castShadows="true" receiveShadows="true" meshFile="bigtree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__pasted__pasted__greentree_color" />
                 </subentities>
             </entity>
         </node>
-        <node name="object47">
+        <node name="bigtree10">
             <position x="162.313" y="0" z="95.2171" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object47" castShadows="true" receiveShadows="true" meshFile="object47.mesh">
+            <entity name="bigtree10" castShadows="true" receiveShadows="true" meshFile="bigtree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__pasted__pasted__greentree_color" />
                 </subentities>
             </entity>
         </node>
-        <node name="object48">
+        <node name="bigtree11">
             <position x="182.094" y="0" z="97.7587" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object48" castShadows="true" receiveShadows="true" meshFile="object48.mesh">
+            <entity name="bigtree11" castShadows="true" receiveShadows="true" meshFile="bigtree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__pasted__pasted__greentree_color" />
                 </subentities>
             </entity>
         </node>
-        <node name="object49">
+        <node name="bigtree0">
             <position x="-173.213" y="0" z="-125.44" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object49" castShadows="true" receiveShadows="true" meshFile="object49.mesh">
+            <entity name="bigtree0" castShadows="true" receiveShadows="true" meshFile="bigtree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__pasted__pasted__greentree_color" />
                 </subentities>
             </entity>
         </node>
-        <node name="object50">
+        <node name="bigtree16">
             <position x="-179.461" y="0" z="137.265" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object50" castShadows="true" receiveShadows="true" meshFile="object50.mesh">
+            <entity name="bigtree16" castShadows="true" receiveShadows="true" meshFile="bigtree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__pasted__pasted__greentree_color" />
                 </subentities>
             </entity>
         </node>
-        <node name="object51">
+        <node name="bigtree7">
             <position x="-122.493" y="0" z="17.5295" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object51" castShadows="true" receiveShadows="true" meshFile="object51.mesh">
+            <entity name="bigtree7" castShadows="true" receiveShadows="true" meshFile="bigtree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__pasted__pasted__greentree_color" />
                 </subentities>
             </entity>
         </node>
-        <node name="object52">
+        <node name="bigtree4">
             <position x="126.216" y="0" z="-131.318" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object52" castShadows="true" receiveShadows="true" meshFile="object52.mesh">
+            <entity name="bigtree4" castShadows="true" receiveShadows="true" meshFile="bigtree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__pasted__pasted__greentree_color" />
                 </subentities>
             </entity>
         </node>
-        <node name="object53">
+        <node name="building5">
             <position x="-0.0292354" y="0" z="-0.146631" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object53" castShadows="true" receiveShadows="true" meshFile="object53.mesh">
+            <entity name="building5" castShadows="true" receiveShadows="true" meshFile="building5.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__target_landing" />
                 </subentities>
             </entity>
         </node>
-        <node name="object54">
+        <node name="building4">
             <position x="-19.3409" y="0" z="10.5879" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="-0.0691788" qz="0" qw="0.997604" />
-            <entity name="object54" castShadows="true" receiveShadows="true" meshFile="object54.mesh">
+            <entity name="building4" castShadows="true" receiveShadows="true" meshFile="building4.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__girl_cloth" />
                     <subentity index="1" materialName="pasted__pasted__girl_skin" />
                 </subentities>
             </entity>
         </node>
-        <node name="object55">
+        <node name="building3">
             <position x="16.3596" y="0" z="8.11438" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object55" castShadows="true" receiveShadows="true" meshFile="object55.mesh">
+            <entity name="building3" castShadows="true" receiveShadows="true" meshFile="building3.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__pasted__house_door2" />
                     <subentity index="1" materialName="pasted__pasted__pasted__house_wood2" />
@@ -619,11 +619,11 @@
                 </subentities>
             </entity>
         </node>
-        <node name="object56">
+        <node name="building2">
             <position x="-24.8725" y="0" z="-90.7116" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object56" castShadows="true" receiveShadows="true" meshFile="object56.mesh">
+            <entity name="building2" castShadows="true" receiveShadows="true" meshFile="building2.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__pasted__house_door2" />
                     <subentity index="1" materialName="pasted__pasted__pasted__house_wood2" />
@@ -636,11 +636,11 @@
                 </subentities>
             </entity>
         </node>
-        <node name="object57">
+        <node name="building1">
             <position x="90.7018" y="0" z="104.349" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object57" castShadows="true" receiveShadows="true" meshFile="object57.mesh">
+            <entity name="building1" castShadows="true" receiveShadows="true" meshFile="building1.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__windmail_fan_color2" />
                     <subentity index="1" materialName="pasted__pasted__pasted__lambert33SG2" />
@@ -662,11 +662,11 @@
                 </subentities>
             </entity>
         </node>
-        <node name="object58">
+        <node name="car2">
             <position x="46.6931" y="0" z="86.4566" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object58" castShadows="true" receiveShadows="true" meshFile="object58.mesh">
+            <entity name="car2" castShadows="true" receiveShadows="true" meshFile="car.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__pasted__push6" />
                     <subentity index="1" materialName="pasted__pasted__pasted__oil_cap1" />
@@ -684,11 +684,11 @@
                 </subentities>
             </entity>
         </node>
-        <node name="object59">
+        <node name="car0">
             <position x="-104.022" y="0" z="-16.0954" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object59" castShadows="true" receiveShadows="true" meshFile="object59.mesh">
+            <entity name="car0" castShadows="true" receiveShadows="true" meshFile="car.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__pasted__push6" />
                     <subentity index="1" materialName="pasted__pasted__pasted__oil_cap1" />
@@ -706,11 +706,11 @@
                 </subentities>
             </entity>
         </node>
-        <node name="object60">
+        <node name="car1">
             <position x="20.6298" y="0" z="-106.579" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object60" castShadows="true" receiveShadows="true" meshFile="object60.mesh">
+            <entity name="car1" castShadows="true" receiveShadows="true" meshFile="car.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__pasted__push6" />
                     <subentity index="1" materialName="pasted__pasted__pasted__oil_cap1" />
@@ -728,11 +728,11 @@
                 </subentities>
             </entity>
         </node>
-        <node name="object61">
+        <node name="building0">
             <position x="-137.932" y="0" z="-97.0902" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object61" castShadows="true" receiveShadows="true" meshFile="object61.mesh">
+            <entity name="building0" castShadows="true" receiveShadows="true" meshFile="building0.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__windmail_fan_color2" />
                     <subentity index="1" materialName="pasted__pasted__pasted__lambert33SG2" />
@@ -754,73 +754,73 @@
                 </subentities>
             </entity>
         </node>
-        <node name="object62">
+        <node name="bigtree12">
             <position x="206.544" y="0" z="199.544" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object62" castShadows="true" receiveShadows="true" meshFile="object62.mesh">
+            <entity name="bigtree12" castShadows="true" receiveShadows="true" meshFile="bigtree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__pasted__pasted__greentree_color" />
                 </subentities>
             </entity>
         </node>
-        <node name="object63">
+        <node name="bigtree19">
             <position x="231.652" y="0" z="258.162" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object63" castShadows="true" receiveShadows="true" meshFile="object63.mesh">
+            <entity name="bigtree19" castShadows="true" receiveShadows="true" meshFile="bigtree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__pasted__pasted__greentree_color" />
                 </subentities>
             </entity>
         </node>
-        <node name="object64">
+        <node name="bigtree20">
             <position x="251.433" y="0" z="260.704" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object64" castShadows="true" receiveShadows="true" meshFile="object64.mesh">
+            <entity name="bigtree20" castShadows="true" receiveShadows="true" meshFile="bigtree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__pasted__pasted__greentree_color" />
                 </subentities>
             </entity>
         </node>
-        <node name="object65">
+        <node name="rectangletree12">
             <position x="-133.996" y="0" z="232.097" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object65" castShadows="true" receiveShadows="true" meshFile="object65.mesh">
+            <entity name="rectangletree12" castShadows="true" receiveShadows="true" meshFile="rectangletree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__greentree_color" />
                     <subentity index="1" materialName="pasted__pasted__tree_trunk" />
                 </subentities>
             </entity>
         </node>
-        <node name="object66">
+        <node name="rectangletree11">
             <position x="-137.296" y="0" z="225.085" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object66" castShadows="true" receiveShadows="true" meshFile="object66.mesh">
+            <entity name="rectangletree11" castShadows="true" receiveShadows="true" meshFile="rectangletree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__small_tree1" />
                     <subentity index="1" materialName="pasted__pasted__tree_trunk" />
                 </subentities>
             </entity>
         </node>
-        <node name="object67">
+        <node name="bigtree17">
             <position x="-132.952" y="0" z="213.903" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object67" castShadows="true" receiveShadows="true" meshFile="object67.mesh">
+            <entity name="bigtree17" castShadows="true" receiveShadows="true" meshFile="bigtree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__pasted__pasted__greentree_color" />
                 </subentities>
             </entity>
         </node>
-        <node name="object68">
+        <node name="bigtree18">
             <position x="-123.99" y="0" z="253.406" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object68" castShadows="true" receiveShadows="true" meshFile="object68.mesh">
+            <entity name="bigtree18" castShadows="true" receiveShadows="true" meshFile="bigtree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__pasted__pasted__greentree_color" />
                 </subentities>
