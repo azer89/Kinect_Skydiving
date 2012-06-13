@@ -9,7 +9,7 @@
             <position x="-12.4941" y="0" z="20.1275" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object5" castShadows="true" receiveShadows="true" meshFile="object5.mesh">
+            <entity name="object5" castShadows="true" receiveShadows="true" meshFile="tree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__greentree_color" />
                     <subentity index="1" materialName="pasted__pasted__tree_trunk" />
@@ -20,7 +20,7 @@
             <position x="-18.3051" y="0" z="12.2371" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="object6" castShadows="true" receiveShadows="true" meshFile="object6.mesh">
+            <entity name="object6" castShadows="true" receiveShadows="true" meshFile="tree.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__small_tree_2" />
                     <subentity index="1" materialName="pasted__pasted__tree_trunk" />
