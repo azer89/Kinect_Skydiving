@@ -78,7 +78,7 @@
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
       <TargetMachine>MachineX86</TargetMachine>
       <AdditionalLibraryDirectories>$(OGRE_HOME)\lib\debug;$(OGRE_HOME)\boost_1_47\lib;..\GalaxyEngine\bin\Debug;lib;lib\bullet;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>OgreMain_d.lib;OIS_d.lib;GalaxyEngine_d.lib;Hikari_d.lib;tinyxml.lib;tinyxmlSTL.lib;Kinect10.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>OgreMain_d.lib;OIS_d.lib;GalaxyEngine_d.lib;Hikari_d.lib;tinyxml_d.lib;tinyxmlSTL_d.lib;Kinect10.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Message>Copying exe to samples bin directory ...</Message>
@@ -115,7 +115,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
       <AdditionalLibraryDirectories>$(OGRE_HOME)\lib\release;$(OGRE_HOME)\boost_1_47\lib;..\GalaxyEngine\bin\Release;lib;lib\bullet;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>OgreMain.lib;OIS.lib;GalaxyEngine.lib;Hikari.lib;FreeImage.lib;Kinect10.lib;tinyxml.lib;tinyxmlSTL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>OgreMain.lib;OIS.lib;GalaxyEngine.lib;Hikari.lib;Kinect10.lib;tinyxml.lib;tinyxmlSTL.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Message>
@@ -132,6 +132,9 @@
     <ClInclude Include="include\CollisionDetector.h" />
     <ClInclude Include="include\GameConfig.h" />
     <ClInclude Include="include\DotSceneLoader.h" />
+    <ClInclude Include="include\GGBirdLoader.h" />
+    <ClInclude Include="include\Interface.h" />
+    <ClInclude Include="include\KinectUIControl.h" />
     <ClInclude Include="include\LoadingAnimation.h" />
     <ClInclude Include="include\App.h" />
     <ClInclude Include="include\FSM.h" />
@@ -161,6 +164,9 @@
     <ClCompile Include="src\FSM.cpp" />
     <ClCompile Include="src\GameSystem.cpp" />
     <ClCompile Include="src\GGBird.cpp" />
+    <ClCompile Include="src\GGBirdLoader.cpp" />
+    <ClCompile Include="src\Interface.cpp" />
+    <ClCompile Include="src\KinectUIControl.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\OgreKinect.cpp" />
     <ClCompile Include="src\ParticleManager.cpp" />

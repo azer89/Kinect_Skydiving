@@ -64,6 +64,15 @@
     <ClCompile Include="src\GameConfig.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\KinectUIControl.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Interface.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GGBirdLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\AnimationBlender.h">
@@ -135,6 +144,15 @@
     <ClInclude Include="include\GameConfig.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\KinectUIControl.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Interface.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GGBirdLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="media\materials\programs\Atmosphere.cg">
@@ -195,6 +213,9 @@
     </Filter>
     <Filter Include="Source Files\Camera">
       <UniqueIdentifier>{5d710141-b019-4bb7-8b9b-9b0b51ec1f15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UI">
+      <UniqueIdentifier>{ed946137-f228-4421-8291-7aa35e02df0c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
