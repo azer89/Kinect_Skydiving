@@ -29,6 +29,9 @@ void PlanetObjects::setup(Ogre::SceneManager* mSceneManager, RayCastCollision* c
 	for(int a = 0; a < nodeList.size(); a++)
 	{
 		Ogre::SceneNode* childNode = nodeList[a];
+		Ogre::MovableObject* object = childNode->getAttachedObject(0);
+		object->setCastShadows(true);
+
 		Ogre::Vector3 pos = childNode->_getDerivedPosition();
 
 		Ogre::Vector3 tempPos((pos.x * scaleVect.x) + transVect.x, 

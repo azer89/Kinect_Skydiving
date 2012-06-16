@@ -51,7 +51,7 @@ void SimpleCloud::initCloud(Ogre::SceneManager* mSceneMgr, int numBillboards)
 		int randomx = (rand() % 50) - 25; 
 		int randomy = (rand() % 50) - 25;
 		Ogre::Vector3 pos = sphericalToCartesian(randomx, randomy) * highestElevation;
-		createSingleCloud(pos, Ogre::Vector3(5.0));
+		createSingleCloud(pos, Ogre::Vector3(5.0), "Cloud/Cloud01");
 	}
 
 	for(int a = 0; a < div3; a++)
@@ -59,7 +59,7 @@ void SimpleCloud::initCloud(Ogre::SceneManager* mSceneMgr, int numBillboards)
 		int randomx =(rand() % 50) - 25; 
 		int randomy = (rand() % 50) - 25;
 		Ogre::Vector3 pos = sphericalToCartesian(randomx, randomy) * (highestElevation - 150);
-		createSingleCloud(pos, Ogre::Vector3(5.0));
+		createSingleCloud(pos, Ogre::Vector3(5.0), "Cloud/Cloud02");
 	}
 
 	for(int a = 0; a < div3; a++)
@@ -67,7 +67,7 @@ void SimpleCloud::initCloud(Ogre::SceneManager* mSceneMgr, int numBillboards)
 		int randomx = (rand() % 50) - 25; 
 		int randomy = (rand() % 50) - 25;
 		Ogre::Vector3 pos = sphericalToCartesian(randomx, randomy) * (highestElevation - 100);
-		createSingleCloud(pos, Ogre::Vector3(5.0));
+		createSingleCloud(pos, Ogre::Vector3(5.0), "Cloud/Cloud03");
 	}
 }
 
@@ -94,7 +94,7 @@ void SimpleCloud::updateClouds(Ogre::Real elapsedTime)
 }
 
 //-------------------------------------------------------------------------------------
-void SimpleCloud::createSingleCloud(Ogre::Vector3 pos, Ogre::Vector3 scale)
+void SimpleCloud::createSingleCloud(Ogre::Vector3 pos, Ogre::Vector3 scale, Ogre::String materialName)
 {
 	int num = cloudNodes.size();
 	char name[16];
@@ -103,7 +103,7 @@ void SimpleCloud::createSingleCloud(Ogre::Vector3 pos, Ogre::Vector3 scale)
 	Ogre::SceneNode* myNode = static_cast<Ogre::SceneNode*>(mSceneMgr->getRootSceneNode()->createChild());
 	Ogre::BillboardSet* mySet = mSceneMgr->createBillboardSet(name);
 	mySet->setBillboardType(Ogre::BillboardType::BBT_POINT);
-	mySet->setMaterialName("Examples/Cloud01");	
+	mySet->setMaterialName(materialName);	
 	Ogre::Billboard* myBillboard = mySet->createBillboard(Ogre::Vector3::ZERO);
 	myNode->attachObject(mySet);
 	myNode->setPosition(pos);

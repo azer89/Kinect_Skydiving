@@ -25,12 +25,33 @@ void GGBird::Update( const float& dt, Ogre::Vector3 posAvatar )
 	}
 	else
 	{
-		bDie = true;
-		//mState->TransitionTo("fly");	
+		//bDie = true;
+		mState->TransitionTo("fly");	
 	}
 
 	if (mState->stateBank.size() > 0)
 		mState->currentState->Update(dt);
+}
+
+void GGBird::init(Ogre::SceneManager* mSM, Ogre::SceneNode* node)
+{
+	mSceneMgr = mSM;
+	mNode = node;
+	mEnt = static_cast<Ogre::Entity*>(node->getAttachedObject(0));
+
+	bDie = false;
+	mTarget = Ogre::Vector3::ZERO;
+	mDir = Ogre::Vector3(0,0,1);
+	mPos = node->getPosition();
+	//std::cout << mPos << "\n";
+
+	mState = new FSM();
+	GGBirdMoving* state1 = new GGBirdMoving(this);
+	mState->AddState(state1, true);
+	GGBirdAttack* state2 = new GGBirdAttack(this);
+	mState->AddState(state2, false);
+	GGBirdTracing* state3 = new GGBirdTracing(this);
+	mState->AddState(state3, false);
 }
 
 void GGBird::init(Ogre::SceneManager* mSM, Ogre::Vector3 bornPos)

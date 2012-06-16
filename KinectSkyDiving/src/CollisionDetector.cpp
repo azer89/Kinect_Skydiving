@@ -29,14 +29,18 @@ void CollisionDetector::update(Ogre::Real elapsedTime)
 		Ogre::AxisAlignedBox cBBox = character->getBodyEntity()->getWorldBoundingBox();
 		Ogre::AxisAlignedBox bBox = node->getAttachedObject(0)->getWorldBoundingBox();		
 
-		if(bBox.intersects(cBBox))
+		if(bBox.intersects(cBBox) && !tCircles->flag[a])
 		{
 			Ogre::Real distance = bBox.getCenter().distance(cBBox.getCenter());
+			tCircles->flag[a] = true;
 
 			if(distance <= 10.0)
 			{
-				int point = 10 - static_cast<int>(distance);
-				this->character->addPoint(point * 10);
+				int point = 0;
+				
+				if(Ogre::StringUtil::startsWith(name, "r")) point = -100;
+				else if (Ogre::StringUtil::startsWith(name, "b")) point = 100;
+				this->character->addPoint(point);
 			}
 		}
 	}

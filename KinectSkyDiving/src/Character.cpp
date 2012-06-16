@@ -34,7 +34,8 @@ Character::Character(void) :
 	baseAnimID01(AnimID01::NO_ANIM1),
 	baseAnimID02(AnimID02::NO_ANIM2),
 	prevAnimID01(AnimID01::NO_ANIM1),
-	prevAnimID02(AnimID02::NO_ANIM2)
+	prevAnimID02(AnimID02::NO_ANIM2),
+	gameScore(0)
 {
 	for(int a = 0; a < 4 ; a++)
 		currentSpeed[a] = 0.0f;
@@ -330,7 +331,10 @@ void Character::setState(Movement m)
 	this->previousState = this->state;
 	this->state = m;
 
-	if(isParachuteOpen && baseAnimID02 != AnimID02::OPEN)
+	if(baseAnimID02 == AnimID02::OPEN || baseAnimID02 == AnimID02::LAND) 
+		return; 
+
+	if(isParachuteOpen)
 	{
 		setParachuteAnimation(AnimID02::FLY_WITH_PARACHUTE);
 	}

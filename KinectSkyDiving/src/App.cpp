@@ -1,22 +1,25 @@
 
 #include "Stdafx.h"
-
 #include "App.h"
+#include "Interface.h"
 
 //-------------------------------------------------------------------------------------
 App::App(void)
 	: planetEngine(0),
 	  gameSystem(0),
-	  gameConfig(0)
+	  gameConfig(0),
+	  UI(0),
+	  isGameStarted(false)
 {
 }
 
 //-------------------------------------------------------------------------------------
 App::~App(void)
 {	
-	if(gameSystem != 0) delete gameSystem;
-	if(planetEngine != 0) delete planetEngine;
-	if(gameConfig != 0) delete gameConfig;
+	if(gameSystem != 0)		delete gameSystem;
+	if(planetEngine != 0)	delete planetEngine;
+	if(gameConfig != 0)		delete gameConfig;
+	if(UI != 0)				delete UI;
 }
 
 //-------------------------------------------------------------------------------------
@@ -28,6 +31,7 @@ void App::createScene(void)
 
 	planetEngine = new GalaxyEngine::Core("../../media", this->mSceneMgr, this->mWindow, this->mCamera->getViewport(), this->mCamera, this->mRoot);
 	gameSystem = new GameSystem();
+	this->universe = planetEngine->getUniverse();
 
 	mLoadingBar->update();
 
@@ -35,6 +39,12 @@ void App::createScene(void)
 	gameSystem->createScene();
 
 	mLoadingBar->update();
+
+	UI = new Interface(this);
+	UI->setupHikari();
+	UI->getStartMenu()->hide();			// debug
+	UI->getGameDisplay()->show();		// debug
+	gameSystem->startGame();			// debug
 
 	/*Ogre::ColourValue fadeColour(0, 168.0/255.0, 1.0);
 	mSceneMgr->setFog(Ogre::FOG_LINEAR, fadeColour, 0.0, 0.001, 10000);
@@ -45,17 +55,25 @@ void App::createScene(void)
 bool App::frameRenderingQueued(const Ogre::FrameEvent& evt)
 {
 	if(!BaseApplication::frameRenderingQueued(evt)) { return false; }
-	gameSystem->update(evt.timeSinceLastEvent);
-	return true;
-}
 
-//--------------------------------------------------------------------------------------
-/** Run the system, called on main() */
-void App::go(void)
-{			
-	BaseApplication::go();		
-	if(gameSystem != 0) planetEngine->runSimulation();		//	Run the planet simulation	
-	BaseApplication::destroyScene();		
+	//if(mLoadingBar->isLoadingFinished() && !UI->getStartMenu()->getVisibility())
+	//{
+	//	UI->showMainMenu();
+	//}
+
+	if(UI != 0) UI->getHikariManager()->update();
+	gameSystem->update(evt.timeSinceLastEvent);
+
+	UI->updateArrow(gameSystem->getArrowDirection());
+	UI->updateScore(gameSystem->getScore());
+
+	bool isUpsideTarget = gameSystem->isUpsideTarget();
+	if(isUpsideTarget && UI->getArrowVisibility()) UI->hideArrow();
+	else if(!isUpsideTarget && !UI->getArrowVisibility()) UI->showArrow();
+
+	this->universe->update();
+
+	return true;
 }
 
 //--------------------------------------------------------------------------------------
@@ -85,7 +103,9 @@ bool App::keyReleased( const OIS::KeyEvent &arg )
 //--------------------------------------------------------------------------------------
 bool App::mouseMoved( const OIS::MouseEvent &arg )
 {
-	bool result = BaseApplication::mouseMoved(arg);
+	if(!BaseApplication::mouseMoved(arg)) return false;	
+	bool result = true;
+	if(UI != 0) result = UI->getHikariManager()->injectMouseMove(arg.state.X.abs, arg.state.Y.abs);
 	return result;
 }
 
@@ -100,6 +120,20 @@ bool App::mouseReleased( const OIS::MouseEvent &arg, OIS::MouseButtonID id )
 bool App::mousePressed(const OIS::MouseEvent& arg, OIS::MouseButtonID id)
 {
 	bool result = BaseApplication::mousePressed(arg, id);
+	if(UI != 0) result = UI->getHikariManager()->injectMouseDown(id);
 	return result;
+}
+
+//--------------------------------------------------------------------------------------
+void App::injectMouseMove(float x, float y)
+{
+	if(UI != 0) UI->getHikariManager()->injectMouseMove(x,y);
+}
+
+//--------------------------------------------------------------------------------------
+void App::startGame(void)
+{
+	isGameStarted = true;
+	gameSystem->startGame();
 }
 
