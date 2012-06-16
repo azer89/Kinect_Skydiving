@@ -27,9 +27,9 @@ namespace GalaxyEngine
 		inline Ogre::RenderWindow *getRenderWindow() { return mWindow; }
 		inline Ogre::Viewport *getViewport() { return mViewPort; }
 		inline Ogre::Camera *getCamera() { return mCamera; }
+		inline Universe *getUniverse() { return universe; }
 
 		void execute();
-		void runSimulation();
 
 		Planet* getFirstPlanet();
 
