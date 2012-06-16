@@ -81,6 +81,10 @@ GameConfig::GameConfig(const Ogre::String &SceneName, const Ogre::String &groupN
 		{
 			this->circleSceneName = vElement->Attribute("s");
 		}
+		else if(dataName == "ggBirdSceneName")
+		{
+			this->ggBirdSceneName = vElement->Attribute("s");
+		}
 		else if(dataName == "cloudHighestElevation")
 		{
 			this->cloudHighestElevation = this->parseReal(vElement);
@@ -96,6 +100,10 @@ GameConfig::GameConfig(const Ogre::String &SceneName, const Ogre::String &groupN
 		else if(dataName == "cameraTightness")
 		{
 			this->cameraTightness = this->parseVector3(vElement);
+		}
+		else if(dataName == "ggBirdScale")
+		{
+			this->ggBirdScale = this->parseVector3(vElement);
 		}
 
 		pElement = pElement->NextSiblingElement("data");

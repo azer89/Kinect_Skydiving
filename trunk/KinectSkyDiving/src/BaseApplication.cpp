@@ -49,7 +49,7 @@ bool BaseApplication::configure(void)
     {
         // If returned true, user clicked OK so initialise
         // Here we choose to let the system create a default rendering window by passing 'true'
-        mWindow = mRoot->initialise(true, "GalaxyEngine Render Window");
+        mWindow = mRoot->initialise(true, "Kinect Skydiving");
 
         // Let's add a nice window icon
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
@@ -106,7 +106,7 @@ void BaseApplication::createFrameListener(void)
     mTrayMgr = new OgreBites::SdkTrayManager("InterfaceName", mWindow, mMouse, this);
     //mTrayMgr->showFrameStats(OgreBites::TL_BOTTOMLEFT);
     //mTrayMgr->showLogo(OgreBites::TL_BOTTOMRIGHT);
-    mTrayMgr->hideCursor();	// Hide mouse
+    //mTrayMgr->hideCursor();	// Hide mouse
 
     // create a params panel for displaying sample details
     Ogre::StringVector items;
@@ -138,7 +138,7 @@ void BaseApplication::createViewports(void)
 {
     // Create one viewport, entire window
     Ogre::Viewport* vp = mWindow->addViewport(mCamera);
-    vp->setBackgroundColour(Ogre::ColourValue(0, 0, 0));
+    //vp->setBackgroundColour(Ogre::ColourValue(0, 0, 0));
 
     // Alter the camera aspect ratio to match the viewport
     mCamera->setAspectRatio(
@@ -150,7 +150,7 @@ void BaseApplication::setupResources(void)
 	//Setup custom resource loaders
 	if (!ConfigScriptLoader::getSingletonPtr()) new ConfigScriptLoader();
 
-	Ogre::ResourceGroupManager::getSingleton().addResourceLocation("../../media", "FileSystem");
+	//Ogre::ResourceGroupManager::getSingleton().addResourceLocation("../../media", "FileSystem");
 
     // Load resource paths from config file
     Ogre::ConfigFile cf;
@@ -196,11 +196,8 @@ void BaseApplication::go(void)
 #endif
 
     if (!setup()) return;
-
-    //mRoot->startRendering();
-	
-    // clean up
-    //destroyScene();
+    mRoot->startRendering();    
+    destroyScene();				// clean up
 }
 //-------------------------------------------------------------------------------------
 bool BaseApplication::setup(void)
@@ -232,7 +229,6 @@ bool BaseApplication::setup(void)
 
     loadResources();
 
-
 	//mTrayMgr->hideLoadingBar();
 	mTrayMgr->showFrameStats(OgreBites::TL_BOTTOMLEFT);
 
@@ -246,11 +242,9 @@ bool BaseApplication::setup(void)
 //-------------------------------------------------------------------------------------
 bool BaseApplication::frameRenderingQueued(const Ogre::FrameEvent& evt)
 {
-    if(mWindow->isClosed())
-        return false;
+    if(mWindow->isClosed()) return false;
 
-    if(mShutDown)
-        return false;
+    if(mShutDown) return false;
 
     //Need to capture/update each device
     mKeyboard->capture();

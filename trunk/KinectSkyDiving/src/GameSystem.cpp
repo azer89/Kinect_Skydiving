@@ -15,8 +15,14 @@ GameSystem::GameSystem(void)
 	  tCircles(0),
 	  pManager(0),
 	  isPlanetInitialized(false),
-	  bStopFalling(false)
+	  bStopFalling(false),
+	  isGameStarted(false),
+	  ggBirdLoader(0),
+	  targetPosition(GameConfig::getSingletonPtr()->getTargetPosition()),
+	  originalPosition(GameConfig::getSingletonPtr()->getCharacterPosition())
+	  //distancePercentage(0.0f)
 {
+	//originalDistance = targetPosition.distance(originalPosition);
 }
 
 //-------------------------------------------------------------------------------------
@@ -31,6 +37,7 @@ GameSystem::~GameSystem(void)
 	if(pObjects != 0)				delete pObjects;
 	if(tCircles != 0)				delete tCircles;
 	if(pManager != 0)				delete pManager;
+	if(ggBirdLoader != 0)			delete ggBirdLoader;
 }
 
 //-------------------------------------------------------------------------------------
@@ -67,6 +74,13 @@ void GameSystem::createScene(void)
 	cloud->initCloud(mSceneMgr, 60);
 
 	mLoadingBar->update();
+
+	ggBirdLoader = new GGBirdLoader();
+	ggBirdLoader->setup(mSceneMgr);
+	std::vector<Ogre::SceneNode*> birds = ggBirdLoader->getNodeList();
+	//for(int a = 0; a < birds.size(); a++) { mGGBirds->addBird(mSceneMgr, birds[a]); }
+
+	mLoadingBar->update();
 }
 
 //-------------------------------------------------------------------------------------
@@ -95,6 +109,10 @@ void GameSystem::initSystem(Ogre::Root *mRoot,
 void GameSystem::update(Ogre::Real elapsedTime)
 {
 	if(!isPlanetInitialized) isPlanetReady();
+	if(!isGameStarted) return;
+
+	prevCharacterPosition = character->getBodyNode()->getPosition();
+
 	checkPlanetColission(elapsedTime);
 	character->update(elapsedTime);
 	mCameraListener->update(elapsedTime);
@@ -107,6 +125,12 @@ void GameSystem::update(Ogre::Real elapsedTime)
 	if(pManager != 0) pManager->update(character->getBodyNode()->_getDerivedPosition());
 	if(collisionDetector != 0) collisionDetector->update(elapsedTime);
 	if(tCircles != 0) tCircles->update(elapsedTime);
+
+	//Ogre::Real prevDistance = prevCharacterPosition.distance(targetPosition);
+	//Ogre::Real curDistance = prevCharacterPosition.distance(targetPosition);
+
+	//Ogre::Real delta = curDistance - prevDistance;
+	//distancePercentage = delta / originalDistance;
 }
 
 //------------------------------------------------------------------------------------
@@ -151,6 +175,7 @@ void GameSystem::keyPressed( const OIS::KeyEvent &arg )
 {	
 	if (arg.key == OIS::KC_P)
 		bStopFalling = !bStopFalling;
+
 	if (arg.key == OIS::KC_G)
 	{
 		Ogre::Vector3 vecA = character->getWorldPosition();
@@ -191,7 +216,7 @@ void GameSystem::keyPressed( const OIS::KeyEvent &arg )
 	{
 		character->openParachute();
 		//pManager->disableParticle();
-		//pManager->setParticleQuota(500);
+		// pManager->setParticleQuota(500);
 	}
 }
 
@@ -240,6 +265,36 @@ void GameSystem::postPlanetInitialization()
 }
 
 //-------------------------------------------------------------------------------------
+bool GameSystem::isUpsideTarget()
+{
+	/* don't use this code if x and z value of target position are not zero */
+	Ogre::Vector3 char3DPos = character->getBodyNode()->getPosition();
+
+	Ogre::Vector2 target(targetPosition.x, targetPosition.z);
+	Ogre::Vector2 charPos(char3DPos.x, char3DPos.z);
+
+	Ogre::Real distance = charPos.distance(target);	
+	if(distance > 50) return false;
+	return true;
+}
+
+//-------------------------------------------------------------------------------------
+Ogre::Real GameSystem::getArrowDirection()
+{
+	Ogre::Quaternion q = character->getBodyNode()->getOrientation();
+	Ogre::Vector3 frontVector = Ogre::Vector3::NEGATIVE_UNIT_Z;
+	frontVector = q * frontVector;
+
+	Ogre::Vector3 dir = targetPosition - character->getBodyNode()->getPosition();
+	dir.normalise();
+
+	Ogre::Quaternion rotAngle = frontVector.getRotationTo(dir);
+
+	Ogre::Radian radDegree = -rotAngle.getYaw();;
+	return radDegree.valueDegrees();
+}
+
+//-------------------------------------------------------------------------------------
 void GameSystem::isPlanetReady()
 {
 	GalaxyEngine::Planet* planet = planetEngine->getFirstPlanet();	
@@ -260,7 +315,6 @@ void GameSystem::isPlanetReady()
 
 void GameSystem::processKinectInput()
 {
-
 	if(mOgreKinect->mPoseDetect->isPose("front"))
 	{
 		//printf("front\n");
