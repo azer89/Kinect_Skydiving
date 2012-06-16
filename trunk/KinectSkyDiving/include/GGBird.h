@@ -17,7 +17,13 @@ public:
 		init(_mSM, _bornPos); 
 	}
 
+	GGBird(Ogre::SceneManager* _mSM, Ogre::SceneNode* _node)
+	{
+		init(_mSM, _node); 
+	}
+
 	void init(Ogre::SceneManager* mSM, Ogre::Vector3 bornPos);
+	void init(Ogre::SceneManager* mSM, Ogre::SceneNode* node);
 	void Update(const float& dt, Ogre::Vector3 posAvatar);
 
 public:
@@ -52,6 +58,12 @@ public:
 	{
 		printf("Add a GGBird\n");
 		mBirds.push_back(new GGBird(mSM, bornPos));
+	}
+
+	void addBird(Ogre::SceneManager* mSM, Ogre::SceneNode* node)
+	{
+		//printf("Add a GGBird\n");
+		mBirds.push_back(new GGBird(mSM, node));
 	}
 
 	void delBird()

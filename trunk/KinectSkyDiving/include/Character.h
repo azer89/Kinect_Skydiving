@@ -60,12 +60,12 @@ public:
 	inline Ogre::SceneNode* getSightNode() { return mSightNode; }
 	inline Ogre::SceneNode* getCameraNode() { return mCameraNode; }
 	inline Ogre::Vector3    getWorldPosition() { return mMainNode->_getDerivedPosition (); }
-	inline int				getGameplayPoint() { return point; }
+	inline int				getGameplayScore() { return gameScore; }
 	
 	void addPoint(int num) 
 	{ 
-		point += num;
-		if(point < 0) point = 0;
+		gameScore += num;
+		if(gameScore < 0) gameScore = 0;
 	}
 
 private:
@@ -98,7 +98,7 @@ private:
 	Ogre::SceneManager*  mSceneManager;	
 	Ogre::Skeleton*      skeleton;
 
-	int point;
+	int gameScore;
 
 	Ogre::Entity*				 bodyEntity01;		// girl mesh only
 	Ogre::Entity*				 bodyEntity02;		// girl mesh with parachute

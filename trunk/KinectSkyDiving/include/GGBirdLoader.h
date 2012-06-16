@@ -1,6 +1,8 @@
 
-#ifndef __TargetCircles_h_
-#define __TargetCircles_h_
+
+
+#ifndef __GGBirdLoader_h_
+#define __GGBirdLoader_h_
 
 #include "Stdafx.h"
 #include "DotSceneLoader.h"
@@ -8,11 +10,11 @@
 #include "Planet.h"
 #include "GameConfig.h"
 
-class TargetCircles
+class GGBirdLoader
 {
 public:
-	TargetCircles(void);
-	virtual ~TargetCircles(void);
+	GGBirdLoader(void);
+	virtual ~GGBirdLoader(void);
 
 	void setup(Ogre::SceneManager* mSceneManager);
 	void update(Ogre::Real elapsedTime);
@@ -22,9 +24,6 @@ public:
 		return this->nodeList; 
 	}
 
-public:
-	std::vector<bool>	flag;
-
 private:
 	Ogre::SceneManager*  mSceneManager;	
 	Ogre::SceneNode*     mMainNode;
@@ -32,11 +31,12 @@ private:
 
 	Ogre::DotSceneLoader* sceneLoader;
 	std::vector<Ogre::SceneNode*> nodeList;
-	
 	std::vector<Ogre::AnimationState*> animations;
+
 	//Ogre::DotSceneLoader*		 sceneLoader;
 };
 
-#endif // #ifndef __TargetCircles_h_
+#endif // #ifndef __GGBirdLoader_h_
+
 
 

@@ -20,13 +20,17 @@ IMPORTANT: Note that this progress bar relies on you having the OgreCore.zip
 package already added to a resource group called 'Bootstrap' - this provides
 the basic resources required for the progress bar and will be loaded automatically.
 */
+
+#ifndef _LoadingAnimation_h_
+#define _LoadingAnimation_h_
+
 #include "OgreResourceGroupManager.h"
 #include "OgreException.h"
 #include "OgreOverlay.h"
 #include "OgreOverlayManager.h"
 #include "OgreRenderWindow.h"
-#pragma once
 #include "Hikari.h"
+
 //using namespace Ogre;
 
 /** Defines an example loading progress bar which you can use during 
@@ -58,14 +62,15 @@ protected:
 	Ogre::OverlayElement* mLoadingDescriptionElement;
 	Ogre::OverlayElement* mLoadingCommentElement;
 	int frame;
-
-	
+	bool isFinished;
 
 public:
 	Hikari::HikariManager* mHikariMgr;
 	Hikari::FlashControl* screen;
 	LoadingAnimation() {}
 	virtual ~LoadingAnimation(){}
+
+	bool isLoadingFinished(void) { return isFinished; } 
 
 	/** Show the loading bar and start listening.
 	@param window The window to update 
@@ -85,12 +90,14 @@ public:
 		mNumGroupsInit = numGroupsInit;
 		mNumGroupsLoad = numGroupsLoad;
 		mInitProportion = initProportion;
+		isFinished = false;
 		// We need to pre-initialise the 'Bootstrap' group so we can use
 		// the basic contents in the loading screen
 
 		using namespace Hikari;
-		mHikariMgr = new HikariManager("..\\..\\media\\UI");
-		screen = mHikariMgr->createFlashOverlay("UI",mWindow->getViewport(0),  mWindow->getViewport(0)->getActualWidth(), mWindow->getViewport(0)->getActualHeight(), Position(TopLeft));
+		mHikariMgr = HikariManager::GetPointer();
+		if(!mHikariMgr) mHikariMgr = new HikariManager("..\\..\\media\\UI");
+		screen = mHikariMgr->createFlashOverlay("LoadingScreen", mWindow->getViewport(0),  mWindow->getViewport(0)->getActualWidth(), mWindow->getViewport(0)->getActualHeight(), Position(TopLeft));
 		screen->load("loader.swf");
 		screen->setDraggable(false);
 		screen->setTransparent(true, true);
@@ -127,11 +134,13 @@ public:
 	*/
 	virtual void finish(void)
 	{
+		isFinished = true;
 		// hide loading screen
 		//mLoadOverlay->hide();
 		screen->hide();
-		delete(mHikariMgr);
-		mHikariMgr = NULL;
+		screen->stop();
+		//delete(mHikariMgr);
+		//mHikariMgr = NULL;
 		// Unregister listener
 		Ogre::ResourceGroupManager::getSingleton().removeResourceGroupListener(this);
 
@@ -198,6 +207,7 @@ public:
 		mWindow->update();
 		mHikariMgr->update();
 	}
-
 };
+
+#endif
 
