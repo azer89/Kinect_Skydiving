@@ -1,0 +1,114 @@
+<scene formatVersion="1.0" upAxis="y" unitsPerMeter="100" unitType="centimeters" minOgreVersion="1.7" ogreMaxVersion="2.4.3" author="OgreMax Scene Exporter (www.ogremax.com)" application="Maya">
+    <environment>
+        <colourAmbient r="0.33" g="0.33" b="0.33" />
+        <colourBackground r="0" g="0" b="0" />
+        <clipping near="0" far="100000" />
+    </environment>
+    <nodes>
+        <node name="bird0">
+            <position x="15.7644" y="33.8244" z="65.6408" />
+            <scale x="1" y="1" z="1" />
+            <rotation qx="0" qy="0" qz="0" qw="1" />
+            <entity name="bird0" castShadows="true" receiveShadows="true" meshFile="GGBird.mesh">
+            </entity>
+        </node>
+        <node name="bird1">
+            <position x="19.0783" y="33.8244" z="65.6408" />
+            <scale x="1" y="1" z="1" />
+            <rotation qx="0" qy="0" qz="0" qw="1" />
+            <entity name="bird1" castShadows="true" receiveShadows="true" meshFile="GGBird.mesh">
+            </entity>
+        </node>
+        <node name="bird2">
+            <position x="22.5729" y="33.8244" z="65.6408" />
+            <scale x="1" y="1" z="1" />
+            <rotation qx="0" qy="0" qz="0" qw="1" />
+            <entity name="bird2" castShadows="true" receiveShadows="true" meshFile="GGBird.mesh">
+            </entity>
+        </node>
+        <node name="bird12">
+            <position x="-5.26065" y="45.7806" z="83.863" />
+            <scale x="1" y="1" z="1" />
+            <rotation qx="0" qy="0" qz="0" qw="1" />
+            <entity name="bird12" castShadows="true" receiveShadows="true" meshFile="GGBird.mesh">
+            </entity>
+        </node>
+        <node name="bird13">
+            <position x="-0.877973" y="45.7806" z="83.863" />
+            <scale x="1" y="1" z="1" />
+            <rotation qx="0" qy="0" qz="0" qw="1" />
+            <entity name="bird13" castShadows="true" receiveShadows="true" meshFile="GGBird.mesh">
+            </entity>
+        </node>
+        <node name="bird14">
+            <position x="3.81247" y="45.7806" z="83.863" />
+            <scale x="1" y="1" z="1" />
+            <rotation qx="0" qy="0" qz="0" qw="1" />
+            <entity name="bird14" castShadows="true" receiveShadows="true" meshFile="GGBird.mesh">
+            </entity>
+        </node>
+        <node name="bird3">
+            <position x="-1.42464" y="54.627" z="113.207" />
+            <scale x="1" y="1" z="1" />
+            <rotation qx="0" qy="0" qz="0" qw="1" />
+            <entity name="bird3" castShadows="true" receiveShadows="true" meshFile="GGBird.mesh">
+            </entity>
+        </node>
+        <node name="bird4">
+            <position x="2.24732" y="54.627" z="113.207" />
+            <scale x="1" y="1" z="1" />
+            <rotation qx="0" qy="0" qz="0" qw="1" />
+            <entity name="bird4" castShadows="true" receiveShadows="true" meshFile="GGBird.mesh">
+            </entity>
+        </node>
+        <node name="bird5">
+            <position x="5.73098" y="54.627" z="113.207" />
+            <scale x="1" y="1" z="1" />
+            <rotation qx="0" qy="0" qz="0" qw="1" />
+            <entity name="bird5" castShadows="true" receiveShadows="true" meshFile="GGBird.mesh">
+            </entity>
+        </node>
+        <node name="bird6">
+            <position x="0.721742" y="66.1458" z="139.518" />
+            <scale x="1" y="1" z="1" />
+            <rotation qx="0" qy="0" qz="0" qw="1" />
+            <entity name="bird6" castShadows="true" receiveShadows="true" meshFile="GGBird.mesh">
+            </entity>
+        </node>
+        <node name="bird7">
+            <position x="4.48786" y="66.1458" z="139.518" />
+            <scale x="1" y="1" z="1" />
+            <rotation qx="0" qy="0" qz="0" qw="1" />
+            <entity name="bird7" castShadows="true" receiveShadows="true" meshFile="GGBird.mesh">
+            </entity>
+        </node>
+        <node name="bird8">
+            <position x="7.97152" y="66.1458" z="139.518" />
+            <scale x="1" y="1" z="1" />
+            <rotation qx="0" qy="0" qz="0" qw="1" />
+            <entity name="bird8" castShadows="true" receiveShadows="true" meshFile="GGBird.mesh">
+            </entity>
+        </node>
+        <node name="bird11">
+            <position x="-9.00528" y="79.5726" z="156.537" />
+            <scale x="1" y="1" z="1" />
+            <rotation qx="0" qy="0" qz="0" qw="1" />
+            <entity name="bird11" castShadows="true" receiveShadows="true" meshFile="GGBird.mesh">
+            </entity>
+        </node>
+        <node name="bird10">
+            <position x="-12.7336" y="79.5726" z="156.537" />
+            <scale x="1" y="1" z="1" />
+            <rotation qx="0" qy="0" qz="0" qw="1" />
+            <entity name="bird10" castShadows="true" receiveShadows="true" meshFile="GGBird.mesh">
+            </entity>
+        </node>
+        <node name="bird9">
+            <position x="-16.2663" y="79.5726" z="156.537" />
+            <scale x="1" y="1" z="1" />
+            <rotation qx="0" qy="0" qz="0" qw="1" />
+            <entity name="bird9" castShadows="true" receiveShadows="true" meshFile="GGBird.mesh">
+            </entity>
+        </node>
+    </nodes>
+</scene>

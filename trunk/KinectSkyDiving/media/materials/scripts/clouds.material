@@ -1,4 +1,4 @@
-material Examples/Cloud01
+material Cloud/Cloud01
 {
 	technique
 	{
@@ -12,6 +12,46 @@ material Examples/Cloud01
 			texture_unit
 			{
 				texture cloud01.png
+				tex_address_mode clamp
+			}
+		}
+	}
+}
+
+material Cloud/Cloud02
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			scene_blend alpha_blend
+			depth_write off
+			diffuse vertexcolour
+
+			texture_unit
+			{
+				texture cloud02.png
+				tex_address_mode clamp
+			}
+		}
+	}
+}
+
+material Cloud/Cloud03
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			scene_blend alpha_blend
+			depth_write off
+			diffuse vertexcolour
+
+			texture_unit
+			{
+				texture cloud03.png
 				tex_address_mode clamp
 			}
 		}
