@@ -28,10 +28,12 @@ public:
 	inline Ogre::Vector3 getCircleScale()			  { return circleScale; };
 	inline Ogre::String  getVillageSceneName()        { return villageSceneName; };
 	inline Ogre::String  getCircleSceneName()		  { return circleSceneName; };
+	inline Ogre::String  getGGBirdSceneName()		  { return ggBirdSceneName; };
 	inline Ogre::Real    getCloudHighestElevation()   { return cloudHighestElevation; };
 	inline Ogre::Real    getCharacterAcceleration()   { return characterAcceleration; };
 	inline Ogre::Real    getCharacterRotationSpeed()  { return characterRotationSpeed; };
 	inline Ogre::Vector3 getCameraTightness()		  { return cameraTightness; };
+	inline Ogre::Vector3 getGGBirdScale()			  { return ggBirdScale; };
 
 private:
 	Ogre::Vector3 parseVector3(TiXmlElement *XMLNode);
@@ -54,10 +56,12 @@ private:
 	Ogre::Vector3 circleScale;
 	Ogre::String villageSceneName;
 	Ogre::String circleSceneName;
+	Ogre::String ggBirdSceneName;
 	Ogre::Real cloudHighestElevation;
 	Ogre::Real characterAcceleration;
 	Ogre::Real characterRotationSpeed;
 	Ogre::Vector3 cameraTightness;
+	Ogre::Vector3 ggBirdScale;
 
 };
 

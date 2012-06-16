@@ -13,7 +13,7 @@ public:
 	virtual ~SimpleCloud(void);
 
 	void initCloud(Ogre::SceneManager* mSceneMgr, int numBillboards);
-	void createSingleCloud(Ogre::Vector3 pos, Ogre::Vector3 scale);
+	void createSingleCloud(Ogre::Vector3 pos, Ogre::Vector3 scale, Ogre::String materialName);
 	void updateClouds(Ogre::Real elapsedTime);
 
 private:

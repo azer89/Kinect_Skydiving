@@ -17,6 +17,7 @@
 #include "LoadingAnimation.h"
 #include "CollisionDetector.h"
 #include "GameConfig.h"
+#include "GGBirdLoader.h"
 
 //#include "PPSoundManager.h"
 #include "GGBird.h"
@@ -43,6 +44,13 @@ public:
 	void keyPressed( const OIS::KeyEvent &arg );
 	void keyReleased( const OIS::KeyEvent &arg );
 
+	inline bool checkPlanetInitialization(void){ return isPlanetInitialized; }
+	inline void startGame(void) { isGameStarted = true; }
+
+	int getScore(void){ return character->getGameplayScore();}		
+	bool isUpsideTarget();
+	Ogre::Real getArrowDirection();
+
 private:
 	/** Check planet collision, similar to RaySceneQuery */
 	void checkPlanetColission(Ogre::Real timeElapsed);
@@ -63,6 +71,7 @@ private:
 	ThirdPersonCamera*  exCamera;
 	LoadingAnimation*	mLoadingBar;
 	CollisionDetector*	collisionDetector;
+	GGBirdLoader*		ggBirdLoader;
 
 	OgreKinect* mOgreKinect;
 	void processKinectInput();
@@ -71,8 +80,15 @@ private:
 	GGBirdFatory* mGGBirds;
 	//PPSoundManager* mPPSoundManager;
 
+	Ogre::Vector3		targetPosition;
+	Ogre::Vector3		originalPosition;
+	Ogre::Real			originalDistance;
+	Ogre::Vector3		prevCharacterPosition;
+	Ogre::Real			distancePercentage;
+
 	Ogre::Real          collisionDelay;				// collision engine isn't optimized so make it run every 1/60 second
 	bool				isPlanetInitialized;		// is planet is fully initialized?
+	bool				isGameStarted;
 
 	Ogre::Root*         mRoot;
 	Ogre::Camera*       mCamera;

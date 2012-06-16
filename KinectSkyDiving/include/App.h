@@ -13,19 +13,31 @@
 #include "GameSystem.h"
 #include "GameConfig.h"
 
+//#include "Interface.h"
+class Interface;	// forward declaration
+
 class App : public BaseApplication
 {
 public:
     App(void);
     virtual ~App(void);
+	
+	inline Ogre::Camera* getCamera(void) { return this->mCamera; }
+	inline OgreBites::SdkTrayManager* getTrayManager(void) { return this->mTrayMgr; }
+	void shutdown(void) { this->mShutDown = true; }
+	
+	void startGame(void);
+	void injectMouseMove(float x, float y);
 
-	/** Start the system and init planet rendering engine */
-	virtual void go(void);
+public:
+	Interface* UI;
 
 protected:
-	GalaxyEngine::Core *planetEngine;				// planet rendering engine
+	GalaxyEngine::Core* planetEngine;				// planet rendering engine
+	GalaxyEngine::Universe* universe;
 	GameSystem* gameSystem;							// game play system, put your code inside this class
-	GameConfig* gameConfig;
+	GameConfig* gameConfig;	
+	bool isGameStarted;
 
 protected:
     virtual void createScene(void);
