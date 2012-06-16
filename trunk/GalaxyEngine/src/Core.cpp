@@ -31,6 +31,8 @@ namespace GalaxyEngine
 		//Create the default main camera and viewport
 		viewPort->setBackgroundColour(Ogre::ColourValue(0, 0, 0));
 		camera->setAspectRatio(Ogre::Real(viewPort->getActualWidth()) / Ogre::Real(viewPort->getActualHeight()));
+	
+		universe = new Universe("TestUniverse");
 	}
 
 	Core::~Core()
@@ -38,16 +40,10 @@ namespace GalaxyEngine
 		singletonPtr = NULL;
 		delete ConfigScriptLoader::getSingletonPtr();
 	}
-
-	void Core::runSimulation()
-	{
-		universe = new Universe("TestUniverse");
-		while(mRoot->renderOneFrame()) { universe->update(); }
-	}
-
+		
 	Planet* Core::getFirstPlanet()
 	{
-		PlanetProxy* planetProxy = universe->getFirstPlanet();	
+		PlanetProxy* planetProxy = universe->getFirstPlanet();
 		return planetProxy->getPlanet();
 	}
 }

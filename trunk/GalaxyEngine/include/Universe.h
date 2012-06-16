@@ -127,6 +127,9 @@ namespace GalaxyEngine
 		Ogre::Light *sunLight02;
 		Ogre::SceneNode *sunLightNode02;
 
+		//Ogre::Light *sunLight03;
+		//Ogre::SceneNode *sunLightNode03;
+
 		double gravityFactor;
 
 		static Utility::Timer timer;
@@ -269,10 +272,5 @@ namespace GalaxyEngine
 
 
 }
-
-
-
-
-
 
 #endif

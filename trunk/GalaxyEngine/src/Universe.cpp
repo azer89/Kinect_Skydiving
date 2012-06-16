@@ -125,6 +125,14 @@ namespace GalaxyEngine
 		sunLight02->setDirection(0, 0, 0);
 		sunLightNode02->attachObject(sunLight02);
 		sunLightNode02->setPosition(0, 6500, 6500);
+
+		// Setup sun light #3
+		/*sunLightNode03 = Core::getSingleton().getSceneManager()->getRootSceneNode()->createChildSceneNode();
+		sunLight03 = Core::getSingleton().getSceneManager()->createLight("UniverseSunLight03");
+		//sunLight02->setType(Ogre::Light::LT_DIRECTIONAL);
+		sunLight03->setDirection(0, 0, 0);
+		sunLightNode03->attachObject(sunLight03);
+		sunLightNode03->setPosition(0, 6000, 300);*/
 	}
 
 	Universe::~Universe()
