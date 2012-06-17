@@ -3,20 +3,21 @@
 #define _KinectUIControl_h_
 
 #include "Stdafx.h"
-#include "App.h"
 
-class KinectUiControl
+class App;
+
+class KinectUIControl
 {
 
 public:
-	KinectUiControl(App* main)
+	KinectUIControl(App* main)
 	{
 		this->main = main;
 	}
-	virtual ~KinectUiControl(void);
+	virtual ~KinectUIControl(void);
 	App* main;
 
-	void MoveCursor(Ogre::Vector3 pos);
+	void moveCursor(Ogre::Vector2 pos);
 
 protected:
 	void getScreenCoordinates(const Ogre::Vector3& position, Ogre::Real& x, Ogre::Real& y);

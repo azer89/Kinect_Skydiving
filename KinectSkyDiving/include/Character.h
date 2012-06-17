@@ -55,12 +55,14 @@ public:
 	void setGravity(Ogre::Real gravity) { this->gravity = gravity; }
 	void setLanding();
 	
-	inline Ogre::Entity*    getBodyEntity() { return bodyEntity01; }
+	inline Ogre::Entity*    getBodyEntity01() { return bodyEntity01; }
+	inline Ogre::Entity*    getBodyEntity02() { return bodyEntity02; }
 	inline Ogre::SceneNode* getBodyNode() { return mMainNode; }
 	inline Ogre::SceneNode* getSightNode() { return mSightNode; }
 	inline Ogre::SceneNode* getCameraNode() { return mCameraNode; }
 	inline Ogre::Vector3    getWorldPosition() { return mMainNode->_getDerivedPosition (); }
 	inline int				getGameplayScore() { return gameScore; }
+	inline bool				getParachuteStatus() {return isParachuteOpen; }
 	
 	void addPoint(int num) 
 	{ 
@@ -88,6 +90,8 @@ private:
 	Ogre::Real		currentSpeed[4];
 	Ogre::Real		maxSpeed;
 	Ogre::Real		acceleration;
+	Ogre::Real		fallDownAccel;
+	Ogre::Real		gravityAcceleration;
 	Ogre::Real		rotationSpeed;
 
 	Ogre::SceneNode*     mMainNode;			// Main character node

@@ -18,10 +18,9 @@
 #include "CollisionDetector.h"
 #include "GameConfig.h"
 #include "GGBirdLoader.h"
-
-//#include "PPSoundManager.h"
 #include "GGBird.h"
 #include "OgreKinect.h"
+#include "PPSoundManager.h"
 
 class GameSystem
 {
@@ -44,12 +43,17 @@ public:
 	void keyPressed( const OIS::KeyEvent &arg );
 	void keyReleased( const OIS::KeyEvent &arg );
 
+	inline bool getlandingStatus(void) { return isLanding;}
 	inline bool checkPlanetInitialization(void){ return isPlanetInitialized; }
-	inline void startGame(void) { isGameStarted = true; }
+	inline void startGame(void) { isGameStarted = true; mPPSoundManager->playMusic("skydiving_gamemusic_loop_new_2..30min.mp3"); }
+	inline Ogre::Real getPercentAltitude(void) { return percentAltitude; }
+	inline int getNumAttacked(void) { return numAttacked; }
 
 	int getScore(void){ return character->getGameplayScore();}		
 	bool isUpsideTarget();
 	Ogre::Real getArrowDirection();
+	Ogre::Vector2 getWristPosition(void){ return mOgreKinect->getWristPosition(); }
+	bool isSkeletonTracked(void) { return mOgreKinect->isTracking; }
 
 private:
 	/** Check planet collision, similar to RaySceneQuery */
@@ -58,9 +62,13 @@ private:
 	void postPlanetInitialization(); 
 	/** Check if planet is fully created */
 	void isPlanetReady();
+	/** Open the parachute */
+	void openParachute();
+	/** Pose detection by kinect */
+	void processKinectInput(Ogre::Real elapsedTime);
 
 private:
-	RayCastCollision*   rayCollisionDetector;			// simple planet collision engine	
+	RayCastCollision*   rayCollisionDetector;		// simple planet collision engine	
 	GalaxyEngine::Core* planetEngine;				// planet rendering engine
 	Character*          character;					// character
 	PlanetObjects*		pObjects;
@@ -72,30 +80,37 @@ private:
 	LoadingAnimation*	mLoadingBar;
 	CollisionDetector*	collisionDetector;
 	GGBirdLoader*		ggBirdLoader;
-
-	OgreKinect* mOgreKinect;
-	void processKinectInput();
+	PPSoundManager*		mPPSoundManager;
+	OgreKinect*			mOgreKinect;	
 
 	bool bStopFalling;
-	GGBirdFatory* mGGBirds;
-	//PPSoundManager* mPPSoundManager;
+	GGBirdFactory* mGGBirds;
 
-	Ogre::Vector3		targetPosition;
-	Ogre::Vector3		originalPosition;
-	Ogre::Real			originalDistance;
-	Ogre::Vector3		prevCharacterPosition;
-	Ogre::Real			distancePercentage;
+	Ogre::Vector3	targetPosition;
+	Ogre::Vector3	originalPosition;
+	Ogre::Real		originalDistance;
+	Ogre::Vector3	prevCharacterPosition;
+	Ogre::Real		distancePercentage;
 
-	Ogre::Real          collisionDelay;				// collision engine isn't optimized so make it run every 1/60 second
-	bool				isPlanetInitialized;		// is planet is fully initialized?
-	bool				isGameStarted;
+	Ogre::Real      collisionDelay;				// collision engine isn't optimized so make it run every 1/60 second
+	bool			isPlanetInitialized;		// is planet is fully initialized?
+	bool			isGameStarted;
+	bool			isLanding;
+	bool			isKinectActive;
 
-	Ogre::Root*         mRoot;
-	Ogre::Camera*       mCamera;
-	Ogre::SceneManager* mSceneMgr;
-	OIS::Mouse*         mMouse;
-	OIS::Keyboard*      mKeyboard;
-	Ogre::RenderWindow* mWindow;
+	Ogre::Real		openParacuteDelay;
+	Ogre::Real		openParachuteCounter;
+	Ogre::Real		currentAltitude;
+	Ogre::Real		percentAltitude;
+	int				numAttacked;
+
+	Ogre::Root*				mRoot;
+	Ogre::Camera*			mCamera;
+	Ogre::SceneManager*		mSceneMgr;
+	OIS::Mouse*				mMouse;
+	OIS::Keyboard*			mKeyboard;
+	Ogre::RenderWindow*		mWindow;
+	Ogre::AnimationState*	mAni;
 };
 
 #endif // #ifndef __GameSystem_h_

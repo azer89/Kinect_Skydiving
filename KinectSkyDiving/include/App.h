@@ -13,8 +13,9 @@
 #include "GameSystem.h"
 #include "GameConfig.h"
 
-//#include "Interface.h"
-class Interface;	// forward declaration
+// forward declaration
+class Interface;
+class KinectUIControl;
 
 class App : public BaseApplication
 {
@@ -29,15 +30,18 @@ public:
 	void startGame(void);
 	void injectMouseMove(float x, float y);
 
-public:
-	Interface* UI;
+public:	
 
 protected:
 	GalaxyEngine::Core* planetEngine;				// planet rendering engine
 	GalaxyEngine::Universe* universe;
 	GameSystem* gameSystem;							// game play system, put your code inside this class
 	GameConfig* gameConfig;	
+	Interface* UI;
+	KinectUIControl* kinectUIControl;
 	bool isGameStarted;
+	bool enableCameraMovement;
+	bool isKinectEnabled;
 
 protected:
     virtual void createScene(void);

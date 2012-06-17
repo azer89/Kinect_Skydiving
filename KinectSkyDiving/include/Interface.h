@@ -27,16 +27,21 @@ public:
 
 	Hikari::FlashValue onExit(Hikari::FlashControl* caller, const Hikari::Arguments& args);
 	Hikari::FlashValue onPlay(Hikari::FlashControl* caller, const Hikari::Arguments& args);
+	Hikari::FlashValue onOpen(Hikari::FlashControl* caller, const Hikari::Arguments& args);
 
 	inline Hikari::HikariManager* getHikariManager(void) { return this->hikariMgr; }
 	inline Hikari::FlashControl* getStartMenu(void) { return startMenu; }	
 	inline Hikari::FlashControl* getGameDisplay(void) { return gameDisplay; }
 	inline bool getArrowVisibility(void) { return isArrowVisible;}
+	inline bool getGameOverStatus(void) { return isGameOver; }
 
 	void updateArrow(Ogre::Real direction);
 	void hideArrow();
 	void showArrow();
 	void updateScore(int n);
+	void updateAltitude(Ogre::Real alt);
+	void birdAttack(int numAtk);
+	void gameOver(void);
 
 private:
 	App* main;
@@ -46,6 +51,8 @@ private:
 
 	bool isArrowVisible;
 	int score;
+	int numAttacked;
+	bool isGameOver;
 
 	//void onShot();
 	//void onGoal();

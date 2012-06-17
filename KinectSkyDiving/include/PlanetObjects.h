@@ -14,12 +14,17 @@ public:
 	PlanetObjects(void);
 	virtual ~PlanetObjects(void);
 
-	void setup(Ogre::SceneManager* mSceneManager, RayCastCollision* collisionDetector);
+	Ogre::AnimationState* setup(Ogre::SceneManager* mSceneManager, RayCastCollision* collisionDetector);
+
+	Ogre::SceneNode* getSignNode(){ return signNode; }
 
 private:
 	Ogre::SceneManager*  mSceneManager;	
 	Ogre::SceneNode*     mMainNode;
 	Ogre::Entity*        mMainEntity;
+
+	Ogre::SceneNode* signNode;
+	Ogre::Entity* signEntity;
 	
 	//Ogre::DotSceneLoader*		 sceneLoader;
 };
