@@ -26,8 +26,13 @@ void CollisionDetector::update(Ogre::Real elapsedTime)
 		Ogre::SceneNode* node = nodeList[a];
 		
 		Ogre::String name = node->getName();
-		Ogre::AxisAlignedBox cBBox = character->getBodyEntity()->getWorldBoundingBox();
-		Ogre::AxisAlignedBox bBox = node->getAttachedObject(0)->getWorldBoundingBox();		
+		
+		Ogre::AxisAlignedBox cBBox;
+		if(!character->getParachuteStatus()) cBBox = character->getBodyEntity01()->getWorldBoundingBox();
+		else cBBox = character->getBodyEntity02()->getWorldBoundingBox();
+		
+		Ogre::AxisAlignedBox bBox = node->getAttachedObject(0)->getWorldBoundingBox();	
+		//std::cout << distance << "\n";
 
 		if(bBox.intersects(cBBox) && !tCircles->flag[a])
 		{

@@ -19,10 +19,16 @@ GameSystem::GameSystem(void)
 	  isGameStarted(false),
 	  ggBirdLoader(0),
 	  targetPosition(GameConfig::getSingletonPtr()->getTargetPosition()),
-	  originalPosition(GameConfig::getSingletonPtr()->getCharacterPosition())
+	  originalPosition(GameConfig::getSingletonPtr()->getCharacterPosition()),
+	  numAttacked(0),
+	  isLanding(false),
+	  isKinectActive(GameConfig::getSingletonPtr()->getKinectStatus()),
+	  openParacuteDelay(GameConfig::getSingletonPtr()->getOpenParachuteDelay()),
+	  openParachuteCounter(0.0f),
+	  mAni(NULL)
 	  //distancePercentage(0.0f)
 {
-	//originalDistance = targetPosition.distance(originalPosition);
+	originalDistance = originalPosition.distance(Ogre::Vector3::ZERO) - 5000;
 }
 
 //-------------------------------------------------------------------------------------
@@ -46,7 +52,9 @@ void GameSystem::createScene(void)
 {
 	GameConfig* gameConfig = GameConfig::getSingletonPtr();
 
-	mSceneMgr->setSkyBox(true, "Sky/Space", 10000, true);
+	mPPSoundManager = new PPSoundManager();
+
+	mSceneMgr->setSkyBox(true, "Sky/Bright", 10000, true);
 
 	exCamera = new ThirdPersonCamera("ThirdPersonCamera", mSceneMgr, mCamera);
 	mCameraListener = new CameraListener(mWindow, mCamera);
@@ -64,23 +72,25 @@ void GameSystem::createScene(void)
 
 	mLoadingBar->update();
 	
-	mGGBirds = new GGBirdFatory();					// GGBird
+	mGGBirds = new GGBirdFactory();					// GGBird
 	//mPPSoundManager = new PPSoundManager();		// Sound	
 	mOgreKinect = new OgreKinect(mSceneMgr);		// Kinect
 
 	mLoadingBar->update();
 
 	cloud = new SimpleCloud();
-	cloud->initCloud(mSceneMgr, 60);
+	cloud->initCloud(mSceneMgr, 30);
 
 	mLoadingBar->update();
 
 	ggBirdLoader = new GGBirdLoader();
 	ggBirdLoader->setup(mSceneMgr);
 	std::vector<Ogre::SceneNode*> birds = ggBirdLoader->getNodeList();
-	//for(int a = 0; a < birds.size(); a++) { mGGBirds->addBird(mSceneMgr, birds[a]); }
+	for(int a = 0; a < birds.size(); a++) { mGGBirds->addBird(mSceneMgr, birds[a]); }
 
 	mLoadingBar->update();
+
+	mPPSoundManager->playMusic("skydiving_menu.mp3");
 }
 
 //-------------------------------------------------------------------------------------
@@ -108,6 +118,8 @@ void GameSystem::initSystem(Ogre::Root *mRoot,
 /** Updating every frameRenderingQueued */
 void GameSystem::update(Ogre::Real elapsedTime)
 {
+	if(mPPSoundManager != 0) mPPSoundManager->update(elapsedTime);
+	if(isKinectActive) { mOgreKinect->update(elapsedTime); }
 	if(!isPlanetInitialized) isPlanetReady();
 	if(!isGameStarted) return;
 
@@ -118,20 +130,39 @@ void GameSystem::update(Ogre::Real elapsedTime)
 	mCameraListener->update(elapsedTime);
 	cloud->updateClouds(elapsedTime);
 
-	mGGBirds->Update(elapsedTime, character->getBodyNode()->_getDerivedPosition());
-	mOgreKinect->update(elapsedTime);
-	//processKinectInput();
+	Ogre::Quaternion charOrient = character->getBodyNode()->getOrientation();
+	Ogre::Vector3 upVector = charOrient * Ogre::Vector3::UNIT_Y;
+
+	int numAtk = 0;
+
+	//if(!isLanding)
+	//{
+		if(!character->getParachuteStatus())	// free fall
+		{
+			numAtk = mGGBirds->Update(elapsedTime, character->getBodyNode()->_getDerivedPosition());
+		}
+		else	// parachute opened
+		{
+			numAtk = mGGBirds->Update(elapsedTime, character->getBodyNode()->_getDerivedPosition() + upVector * 5.5);
+		}
+	//}
+
+	if(numAtk != 0) std::cout << numAtk << "\n";
+	numAttacked += numAtk;
+	
+	if(isKinectActive) { processKinectInput(elapsedTime); }
 
 	if(pManager != 0) pManager->update(character->getBodyNode()->_getDerivedPosition());
 	if(collisionDetector != 0) collisionDetector->update(elapsedTime);
 	if(tCircles != 0) tCircles->update(elapsedTime);
 
-	//Ogre::Real prevDistance = prevCharacterPosition.distance(targetPosition);
-	//Ogre::Real curDistance = prevCharacterPosition.distance(targetPosition);
+	currentAltitude = character->getBodyNode()->getPosition().distance(Ogre::Vector3::ZERO) - 5000;
+	percentAltitude = currentAltitude / originalDistance;
 
-	//Ogre::Real delta = curDistance - prevDistance;
-	//distancePercentage = delta / originalDistance;
+	//
+	if (mAni) mAni->addTime(elapsedTime);
 }
+
 
 //------------------------------------------------------------------------------------
 void GameSystem::checkPlanetColission(Ogre::Real timeElapsed)
@@ -166,6 +197,10 @@ void GameSystem::checkPlanetColission(Ogre::Real timeElapsed)
 		else if(distance1 < (distance2 + 5.0f))
 		{
 			character->setLanding();
+			pManager->disableParticle();
+			pObjects->getSignNode()->setVisible(false);
+			isLanding = true;
+			mGGBirds->killAllBirds();
 		}
 	}	
 }
@@ -174,7 +209,10 @@ void GameSystem::checkPlanetColission(Ogre::Real timeElapsed)
 void GameSystem::keyPressed( const OIS::KeyEvent &arg )
 {	
 	if (arg.key == OIS::KC_P)
+	{
 		bStopFalling = !bStopFalling;
+		mPPSoundManager->playMusic("skydiving_gamemenu_loop2.mp3");
+	}
 
 	if (arg.key == OIS::KC_G)
 	{
@@ -214,10 +252,17 @@ void GameSystem::keyPressed( const OIS::KeyEvent &arg )
 	}
 	else if(arg.key == OIS::KC_O)
 	{
-		character->openParachute();
-		//pManager->disableParticle();
-		// pManager->setParticleQuota(500);
+		this->openParachute();
 	}
+}
+
+//-------------------------------------------------------------------------------------
+void GameSystem::openParachute()
+{
+	if(character->getParachuteStatus()) return;
+
+	character->openParachute();
+	pManager->setSlowParticle();
 }
 
 //-------------------------------------------------------------------------------------
@@ -246,7 +291,7 @@ void GameSystem::postPlanetInitialization()
 	mLoadingBar->update();
 
 	pObjects = new PlanetObjects();
-	pObjects->setup(mSceneMgr, rayCollisionDetector);
+	mAni = pObjects->setup(mSceneMgr, rayCollisionDetector);
 
 	mLoadingBar->update();
 
@@ -313,11 +358,30 @@ void GameSystem::isPlanetReady()
 }
 
 
-void GameSystem::processKinectInput()
+void GameSystem::processKinectInput(Ogre::Real elapsedTime)
 {
+	bool flag = false;
+
+	if(mOgreKinect->mPoseDetect->isPose("open"))
+	{
+		flag = true;
+		openParachuteCounter += elapsedTime;
+		if(openParachuteCounter >= openParacuteDelay)
+		{
+			this->openParachute();
+			openParachuteCounter = 0;
+		}
+	}
+	else
+	{
+		openParachuteCounter = 0.0f;
+	}
+
+	if(flag) return;	// means we're opening parachute
+						// ignoring all poses
+
 	if(mOgreKinect->mPoseDetect->isPose("front"))
 	{
-		//printf("front\n");
 		character->setState(Movement::MOVE_FRONT);
 	}	
 	else if(mOgreKinect->mPoseDetect->isPose("back"))
@@ -326,23 +390,23 @@ void GameSystem::processKinectInput()
 	}
 	else if(mOgreKinect->mPoseDetect->isPose("left"))
 	{
-		//printf("left\n");
 		character->setState(Movement::MOVE_LEFT);
 	}
 	else if(mOgreKinect->mPoseDetect->isPose("right"))
 	{
-		//printf("right\n");
 		character->setState(Movement::MOVE_RIGHT);
 	}
 	else if(mOgreKinect->mPoseDetect->isPose("rotate_left"))
 	{
-		//printf("rotate_left\n");
 		character->setState(Movement::ROTATE_LEFT);
 	}
 	else if(mOgreKinect->mPoseDetect->isPose("rotate_right"))
 	{
-		//printf("rotate_right\n");
 		character->setState(Movement::ROTATE_RIGHT);
+	}
+	else if(mOgreKinect->mPoseDetect->isPose("none"))
+	{
+		character->setState(Movement::NOTHING);
 	}
 }
 

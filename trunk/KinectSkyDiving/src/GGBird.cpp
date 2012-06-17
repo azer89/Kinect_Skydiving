@@ -13,24 +13,26 @@ void GGBird::Update( const float& dt, Ogre::Vector3 posAvatar )
 
 	float disWithAvatar = (posAvatar - mPos).length();
 
-	printf("%.2lf\n", disWithAvatar);
+	//printf("%.2lf\n", disWithAvatar);
 
 	if (disWithAvatar < 2)
 	{
 		mState->TransitionTo("attack");
 	}
-	else if (disWithAvatar < 70)
+	if (disWithAvatar > 10)
 	{
-		mState->TransitionTo("tracing");		
-	}
-	else
-	{
-		//bDie = true;
-		mState->TransitionTo("fly");	
+		if (disWithAvatar < 200)
+		{
+			mState->TransitionTo("tracing");		
+		}
+		else
+		{
+			//bDie = true;
+			mState->TransitionTo("fly");	
+		}
 	}
 
-	if (mState->stateBank.size() > 0)
-		mState->currentState->Update(dt);
+	if (mState->stateBank.size() > 0) mState->currentState->Update(dt);
 }
 
 void GGBird::init(Ogre::SceneManager* mSM, Ogre::SceneNode* node)
@@ -40,10 +42,15 @@ void GGBird::init(Ogre::SceneManager* mSM, Ogre::SceneNode* node)
 	mEnt = static_cast<Ogre::Entity*>(node->getAttachedObject(0));
 
 	bDie = false;
+	bAttack = false;
 	mTarget = Ogre::Vector3::ZERO;
 	mDir = Ogre::Vector3(0,0,1);
 	mPos = node->getPosition();
+	mSeparate = Ogre::Vector3::ZERO;
 	//std::cout << mPos << "\n";
+
+	mSize = 0.3f;
+	mNode->setScale(mSize, mSize, mSize);
 
 	mState = new FSM();
 	GGBirdMoving* state1 = new GGBirdMoving(this);
@@ -66,6 +73,7 @@ void GGBird::init(Ogre::SceneManager* mSM, Ogre::Vector3 bornPos)
 	mNode->setScale(mSize, mSize, mSize);
 
 	bDie = false;
+	bAttack = false;
 	mTarget = Ogre::Vector3::ZERO;
 	mDir = Ogre::Vector3(0,0,1);
 	mPos = bornPos;
@@ -105,6 +113,10 @@ void GGBirdMoving::Update(const float& dt)
 {
 	mAnim->addTime(dt);
 
+	float rr = (rand() % 100) / 100.0f; // 0~1
+	mGGBird->mNode->yaw(Ogre::Radian(rr * dt));
+
+	/*
 	Ogre::Real mSpeed = 0.1f;
 
 	if (loopDir == -2)
@@ -130,7 +142,7 @@ void GGBirdMoving::Update(const float& dt)
 	left.normalise();
 	Ogre::Quaternion quat(left, up, front);
 	mGGBird->mNode->setOrientation(quat);
-	mGGBird->mNode->setPosition(newV);
+	mGGBird->mNode->setPosition(newV);*/
 
 }
 
@@ -144,7 +156,7 @@ void GGBirdMoving::DoEXIT()
 // State : Tracing
 //
 
-GGBirdTracing::GGBirdTracing(GGBird *_GGBird)
+GGBirdTracing::GGBirdTracing(GGBird *_GGBird) : traceSpeed(GameConfig::getSingletonPtr()->getGGBirdTraceSpeed())
 {
 	mGGBird = _GGBird;
 	stateName = "tracing";
@@ -164,7 +176,7 @@ void GGBirdTracing::Update(const float& dt)
 {
 	mAnim->addTime(dt);
 
-	Ogre::Real mSpeed = 5.0f * dt;
+	Ogre::Real mSpeed = traceSpeed * dt; //5.0f * dt;
 
 	Ogre::Vector3 vPos = mGGBird->mNode->getPosition();
 	Ogre::Vector3 vDir = (mGGBird->mTarget - vPos).normalisedCopy();
@@ -199,8 +211,10 @@ GGBirdAttack::GGBirdAttack(GGBird *_GGBird)
 void GGBirdAttack::DoENTER()
 {
 	mAnim->setTimePosition(0.0f);
-	mAnim->setLoop(true);
+	mAnim->setLoop(false);
 	mAnim->setEnabled(true);
+
+	mGGBird->bAttack = true;
 
 	//mPPSoundManager->playEffect("2.wav"); ///
 }
@@ -208,6 +222,9 @@ void GGBirdAttack::DoENTER()
 void GGBirdAttack::Update(const float& dt)
 {
 	mAnim->addTime(dt);
+
+	if (mAnim->getLength() == mAnim->getTimePosition())
+		mGGBird->bDie = true;
 }
 
 void GGBirdAttack::DoEXIT()

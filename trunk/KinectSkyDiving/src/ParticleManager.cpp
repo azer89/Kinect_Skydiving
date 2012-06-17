@@ -23,7 +23,15 @@ void ParticleManager::update(Ogre::Vector3 characterPosition)
 }
 
 //-------------------------------------------------------------------------------------
-void ParticleManager::setParticleQuota(int numParticle)
+void ParticleManager::setSlowParticle(void)
+{
+	baseNode->detachObject(ps);
+	ps = mSceneMgr->createParticleSystem("SlowWind", "Examples/SlowWind");	
+	baseNode->attachObject(ps);
+}
+
+//-------------------------------------------------------------------------------------
+/*void ParticleManager::setParticleQuota(int numParticle)
 {
 	baseNode->detachObject(ps);
 	Ogre::ParticleSystem* pClone = mSceneMgr->createParticleSystem();
@@ -34,7 +42,7 @@ void ParticleManager::setParticleQuota(int numParticle)
 	//ps->fastForward(5);     
 	//ps->setKeepParticlesInLocalSpace(true);
 	baseNode->attachObject(ps);
-}
+}*/
 
 //-------------------------------------------------------------------------------------
 void ParticleManager::disableParticle(void)

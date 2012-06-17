@@ -45,6 +45,10 @@ GameConfig::GameConfig(const Ogre::String &SceneName, const Ogre::String &groupN
 		{
 			this->gravity = this->parseReal(vElement);
 		}
+		else if(dataName == "gravityAcceleration")
+		{
+			this->gravityAcceleration = this->parseReal(vElement);
+		}
 		else if(dataName == "sightNodePosition")
 		{
 			this->sightNodePosition = this->parseVector3(vElement);
@@ -52,6 +56,14 @@ GameConfig::GameConfig(const Ogre::String &SceneName, const Ogre::String &groupN
 		else if(dataName == "cameraNodePosition")
 		{
 			this->cameraNodePosition = this->parseVector3(vElement);
+		}
+		else if(dataName == "sightNodePosition2")
+		{
+			this->sightNodePosition2 = this->parseVector3(vElement);
+		}
+		else if(dataName == "cameraNodePosition2")
+		{
+			this->cameraNodePosition2 = this->parseVector3(vElement);
 		}
 		else if(dataName == "planetObjectScaling")
 		{
@@ -104,6 +116,26 @@ GameConfig::GameConfig(const Ogre::String &SceneName, const Ogre::String &groupN
 		else if(dataName == "ggBirdScale")
 		{
 			this->ggBirdScale = this->parseVector3(vElement);
+		}
+		else if(dataName == "ggBirdTraceSpeed")
+		{
+			this->ggBirdTraceSpeed = this->parseReal(vElement);
+		}
+		else if(dataName == "kinectActivation")
+		{
+			this->kinectActivation = static_cast<int>(this->parseReal(vElement));
+		}
+		else if(dataName == "enableMainMenu")
+		{
+			this->enableMainMenu = static_cast<int>(this->parseReal(vElement));
+		}
+		else if(dataName == "enableCameraMovement")
+		{
+			this->enableCameraMovement = static_cast<int>(this->parseReal(vElement));
+		}
+		else if(dataName == "openParachuteDelay")
+		{
+			this->openParachuteDelay = this->parseReal(vElement);
 		}
 
 		pElement = pElement->NextSiblingElement("data");
