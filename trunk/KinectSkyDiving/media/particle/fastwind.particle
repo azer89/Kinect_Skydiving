@@ -36,3 +36,41 @@ particle_system Examples/FastWind
    	}
 
 }
+
+particle_system Examples/SlowWind
+{
+    material          Examples/Droplet
+    particle_width    20
+    particle_height   20
+    cull_each         true
+    quota             500
+    // Make common direction straight down (faster than self oriented)
+    billboard_type  oriented_self
+    common_direction 0 1 0
+    
+    // Area emitter
+    emitter Box
+    {
+        angle           0
+        emission_rate   100
+        time_to_live    5
+        direction       0 1 0
+        velocity    	100
+        width           500
+        height          500
+        depth           0
+    }
+
+    // Gravity
+    affector LinearForce
+    {
+        force_vector      0 50 0
+        force_application add
+    }
+	
+	affector Scaler
+   	{
+       	rate 	15
+   	}
+
+}
