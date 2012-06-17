@@ -15,8 +15,10 @@ dobromir.todorov.todorov@gmail.com
 
 Interface::Interface(App* main) : 
 	hikariMgr(0),
-		score(0),
-	isArrowVisible(true)
+	score(0),
+	numAttacked(0),
+	isArrowVisible(true),
+	isGameOver(false)
 {
 	this->main = main;
 }
@@ -54,8 +56,9 @@ void Interface::setupHikari(void)
 		main->getCamera()->getViewport()->getActualWidth(), 
 		main->getCamera()->getViewport()->getActualHeight(), 
 		Position(TopLeft));
-
+		
 	gameDisplay->load("inGameUI.swf");
+	gameDisplay->bind("OPEN", FlashDelegate(this, &Interface::onOpen));
 	gameDisplay->setDraggable(false);
 	gameDisplay->setTransparent(true, true);
 	gameDisplay->hide();	
@@ -83,6 +86,11 @@ void Interface::showArrow()
 	gameDisplay->callFunction("showArrow");
 }
 
+void Interface::updateAltitude(Ogre::Real alt)
+{
+	gameDisplay->callFunction("updateAltitude", Hikari::Args(alt));
+}
+
 void Interface::updateScore(int n)
 {
 	int dif = n - score;
@@ -97,12 +105,31 @@ void Interface::updateScore(int n)
 	{
 		gameDisplay->callFunction("red");
 	}
-	else if( dif == -50)
-	{
-		gameDisplay->callFunction("bird");
-	}
 
 	score = n;
+}
+
+void Interface::birdAttack(int numAtk)
+{
+	int dif = numAtk - this->numAttacked;
+	if(dif >= 1) gameDisplay->callFunction("bird");
+	numAttacked = numAtk;
+}
+
+void Interface::gameOver(void)
+{
+	int birdScore = numAttacked * -10;
+	int totalScore = score - birdScore;
+
+	int numStar = 0;
+
+	if(totalScore > 1000) numStar = 3;
+	else if(totalScore > 500) numStar = 2;
+	else if(totalScore > 200)numStar = 1;
+
+	gameDisplay->callFunction("gameOver", Hikari::Args(numStar));
+
+	isGameOver = true;
 }
 
 /*void Interface::onGoal()
@@ -133,6 +160,11 @@ void Interface::getLife()
 Hikari::FlashValue Interface::onExit( Hikari::FlashControl* caller, const Hikari::Arguments& args )
 {
 	main->shutdown();
+	return FLASH_VOID;
+}
+
+Hikari::FlashValue Interface::onOpen( Hikari::FlashControl* caller, const Hikari::Arguments& args )
+{
 	return FLASH_VOID;
 }
 

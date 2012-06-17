@@ -26,6 +26,7 @@ Character::Character(void) :
 	previousState(Movement::NOTHING),
 	degreeRotation(0.0f),
 	gravity(0.0f),
+	gravityAcceleration(GameConfig::getSingletonPtr()->getGravityAcceleration()),
 	isLanding(false),
 	isParachuteOpen(false),
 	maxSpeed(GameConfig::getSingletonPtr()->getCharacterMaxSpeed()),
@@ -35,10 +36,10 @@ Character::Character(void) :
 	baseAnimID02(AnimID02::NO_ANIM2),
 	prevAnimID01(AnimID01::NO_ANIM1),
 	prevAnimID02(AnimID02::NO_ANIM2),
-	gameScore(0)
+	gameScore(0),
+	fallDownAccel(0.0f)
 {
-	for(int a = 0; a < 4 ; a++)
-		currentSpeed[a] = 0.0f;
+	for(int a = 0; a < 4 ; a++) currentSpeed[a] = 0.0f;
 }
 
 //-------------------------------------------------------------------------------------
@@ -57,7 +58,7 @@ void Character::setup(Ogre::SceneManager* mSceneManager,
 
 	this->bodyEntity01 = mSceneManager->createEntity(GIRL, GIRL);
 	this->bodyEntity02 = mSceneManager->createEntity(GIRL_PARACHUTE, GIRL_PARACHUTE);
-
+	
 	this->mMainNode = mSceneManager->getRootSceneNode()->createChildSceneNode();
 
 	innerNode = new Ogre::SceneNode(mSceneManager);
@@ -322,7 +323,20 @@ void Character::openParachute()
 	this->innerNode->attachObject(this->bodyEntity02);
 	this->gravity *= 0.5f;
 	isParachuteOpen = true;
+	//fallDownAccel = 0.0f;
 	setParachuteAnimation(AnimID02::OPEN);
+
+	Ogre::Vector3 sightV = GameConfig::getSingletonPtr()->getSightNodePosition2();
+	Ogre::Vector3 camV = GameConfig::getSingletonPtr()->getCameraNodePosition2();
+
+	Ogre::Vector3 orientX = this->mMainNode->getOrientation() * Ogre::Vector3::UNIT_Y;
+	Ogre::Vector3 orientY = this->mMainNode->getOrientation() * Ogre::Vector3::UNIT_Y;
+	Ogre::Vector3 orientZ = this->mMainNode->getOrientation() * Ogre::Vector3::UNIT_Z;
+	Ogre::Vector3 sight =  (orientX * sightV.x) + (orientY * sightV.y) + (orientZ * sightV.z);
+	Ogre::Vector3 cam =    (orientX * camV.x) + (orientY * camV.y) + (orientZ * camV.z);
+
+	mSightNode->setPosition(sight);
+	mCameraNode->setPosition(cam);	
 }
 
 //--------------------------------------------------------------------------------------
@@ -378,13 +392,21 @@ void Character::fallDown(Ogre::Real elapsedTime)
 	Ogre::Vector3 upVector = this->mMainNode->_getDerivedPosition();
 	upVector.normalise();
 
-	mMainNode->translate(-upVector * gravity * elapsedTime);
+	if(!isParachuteOpen) fallDownAccel += gravityAcceleration;
+	else	// parachute is opened
+	{
+		if(fallDownAccel > 0)
+		{
+			fallDownAccel -= gravityAcceleration * 10;
+			if(fallDownAccel < 0) fallDownAccel = 0;
+		}
+	}
+	mMainNode->translate(-upVector * (gravity + fallDownAccel) * elapsedTime);
 }
 
 //--------------------------------------------------------------------------------------
 void Character::moveCharacter(Ogre::Real elapsedTime)
-{
-	
+{	
 	Ogre::Vector3 direction = Ogre::Vector3::ZERO;
 
 	Movement mState = this->state;
@@ -427,7 +449,7 @@ void Character::moveCharacter(Ogre::Real elapsedTime)
 	{
 		Ogre::Vector3 trans = direction;
 		Ogre::Quaternion q = mMainNode->getOrientation();
-		trans = trans * mSpeed * elapsedTime;
+		trans = trans * (mSpeed + fallDownAccel) * elapsedTime;
 		trans = q * trans;
 			
 		this->mMainNode->translate(trans);

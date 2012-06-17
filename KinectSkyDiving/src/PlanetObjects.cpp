@@ -13,8 +13,9 @@ PlanetObjects::~PlanetObjects(void)
 }
 
 //------------------------------------------------------------------------------------
-void PlanetObjects::setup(Ogre::SceneManager* mSceneManager, RayCastCollision* collisionDetector)
+Ogre::AnimationState* PlanetObjects::setup(Ogre::SceneManager* mSceneManager, RayCastCollision* collisionDetector)
 {	
+	Ogre::AnimationState* mAni;
 	this->mSceneManager = mSceneManager;	
 	this->mMainNode = mSceneManager->getRootSceneNode()->createChildSceneNode();
 
@@ -59,8 +60,22 @@ void PlanetObjects::setup(Ogre::SceneManager* mSceneManager, RayCastCollision* c
 		Ogre::Vector3 upVector = tempPos.normalisedCopy();
 		Ogre::Quaternion q = Ogre::Vector3::UNIT_Y.getRotationTo(upVector);
 		childNode->setOrientation(q);
+
+		if (childNode->getName() == "object53")
+		{
+			signNode = mSceneManager->getRootSceneNode()->createChildSceneNode();
+			signEntity = mSceneManager->createEntity("sign.mesh");
+			signNode->attachObject(signEntity);
+			signNode->setPosition(actualPos);
+			signNode->setScale(1,1,1);
+			signNode->setOrientation(q);
+
+			mAni = signEntity->getAnimationState("go");
+			mAni->setEnabled(true);
+			mAni->setLoop(true);
+		}
 	}
 
 	delete sceneLoader;
-
+	return mAni;
 }

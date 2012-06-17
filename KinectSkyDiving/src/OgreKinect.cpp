@@ -32,7 +32,7 @@ std::vector<bool> OgreKinect::update(const float& dt)
 	{
 		Nui_GotDepthAlert(dt);
 		//Nui_GotColorAlert(dt);
-		return UpdateKinectSkeleton();
+		return updateKinectSkeleton();
 	}
 
 	//update the interface
@@ -107,8 +107,8 @@ HRESULT OgreKinect::initKinect()
     hr = KinectSDK::NuiCreateSensorByIndex(0, &m_pNuiSensor);
 
 	// Disable Kinect 
-	if(rc.bottom==0 &&rc.left==0&&rc.right==0&&rc.top==0)
-	  return -1;
+	//if(rc.bottom==0 &&rc.left==0&&rc.right==0&&rc.top==0)
+	//  return -1;
 
 	m_hNextDepthFrameEvent = CreateEvent( NULL, TRUE, FALSE, NULL );
 	m_hNextColorFrameEvent = CreateEvent( NULL, TRUE, FALSE, NULL );
@@ -319,11 +319,12 @@ void OgreKinect::Nui_GotDepthAlert(float waitTime)
 }
 
 
-std::vector<bool> OgreKinect::UpdateKinectSkeleton()
+std::vector<bool> OgreKinect::updateKinectSkeleton()
 {
 	isTracking = false;
 	std::vector<bool> result;
 	KinectSDK::NUI_SKELETON_FRAME SkeletonFrame = {0};
+
 
 	bool bFoundSkeleton = false;
 
@@ -371,15 +372,29 @@ std::vector<bool> OgreKinect::UpdateKinectSkeleton()
 			KinectSDK::NUI_SKELETON_BONE_ORIENTATION mBoneOrient[KinectSDK::NUI_SKELETON_POSITION_COUNT];
 			if (KinectSDK::NuiSkeletonCalculateBoneOrientations(&SkeletonFrame.SkeletonData[i], mBoneOrient) == S_OK)
 			{
+				NuiTransformSkeletonToDepthImage(
+					SkeletonFrame.SkeletonData[i].SkeletonPositions[KinectSDK::NUI_SKELETON_POSITION_WRIST_RIGHT],
+					&wristPos.x, &wristPos.y);
+
 				PPose newPose;
-				for (int ii=0; ii<20; ii++)
+				for (int ii = 0; ii < 20; ii++)
 				{
 					newPose.isTrack[ii] = true;
 					KinectSDK::Vector4 ori = mBoneOrient[ii].absoluteRotation.rotationQuaternion;
-					newPose.oriSkeleton[ii] = Ogre::Quaternion(ori.w, ori.x, ori.y, ori.z);
+					//newPose.oriSkeleton[ii] = Ogre::Quaternion(ori.w, ori.x, ori.y, ori.z);
 
 					KinectSDK::Vector4 vec = SkeletonFrame.SkeletonData[i].SkeletonPositions[ii];
-					newPose.vecSkeleton[ii] = Ogre::Vector3(vec.x , vec.y, vec.z);
+					KinectSDK::_NUI_SKELETON_POSITION_TRACKING_STATE state = SkeletonFrame.SkeletonData[i].eSkeletonPositionTrackingState[ii];
+					
+					JointStatus jointStatus = (JointStatus)state;
+					Ogre::Vector3 jointPos = Ogre::Vector3(vec.x , vec.y, vec.z);
+					Ogre::Quaternion q = Ogre::Quaternion(ori.w, ori.x, ori.y, ori.z);
+					
+					mPoseDetect->setJointStatus(ii, jointStatus);
+					mPoseDetect->setVecSkeleton(ii, jointPos);
+					mPoseDetect->setJointOrientation(ii, q);
+
+					//newPose.vecSkeleton[ii] = Ogre::Vector3(vec.x , vec.y, vec.z);
 				}
 
 				result = mPoseDetect->recognizePose(newPose);
