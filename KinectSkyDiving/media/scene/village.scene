@@ -259,16 +259,6 @@
                 </subentities>
             </entity>
         </node>
-        <node name="building12">
-            <position x="-24.1194" y="0" z="-108.339" />
-            <scale x="1" y="1" z="1" />
-            <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="building12" castShadows="true" receiveShadows="true" meshFile="building12.mesh">
-                <subentities>
-                    <subentity index="0" materialName="pasted__pasted__railing_color" />
-                </subentities>
-            </entity>
-        </node>
         <node name="building11">
             <position x="3.92604" y="0" z="-27.1866" />
             <scale x="1" y="1" z="1" />
@@ -581,11 +571,11 @@
                 </subentities>
             </entity>
         </node>
-        <node name="building5">
+        <node name="object53">
             <position x="-0.0292354" y="0" z="-0.146631" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="building5" castShadows="true" receiveShadows="true" meshFile="building5.mesh">
+            <entity name="object53" castShadows="true" receiveShadows="true" meshFile="object53.mesh">
                 <subentities>
                     <subentity index="0" materialName="pasted__pasted__target_landing" />
                 </subentities>
