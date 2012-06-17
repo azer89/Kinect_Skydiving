@@ -1,0 +1,16 @@
+material blinn2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 0.266025 0.893 0.155382 0.5935
+			specular 0.5 0.5 0.5 89.6
+			emissive 0 0 0
+
+			scene_blend alpha_blend
+			depth_write off
+		}
+	}
+}
