@@ -6,6 +6,7 @@
 #include <vector>
 
 #include "PPSoundManager.h"
+#include "GameConfig.h"
 
 //
 //
@@ -33,7 +34,8 @@ public:
 
 	FSM* mState;				// maintain the action of the GGBird 
 
-	bool bDie;				
+	bool bDie;
+	bool bAttack;
 	Ogre::Vector3 mTarget;	 // the target position if the bird find one
 	Ogre::Vector3 mDir;		 // the front vector of the GGBird
 	Ogre::Vector3 mPos;		 // the position of the GGBird
@@ -46,10 +48,10 @@ typedef std::vector<GGBird *> VBirds;
 
 //
 //
-class GGBirdFatory
+class GGBirdFactory
 {
 public:
-	GGBirdFatory()
+	GGBirdFactory()
 	{
 		mBirds.clear();
 	}
@@ -66,6 +68,14 @@ public:
 		mBirds.push_back(new GGBird(mSM, node));
 	}
 
+	void killAllBirds()
+	{
+		for(int a = 0; a < mBirds.size(); a++)
+		{
+			mBirds[a]->bDie = true;
+		}
+	}
+
 	void delBird()
 	{
 		for (int i=mBirds.size()-1; i>=0; i--)
@@ -79,8 +89,10 @@ public:
 		}
 	}
 
-	void Update(const float& dt, Ogre::Vector3 posAvatar)
+	int Update(const float& dt, Ogre::Vector3 posAvatar)
 	{
+		int numAttack = 0;
+
 		for (int i=0; i<mBirds.size(); i++)
 		{
 			Ogre::Vector3 Fs, r, u;
@@ -99,12 +111,10 @@ public:
 					u = r;
 					u.normalise();
 
-					A = 0.0001f;
-					B = 0.001;
-					n = 1;
-					m = 2;
+					A = 0.00001f;
+					B = 0.0001;
 					d = r.length()/(mBirds[i]->mSize * 24);
-					U = A/pow(d, n) + B/pow(d, m);
+					U = A / d + B /(d * d);
 
 					Fs += (u * U) ;
 				}
@@ -117,12 +127,10 @@ public:
 				u = r;
 				u.normalise();
 
-				A = 0.0001f;
-				B = 0.001;
-				n = 1;
-				m = 2;
+				A = 0.00001f;
+				B = 0.0001;
 				d = r.length()/(mBirds[i]->mSize * 36);
-				U = A/pow(d, n) + B/pow(d, m);
+				U = A / d + B /(d * d);
 
 				Fs += (u * U) ;
 			}
@@ -130,9 +138,17 @@ public:
 			mBirds[i]->mSeparate = Fs;
 			mBirds[i]->Update(dt, posAvatar);
 			//printf("Bird[%d](%.2lf, %.2lf, %.2lf)\n", i, mBirds[i]->mPos.x, mBirds[i]->mPos.y, mBirds[i]->mPos.z);
+
+			if (mBirds[i]->bAttack)
+			{
+				numAttack++;
+				mBirds[i]->bAttack = false;
+			}
 		}
 
 		delBird();
+
+		return numAttack;
 	}
 
 	VBirds mBirds;
@@ -170,6 +186,9 @@ public:
 	void DoENTER();
 	void Update(const float& dt);
 	void DoEXIT();
+
+private:
+	Ogre::Real traceSpeed;
 };
 
 
