@@ -45,15 +45,18 @@ public:
 
 	inline bool getlandingStatus(void) { return isLanding;}
 	inline bool checkPlanetInitialization(void){ return isPlanetInitialized; }
-	inline void startGame(void) { isGameStarted = true; mPPSoundManager->playMusic("skydiving_gamemusic_loop_new_2..30min.mp3"); }
+	inline bool getGameStatus() { return isGameStarted; }
 	inline Ogre::Real getPercentAltitude(void) { return percentAltitude; }
 	inline int getNumAttacked(void) { return numAttacked; }
+	inline bool landingOnTargetStatus(void) { return isLandingSuccess; }
 
 	int getScore(void){ return character->getGameplayScore();}		
 	bool isUpsideTarget();
 	Ogre::Real getArrowDirection();
 	Ogre::Vector2 getWristPosition(void){ return mOgreKinect->getWristPosition(); }
 	bool isSkeletonTracked(void) { return mOgreKinect->isTracking; }
+	bool isParachuteOpen(void) { return character->getParachuteStatus();  }
+	void startGame(void) { isGameStarted = true; mPPSoundManager->playMusic("skydiving_gamemusic_loop_new_2..30min.mp3"); }
 
 private:
 	/** Check planet collision, similar to RaySceneQuery */
@@ -97,6 +100,7 @@ private:
 	bool			isGameStarted;
 	bool			isLanding;
 	bool			isKinectActive;
+	bool			isLandingSuccess;
 
 	Ogre::Real		openParacuteDelay;
 	Ogre::Real		openParachuteCounter;

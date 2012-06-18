@@ -24,6 +24,8 @@ public:
 	inline Ogre::Vector3 getCameraNodePosition()      { return cameraNodePosition; }
 	inline Ogre::Vector3 getSightNodePosition2()      { return sightNodePosition2; }
 	inline Ogre::Vector3 getCameraNodePosition2()     { return cameraNodePosition2; }
+	inline Ogre::Vector3 getSightNodePosition3()      { return sightNodePosition3; }
+	inline Ogre::Vector3 getCameraNodePosition3()     { return cameraNodePosition3; }
 	inline Ogre::Vector3 getPlanetObjectScaling()     { return planetObjectScaling; }
 	inline Ogre::Vector3 getPlanetObjectTranslation() { return planetObjectTranslation; }
 	inline Ogre::Real    getMCameraManSpeed()         { return mCameraManSpeed; }
@@ -38,7 +40,14 @@ public:
 	inline Ogre::Vector3 getCameraTightness()		  { return cameraTightness; }
 	inline Ogre::Vector3 getGGBirdScale()			  { return ggBirdScale; }
 	inline Ogre::Real    getGGBirdTraceSpeed()		  { return ggBirdTraceSpeed; }
-	inline Ogre::Real getOpenParachuteDelay()		  { return openParachuteDelay; }
+	inline Ogre::Real    getGGBirdAttackRadius()       { return ggBirdAttackRadius; }
+	inline Ogre::Real    getGGBirdDeleteRadius()      { return ggBirdDeleteRadius; }
+	inline Ogre::Real    getGGBirdTracingRadius()     { return  ggBirdTracingRadius; }
+	inline Ogre::Real    getOpenParachuteDelay()	  { return openParachuteDelay; }
+	inline Ogre::Real    getWindUpdateFactor()		  { return windUpdateFactor; }
+	inline Ogre::Real    getWindMaxAngle()			  { return windMaxAngle; }
+	inline Ogre::Real	 getAnimationSpeedFactor()    { return animationSpeedfactor; }
+	inline Ogre::Real	 getParachuteSpeedFactor()	  { return parachuteSpeedFactor; }
 		
 	bool getKinectStatus(void)
 	{
@@ -58,9 +67,20 @@ public:
 		return true;
 	}
 
+	bool isHDREnabled(void)
+	{
+		if(enableHDR <= 0) return false;
+		return true;
+	}
+
+	bool isShowFPS(void)
+	{
+		if(showFPS <= 0) return false;
+		return true;
+	}
+
 private:
 	Ogre::Vector3 parseVector3(TiXmlElement *XMLNode);
-	//Ogre::Quaternion parseQuaternion(TiXmlElement *XMLNode);
 	Ogre::Real parseReal(TiXmlElement *XMLNode);
 
 private:
@@ -75,6 +95,8 @@ private:
 	Ogre::Vector3 cameraNodePosition;
 	Ogre::Vector3 sightNodePosition2;
 	Ogre::Vector3 cameraNodePosition2;
+	Ogre::Vector3 sightNodePosition3;
+	Ogre::Vector3 cameraNodePosition3;
 	Ogre::Vector3 planetObjectScaling;
 	Ogre::Vector3 planetObjectTranslation;
 	Ogre::Real mCameraManSpeed;
@@ -89,11 +111,19 @@ private:
 	Ogre::Vector3 cameraTightness;
 	Ogre::Vector3 ggBirdScale;
 	Ogre::Real ggBirdTraceSpeed;
+	Ogre::Real ggBirdAttackRadius;
+	Ogre::Real ggBirdDeleteRadius;
+	Ogre::Real ggBirdTracingRadius;
 	int kinectActivation;
 	int enableMainMenu;
 	int enableCameraMovement;
+	int enableHDR;
+	int showFPS;
 	Ogre::Real openParachuteDelay;
-
+	Ogre::Real windUpdateFactor;
+	Ogre::Real windMaxAngle;
+	Ogre::Real animationSpeedfactor;
+	Ogre::Real parachuteSpeedFactor;
 };
 
 #endif // #ifndef __ConfigDetector_h_

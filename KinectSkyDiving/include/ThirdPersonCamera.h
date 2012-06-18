@@ -6,8 +6,6 @@
 #include "Ogre.h"
 #include "GameConfig.h"
 
-//using namespace Ogre;
-
 // Class to create chase camera/third person shooter
 class ThirdPersonCamera
 {

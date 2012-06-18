@@ -36,7 +36,7 @@ public:
   ~FSM();
   void Update(const float& dt);
 
-  void TransitionTo(std::string stateName);
+  void transitionTo(std::string stateName);
   void DelayTransitionTo(std::string stateName);
   void AddState(FSMState *newState, bool makeCurrent);
   std::string GetState();

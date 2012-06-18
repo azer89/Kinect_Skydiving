@@ -32,8 +32,6 @@ private:
 	Ogre::DotSceneLoader* sceneLoader;
 	std::vector<Ogre::SceneNode*> nodeList;
 	std::vector<Ogre::AnimationState*> animations;
-
-	//Ogre::DotSceneLoader*		 sceneLoader;
 };
 
 #endif // #ifndef __GGBirdLoader_h_

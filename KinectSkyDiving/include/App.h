@@ -7,6 +7,7 @@
 #include "../res/resource.h"
 #endif
 
+#include "CompositorSample.h"
 #include "Core.h"
 #include "Universe.h"
 #include "Planet.h"
@@ -39,6 +40,7 @@ protected:
 	GameConfig* gameConfig;	
 	Interface* UI;
 	KinectUIControl* kinectUIControl;
+	CompositorSample* compSample;
 	bool isGameStarted;
 	bool enableCameraMovement;
 	bool isKinectEnabled;

@@ -42,6 +42,9 @@ public:
 	void updateAltitude(Ogre::Real alt);
 	void birdAttack(int numAtk);
 	void gameOver(void);
+	void gameFailed(void);
+	void enableReminder(void);
+	void disableReminder(void);
 
 private:
 	App* main;
@@ -53,13 +56,7 @@ private:
 	int score;
 	int numAttacked;
 	bool isGameOver;
-
-	//void onShot();
-	//void onGoal();
-	//void throwMeat();
-	//void getMeat();
-	//void addLife();
-	//void getLife();
+	bool reminder;
 };
 
 #endif
