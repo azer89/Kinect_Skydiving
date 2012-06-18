@@ -5,10 +5,8 @@ planet Planet
 	terrain
 	{
 		radius 5000
-		heightRange 50.0
+		heightRange 150.0
 		virtualRes 1024
-		//virtualRes 8192
-		//virtualRes 10000000
 	}
 
 	atmosphere
