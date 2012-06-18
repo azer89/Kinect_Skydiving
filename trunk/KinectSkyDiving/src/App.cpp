@@ -32,6 +32,7 @@ void App::createScene(void)
 
 	mCameraMan->setTopSpeed(GameConfig::getSingletonPtr()->getMCameraManSpeed());
 	isKinectEnabled = GameConfig::getSingletonPtr()->getKinectStatus();
+	if(!GameConfig::getSingletonPtr()->isShowFPS()) mTrayMgr->hideFrameStats();
 
 	planetEngine = new GalaxyEngine::Core("../../media", this->mSceneMgr, this->mWindow, this->mCamera->getViewport(), this->mCamera, this->mRoot);
 	gameSystem = new GameSystem();
@@ -58,6 +59,15 @@ void App::createScene(void)
 
 	enableCameraMovement = GameConfig::getSingletonPtr()->isCameraMovementEnabled();
 
+	compSample = new CompositorSample();
+	compSample->mCamera = this->mCamera;
+	compSample->mViewport = this->mCamera->getViewport();
+	compSample->setupCompositorContent();
+
+	if(GameConfig::getSingletonPtr()->isHDREnabled()) compSample->setCompositorEnabled("HDR", true);
+
+	//mSceneMgr->setShadowTechnique(SHADOWTYPE_STENCIL_ADDITIVE);
+
 	/*Ogre::ColourValue fadeColour(0, 168.0/255.0, 1.0);
 	mSceneMgr->setFog(Ogre::FOG_LINEAR, fadeColour, 0.0, 0.001, 10000);
 	mWindow->getViewport(0)->setBackgroundColour(fadeColour);*/
@@ -75,10 +85,24 @@ bool App::frameRenderingQueued(const Ogre::FrameEvent& evt)
 	UI->updateScore(gameSystem->getScore());
 	UI->updateAltitude(gameSystem->getPercentAltitude());
 	UI->birdAttack(gameSystem->getNumAttacked());
-	if(gameSystem->getlandingStatus() && !UI->getGameOverStatus()) { UI->gameOver(); }
+	if(gameSystem->getlandingStatus() && !UI->getGameOverStatus()) 
+	{ 
+		if(gameSystem->landingOnTargetStatus())
+			UI->gameOver();
+		else
+			UI->gameFailed();
+	}
 	bool isUpsideTarget = gameSystem->isUpsideTarget();
 	if(isUpsideTarget && UI->getArrowVisibility()) UI->hideArrow();
 	else if(!isUpsideTarget && !UI->getArrowVisibility()) UI->showArrow();
+	if(gameSystem->getGameStatus() && gameSystem->getPercentAltitude() < 0.2 && !gameSystem->isParachuteOpen()) 
+	{
+		UI->enableReminder();
+	}
+	else if(gameSystem->isParachuteOpen()) 
+	{
+		UI->disableReminder();
+	}
 
 	if(isKinectEnabled && gameSystem->isSkeletonTracked()) 
 	{

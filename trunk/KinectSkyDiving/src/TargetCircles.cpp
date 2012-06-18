@@ -7,7 +7,8 @@
 #include <iostream>
 
 //------------------------------------------------------------------------------------
-TargetCircles::TargetCircles(void)
+TargetCircles::TargetCircles(void) :
+	animSpeed(GameConfig::getSingletonPtr()->getAnimationSpeedFactor())
 {
 }
 
@@ -102,7 +103,7 @@ void TargetCircles::update(Ogre::Real elapsedTime)
 {
 	for(int a = 0; a < animations.size(); a++)
 	{
-		animations[a]->addTime(elapsedTime * 1.0);
+		animations[a]->addTime(elapsedTime * 1.0 * animSpeed);
 	}
 }
 

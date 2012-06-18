@@ -409,9 +409,9 @@ std::vector<bool> OgreKinect::updateKinectSkeleton()
 KinectSDK::Vector4 ogreVector3toVector4(Ogre::Vector3 vec)
 {
 	KinectSDK::Vector4 v4;
-	v4.w=1;
-	v4.x=vec.x;
-	v4.y=vec.y;
-	v4.z=vec.z;
+	v4.w = 1;
+	v4.x = vec.x;
+	v4.y = vec.y;
+	v4.z = vec.z;
 	return v4;
 }

@@ -70,7 +70,7 @@ std::vector<bool> PoseDetect::recognizePose( PPose curPose )
 
 	clearFlag();
 
-	if(unitY_LWrist_Col > 0.7 && unitY_RWrist_Col > 0.7)
+	if(unitY_LWrist_Col > 0.4 && unitY_RWrist_Col > 0.4 && isRWrist_H_RShoulder && isLWrist_H_LShoulder)
 	{
 		setFlag("open");
 	}

@@ -25,7 +25,7 @@ void FSM::Update(const float& dt)
   //Check if there are any delayed transition requests
   if (delayState != "NONE")
   {
-    TransitionTo(delayState);
+    transitionTo(delayState);
     delayState = "NONE";
   }
 
@@ -35,7 +35,7 @@ void FSM::Update(const float& dt)
 
 //Called to transition to another state
 //@param stateName the name of the state to transition to
-void FSM::TransitionTo(std::string stateName)
+void FSM::transitionTo(std::string stateName)
 {
   if (stateName == currentState->stateName)
 	  return;

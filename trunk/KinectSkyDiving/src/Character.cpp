@@ -37,7 +37,9 @@ Character::Character(void) :
 	prevAnimID01(AnimID01::NO_ANIM1),
 	prevAnimID02(AnimID02::NO_ANIM2),
 	gameScore(0),
-	fallDownAccel(0.0f)
+	fallDownAccel(0.0f),
+	animSpeed(GameConfig::getSingletonPtr()->getAnimationSpeedFactor()),
+	parachuteSpeedFactor(GameConfig::getSingletonPtr()->getParachuteSpeedFactor())
 {
 	for(int a = 0; a < 4 ; a++) currentSpeed[a] = 0.0f;
 }
@@ -68,6 +70,7 @@ void Character::setup(Ogre::SceneManager* mSceneManager,
 	q1.FromAngleAxis(Ogre::Degree(180), Ogre::Vector3::UNIT_Y);
 	innerNode->setOrientation(q1 * q2);
 	this->mMainNode->addChild(innerNode);
+	innerNode->setPosition(0, -7, 0);
 
 	this->mMainNode->setPosition(position);
 	this->mMainNode->setScale(scale);
@@ -133,6 +136,9 @@ void Character::setLanding()
 	{		
 		isLanding = true; 	
 		if(isParachuteOpen) setParachuteAnimation(AnimID02::LAND, true);
+
+		mCameraNode->setPosition(GameConfig::getSingletonPtr()->getCameraNodePosition3());
+		mSightNode->setPosition(GameConfig::getSingletonPtr()->getSightNodePosition3());
 	}
 }
 
@@ -287,9 +293,9 @@ void Character::setParachuteAnimation(AnimID02 id, bool noTransition)
 
 
 //--------------------------------------------------------------------------------------
-void Character::updateAnimations(Ogre::Real deltaTime)
+void Character::updateAnimations(Ogre::Real elapsedTime)
 {
-	mTimer += deltaTime;
+	mTimer += elapsedTime * animSpeed;
 
 	if(isParachuteOpen)	// parachute opened
 	{
@@ -302,17 +308,27 @@ void Character::updateAnimations(Ogre::Real deltaTime)
 			setParachuteAnimation(AnimID02::AFTER_LANDING_WAIT, true);
 		}
 
-		mAnims02[baseAnimID02]->addTime(deltaTime);
+		mAnims02[baseAnimID02]->addTime(elapsedTime * animSpeed);
 	}
 	else	// free fall
 	{
-		mAnims01[baseAnimID01]->addTime(deltaTime);
+		mAnims01[baseAnimID01]->addTime(elapsedTime * animSpeed);
 	}
 
-	fadeAnimations(deltaTime);
+	fadeAnimations(elapsedTime);
+	
+	/*bool isAllZero = true;
+	for (int i = 0; i < NUM_ANIM; i++)
+	{
+		if (mAnims01[i]->getWeight() != 0)
+		{
+			isAllZero = false;
+			break;
+		}
+	}
+
+	if(isAllZero) std::cout << "ZERO\n";*/
 }
-
-
 
 //--------------------------------------------------------------------------------------
 void Character::openParachute()
@@ -321,7 +337,7 @@ void Character::openParachute()
 
 	this->innerNode->detachObject(GIRL);
 	this->innerNode->attachObject(this->bodyEntity02);
-	this->gravity *= 0.5f;
+	this->gravity *= parachuteSpeedFactor;
 	isParachuteOpen = true;
 	//fallDownAccel = 0.0f;
 	setParachuteAnimation(AnimID02::OPEN);
@@ -407,6 +423,8 @@ void Character::fallDown(Ogre::Real elapsedTime)
 //--------------------------------------------------------------------------------------
 void Character::moveCharacter(Ogre::Real elapsedTime)
 {	
+	if (baseAnimID02 == AnimID02::OPEN) return;
+
 	Ogre::Vector3 direction = Ogre::Vector3::ZERO;
 
 	Movement mState = this->state;

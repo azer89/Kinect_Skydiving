@@ -107,7 +107,7 @@ void BaseApplication::createFrameListener(void)
     //mTrayMgr->showFrameStats(OgreBites::TL_BOTTOMLEFT);
     //mTrayMgr->showLogo(OgreBites::TL_BOTTOMRIGHT);
     //mTrayMgr->hideCursor();	// Hide mouse
-
+	
     // create a params panel for displaying sample details
     Ogre::StringVector items;
     items.push_back("cam.pX");
