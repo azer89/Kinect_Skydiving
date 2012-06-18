@@ -17,6 +17,7 @@ GameSystem::GameSystem(void)
 	  isPlanetInitialized(false),
 	  bStopFalling(false),
 	  isGameStarted(false),
+	  isLandingSuccess(false),
 	  ggBirdLoader(0),
 	  targetPosition(GameConfig::getSingletonPtr()->getTargetPosition()),
 	  originalPosition(GameConfig::getSingletonPtr()->getCharacterPosition()),
@@ -61,10 +62,7 @@ void GameSystem::createScene(void)
 	mCameraListener->setExtendedCamera(exCamera);
 
 	this->character = new Character();
-	this->character->setup(mSceneMgr, 
-						gameConfig->getCharacterPosition(), 
-						gameConfig->getCharacterScale(), 
-						Ogre::Quaternion::IDENTITY);
+	this->character->setup(mSceneMgr, gameConfig->getCharacterPosition(), gameConfig->getCharacterScale(),  Ogre::Quaternion::IDENTITY);
 	this->character->setGravity(gameConfig->getGravity());
 
 	mCameraListener->setCharacter(character);
@@ -135,31 +133,28 @@ void GameSystem::update(Ogre::Real elapsedTime)
 
 	int numAtk = 0;
 
-	//if(!isLanding)
-	//{
-		if(!character->getParachuteStatus())	// free fall
-		{
-			numAtk = mGGBirds->Update(elapsedTime, character->getBodyNode()->_getDerivedPosition());
-		}
-		else	// parachute opened
-		{
-			numAtk = mGGBirds->Update(elapsedTime, character->getBodyNode()->_getDerivedPosition() + upVector * 5.5);
-		}
-	//}
+	if(!character->getParachuteStatus())	// free fall
+	{
+		numAtk = mGGBirds->Update(elapsedTime, character->getBodyNode()->_getDerivedPosition() - (upVector * 7.0));
+	}
+	else	// parachute opened
+	{
+		numAtk = mGGBirds->Update(elapsedTime, character->getBodyNode()->_getDerivedPosition() - (upVector * 1.5));
+	}
 
-	if(numAtk != 0) std::cout << numAtk << "\n";
+	//if(numAtk != 0) std::cout << numAtk << "\n";
 	numAttacked += numAtk;
+	character->addScore(numAtk * -10);
 	
 	if(isKinectActive) { processKinectInput(elapsedTime); }
 
-	if(pManager != 0) pManager->update(character->getBodyNode()->_getDerivedPosition());
+	if(pManager != 0) pManager->update(elapsedTime, character->getBodyNode()->_getDerivedPosition());
 	if(collisionDetector != 0) collisionDetector->update(elapsedTime);
 	if(tCircles != 0) tCircles->update(elapsedTime);
 
 	currentAltitude = character->getBodyNode()->getPosition().distance(Ogre::Vector3::ZERO) - 5000;
 	percentAltitude = currentAltitude / originalDistance;
 
-	//
 	if (mAni) mAni->addTime(elapsedTime);
 }
 
@@ -167,6 +162,8 @@ void GameSystem::update(Ogre::Real elapsedTime)
 //------------------------------------------------------------------------------------
 void GameSystem::checkPlanetColission(Ogre::Real timeElapsed)
 {
+	if(character->getLandingStatus()) return;
+
 	collisionDelay += timeElapsed;
 	if(collisionDelay < 0.0166f) return;		// 60 fps
 	collisionDelay = 0;							// reset
@@ -200,7 +197,15 @@ void GameSystem::checkPlanetColission(Ogre::Real timeElapsed)
 			pManager->disableParticle();
 			pObjects->getSignNode()->setVisible(false);
 			isLanding = true;
+			//mCamera->setOrientation(Ogre::Quaternion::IDENTITY);
 			mGGBirds->killAllBirds();
+
+			Ogre::Real disToTarget = charPos.distance(targetPosition);
+			if(disToTarget < pObjects->getTargetRadius() && character->getParachuteStatus()) 
+			{
+				isLandingSuccess = true;
+				character->addScore(1000);
+			}
 		}
 	}	
 }
@@ -208,6 +213,8 @@ void GameSystem::checkPlanetColission(Ogre::Real timeElapsed)
 //-------------------------------------------------------------------------------------
 void GameSystem::keyPressed( const OIS::KeyEvent &arg )
 {	
+	if(isLanding) return;
+
 	if (arg.key == OIS::KC_P)
 	{
 		bStopFalling = !bStopFalling;
@@ -268,6 +275,8 @@ void GameSystem::openParachute()
 //-------------------------------------------------------------------------------------
 void GameSystem::keyReleased( const OIS::KeyEvent &arg )
 {
+	if(isLanding) return;
+
 	if(arg.key == OIS::KC_W ||
 		arg.key == OIS::KC_S ||
 		arg.key == OIS::KC_A ||
@@ -304,7 +313,7 @@ void GameSystem::postPlanetInitialization()
 	mLoadingBar->update();
 
 	pManager = new ParticleManager();
-	pManager->initParticle(mSceneMgr);
+	pManager->initParticle(mSceneMgr, this->character);
 
 	mLoadingBar->finish();
 }
@@ -360,6 +369,8 @@ void GameSystem::isPlanetReady()
 
 void GameSystem::processKinectInput(Ogre::Real elapsedTime)
 {
+	if(isLanding) return;
+
 	bool flag = false;
 
 	if(mOgreKinect->mPoseDetect->isPose("open"))

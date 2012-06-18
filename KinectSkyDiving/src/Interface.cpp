@@ -1,5 +1,4 @@
 
-
 /*
 -----------------------------------------------------------------------------
 Filename:    Interface.cpp
@@ -18,7 +17,8 @@ Interface::Interface(App* main) :
 	score(0),
 	numAttacked(0),
 	isArrowVisible(true),
-	isGameOver(false)
+	isGameOver(false),
+	reminder(false)
 {
 	this->main = main;
 }
@@ -49,7 +49,6 @@ void Interface::setupHikari(void)
 	startMenu->bind("EXIT", FlashDelegate(this, &Interface::onExit));
 	startMenu->setDraggable(false);
 	startMenu->setTransparent(true, true);
-	//startMenu->hide();
 
 	gameDisplay = hikariMgr->createFlashOverlay("inGameUI",
 		main->getCamera()->getViewport(), 
@@ -95,16 +94,9 @@ void Interface::updateScore(int n)
 {
 	int dif = n - score;
 
-	//if (dif != 0) std::cout << dif << "\n";
-
-	if(dif == 100)
-	{
-		gameDisplay->callFunction("blue");
-	}
-	else if(dif == -100)
-	{
-		gameDisplay->callFunction("red");
-	}
+	if(dif == 1000) { gameDisplay->callFunction("perfectLand"); }
+	else if(dif == 100) { gameDisplay->callFunction("blue"); }	
+	else if(dif == -100) { gameDisplay->callFunction("red"); }
 
 	score = n;
 }
@@ -116,46 +108,37 @@ void Interface::birdAttack(int numAtk)
 	numAttacked = numAtk;
 }
 
-void Interface::gameOver(void)
+void Interface::gameFailed(void)
 {
-	int birdScore = numAttacked * -10;
-	int totalScore = score - birdScore;
-
-	int numStar = 0;
-
-	if(totalScore > 1000) numStar = 3;
-	else if(totalScore > 500) numStar = 2;
-	else if(totalScore > 200)numStar = 1;
-
-	gameDisplay->callFunction("gameOver", Hikari::Args(numStar));
-
+	gameDisplay->callFunction("gameFailed");
 	isGameOver = true;
 }
 
-/*void Interface::onGoal()
+void Interface::gameOver(void)
 {
-	controls->callFunction("Goal");
+	int numStar = 0;
+
+	if(score >= 2000) numStar = 3;
+	else if(score >= 1250) numStar = 2;
+	else if(score >= 500)numStar = 1;
+
+	gameDisplay->callFunction("gameOver", Hikari::Args(numStar));
+	isGameOver = true;
 }
-void Interface::onShot()
+
+void Interface::enableReminder(void)
 {
-	controls->callFunction("Shot");
+	if(reminder) return;
+	gameDisplay->callFunction("enableReminder");
+	reminder = true;
 }
-void Interface::throwMeat()
+
+void Interface::disableReminder(void)
 {
-	menu->callFunction("throwMeat");
+	if(!reminder) return;
+	gameDisplay->callFunction("disableReminder");
+	reminder = false;
 }
-void Interface::getMeat()
-{
-	menu->callFunction("getMeat");
-}
-void Interface::addLife()
-{
-	menu->callFunction("addLife");
-}
-void Interface::getLife()
-{
-	menu->callFunction("getLife");
-}*/
 
 Hikari::FlashValue Interface::onExit( Hikari::FlashControl* caller, const Hikari::Arguments& args )
 {

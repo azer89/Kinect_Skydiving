@@ -5,6 +5,7 @@
 //------------------------------------------------------------------------------------
 PlanetObjects::PlanetObjects(void)
 {
+	targetRadius = 0.0f;
 }
 
 //------------------------------------------------------------------------------------
@@ -63,6 +64,8 @@ Ogre::AnimationState* PlanetObjects::setup(Ogre::SceneManager* mSceneManager, Ra
 
 		if (childNode->getName() == "object53")
 		{
+			targetRadius = object->getBoundingRadius();
+
 			signNode = mSceneManager->getRootSceneNode()->createChildSceneNode();
 			signEntity = mSceneManager->createEntity("sign.mesh");
 			signNode->attachObject(signEntity);

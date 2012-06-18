@@ -65,6 +65,14 @@ GameConfig::GameConfig(const Ogre::String &SceneName, const Ogre::String &groupN
 		{
 			this->cameraNodePosition2 = this->parseVector3(vElement);
 		}
+		else if(dataName == "sightNodePosition3")
+		{
+			this->sightNodePosition3 = this->parseVector3(vElement);
+		}
+		else if(dataName == "cameraNodePosition3")
+		{
+			this->cameraNodePosition3 = this->parseVector3(vElement);
+		}
 		else if(dataName == "planetObjectScaling")
 		{
 			this->planetObjectScaling = this->parseVector3(vElement);
@@ -121,6 +129,18 @@ GameConfig::GameConfig(const Ogre::String &SceneName, const Ogre::String &groupN
 		{
 			this->ggBirdTraceSpeed = this->parseReal(vElement);
 		}
+		else if(dataName == "ggBirdAttackRadius")
+		{
+			this->ggBirdAttackRadius = this->parseReal(vElement);
+		}
+		else if(dataName == "ggBirdDeleteRadius")
+		{
+			this->ggBirdDeleteRadius = this->parseReal(vElement);
+		}
+		else if(dataName == "ggBirdTracingRadius")
+		{
+			this->ggBirdTracingRadius = this->parseReal(vElement);
+		}
 		else if(dataName == "kinectActivation")
 		{
 			this->kinectActivation = static_cast<int>(this->parseReal(vElement));
@@ -136,6 +156,30 @@ GameConfig::GameConfig(const Ogre::String &SceneName, const Ogre::String &groupN
 		else if(dataName == "openParachuteDelay")
 		{
 			this->openParachuteDelay = this->parseReal(vElement);
+		}
+		else if(dataName == "enableHDR")
+		{
+			this->enableHDR = static_cast<int>(this->parseReal(vElement));
+		}
+		else if(dataName == "showFPS")
+		{
+			this->showFPS = static_cast<int>(this->parseReal(vElement));
+		}
+		else if(dataName == "windUpdateFactor")
+		{
+			this->windUpdateFactor = this->parseReal(vElement);
+		}
+		else if(dataName == "windMaxAngle")
+		{
+			this->windMaxAngle = this->parseReal(vElement);
+		}
+		else if(dataName == "animationSpeedFactor")
+		{
+			this->animationSpeedfactor = this->parseReal(vElement);
+		}
+		else if(dataName == "parachuteSpeedFactor")
+		{
+			this->parachuteSpeedFactor = this->parseReal(vElement);
 		}
 
 		pElement = pElement->NextSiblingElement("data");

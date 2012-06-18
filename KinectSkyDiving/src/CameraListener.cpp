@@ -33,27 +33,30 @@ bool CameraListener::update(Ogre::Real elapsedTime)
 		//mChar->update (evt.timeSinceLastFrame, mKeyboard);
 		if (mExCamera) 
 		{
+			//Ogre::Quaternion q = -Ogre::Quaternion::IDENTITY;
+			//if(!character->getLandingStatus()) q =  character->getBodyNode()->getOrientation();
+			Ogre::Quaternion q = character->getBodyNode()->getOrientation();
+
 			if(mMode == 0) // 3rd person chase
 			{
-				
 				mExCamera->update (elapsedTime, 
 								   character->getCameraNode()->_getDerivedPosition(), 
 								   character->getSightNode()->_getDerivedPosition(),
-								   character->getBodyNode()->getOrientation());				
+								   q);				
 			}
 			else if(mMode == 1) // 3rd person fixed
 			{
 				mExCamera->update (elapsedTime, 
 								   Ogre::Vector3 (0, 200, 0), 
 								   character->getSightNode()->_getDerivedPosition(),
-								   character->getBodyNode()->getOrientation());
+								   q);
 			}
 			else if(mMode == 2) // 1st person
 			{
 				mExCamera->update (elapsedTime, 
 								   character->getWorldPosition(), 
 								   character->getSightNode()->_getDerivedPosition(),
-								   character->getBodyNode()->getOrientation());
+								   q);
 
 			}
 		}

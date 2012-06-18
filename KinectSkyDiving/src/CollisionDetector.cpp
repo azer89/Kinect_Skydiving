@@ -39,13 +39,13 @@ void CollisionDetector::update(Ogre::Real elapsedTime)
 			Ogre::Real distance = bBox.getCenter().distance(cBBox.getCenter());
 			tCircles->flag[a] = true;
 
-			if(distance <= 10.0)
+			if(distance <= 15.0)
 			{
 				int point = 0;
 				
 				if(Ogre::StringUtil::startsWith(name, "r")) point = -100;
 				else if (Ogre::StringUtil::startsWith(name, "b")) point = 100;
-				this->character->addPoint(point);
+				this->character->addScore(point);
 			}
 		}
 	}

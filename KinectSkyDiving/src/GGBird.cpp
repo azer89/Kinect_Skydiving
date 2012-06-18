@@ -9,29 +9,26 @@ void GGBird::Update( const float& dt, Ogre::Vector3 posAvatar )
 {
 	mPos = mNode->getPosition();
 	mTarget = posAvatar;
-
-
 	float disWithAvatar = (posAvatar - mPos).length();
 
-	//printf("%.2lf\n", disWithAvatar);
-
-	if (disWithAvatar < 2)
+	if(disWithAvatar < ggBirdAttackRadius)
 	{
-		mState->TransitionTo("attack");
+		mAttack++;
+		mState->transitionTo("attack");
 	}
-	if (disWithAvatar > 10)
+	else if(disWithAvatar > ggBirdDeleteRadius && mAttack >= 2)
 	{
-		if (disWithAvatar < 200)
-		{
-			mState->TransitionTo("tracing");		
-		}
-		else
-		{
-			//bDie = true;
-			mState->TransitionTo("fly");	
-		}
+		bDie = true;
 	}
-
+	else if(disWithAvatar < ggBirdTracingRadius)
+	{
+		mState->transitionTo("tracing");
+	}
+	else
+	{
+		mState->transitionTo("fly");
+	}
+	
 	if (mState->stateBank.size() > 0) mState->currentState->Update(dt);
 }
 
@@ -47,7 +44,6 @@ void GGBird::init(Ogre::SceneManager* mSM, Ogre::SceneNode* node)
 	mDir = Ogre::Vector3(0,0,1);
 	mPos = node->getPosition();
 	mSeparate = Ogre::Vector3::ZERO;
-	//std::cout << mPos << "\n";
 
 	mSize = 0.3f;
 	mNode->setScale(mSize, mSize, mSize);
@@ -203,6 +199,8 @@ void GGBirdTracing::DoEXIT()
 //
 GGBirdAttack::GGBirdAttack(GGBird *_GGBird)
 {
+	//timeToDie = 0.0f;
+	attackCounter = 0;
 	mGGBird = _GGBird;
 	stateName = "attack";
 	mAnim = mGGBird->mEnt->getAnimationState(stateName);
@@ -221,10 +219,15 @@ void GGBirdAttack::DoENTER()
 
 void GGBirdAttack::Update(const float& dt)
 {
-	mAnim->addTime(dt);
+	Ogre::Real addTime = Ogre::Math::Clamp<Ogre::Real>(mAnim->getTimePosition() + dt, 0, mAnim->getLength());
 
-	if (mAnim->getLength() == mAnim->getTimePosition())
-		mGGBird->bDie = true;
+	mAnim->addTime(addTime);
+
+	//if (mAnim->getLength() == mAnim->getTimePosition())
+	//{
+		//attackCounter++;
+		//mGGBird->bDie = true;
+	//}
 }
 
 void GGBirdAttack::DoEXIT()

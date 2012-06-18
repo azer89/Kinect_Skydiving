@@ -52,13 +52,7 @@ void GGBirdLoader::setup(Ogre::SceneManager* mSceneManager)
 	{
 		Ogre::SceneNode* childNode = nodeList[a];
 
-		//childNode->showBoundingBox(true);
-
 		Ogre::Entity* entity = static_cast<Ogre::Entity*>(childNode->getAttachedObject(0));
-		/*Ogre::AnimationState* state = entity->getAnimationState("go");
-		state->setEnabled(true);
-		state->setLoop(true);
-		animations.push_back(state);*/
 
 		Ogre::Vector3 pos = childNode->getPosition();
 
