@@ -2,10 +2,10 @@
 particle_system Examples/FastWind
 {
     material          Examples/Droplet
-    particle_width    20
-    particle_height   20
+    particle_width    15
+    particle_height   15
     cull_each         true
-    quota             10000
+    quota             5000
     // Make common direction straight down (faster than self oriented)
     billboard_type  oriented_self
     common_direction 0 1 0
@@ -18,8 +18,8 @@ particle_system Examples/FastWind
         time_to_live    5
         direction       0 1 0
         velocity    	100
-        width           500
-        height          500
+        width           150
+        height          150
         depth           0
     }
 
@@ -40,8 +40,8 @@ particle_system Examples/FastWind
 particle_system Examples/SlowWind
 {
     material          Examples/Droplet
-    particle_width    20
-    particle_height   20
+    particle_width    15
+    particle_height   15
     cull_each         true
     quota             500
     // Make common direction straight down (faster than self oriented)
@@ -56,8 +56,8 @@ particle_system Examples/SlowWind
         time_to_live    5
         direction       0 1 0
         velocity    	100
-        width           500
-        height          500
+        width           150
+        height          150
         depth           0
     }
 

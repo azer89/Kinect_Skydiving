@@ -6,185 +6,192 @@
     </environment>
     <nodes>
         <node name="b0">
-            <position x="0" y="5.09396" z="7.49554" />
+            <position x="0.000950217" y="5.1364" z="7.57584" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
             <entity name="b0" castShadows="true" receiveShadows="true" meshFile="blue_circle.mesh">
             </entity>
         </node>
         <node name="r0">
-            <position x="-0.47868" y="10.0894" z="15.9114" />
+            <position x="0.510122" y="11.9776" z="18.8319" />
             <scale x="1" y="1" z="1" />
-            <rotation qx="0" qy="0" qz="0" qw="1" />
+            <rotation qx="0" qy="0.00907322" qz="0" qw="0.999959" />
             <entity name="r0" castShadows="true" receiveShadows="true" meshFile="red_circle.mesh">
             </entity>
         </node>
-        <node name="b1">
-            <position x="-0.504882" y="15.0571" z="25.0273" />
-            <scale x="1" y="1" z="1" />
-            <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="b1" castShadows="true" receiveShadows="true" meshFile="blue_circle.mesh">
-            </entity>
-        </node>
         <node name="r1">
-            <position x="-0.504882" y="20.0525" z="25.0156" />
+            <position x="-1.70677" y="21.114" z="26.8762" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
             <entity name="r1" castShadows="true" receiveShadows="true" meshFile="red_circle.mesh">
             </entity>
         </node>
         <node name="r2">
-            <position x="2.34133" y="20.0525" z="35.1514" />
+            <position x="1.013" y="23.0153" z="26.7206" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
             <entity name="r2" castShadows="true" receiveShadows="true" meshFile="red_circle.mesh">
             </entity>
         </node>
-        <node name="b2">
-            <position x="2.34133" y="24.1183" z="35.2758" />
-            <scale x="1" y="1" z="1" />
-            <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="b2" castShadows="true" receiveShadows="true" meshFile="blue_circle.mesh">
-            </entity>
-        </node>
-        <node name="b3">
-            <position x="5.62897" y="24.1183" z="46.1582" />
-            <scale x="1" y="1" z="1" />
-            <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="b3" castShadows="true" receiveShadows="true" meshFile="blue_circle.mesh">
-            </entity>
-        </node>
-        <node name="b4">
-            <position x="5.62897" y="29.1353" z="46.1582" />
-            <scale x="1" y="1" z="1" />
-            <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="b4" castShadows="true" receiveShadows="true" meshFile="blue_circle.mesh">
-            </entity>
-        </node>
         <node name="r3">
-            <position x="7.91133" y="34.094" z="55.3781" />
+            <position x="3.79345" y="21.114" z="26.8243" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
             <entity name="r3" castShadows="true" receiveShadows="true" meshFile="red_circle.mesh">
             </entity>
         </node>
         <node name="r4">
-            <position x="10.8974" y="39.0723" z="65.2597" />
+            <position x="1.013" y="19.0998" z="26.7206" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
             <entity name="r4" castShadows="true" receiveShadows="true" meshFile="red_circle.mesh">
             </entity>
         </node>
-        <node name="b5">
-            <position x="13.4996" y="44.0498" z="76.6039" />
-            <scale x="1" y="1" z="1" />
-            <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="b5" castShadows="true" receiveShadows="true" meshFile="blue_circle.mesh">
-            </entity>
-        </node>
         <node name="r5">
-            <position x="10.3724" y="49.0452" z="87.7718" />
+            <position x="8.55264" y="37.0707" z="49.0686" />
             <scale x="1" y="1" z="1" />
-            <rotation qx="0" qy="0" qz="0" qw="1" />
+            <rotation qx="0" qy="0.0461065" qz="0" qw="0.998937" />
             <entity name="r5" castShadows="true" receiveShadows="true" meshFile="red_circle.mesh">
             </entity>
         </node>
         <node name="r6">
-            <position x="10.3724" y="44.0889" z="87.7277" />
+            <position x="12.4155" y="45.1123" z="69.5866" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
             <entity name="r6" castShadows="true" receiveShadows="true" meshFile="red_circle.mesh">
             </entity>
         </node>
-        <node name="b6">
-            <position x="5.25458" y="54.0129" z="96.9908" />
-            <scale x="1" y="1" z="1" />
-            <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="b6" castShadows="true" receiveShadows="true" meshFile="blue_circle.mesh">
-            </entity>
-        </node>
         <node name="r7">
-            <position x="-0.47617" y="54.0617" z="105.713" />
+            <position x="1.86939" y="57.4241" z="95.895" />
             <scale x="1" y="1" z="1" />
-            <rotation qx="0" qy="0" qz="0" qw="1" />
+            <rotation qx="0.00127739" qy="-0.129376" qz="-0.0117962" qw="0.991525" />
             <entity name="r7" castShadows="true" receiveShadows="true" meshFile="red_circle.mesh">
             </entity>
         </node>
         <node name="r8">
-            <position x="-7.79306" y="59.0083" z="112.502" />
+            <position x="-15.3056" y="77.146" z="145.736" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
             <entity name="r8" castShadows="true" receiveShadows="true" meshFile="red_circle.mesh">
             </entity>
         </node>
-        <node name="b7">
-            <position x="-13.4493" y="63.0741" z="121.51" />
-            <scale x="1" y="1" z="1" />
-            <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="b7" castShadows="true" receiveShadows="true" meshFile="blue_circle.mesh">
-            </entity>
-        </node>
-        <node name="b8">
-            <position x="-15.4563" y="66.216" z="132.525" />
-            <scale x="1" y="1" z="1" />
-            <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="b8" castShadows="true" receiveShadows="true" meshFile="blue_circle.mesh">
-            </entity>
-        </node>
-        <node name="b9">
-            <position x="-10.2815" y="69.0074" z="142.738" />
-            <scale x="1" y="1" z="1" />
-            <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="b9" castShadows="true" receiveShadows="true" meshFile="blue_circle.mesh">
-            </entity>
-        </node>
-        <node name="b10">
-            <position x="-5.35779" y="74.0243" z="151.961" />
-            <scale x="1" y="1" z="1" />
-            <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="b10" castShadows="true" receiveShadows="true" meshFile="blue_circle.mesh">
-            </entity>
-        </node>
         <node name="r9">
-            <position x="-5.35779" y="78.9831" z="151.917" />
+            <position x="-12.38" y="79.1713" z="145.736" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
             <entity name="r9" castShadows="true" receiveShadows="true" meshFile="red_circle.mesh">
             </entity>
         </node>
         <node name="r10">
-            <position x="-2.47413" y="83.9614" z="162.541" />
+            <position x="-9.47238" y="77.146" z="145.736" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
             <entity name="r10" castShadows="true" receiveShadows="true" meshFile="red_circle.mesh">
             </entity>
         </node>
         <node name="r11">
-            <position x="0" y="89.0637" z="175.472" />
+            <position x="-12.38" y="75.2097" z="145.736" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
             <entity name="r11" castShadows="true" receiveShadows="true" meshFile="red_circle.mesh">
             </entity>
         </node>
-        <node name="b11">
-            <position x="0" y="93.1296" z="186.268" />
-            <scale x="1" y="1" z="1" />
-            <rotation qx="0" qy="0" qz="0" qw="1" />
-            <entity name="b11" castShadows="true" receiveShadows="true" meshFile="blue_circle.mesh">
-            </entity>
-        </node>
         <node name="r12">
-            <position x="0" y="98.0724" z="186.008" />
+            <position x="-3.53197" y="88.2562" z="160.71" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
             <entity name="r12" castShadows="true" receiveShadows="true" meshFile="red_circle.mesh">
             </entity>
         </node>
+        <node name="b1">
+            <position x="1.01317" y="21.1144" z="26.858" />
+            <scale x="1" y="1" z="1" />
+            <rotation qx="0" qy="0" qz="0" qw="1" />
+            <entity name="b1" castShadows="true" receiveShadows="true" meshFile="blue_circle.mesh">
+            </entity>
+        </node>
+        <node name="b2">
+            <position x="4.8397" y="28.9851" z="35.3074" />
+            <scale x="1" y="1" z="1" />
+            <rotation qx="0" qy="0.0330038" qz="0" qw="0.999455" />
+            <entity name="b2" castShadows="true" receiveShadows="true" meshFile="blue_circle.mesh">
+            </entity>
+        </node>
+        <node name="b3">
+            <position x="10.8568" y="42.0464" z="56.8655" />
+            <scale x="1" y="1" z="1" />
+            <rotation qx="0" qy="0.0365964" qz="0" qw="0.99933" />
+            <entity name="b3" castShadows="true" receiveShadows="true" meshFile="blue_circle.mesh">
+            </entity>
+        </node>
+        <node name="b4">
+            <position x="11.454" y="49.4899" z="77.589" />
+            <scale x="1" y="1" z="1" />
+            <rotation qx="0" qy="-0.0541283" qz="0" qw="0.998534" />
+            <entity name="b4" castShadows="true" receiveShadows="true" meshFile="blue_circle.mesh">
+            </entity>
+        </node>
+        <node name="b5">
+            <position x="7.2621" y="53.3744" z="87.9594" />
+            <scale x="1" y="1" z="1" />
+            <rotation qx="0" qy="-0.0757827" qz="0" qw="0.997124" />
+            <entity name="b5" castShadows="true" receiveShadows="true" meshFile="blue_circle.mesh">
+            </entity>
+        </node>
+        <node name="b6">
+            <position x="-6.75547" y="64.5502" z="108.788" />
+            <scale x="1" y="1" z="1" />
+            <rotation qx="0.0012683" qy="-0.141024" qz="-0.013294" qw="0.989916" />
+            <entity name="b6" castShadows="true" receiveShadows="true" meshFile="blue_circle.mesh">
+            </entity>
+        </node>
+        <node name="b7">
+            <position x="-15.6962" y="72.6559" z="138.09" />
+            <scale x="1" y="1" z="1" />
+            <rotation qx="0" qy="0.0386121" qz="0" qw="0.999254" />
+            <entity name="b7" castShadows="true" receiveShadows="true" meshFile="blue_circle.mesh">
+            </entity>
+        </node>
+        <node name="b8">
+            <position x="-12.38" y="77.1463" z="145.792" />
+            <scale x="1" y="1" z="1" />
+            <rotation qx="0" qy="0" qz="0" qw="1" />
+            <entity name="b8" castShadows="true" receiveShadows="true" meshFile="blue_circle.mesh">
+            </entity>
+        </node>
+        <node name="b9">
+            <position x="-7.80632" y="82.3868" z="153.852" />
+            <scale x="1" y="1" z="1" />
+            <rotation qx="0" qy="0" qz="0" qw="1" />
+            <entity name="b9" castShadows="true" receiveShadows="true" meshFile="blue_circle.mesh">
+            </entity>
+        </node>
+        <node name="b10">
+            <position x="0.087377" y="93.1417" z="169.635" />
+            <scale x="1" y="1" z="1" />
+            <rotation qx="0" qy="0" qz="0" qw="1" />
+            <entity name="b10" castShadows="true" receiveShadows="true" meshFile="blue_circle.mesh">
+            </entity>
+        </node>
+        <node name="b11">
+            <position x="0.322877" y="97.9092" z="178.589" />
+            <scale x="1" y="1" z="1" />
+            <rotation qx="0" qy="0" qz="0" qw="1" />
+            <entity name="b11" castShadows="true" receiveShadows="true" meshFile="blue_circle.mesh">
+            </entity>
+        </node>
         <node name="b12">
-            <position x="0" y="103.026" z="196.602" />
+            <position x="0.497631" y="100.97" z="187.918" />
             <scale x="1" y="1" z="1" />
             <rotation qx="0" qy="0" qz="0" qw="1" />
             <entity name="b12" castShadows="true" receiveShadows="true" meshFile="blue_circle.mesh">
+            </entity>
+        </node>
+        <node name="b13">
+            <position x="0.000950217" y="103.069" z="196.682" />
+            <scale x="1" y="1" z="1" />
+            <rotation qx="0" qy="0" qz="0" qw="1" />
+            <entity name="b13" castShadows="true" receiveShadows="true" meshFile="blue_circle.mesh">
             </entity>
         </node>
     </nodes>
