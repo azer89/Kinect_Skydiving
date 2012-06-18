@@ -51,6 +51,7 @@ public:
 
 	void update(Ogre::Real elapsedTime);	
 	void setState(Movement m);
+	Movement getMovement() { return state;}
 	void openParachute();
 	void setGravity(Ogre::Real gravity) { this->gravity = gravity; }
 	void setLanding();
@@ -63,8 +64,9 @@ public:
 	inline Ogre::Vector3    getWorldPosition() { return mMainNode->_getDerivedPosition (); }
 	inline int				getGameplayScore() { return gameScore; }
 	inline bool				getParachuteStatus() {return isParachuteOpen; }
+	inline bool				getLandingStatus()	{ return isLanding; }
 	
-	void addPoint(int num) 
+	void addScore(int num) 
 	{ 
 		gameScore += num;
 		if(gameScore < 0) gameScore = 0;
@@ -119,6 +121,8 @@ private:
 	AnimID01					 prevAnimID01;
 	AnimID02					 prevAnimID02;
 	Ogre::Real					 mTimer;            // general timer to see how long animations have been playing
+	Ogre::Real					 animSpeed;
+	Ogre::Real					 parachuteSpeedFactor;
 
 	//Ogre::RibbonTrail*	 mTrail;
 	//Ogre::SceneNode*	 trail01Node;

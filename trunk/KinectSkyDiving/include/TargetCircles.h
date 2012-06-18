@@ -34,7 +34,7 @@ private:
 	std::vector<Ogre::SceneNode*> nodeList;
 	
 	std::vector<Ogre::AnimationState*> animations;
-	//Ogre::DotSceneLoader*		 sceneLoader;
+	Ogre::Real	animSpeed;
 };
 
 #endif // #ifndef __TargetCircles_h_

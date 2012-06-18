@@ -15,8 +15,9 @@ public:
 	virtual ~PlanetObjects(void);
 
 	Ogre::AnimationState* setup(Ogre::SceneManager* mSceneManager, RayCastCollision* collisionDetector);
-
 	Ogre::SceneNode* getSignNode(){ return signNode; }
+
+	inline Ogre::Real getTargetRadius() { return targetRadius; }
 
 private:
 	Ogre::SceneManager*  mSceneManager;	
@@ -26,6 +27,7 @@ private:
 	Ogre::SceneNode* signNode;
 	Ogre::Entity* signEntity;
 	
+	Ogre::Real targetRadius;
 	//Ogre::DotSceneLoader*		 sceneLoader;
 };
 

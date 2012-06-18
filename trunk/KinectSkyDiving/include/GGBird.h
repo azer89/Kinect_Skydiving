@@ -15,12 +15,23 @@ class GGBird
 public:
 	GGBird(Ogre::SceneManager* _mSM, Ogre::Vector3 _bornPos)
 	{
+		mAttack = 0;
+		initParameters();
 		init(_mSM, _bornPos); 
 	}
 
 	GGBird(Ogre::SceneManager* _mSM, Ogre::SceneNode* _node)
 	{
+		mAttack = 0;
+		initParameters();
 		init(_mSM, _node); 
+	}
+
+	void initParameters()
+	{
+		ggBirdAttackRadius = GameConfig::getSingletonPtr()->getGGBirdAttackRadius();
+		ggBirdDeleteRadius = GameConfig::getSingletonPtr()->getGGBirdDeleteRadius();
+		ggBirdTracingRadius = GameConfig::getSingletonPtr()->getGGBirdTracingRadius();
 	}
 
 	void init(Ogre::SceneManager* mSM, Ogre::Vector3 bornPos);
@@ -36,11 +47,17 @@ public:
 
 	bool bDie;
 	bool bAttack;
+	int mAttack;
 	Ogre::Vector3 mTarget;	 // the target position if the bird find one
 	Ogre::Vector3 mDir;		 // the front vector of the GGBird
 	Ogre::Vector3 mPos;		 // the position of the GGBird
 	Ogre::Vector3 mSeparate; // avoid to intersect with other GGBird
 	float mSize;
+
+private:
+	Ogre::Real ggBirdAttackRadius;
+	Ogre::Real ggBirdDeleteRadius;
+	Ogre::Real ggBirdTracingRadius;
 };
 
 
@@ -194,6 +211,11 @@ private:
 
 class GGBirdAttack : public FSMState
 {
+
+private:
+	//Ogre::Real timeToDie;
+	int attackCounter;
+
 public:
 	GGBird* mGGBird;
 	Ogre::AnimationState* mAnim;

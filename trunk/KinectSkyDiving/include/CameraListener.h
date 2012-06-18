@@ -4,9 +4,6 @@
 
 #include "Character.h"
 #include "ThirdPersonCamera.h"
-//#include "ExampleFrameListener.h"
-
-//using namespace Ogre;
 
 // Class which holds third-person-camera and current character
 class CameraListener
